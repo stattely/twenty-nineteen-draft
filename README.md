@@ -37,3 +37,13 @@ Ese comando genera `public/data/leaguepedia_rosters.raw.json`. No modifica el ju
 - Agrega etiquetas y tooltips a las mini gráficas de Stats.
 - Cada barra explica qué representa al pasar el mouse.
 - Añade ayuda breve en tarjetas estadísticas para evitar confundir columnas como si fueran métricas independientes.
+
+
+## v16 coherencia competitiva
+
+- La simulación ahora se decide por destrucción del nexo, no por sumar objetivos.
+- Swiss usa Bo1 y Bo3 en series de clasificación/eliminación; playoffs usa Bo3 y final Bo5 para ritmo arcade.
+- Cada serie contiene mapas reales con marcador de serie: 2-0, 2-1, 3-0, 3-2, etc.
+- Las duraciones ahora usan formato mm:ss.
+- Objetivos como Nashor priorizan jungla y solo permiten support/otro rol como robo o pelea caótica.
+- Eventos del historial y simulación se marcan en verde si son de tu draft y rojo si son del rival.
