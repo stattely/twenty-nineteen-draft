@@ -4,7 +4,7 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="theme-color" content="#0a1420" />
-  <title>20:19 Draft</title>
+  <title>20:19 Draft · v21</title>
   <style>
     :root {
       --bg: #eef2f4;
@@ -308,13 +308,153 @@
     .players-grid.is-refresh, .market.is-refresh { animation: sweepIn .35s ease; }
     @keyframes cardFlash { 0% { transform: scale(.985); box-shadow: 0 0 0 0 rgba(200,170,110,0); } 50% { transform: scale(1.01); box-shadow: 0 0 0 10px rgba(200,170,110,.12); } 100% { transform: scale(1); box-shadow: none; } }
     @keyframes sweepIn { 0% { opacity: .35; transform: translateY(8px); } 100% { opacity: 1; transform: translateY(0); } }
+  
+    /* v21 verified role icons: these use the uploaded PNGs directly as background images. */
+    .version-pill {
+      border: 1px solid rgba(240,213,138,.34);
+      border-radius: 999px;
+      padding: 3px 7px;
+      color: var(--gold-2);
+      background: rgba(200,170,110,.10);
+      font-size: 10px;
+      font-weight: 1000;
+      letter-spacing: .08em;
+    }
+    .role-chip {
+      position: relative;
+      display: grid;
+      place-items: center;
+      overflow: hidden;
+      margin: 0;
+      background:
+        radial-gradient(circle at 50% 42%, rgba(200,170,110,.20), transparent 44%),
+        #050b10 !important;
+      border-color: rgba(200,170,110,.55) !important;
+    }
+    .role-glyph {
+      display: block;
+      width: 84%;
+      height: 84%;
+      background-position: center;
+      background-repeat: no-repeat;
+      background-size: contain;
+      filter: drop-shadow(0 3px 5px rgba(0,0,0,.65));
+    }
+    .role-top { background-image: url('/assets/roles/top.png'); }
+    .role-jungle { background-image: url('/assets/roles/jungle.png'); }
+    .role-mid { background-image: url('/assets/roles/mid.png'); }
+    .role-bot { background-image: url('/assets/roles/bot.png'); }
+    .role-support { background-image: url('/assets/roles/support.png'); }
+
+    .slot-role.role-chip img,
+    .round-icon.role-chip img {
+      display: none !important;
+    }
+
+    .focus.is-quiet {
+      min-height: 0 !important;
+      display: flex !important;
+      justify-content: flex-end !important;
+      align-items: center !important;
+      padding: 0 !important;
+      border: 0 !important;
+      background: transparent !important;
+      box-shadow: none !important;
+    }
+    .sim-bubble {
+      margin: 0 0 0 auto;
+      width: fit-content;
+      max-width: min(480px, 100%);
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      padding: 10px 14px;
+      color: var(--muted);
+      background: color-mix(in srgb, var(--panel) 88%, transparent);
+      box-shadow: 0 12px 32px rgba(0,0,0,.18);
+      font-size: 12px;
+      font-weight: 900;
+    }
+
+    .event-line.is-hidden {
+      border-style: dashed !important;
+      opacity: .78 !important;
+      background:
+        linear-gradient(135deg, rgba(200,170,110,.07), rgba(10,200,185,.06)),
+        color-mix(in srgb, var(--panel-2) 92%, transparent) !important;
+    }
+    .event-lock {
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      display: grid;
+      place-items: center;
+      border: 1px solid rgba(200,170,110,.32);
+      background: radial-gradient(circle, rgba(240,213,138,.18), rgba(7,18,26,.96));
+      color: var(--gold-2);
+      font-weight: 1000;
+    }
+    .event-line.is-visible {
+      animation: chestReveal .52s cubic-bezier(.2,.9,.2,1);
+    }
+    @keyframes chestReveal {
+      0% { opacity: .2; transform: perspective(760px) rotateX(-72deg) scale(.94); filter: blur(2px); }
+      58% { transform: perspective(760px) rotateX(10deg) scale(1.018); filter: blur(0); }
+      100% { opacity: 1; transform: perspective(760px) rotateX(0) scale(1); }
+    }
+
+    .tilt-card {
+      transform-style: preserve-3d;
+      will-change: transform;
+      isolation: isolate;
+    }
+    .tilt-card::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      border-radius: inherit;
+      pointer-events: none;
+      background:
+        radial-gradient(circle at var(--mx, 50%) var(--my, 50%), rgba(255,255,255,.36), transparent 32%),
+        linear-gradient(115deg, transparent 0%, rgba(240,213,138,.18) 45%, transparent 65%);
+      mix-blend-mode: screen;
+      opacity: 0;
+      transition: opacity .16s ease;
+      z-index: 3;
+    }
+    .tilt-card:hover::before { opacity: .95; }
+    .tilt-card:hover {
+      border-color: rgba(240,213,138,.75) !important;
+    }
+
+    @media (max-width: 760px) {
+      .app { width: min(100% - 14px, 760px); padding-top: 8px; }
+      .topbar { position: static; grid-template-columns: 1fr auto; gap: 10px; border-radius: 22px; }
+      .microline { grid-column: 1 / -1; flex-wrap: wrap; font-size: 10px; }
+      .tabs { position: sticky; top: 6px; z-index: 19; display: flex; gap: 8px; overflow-x: auto; padding: 8px; border-radius: 18px; margin: 10px 0 12px; scrollbar-width: none; }
+      .tabs::-webkit-scrollbar { display: none; }
+      .tabs button { flex: 0 0 auto; padding: 10px 13px; }
+      .layout, .hero, .settings, .score-layout { grid-template-columns: 1fr !important; }
+      .players-grid, .score-grid { grid-template-columns: 1fr !important; }
+      .actions { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+      .roll-line { grid-template-columns: 58px 1fr; }
+      .roll-line > .btn { grid-column: 1 / -1; width: 100%; }
+      .team-logo { width: 58px; height: 58px; border-radius: 18px; }
+      .player-card { min-height: 196px; }
+      .scoreline { grid-template-columns: 1fr 1fr; }
+      .focus-event { grid-template-columns: 44px 1fr; }
+      .focus-event .event-logo { display: none; }
+      .event-line { grid-template-columns: 34px minmax(0, 1fr) 36px; }
+      .event-lock, .event-logo, .event-icon { width: 34px !important; height: 34px !important; }
+      .event-copy span { white-space: normal !important; }
+    }
+
   </style>
 </head>
 <body class="dark">
   <div class="app">
     <header class="topbar">
       <a class="brand" href="#" data-action="screen" data-screen="draft" aria-label="inicio"><span class="brand-mark">20:19</span><span class="brand-copy">Worlds<br>Draft</span></a>
-      <div class="microline"><strong>Draft</strong><span>·</span><strong>Pick</strong><span>·</span><strong>Win</strong><span id="seedLabel">seed #LOCAL</span></div>
+      <div class="microline"><strong>Draft</strong><span>·</span><strong>Pick</strong><span>·</span><strong>Win</strong><span id="seedLabel">seed #LOCAL</span><span class="version-pill">v21</span></div>
       <nav class="quick-actions"><button type="button" data-action="theme">tema</button><button type="button" data-action="copy">copiar</button><button type="button" data-action="reset">reset</button></nav>
     </header>
     <nav class="tabs" aria-label="pantallas"><button type="button" data-action="screen" data-screen="draft" aria-pressed="true" title="Arma tu roster con tiradas, tienda y picks">Draft</button><button type="button" data-action="screen" data-screen="sim" aria-pressed="false" title="Ve la simulación partido por partido">Simulación</button><button type="button" data-action="screen" data-screen="stats" aria-pressed="false" title="Consulta tus estadísticas acumuladas">Stats</button><button type="button" data-action="screen" data-screen="history" aria-pressed="false" title="Revisa runs anteriores una por una">Historia</button></nav>
@@ -344,7 +484,7 @@
               <div class="choice-group"><p>modo</p><div class="choices" data-setting="mode"><button type="button" class="choice" data-value="classic">clásico</button><button type="button" class="choice" data-value="blind">memoria</button></div></div>
               <div class="choice-group"><p>rosters</p><div class="choices" data-setting="filter"><button type="button" class="choice" data-value="all">todos</button><button type="button" class="choice" data-value="winner">campeones</button><button type="button" class="choice" data-value="east">east</button><button type="button" class="choice" data-value="west">west</button></div></div>
             </section>
-            <section class="panel roll-card" id="rollCard"><div class="roll-line"><div class="team-logo" id="teamLogo">?</div><div class="roll-copy"><h2 id="rollTitle">Sin tirada</h2><p id="rollSub">Haz una tirada para revelar equipo, año y pool de jugadores.</p><div class="pill-row" id="rollTags"></div></div><button type="button" class="btn" data-action="skip" data-icon="→">saltar</button></div></section>
+            <section class="panel roll-card tilt-card" id="rollCard"><div class="roll-line"><div class="team-logo" id="teamLogo">?</div><div class="roll-copy"><h2 id="rollTitle">Sin tirada</h2><p id="rollSub">Haz una tirada para revelar equipo, año y pool de jugadores.</p><div class="pill-row" id="rollTags"></div></div><button type="button" class="btn" data-action="skip" data-icon="→">saltar</button></div></section>
             <section class="players-grid" id="players"><div class="empty">tira el dado para abrir tu primer roster.</div></section>
           </div>
           <aside class="panel side-col">
@@ -373,7 +513,7 @@
         <section class="panel"><div class="history-grid" id="historyLedger"></div></section>
       </section>
     </main>
-    <footer>Fan-made project not affiliated with Riot Games</footer>
+    <footer>Fan-made project not affiliated with Riot Games · v21</footer>
   </div>
   <div class="result-overlay" id="resultOverlay" aria-live="polite"></div>
   <div class="toast" id="toast"></div>
@@ -466,6 +606,8 @@
   const orgMap = { SKT: 'T1', T1: 'T1', DWG: 'DK', DK: 'DK', SSG: 'GEN', GEN: 'GEN', SSW: 'GEN', SSB: 'GEN', KOO: 'ROX', ROX: 'ROX' };
   function tuneRating(rating) { return clamp(rating + RATING_OFFSET, 82, 98); }
   function roleCode(role) { return ({ Top:'TOP', Jungle:'JG', Mid:'MID', Bot:'BOT', Support:'SUP' })[role] || role; }
+  function roleClass(role) { return 'role-' + String(role || '').toLowerCase().replace('support','support').replace('jungle','jungle'); }
+  function roleGlyph(role) { return `<span class="role-glyph ${esc(roleClass(role))}" aria-label="${esc(role)}"></span>`; }
   const p = (name, role, rating, tags) => ({ name, role, rating: tuneRating(rating), rawRating: rating, tags });
   function r(id, name, short, year, region, country, champion, tier, styles, players, extra) {
     const org = orgMap[short] || short;
@@ -829,15 +971,15 @@
   function renderHeader() { text(els.seedLabel, `seed #${state.seed}`); text(els.summarySeed, `seed #${state.seed}`); text(els.rollMeter, `${state.rolls}/${MAX_ROLLS} tiradas`); els.rollBar.style.width = `${state.rolls / MAX_ROLLS * 100}%`; if (!state.current) { text(els.runMark,'—:—'); text(els.runNote,'tira para abrir roster'); image(els.runLogo,'','?'); return; } text(els.runMark, `${state.current.short}: ${state.current.year}`); text(els.runNote, `${state.current.tournament} · ${state.current.major ? 'campeón internacional' : 'contender'}`); image(els.runLogo, state.current.logo, state.current.short); }
   function renderRoll() { els.rollCard.classList.toggle('is-gold', state.current?.rarity === 'rare'); if (!state.current) { image(els.teamLogo,'','?'); text(els.rollTitle,'Sin tirada'); text(els.rollSub,'Haz una tirada para revelar equipo, año y pool de jugadores.'); els.rollTags.innerHTML=''; return; } const r = state.current; image(els.teamLogo, r.logo, r.short); text(els.rollTitle, `${r.name} ${r.year}`); text(els.rollSub, `${flag(r.country)} ${r.region} · ${r.tournament} · tier ${r.tier}`); els.rollTags.innerHTML = (r.rarity === 'rare' ? ['carta dorada','1 de 6'] : []).concat(r.styles).map(x => `<span>${esc(x)}</span>`).join(''); }
   function renderPlayers() { if (!state.current) { els.players.innerHTML = '<div class="empty">tira el dado para abrir tu primer roster.</div>'; return; } els.players.innerHTML = state.current.players.map((pl, i) => card(pl, i)).join(''); }
-  function card(pl, i) { const locked = issue(pl); const hidden = state.mode === 'blind'; return `<article class="player-card ${pl.major ? 'is-gold' : ''} ${locked ? 'is-locked' : ''}" data-player="${i}" tabindex="0" role="button"><div class="portrait-row"><figure class="round-icon">${img(ROLE_ICONS[pl.role], pl.role)}</figure><figure class="round-icon"><span>${esc(roleCode(pl.role))}</span></figure></div><div class="player-main"><h3>${hidden ? '???' : esc(pl.name)}</h3><p>${hidden ? esc(pl.role) : `${flag(pl.country)} ${esc(pl.short)} ${esc(pl.year)} · ${esc(pl.tournament)}`}</p></div><div class="tag-stack">${pl.tags.map(t => `<span>${esc(t)}</span>`).join('')}</div><span class="role-badge">${esc(pl.role)}</span><strong class="rating">${hidden ? '??' : pl.rating}</strong>${locked ? `<em class="lock-copy">${esc(locked)}</em>` : ''}</article>`; }
-  function renderSide() { const ps = picked(), syn = synergy(), meta = metaBonus(), quest = questBonus(), pow = power(), av = ps.length ? Math.round(avg(ps.map(x => x.rating))) : 0; text(els.draftCount, `${ps.length}/5`); text(els.avgScore, av); text(els.synScore, syn.points + meta + quest); text(els.cupChance, `${clamp(Math.round((pow - 76) * 2.7),0,96)}%`); text(els.coinCount, state.coins); text(els.coinHint, `${state.owned.size} desbloqueados · ${state.marketUsed ? 'rotación usada' : 'rotar 10c'}`); text(els.metaText, state.meta ? `${state.meta.name}: ${state.meta.text}` : 'Se revela con la primera tirada.'); text(els.questText, state.quest ? `${state.quest.name}: ${state.quest.text}` : 'Se revela con la primera tirada.'); els.synergyReasons.innerHTML = syn.reasons.length ? syn.reasons.map(x => `<span>${esc(x)}</span>`).join(' ') : 'Sin picks todavía.'; els.metaBox.classList.toggle('is-done', meta > 0); els.questBox.classList.toggle('is-done', quest > 0); els.synergyBox.classList.toggle('is-done', syn.points > 0); els.slots.innerHTML = ROLES.map(role => { const pl = state.picks[role]; return `<article class="slot" data-slot="${role}"><span class="slot-role">${img(pl ? pl.logo : ROLE_ICONS[role], pl ? pl.short : role, ROLE_ICONS[role])}</span><div><strong>${pl ? esc(pl.name) : role}</strong><p>${pl ? `${flag(pl.country)} ${esc(pl.short)} ${pl.year} · ${esc(pl.tournament)}` : 'pendiente'}</p></div><span class="slot-score">${pl ? pl.rating : '—'}</span></article>`; }).join(''); }
-  function renderMarket() { ensureMarket(); const button = document.querySelector('[data-action="market"]'); if (button) { button.textContent = state.marketUsed ? 'usado' : 'rotar 10c'; button.disabled = state.marketUsed; } els.market.innerHTML = state.market.map((id, i) => { const pl = allPlayers.find(x => x.id === id); if (!pl) return ''; const owned = state.owned.has(pl.id); const cost = costOf(pl); const disabled = owned && issue(pl); return `<article class="market-card ${pl.major ? 'is-gold' : ''}"><span class="market-logo">${img(pl.logo, pl.short, ROLE_ICONS[pl.role])}</span><div><strong>${esc(pl.name)}</strong><small>${esc(pl.role)} · ${esc(pl.short)} ${pl.year}</small></div><button type="button" data-market="${i}" ${disabled ? 'disabled' : ''}>${owned ? 'firmar' : cost + 'c'}</button></article>`; }).join(''); }
+  function card(pl, i) { const locked = issue(pl); const hidden = state.mode === 'blind'; return `<article class="player-card tilt-card ${pl.major ? 'is-gold' : ''} ${locked ? 'is-locked' : ''}" data-player="${i}" tabindex="0" role="button"><div class="portrait-row"><figure class="round-icon role-chip">${roleGlyph(pl.role)}</figure><figure class="round-icon"><span>${esc(roleCode(pl.role))}</span></figure></div><div class="player-main"><h3>${hidden ? '???' : esc(pl.name)}</h3><p>${hidden ? esc(pl.role) : `${flag(pl.country)} ${esc(pl.short)} ${esc(pl.year)} · ${esc(pl.tournament)}`}</p></div><div class="tag-stack">${pl.tags.map(t => `<span>${esc(t)}</span>`).join('')}</div><span class="role-badge">${esc(pl.role)}</span><strong class="rating">${hidden ? '??' : pl.rating}</strong>${locked ? `<em class="lock-copy">${esc(locked)}</em>` : ''}</article>`; }
+  function renderSide() { const ps = picked(), syn = synergy(), meta = metaBonus(), quest = questBonus(), pow = power(), av = ps.length ? Math.round(avg(ps.map(x => x.rating))) : 0; text(els.draftCount, `${ps.length}/5`); text(els.avgScore, av); text(els.synScore, syn.points + meta + quest); text(els.cupChance, `${clamp(Math.round((pow - 76) * 2.7),0,96)}%`); text(els.coinCount, state.coins); text(els.coinHint, `${state.owned.size} desbloqueados · ${state.marketUsed ? 'rotación usada' : 'rotar 10c'}`); text(els.metaText, state.meta ? `${state.meta.name}: ${state.meta.text}` : 'Se revela con la primera tirada.'); text(els.questText, state.quest ? `${state.quest.name}: ${state.quest.text}` : 'Se revela con la primera tirada.'); els.synergyReasons.innerHTML = syn.reasons.length ? syn.reasons.map(x => `<span>${esc(x)}</span>`).join(' ') : 'Sin picks todavía.'; els.metaBox.classList.toggle('is-done', meta > 0); els.questBox.classList.toggle('is-done', quest > 0); els.synergyBox.classList.toggle('is-done', syn.points > 0); els.slots.innerHTML = ROLES.map(role => { const pl = state.picks[role]; return `<article class="slot" data-slot="${role}"><span class="slot-role ${pl ? '' : 'role-chip'}">${pl ? img(pl.logo, pl.short, ROLE_ICONS[role]) : roleGlyph(role)}</span><div><strong>${pl ? esc(pl.name) : role}</strong><p>${pl ? `${flag(pl.country)} ${esc(pl.short)} ${pl.year} · ${esc(pl.tournament)}` : 'pendiente'}</p></div><span class="slot-score">${pl ? pl.rating : '—'}</span></article>`; }).join(''); }
+  function renderMarket() { ensureMarket(); const button = document.querySelector('[data-action="market"]'); if (button) { button.textContent = state.marketUsed ? 'usado' : 'rotar 10c'; button.disabled = state.marketUsed; } els.market.innerHTML = state.market.map((id, i) => { const pl = allPlayers.find(x => x.id === id); if (!pl) return ''; const owned = state.owned.has(pl.id); const cost = costOf(pl); const disabled = owned && issue(pl); return `<article class="market-card tilt-card ${pl.major ? 'is-gold' : ''}"><span class="market-logo">${img(pl.logo, pl.short, ROLE_ICONS[pl.role])}</span><div><strong>${esc(pl.name)}</strong><small>${esc(pl.role)} · ${esc(pl.short)} ${pl.year}</small></div><button type="button" data-market="${i}" ${disabled ? 'disabled' : ''}>${owned ? 'firmar' : cost + 'c'}</button></article>`; }).join(''); }
   function renderMini() { if (!state.last) { els.results.innerHTML = '<p class="muted">sin simulación todavía.</p>'; return; } const wins = state.last.matches.filter(m => m.finished && m.win).length, losses = state.last.matches.filter(m => m.finished && !m.win).length; els.results.innerHTML = `<strong>${state.last.complete ? (state.last.won ? 'campeón' : 'eliminado') : 'en vivo'}</strong><p class="muted">${wins}-${losses} · power ${state.last.power}</p>`; }
   function renderSim() {
     if (!state.last) {
       els.simSubtitle.textContent='Completa tu 5v para correr la run.';
       els.simScoreline.innerHTML='';
-      els.liveFocus.innerHTML='<p class="muted">Sin simulación cargada.</p>';
+      els.liveFocus.classList.add('is-quiet'); els.liveFocus.innerHTML='<div class="sim-bubble">Sin simulación cargada.</div>';
       els.simTimeline.innerHTML='';
       return;
     }
@@ -852,7 +994,9 @@
     const mapLosses = maps.filter(g => g.finished && !g.win).length;
     text(els.simSubtitle, `${r.complete ? (r.won ? 'Campeón' : 'Eliminado en ' + r.eliminated) : 'Simulación en vivo'} · power ${r.power} · seed #${state.seed}`);
     els.simScoreline.innerHTML = `<div><strong>${seriesWins}-${seriesLosses}</strong><span>series</span></div><div><strong>${mapWins}-${mapLosses}</strong><span>mapas</span></div><div><strong>${r.groups[0]}-${r.groups[1]}</strong><span>Swiss</span></div><div><strong>${maps.length}</strong><span>partidas</span></div>`;
-    els.liveFocus.innerHTML = ev ? focus(ev, activeSeries, activeGame) : `<p class="muted">${r.complete ? 'Run terminada. Abre una serie para ver detalle.' : 'Siguiente mapa cargando...'}</p>`;
+    els.liveFocus.classList.toggle('is-quiet', !ev);
+    els.liveFocus.classList.toggle('is-quiet', !ev);
+    els.liveFocus.innerHTML = ev ? focus(ev, activeSeries, activeGame) : `<div class="sim-bubble">${r.complete ? 'Run terminada · abre una serie para ver detalle.' : 'Siguiente mapa cargando...'}</div>`;
     els.simTimeline.innerHTML = r.matches.map((m, i) => seriesCard(m, i, i === r.activeMatch, r.activeGame, r.activeEvent)).join('');
   }
   function focus(ev, series, game) { return `<article class="focus-event ${ev.ours ? 'is-good' : 'is-bad'}"><img src="${ev.icon}" alt=""><div><span>${esc(series.label)} · ${esc(game.label)} vs ${esc(series.enemy.short)} ${series.enemy.year}</span><strong>${esc(ev.label)}</strong><p>${esc(ev.copy)}</p></div><figure class="event-logo">${img(ev.logo, ev.who, badge(ev.who,'team'))}</figure></article>`; }
@@ -880,7 +1024,7 @@
     return `<article class="map-card ${resultClass} ${activeClass} ${secretClass}"><header class="map-head"><span>${esc(game.label)} · ${time}</span><b class="${game.finished ? (game.win ? 'win' : 'loss') : ''}">${headerResult}</b></header><div class="event-list">${game.events.map((ev,k) => eventLine(ev, active && k === activeEvent)).join('')}</div></article>`;
   }
   function eventLine(ev, current) {
-    if (!ev.visible) return `<div class="event-line is-hidden ${current ? 'is-current' : ''}"><img class="event-icon" src="${ev.icon}" alt=""><div class="event-copy"><strong>Evento oculto</strong><span>Se revelará cuando ocurra en la partida.</span><span class="event-side">Sin spoiler</span></div><figure class="event-logo"><span>?</span></figure></div>`;
+    if (!ev.visible) return `<div class="event-line is-hidden ${current ? 'is-current' : ''}"><span class="event-lock">?</span><div class="event-copy"><strong>Carta cerrada</strong><span>Se revelará cuando ocurra en la partida.</span><span class="event-side">Sin spoiler</span></div><figure class="event-logo"><span>?</span></figure></div>`;
     const side = ev.ours ? 'A favor' : 'Rival';
     return `<div class="event-line is-visible ${ev.ours ? 'is-ours' : 'is-them'} ${current ? 'is-current' : ''}"><img class="event-icon" src="${ev.icon}" alt=""><div class="event-copy"><strong>${esc(ev.label)}</strong><span>${esc(ev.copy)}</span><span class="event-side">${side} · ${esc(ev.who)}</span></div><figure class="event-logo">${img(ev.logo, ev.who, badge(ev.who,'team'))}</figure></div>`;
   }
@@ -957,21 +1101,28 @@
 
   function bindTilt() {
     if (window.matchMedia?.('(pointer: coarse)').matches) return;
+    const selector = '.player-card, .market-card, .roll-card';
     document.addEventListener('pointermove', e => {
-      const card = e.target.closest?.('.player-card, .market-card, .roll-card');
+      const card = e.target.closest?.(selector);
       if (!card) return;
       const rect = card.getBoundingClientRect();
-      const px = (e.clientX - rect.left) / rect.width;
-      const py = (e.clientY - rect.top) / rect.height;
-      const rx = (py - .5) * -8;
-      const ry = (px - .5) * 8;
+      const px = clamp((e.clientX - rect.left) / rect.width, 0, 1);
+      const py = clamp((e.clientY - rect.top) / rect.height, 0, 1);
+      const rx = (py - .5) * -15;
+      const ry = (px - .5) * 15;
       card.style.setProperty('--mx', `${px * 100}%`);
       card.style.setProperty('--my', `${py * 100}%`);
-      card.style.transform = `perspective(850px) rotateX(${rx}deg) rotateY(${ry}deg) translateY(-4px)`;
+      card.style.transform = `perspective(900px) rotateX(${rx}deg) rotateY(${ry}deg) translateY(-7px) scale(1.018)`;
+      card.style.boxShadow = `0 28px 72px rgba(0,0,0,.34), ${-ry}px ${rx}px 34px rgba(200,170,110,.10)`;
     });
     document.addEventListener('pointerout', e => {
-      const card = e.target.closest?.('.player-card, .market-card, .roll-card');
-      if (card && !card.contains(e.relatedTarget)) card.style.transform = '';
+      const card = e.target.closest?.(selector);
+      if (card && !card.contains(e.relatedTarget)) {
+        card.style.transform = '';
+        card.style.boxShadow = '';
+        card.style.removeProperty('--mx');
+        card.style.removeProperty('--my');
+      }
     });
   }
 

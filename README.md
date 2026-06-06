@@ -68,3 +68,13 @@ Ese comando genera `public/data/leaguepedia_rosters.raw.json`. No modifica el ju
 - Refuerza tilt/foil de tarjetas en desktop.
 - Mejora stats, historia y momentum con animaciones más visibles.
 - Añade documento `docs/CHRONO_IDEAS.md` con 15 ideas para el modo Chrono.
+
+
+## v21 verified
+
+Cambios verificables:
+- Footer y microline muestran `v21`.
+- Los iconos de rol ya no son `<img>` con padding heredado; ahora son `role-glyph` con background directo desde `/assets/roles/*.png`.
+- Los eventos ocultos muestran `Carta cerrada` y no revelan tipo, jugador ni equipo.
+- `Sin simulación cargada` se muestra como burbuja discreta.
+- Las cartas tienen clase `tilt-card` y hover 3D en desktop.
