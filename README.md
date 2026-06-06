@@ -47,3 +47,24 @@ Ese comando genera `public/data/leaguepedia_rosters.raw.json`. No modifica el ju
 - Las duraciones ahora usan formato mm:ss.
 - Objetivos como Nashor priorizan jungla y solo permiten support/otro rol como robo o pelea caótica.
 - Eventos del historial y simulación se marcan en verde si son de tu draft y rojo si son del rival.
+
+
+## v17/v18 Pro polish
+
+- Simulación sin spoilers: eventos y resultado del mapa se ocultan hasta revelarse.
+- Seed reproducible interna: las decisiones aleatorias de la run usan la seed activa.
+- Tarjetas con tilt 3D/foil al estilo card reveal.
+- Overlays de victoria/derrota por mapa y final de run.
+- Stats e Historia con animaciones, barras, momentum chart y color por resultado.
+- Iconos de posición reemplazados por los PNG enviados.
+
+
+## v19 Mobile + No Spoiler Polish
+
+- Reemplaza iconos de roles desde `IconsPositions.zip`.
+- Ajusta layout para smartphone y tablet.
+- Convierte los eventos no revelados en cartas cerradas para evitar spoilers.
+- Reduce el mensaje de fin de run a una burbuja discreta.
+- Refuerza tilt/foil de tarjetas en desktop.
+- Mejora stats, historia y momentum con animaciones más visibles.
+- Añade documento `docs/CHRONO_IDEAS.md` con 15 ideas para el modo Chrono.

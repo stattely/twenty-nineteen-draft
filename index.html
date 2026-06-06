@@ -247,6 +247,62 @@
     .toast.show { opacity: 1; transform: translate(-50%, 0); }
     .fatal { position: fixed; left: 14px; right: 14px; bottom: 14px; z-index: 100; border: 2px solid #e35b5b; background: #210f0f; color: #ffecec; border-radius: 18px; padding: 12px; font: 12px/1.4 ui-monospace, Consolas, monospace; }
     footer { margin: 24px 0 0; color: var(--muted); text-align: center; font-size: 12px; }
+
+    /* V17/V18 polish */
+    .player-card, .market-card, .roll-card { transform-style: preserve-3d; will-change: transform; }
+    .player-card::before, .market-card::before, .roll-card::before {
+      content: ''; position: absolute; inset: 0; pointer-events: none; opacity: 0;
+      background: radial-gradient(circle at var(--mx, 50%) var(--my, 50%), rgba(255,255,255,.23), transparent 36%);
+      transition: opacity .18s ease; mix-blend-mode: screen;
+    }
+    .player-card:hover::before, .market-card:hover::before, .roll-card:hover::before { opacity: 1; }
+    .player-card.is-gold::before, .market-card.is-gold::before, .roll-card.is-gold::before {
+      background: radial-gradient(circle at var(--mx, 50%) var(--my, 50%), rgba(255,255,255,.38), transparent 34%), linear-gradient(115deg, transparent, rgba(240,213,138,.22), transparent);
+    }
+    .event-line.is-hidden { opacity: .48; filter: grayscale(.35); }
+    .event-line.is-hidden .event-copy strong { color: var(--muted); }
+    .event-line.is-hidden .event-logo { opacity: .35; }
+    .match-card.is-secret .match-head b, .map-card.is-secret .map-head b { color: var(--muted); }
+    .result-overlay { position: fixed; inset: 0; display: grid; place-items: center; pointer-events: none; opacity: 0; z-index: 90; transition: opacity .22s ease; }
+    .result-overlay.show { opacity: 1; }
+    .result-card { min-width: min(520px, calc(100vw - 34px)); border: 1px solid var(--line); border-radius: 34px; padding: 30px; text-align: center; background: rgba(7,18,26,.82); box-shadow: 0 40px 120px rgba(0,0,0,.48); backdrop-filter: blur(18px); animation: resultIn .72s cubic-bezier(.2,.9,.2,1); overflow: hidden; position: relative; }
+    .result-card::before { content: ''; position: absolute; inset: -30%; background: radial-gradient(circle, rgba(240,213,138,.28), transparent 42%); transform: scale(.7); animation: flare 1.2s ease-out forwards; }
+    .result-card > * { position: relative; z-index: 1; }
+    .result-card small { display: block; color: var(--muted); text-transform: uppercase; letter-spacing: .18em; font-weight: 1000; }
+    .result-card strong { display: block; font-size: clamp(38px, 9vw, 92px); line-height: .86; letter-spacing: -.08em; margin: 10px 0; }
+    .result-card p { margin: 0; color: var(--muted); }
+    .result-overlay.map-win .result-card { border-color: rgba(36,180,126,.7); }
+    .result-overlay.map-win .result-card strong, .result-overlay.champion .result-card strong { color: var(--good); }
+    .result-overlay.map-loss .result-card { border-color: rgba(255,95,109,.62); transform: scale(.96); }
+    .result-overlay.map-loss .result-card strong, .result-overlay.eliminated .result-card strong { color: var(--bad); }
+    .result-overlay.champion, .result-overlay.eliminated { background: radial-gradient(circle at center, rgba(7,18,26,.32), rgba(0,0,0,.72)); }
+    .result-overlay.champion .result-card { border-color: rgba(240,213,138,.88); background: linear-gradient(145deg, rgba(7,18,26,.9), rgba(120,93,35,.72)); }
+    .result-overlay.eliminated .result-card { border-color: rgba(255,95,109,.68); background: linear-gradient(145deg, rgba(7,18,26,.92), rgba(86,25,32,.68)); }
+    @keyframes resultIn { 0% { transform: translateY(22px) scale(.86); opacity: 0; } 58% { transform: translateY(-4px) scale(1.025); opacity: 1; } 100% { transform: translateY(0) scale(1); opacity: 1; } }
+    @keyframes flare { 100% { transform: scale(1.4); opacity: 0; } }
+    .ledger-row { position: relative; overflow: hidden; animation: ledgerIn .28s ease both; }
+    .ledger-row::before { content:''; position:absolute; left:0; top:0; bottom:0; width:4px; background: var(--gold); opacity:.72; }
+    .ledger-row.is-win::before { background: var(--good); }
+    .ledger-row.is-loss::before { background: var(--bad); }
+    .ledger-bar { height: 7px; background: rgba(128,128,128,.16); border-radius: 999px; overflow: hidden; margin-top: 7px; }
+    .ledger-bar b { display:block; height:100%; width: var(--w, 45%); border-radius: inherit; background: linear-gradient(90deg, var(--teal), var(--gold)); }
+    .pick-meter { display:grid; gap:5px; min-width: 130px; }
+    .history-card { overflow: hidden; }
+    .history-card summary { cursor:pointer; list-style:none; }
+    .history-card summary::-webkit-details-marker { display:none; }
+    .momentum-chart { margin-top: 12px; border: 1px solid var(--line); border-radius: 18px; padding: 10px; background: linear-gradient(135deg, rgba(10,200,185,.08), rgba(200,170,110,.08)); }
+    .momentum-chart svg { width: 100%; height: 128px; display:block; overflow: visible; }
+    .momentum-chart .axis { stroke: rgba(128,128,128,.25); stroke-width: 1; }
+    .momentum-chart .area-good { fill: rgba(36,180,126,.15); }
+    .momentum-chart .area-bad { fill: rgba(255,95,109,.12); }
+    .momentum-chart .line { fill:none; stroke: var(--gold); stroke-width: 4; stroke-linecap: round; stroke-linejoin: round; stroke-dasharray: 420; stroke-dashoffset: 420; animation: drawLine .9s ease forwards; }
+    .momentum-chart .dot-win { fill: var(--good); }
+    .momentum-chart .dot-loss { fill: var(--bad); }
+    .momentum-caption { display:flex; justify-content:space-between; color:var(--muted); font-size: 11px; font-weight:900; text-transform:uppercase; margin-top:8px; }
+    @keyframes drawLine { to { stroke-dashoffset: 0; } }
+    @keyframes ledgerIn { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
+    @media (prefers-reduced-motion: reduce) { .player-card, .market-card, .roll-card { transform: none !important; } .result-card, .ledger-row, .momentum-chart .line { animation: none !important; } }
+
     @media (max-width: 980px) { .layout { grid-template-columns: 1fr; } .hero { grid-template-columns: 1fr; } .players-grid { grid-template-columns: repeat(2, minmax(180px, 1fr)); } .settings { grid-template-columns: 1fr; } .score-grid { grid-template-columns: repeat(2, 1fr); } .score-layout { grid-template-columns: 1fr; } .topbar { grid-template-columns: 1fr; } .microline { justify-self: start; flex-wrap: wrap; } }
     .roll-card.is-flash { animation: cardFlash .45s ease; }
     .players-grid.is-refresh, .market.is-refresh { animation: sweepIn .35s ease; }
@@ -319,6 +375,7 @@
     </main>
     <footer>Fan-made project not affiliated with Riot Games</footer>
   </div>
+  <div class="result-overlay" id="resultOverlay" aria-live="polite"></div>
   <div class="toast" id="toast"></div>
   <script>
 (function () {
@@ -473,12 +530,13 @@
 
   const $ = id => document.getElementById(id);
   const els = {};
-  ['seedLabel','draftScreen','simScreen','statsScreen','historyScreen','rollMeter','rollBar','runLogo','runMark','runNote','rollCard','teamLogo','rollTitle','rollSub','rollTags','players','summarySeed','draftCount','avgScore','synScore','cupChance','coinCount','coinHint','slots','market','metaBox','questBox','synergyBox','metaText','questText','synergyReasons','results','toast','simSubtitle','simScoreline','liveFocus','simTimeline','scoreGrid','runLedger','pickLedger','simLedger','historyLedger'].forEach(id => els[id] = $(id));
+  ['seedLabel','draftScreen','simScreen','statsScreen','historyScreen','rollMeter','rollBar','runLogo','runMark','runNote','rollCard','teamLogo','rollTitle','rollSub','rollTags','players','summarySeed','draftCount','avgScore','synScore','cupChance','coinCount','coinHint','slots','market','metaBox','questBox','synergyBox','metaText','questText','synergyReasons','results','resultOverlay','toast','simSubtitle','simScoreline','liveFocus','simTimeline','scoreGrid','runLedger','pickLedger','simLedger','historyLedger'].forEach(id => els[id] = $(id));
   const allPlayers = ROSTERS.flatMap(r => r.players);
   const state = {
     screen: 'draft', seed: seed(), current: null, picks: Object.fromEntries(ROLES.map(r => [r, null])), difficulty: 'normal', mode: 'classic', filter: 'all',
     rolls: 0, rerollUsed: false, scoutUsed: false, marketUsed: false, meta: null, quest: null, market: [], coins: readNumber(STORE.coins, STARTING_COINS), owned: readSet(STORE.owned), stats: readStats(), last: null, simming: false, openMatches: new Set()
   };
+  state.rng = makeRng(state.seed);
 
   try { boot(); } catch (err) { fatal(err); }
 
@@ -488,6 +546,7 @@
     document.addEventListener('click', handleClick);
     document.addEventListener('keydown', handleKeys);
     document.addEventListener('error', imageFallback, true);
+    bindTilt();
     render();
     window.__DRAFT_READY = true;
   }
@@ -547,7 +606,7 @@
     if (!pool.length) return null;
     const rare = pool.filter(r => r.rarity === 'rare');
     const normal = pool.filter(r => r.rarity !== 'rare');
-    if (rare.length && Math.random() < RARE_CHANCE) return pick(rare);
+    if (rare.length && rng() < RARE_CHANCE) return pick(rare);
     return pick(normal.length ? normal : pool);
   }
 
@@ -620,6 +679,7 @@
     write(STORE.coins, state.coins);
     recordStats(reward);
     render();
+    await showResult(state.last.won ? 'champion' : 'eliminated', state.last.won ? 'Campeón mundial' : 'Run eliminada', state.last.won ? `Levantaste la copa · +${reward} coins` : `${state.last.eliminated} · +${reward} coins`);
     toast(state.last.won ? `Campeón · +${reward} coins` : `Eliminado en ${state.last.eliminated} · +${reward} coins`);
   }
 
@@ -652,7 +712,8 @@
       if (game.win) series.ourWins++; else series.rivalWins++;
       state.last.activeEvent = -1;
       renderSim();
-      await wait(460);
+      await showResult(game.win ? 'map-win' : 'map-loss', game.win ? 'Mapa ganado' : 'Mapa perdido', `${series.label} · ${game.label} · ${game.duration}`);
+      await wait(260);
       mapNo++;
     }
 
@@ -680,7 +741,7 @@
     const our = Math.round(state.last.power + modBonus + fatigue + clutch + rand(-d.variance, d.variance));
     const rival = Math.round((series.enemy.tier + series.gate) / 2 + d.enemy + ENEMY_HANDICAP + rand(-4, 5));
     const chance = clamp(.5 + (our - rival) * .042, .13, .87);
-    const win = Math.random() < chance;
+    const win = rng() < chance;
     const durationSec = gameDuration(win, our, rival);
     const mvp = selectMvp(win, series.enemy).name;
     return { label: `Mapa ${mapNo}`, our, rival, chance, win, durationSec, duration: fmtDuration(durationSec), mvp, finished: false, events: matchEvents(win, series.enemy, durationSec, mvp, our, rival) };
@@ -698,11 +759,11 @@
     const earlyLead = decideEvent(win, .58, enemy, 'early');
     events.push(event('blood', 'First blood', earlyLead, `${earlyLead.actor} abre el mapa.`));
     events.push(event('dragon', 'First drake', objectiveTeam(win, .55, enemy, 'dragon'), 'asegura el primer dragón.'));
-    if (Math.random() > .43) events.push(fightEvent(win, enemy));
+    if (rng() > .43) events.push(fightEvent(win, enemy));
     events.push(event('inhibitor', 'First inhibitor', objectiveTeam(win, .63, enemy, 'inhibitor'), 'rompe el primer inhibidor.'));
-    if (durationSec >= 28 * 60 && Math.random() > .18) events.push(baronEvent(win, enemy));
-    if (durationSec >= 32 * 60 && Math.random() > .34) events.push(event('soul', pick(['Infernal','Mountain','Ocean','Cloud','Hextech']) + ' soul', objectiveTeam(win, .60, enemy, 'dragon'), 'completa el alma elemental.'));
-    if (durationSec >= 35 * 60 && Math.random() > .56) events.push(event('dragon', 'Elder drake', objectiveTeam(win, .58, enemy, 'dragon'), 'toma Elder para cerrar el mapa.'));
+    if (durationSec >= 28 * 60 && rng() > .18) events.push(baronEvent(win, enemy));
+    if (durationSec >= 32 * 60 && rng() > .34) events.push(event('soul', pick(['Infernal','Mountain','Ocean','Cloud','Hextech']) + ' soul', objectiveTeam(win, .60, enemy, 'dragon'), 'completa el alma elemental.'));
+    if (durationSec >= 35 * 60 && rng() > .56) events.push(event('dragon', 'Elder drake', objectiveTeam(win, .58, enemy, 'dragon'), 'toma Elder para cerrar el mapa.'));
 
     const oursBeforeNexus = events.filter(e => e.ours && ['blood','dragon','inhibitor','baron','soul'].includes(e.type)).length;
     const themBeforeNexus = events.filter(e => !e.ours && ['blood','dragon','inhibitor','baron','soul'].includes(e.type)).length;
@@ -716,7 +777,7 @@
   }
 
   function decideEvent(win, chance, enemy, context) {
-    if (Math.random() < (win ? chance : 1 - chance)) return actorTeam(true, context, enemy);
+    if (rng() < (win ? chance : 1 - chance)) return actorTeam(true, context, enemy);
     return actorTeam(false, context, enemy);
   }
 
@@ -734,7 +795,7 @@
 
   function baronEvent(win, enemy) {
     const team = objectiveTeam(win, .62, enemy, 'baron');
-    const isSteal = Math.random() < .16;
+    const isSteal = rng() < .16;
     const bySupport = team.role === 'Support';
     const copy = isSteal || bySupport
       ? `${team.actor} roba el Nashor en una pelea caótica.`
@@ -743,10 +804,10 @@
   }
 
   function fightEvent(win, enemy) {
-    const ours = Math.random() < (win ? .58 : .42);
+    const ours = rng() < (win ? .58 : .42);
     const pool = ours ? picked() : enemy.players;
     const carry = weightedPick(pool, ['Top','Mid','Mid','Bot','Bot','Jungle']);
-    const roll = Math.random();
+    const roll = rng();
     const label = roll > .86 ? 'Pentakill' : roll > .62 ? 'Quadra kill' : 'Teamfight ace';
     const copy = label === 'Pentakill' ? `${carry.name} encuentra el pentakill.` : label === 'Quadra kill' ? `${carry.name} firma la quadra.` : `${carry.name} lidera un ace importante.`;
     return { type:'fight', label, who: ours ? '20:19 Draft' : enemy.short, actor: carry.name, copy, icon:OBJ.blood, logo: ours ? carry.logo : enemy.logo, ours, visible:false };
@@ -800,22 +861,28 @@
     const currentClass = active && !series.finished ? 'is-active' : '';
     const doneClass = series.finished ? 'is-finished' : '';
     const collapsedClass = open ? '' : 'is-collapsed';
-    const result = series.finished ? `<b class="${series.win ? 'win' : 'loss'}">${series.win ? 'WIN' : 'LOSS'} ${series.ourWins}-${series.rivalWins}</b>` : `<b>${series.ourWins}-${series.rivalWins}</b>`;
+    const result = series.finished ? `<b class="${series.win ? 'win' : 'loss'}">${series.win ? 'WIN' : 'LOSS'} ${series.ourWins}-${series.rivalWins}</b>` : `<b>Serie en curso · ${series.ourWins}-${series.rivalWins}</b>`;
     const buttonText = open ? 'Plegar' : 'Detalle';
     const maps = series.games || [];
     const totalEvents = maps.flatMap(g => g.events.filter(e => e.visible));
     const ourEvents = totalEvents.filter(e => e.ours).length;
     const details = `<div class="round-mod ${series.mod.ok ? 'is-done' : ''}">${esc(series.mod.kind)} · ${esc(series.mod.name)} · ${series.mod.ok ? 'cumplido' : 'no cumplido'}</div><div class="map-list">${maps.map((game,j) => mapCard(game, j, active && j === activeGame, activeEvent)).join('')}</div>`;
-    return `<article class="match-card ${currentClass} ${doneClass} ${collapsedClass}"><header class="match-head"><span>${esc(series.label)} · ${series.bo}</span><strong>${flag(series.enemy.country)} ${esc(series.enemy.short)} ${series.enemy.year}</strong>${result}<button type="button" class="match-toggle" data-action="toggleMatch" data-match="${i}">${buttonText}</button></header><div class="series-meta"><span class="story-chip">vs ${esc(series.enemy.name)}</span><span class="story-chip">score ${series.ourWins}-${series.rivalWins}</span><span class="story-chip">${maps.length} mapa${maps.length === 1 ? '' : 's'}</span></div>${open ? details : `<div class="match-summary"><span>${series.win ? 'Victoria' : 'Derrota'}</span><span>${ourEvents}/${totalEvents.length} eventos a favor</span><span>${maps.map(g => g.duration).join(' · ')}</span></div>`}</article>`;
+    const summary = series.finished ? `<div class="match-summary"><span>${series.win ? 'Victoria' : 'Derrota'}</span><span>${ourEvents}/${totalEvents.length} eventos a favor</span><span>${maps.map(g => g.duration).join(' · ')}</span></div>` : `<div class="match-summary"><span>En curso</span><span>${maps.filter(g => g.finished).length}/${series.need * 2 - 1} mapas posibles</span><span>Sin spoiler del cierre</span></div>`;
+    return `<article class="match-card ${currentClass} ${doneClass} ${collapsedClass} ${series.finished ? '' : 'is-secret'}"><header class="match-head"><span>${esc(series.label)} · ${series.bo}</span><strong>${flag(series.enemy.country)} ${esc(series.enemy.short)} ${series.enemy.year}</strong>${result}<button type="button" class="match-toggle" data-action="toggleMatch" data-match="${i}">${buttonText}</button></header><div class="series-meta"><span class="story-chip">vs ${esc(series.enemy.name)}</span><span class="story-chip">score ${series.ourWins}-${series.rivalWins}</span><span class="story-chip">${maps.length} mapa${maps.length === 1 ? '' : 's'}</span></div>${open ? details : summary}</article>`;
   }
+
   function mapCard(game, j, active, activeEvent) {
     const resultClass = game.finished ? (game.win ? 'is-win' : 'is-loss') : '';
     const activeClass = active && !game.finished ? 'is-active' : '';
-    return `<article class="map-card ${resultClass} ${activeClass}"><header class="map-head"><span>${esc(game.label)} · ${game.duration || 'en vivo'}</span><b class="${game.finished ? (game.win ? 'win' : 'loss') : ''}">${game.finished ? (game.win ? 'WIN' : 'LOSS') : 'LIVE'} ${game.our}-${game.rival}</b></header><div class="event-list">${game.events.map((ev,k) => eventLine(ev, active && k === activeEvent)).join('')}</div></article>`;
+    const secretClass = game.finished ? '' : 'is-secret';
+    const headerResult = game.finished ? `${game.win ? 'WIN' : 'LOSS'} ${game.our}-${game.rival}` : (active ? 'LIVE · resultado oculto' : 'pendiente');
+    const time = game.finished ? game.duration : (active ? 'en vivo' : 'por revelar');
+    return `<article class="map-card ${resultClass} ${activeClass} ${secretClass}"><header class="map-head"><span>${esc(game.label)} · ${time}</span><b class="${game.finished ? (game.win ? 'win' : 'loss') : ''}">${headerResult}</b></header><div class="event-list">${game.events.map((ev,k) => eventLine(ev, active && k === activeEvent)).join('')}</div></article>`;
   }
   function eventLine(ev, current) {
+    if (!ev.visible) return `<div class="event-line is-hidden ${current ? 'is-current' : ''}"><img class="event-icon" src="${ev.icon}" alt=""><div class="event-copy"><strong>Evento oculto</strong><span>Se revelará cuando ocurra en la partida.</span><span class="event-side">Sin spoiler</span></div><figure class="event-logo"><span>?</span></figure></div>`;
     const side = ev.ours ? 'A favor' : 'Rival';
-    return `<div class="event-line ${ev.visible ? 'is-visible' : ''} ${ev.ours ? 'is-ours' : 'is-them'} ${current ? 'is-current' : ''}"><img class="event-icon" src="${ev.icon}" alt=""><div class="event-copy"><strong>${esc(ev.label)}</strong><span>${esc(ev.copy)}</span><span class="event-side">${side} · ${esc(ev.who)}</span></div><figure class="event-logo">${img(ev.logo, ev.who, badge(ev.who,'team'))}</figure></div>`;
+    return `<div class="event-line is-visible ${ev.ours ? 'is-ours' : 'is-them'} ${current ? 'is-current' : ''}"><img class="event-icon" src="${ev.icon}" alt=""><div class="event-copy"><strong>${esc(ev.label)}</strong><span>${esc(ev.copy)}</span><span class="event-side">${side} · ${esc(ev.who)}</span></div><figure class="event-logo">${img(ev.logo, ev.who, badge(ev.who,'team'))}</figure></div>`;
   }
   function renderStats() {
     const s = state.stats;
@@ -834,9 +901,10 @@
       statCard('Coins', s.coinsEarned, [bar('gain', Math.min(100, s.coinsEarned / 8), 'Coins ganadas escaladas'), bar('pace', Math.min(100, s.coinsEarned / 14), 'Ritmo de farmeo'), bar('bank', Math.min(100, s.coinsEarned / 20), 'Progreso económico global')], `${state.coins} en wallet`, 'Economía acumulada y ritmo de recompensas.')
     ];
     els.scoreGrid.innerHTML = cards.join('');
-    els.runLedger.innerHTML = s.recent.length ? s.recent.map(x => `<article class="ledger-row"><strong>${esc(x.result)}</strong><span>${esc(x.seed)} · ${x.score} · +${x.reward}c</span></article>`).join('') : '<p class="muted">Sin runs.</p>';
+    els.runLedger.innerHTML = s.recent.length ? s.recent.map((x,i) => `<article class="ledger-row ${x.result.includes('Campeón') ? 'is-win' : 'is-loss'}" style="animation-delay:${i*35}ms"><div><strong>${esc(x.result)}</strong><div class="ledger-bar"><b style="--w:${Math.min(100, 28 + Number(x.reward || 0))}%"></b></div></div><span>${esc(x.seed)} · ${x.score} · +${x.reward}c</span></article>`).join('') : '<p class="muted">Sin runs.</p>';
     const top = Object.entries(s.picks).sort((a,b)=>b[1]-a[1]).slice(0,8);
-    els.pickLedger.innerHTML = top.length ? top.map(x => `<article class="ledger-row"><strong>${esc(x[0])}</strong><span>${x[1]} picks</span></article>`).join('') : '<p class="muted">Sin picks.</p>';
+    const maxPick = top[0]?.[1] || 1;
+    els.pickLedger.innerHTML = top.length ? top.map((x,i) => `<article class="ledger-row" style="animation-delay:${i*35}ms"><strong>${esc(x[0])}</strong><div class="pick-meter"><span>${x[1]} picks</span><div class="ledger-bar"><b style="--w:${Math.max(12, Math.round(x[1] / maxPick * 100))}%"></b></div></div></article>`).join('') : '<p class="muted">Sin picks.</p>';
     els.simLedger.innerHTML = state.last?.matches?.length ? state.last.matches.map((series, i) => `<details class="ledger-detail"><summary><strong>${series.label} · ${series.win ? 'WIN' : 'LOSS'} ${series.ourWins}-${series.rivalWins}</strong><span>${esc(series.enemy.short)} ${series.enemy.year} · ${series.bo}</span></summary><div class="detail-events">${series.games.flatMap(g => g.events.filter(e => e.visible).map(e => `<span class="${e.ours ? 'is-ours' : 'is-them'}">${esc(g.label)} · ${esc(e.label)} · ${esc(e.copy)}</span>`)).join('') || '<span>Sin eventos revelados.</span>'}</div></details>`).join('') : '<p class="muted">Simula una run.</p>';
     renderHistory();
   }
@@ -844,7 +912,19 @@
   function renderHistory() {
     const list = state.stats.history || [];
     if (!els.historyLedger) return;
-    els.historyLedger.innerHTML = list.length ? list.map((run, i) => `<details class="history-card" ${i === 0 ? 'open' : ''}><summary class="history-head"><strong>${esc(run.result)}</strong><span>${esc(run.seed)} · ${run.score} · +${run.reward}c</span></summary><div class="history-meta"><span>Power ${run.power}</span><span>Swiss ${run.groups}</span><span>${run.maps} mapas</span></div><div class="history-picks">${run.picks.map(p => `<span>${esc(p.role)} · ${esc(p.name)} · ${esc(p.short)} ${p.year}</span>`).join('')}</div><div class="detail-events">${run.matches.map(m => `<span class="${m.win ? 'is-ours' : 'is-them'}">${esc(m.label)} · ${m.win ? 'WIN' : 'LOSS'} ${m.score} · ${esc(m.enemy)} · ${m.maps} mapa${m.maps === 1 ? '' : 's'}</span>`).join('')}</div></details>`).join('') : '<p class="muted">Todavía no hay runs guardadas.</p>';
+    els.historyLedger.innerHTML = list.length ? list.map((run, i) => `<details class="history-card" ${i === 0 ? 'open' : ''}><summary class="history-head"><strong>${esc(run.result)}</strong><span>${esc(run.seed)} · ${run.score} · +${run.reward}c</span></summary><div class="history-meta"><span>Power ${run.power}</span><span>Swiss ${run.groups}</span><span>${run.maps} mapas</span></div>${momentumChart(run.momentum || [])}<div class="history-picks">${run.picks.map(p => `<span>${esc(p.role)} · ${esc(p.name)} · ${esc(p.short)} ${p.year}</span>`).join('')}</div><div class="detail-events">${run.matches.map(m => `<span class="${m.win ? 'is-ours' : 'is-them'}">${esc(m.label)} · ${m.win ? 'WIN' : 'LOSS'} ${m.score} · ${esc(m.enemy)} · ${m.maps} mapa${m.maps === 1 ? '' : 's'}</span>`).join('')}</div></details>`).join('') : '<p class="muted">Todavía no hay runs guardadas.</p>';
+  }
+
+  function momentumChart(points) {
+    const seq = points.length ? points : [0];
+    const max = Math.max(3, ...seq.map(x => Math.abs(x)));
+    const w = 320, h = 120, pad = 14;
+    const step = seq.length > 1 ? (w - pad * 2) / (seq.length - 1) : 0;
+    const y = v => Math.round(h / 2 - (v / max) * (h / 2 - pad));
+    const coords = seq.map((v,i) => [Math.round(pad + i * step), y(v)]);
+    const line = coords.map((p,i) => `${i ? 'L' : 'M'}${p[0]},${p[1]}`).join(' ');
+    const dots = coords.map((p,i) => `<circle cx="${p[0]}" cy="${p[1]}" r="4" class="${seq[i] >= 0 ? 'dot-win' : 'dot-loss'}"></circle>`).join('');
+    return `<div class="momentum-chart" title="Momentum por mapa: sube con wins, baja con losses"><svg viewBox="0 0 ${w} ${h}" role="img" aria-label="Momentum de la run"><rect x="0" y="0" width="${w}" height="${h/2}" class="area-good"></rect><rect x="0" y="${h/2}" width="${w}" height="${h/2}" class="area-bad"></rect><line x1="0" y1="${h/2}" x2="${w}" y2="${h/2}" class="axis"></line><path d="${line}" class="line"></path>${dots}</svg><div class="momentum-caption"><span>tilt</span><span>momentum</span></div></div>`;
   }
 
   function bar(label, value, title) { return { label, value, title }; }
@@ -862,8 +942,39 @@
   function marketAction(i) { const pl = allPlayers.find(x => x.id === state.market[i]); if (!pl) return; if (!state.owned.has(pl.id)) { const c = costOf(pl); if (state.coins < c) return toast(`te faltan ${c - state.coins} coins.`); state.coins -= c; state.owned.add(pl.id); write(STORE.coins, state.coins); write(STORE.owned, JSON.stringify([...state.owned])); toast(`${pl.name} desbloqueado.`); return render(); } const problem = issue(pl); if (problem) return toast(problem); state.picks[pl.role] = pl; render(); toast(`${pl.name} firmado desde tienda.`); }
   function toggleMatch(index) { if (Number.isNaN(index) || !state.last?.matches?.[index]) return; if (state.openMatches.has(index)) state.openMatches.delete(index); else state.openMatches.add(index); renderSim(); }
   function flash(el, klass) { if (!el) return; el.classList.remove(klass); void el.offsetWidth; el.classList.add(klass); setTimeout(() => el.classList.remove(klass), 420); }
-  function resetRun() { state.seed=seed(); state.current=null; state.picks=Object.fromEntries(ROLES.map(r=>[r,null])); state.rolls=0; state.rerollUsed=false; state.scoutUsed=false; state.marketUsed=false; state.meta=null; state.quest=null; state.last=null; state.simming=false; state.openMatches = new Set(); rotateMarket(false); setScreen('draft'); toast('run reiniciada.'); }
+  function resetRun() { state.seed=seed(); state.rng=makeRng(state.seed); state.current=null; state.picks=Object.fromEntries(ROLES.map(r=>[r,null])); state.rolls=0; state.rerollUsed=false; state.scoutUsed=false; state.marketUsed=false; state.meta=null; state.quest=null; state.last=null; state.simming=false; state.openMatches = new Set(); rotateMarket(false); setScreen('draft'); toast('run reiniciada.'); }
   function clearStats() { if (!confirm('¿Borrar estadísticas locales?')) return; state.stats = defaultStats(); write(STORE.stats, JSON.stringify(state.stats)); renderStats(); toast('Stats reiniciadas.'); }
+  async function showResult(kind, title, copy) {
+    if (!els.resultOverlay) return;
+    const big = kind === 'champion' || kind === 'eliminated';
+    els.resultOverlay.className = `result-overlay show ${kind}`;
+    els.resultOverlay.innerHTML = `<article class="result-card"><small>${big ? 'Series result' : 'Map result'}</small><strong>${esc(title)}</strong><p>${esc(copy)}</p></article>`;
+    await wait(big ? 1450 : 760);
+    els.resultOverlay.classList.remove('show');
+    await wait(220);
+    els.resultOverlay.innerHTML = '';
+  }
+
+  function bindTilt() {
+    if (window.matchMedia?.('(pointer: coarse)').matches) return;
+    document.addEventListener('pointermove', e => {
+      const card = e.target.closest?.('.player-card, .market-card, .roll-card');
+      if (!card) return;
+      const rect = card.getBoundingClientRect();
+      const px = (e.clientX - rect.left) / rect.width;
+      const py = (e.clientY - rect.top) / rect.height;
+      const rx = (py - .5) * -8;
+      const ry = (px - .5) * 8;
+      card.style.setProperty('--mx', `${px * 100}%`);
+      card.style.setProperty('--my', `${py * 100}%`);
+      card.style.transform = `perspective(850px) rotateX(${rx}deg) rotateY(${ry}deg) translateY(-4px)`;
+    });
+    document.addEventListener('pointerout', e => {
+      const card = e.target.closest?.('.player-card, .market-card, .roll-card');
+      if (card && !card.contains(e.relatedTarget)) card.style.transform = '';
+    });
+  }
+
   function toggleTheme() { document.body.classList.toggle('dark'); write(STORE.theme, document.body.classList.contains('dark') ? 'dark' : 'light'); }
   function copySummary() { const lines = [`20:19 Draft · seed #${state.seed}`, `Tiradas ${state.rolls}/${MAX_ROLLS}`].concat(ROLES.map(r => `${r}: ${state.picks[r] ? state.picks[r].name + ' (' + state.picks[r].short + ')' : 'pendiente'}`)); navigator.clipboard?.writeText(lines.join('\n')).then(() => toast('copiado.')).catch(() => toast('no se pudo copiar.')); }
 
@@ -898,7 +1009,7 @@
     s.recent.unshift({ seed: state.seed, result, score, reward });
     s.recent = s.recent.slice(0, 12);
     s.history = s.history || [];
-    s.history.unshift({ seed: state.seed, result, score, reward, power: l.power, groups: l.groups[0] + '-' + l.groups[1], maps: games.length, picks: picked().map(p => ({ role: p.role, name: p.name, short: p.short, year: p.year })), matches: l.matches.map(m => ({ label: m.label, enemy: `${m.enemy.short} ${m.enemy.year}`, score: `${m.ourWins}-${m.rivalWins}`, win: m.win, maps: m.games.length })) });
+    const momentum = games.reduce((acc,g) => acc.concat((acc.at(-1) || 0) + (g.win ? 1 : -1)), [0]); s.history.unshift({ seed: state.seed, result, score, reward, power: l.power, groups: l.groups[0] + '-' + l.groups[1], maps: games.length, momentum, picks: picked().map(p => ({ role: p.role, name: p.name, short: p.short, year: p.year })), matches: l.matches.map(m => ({ label: m.label, enemy: `${m.enemy.short} ${m.enemy.year}`, score: `${m.ourWins}-${m.rivalWins}`, win: m.win, maps: m.games.length })) });
     s.history = s.history.slice(0, 24);
     write(STORE.stats, JSON.stringify(s));
   }
@@ -926,9 +1037,11 @@
   function readNumber(k,fallback) { const n = Number(read(k)); return Number.isFinite(n) && n >= 0 ? n : fallback; }
   function readSet(k) { try { return new Set(JSON.parse(read(k) || '[]')); } catch { return new Set(); } }
   function seed() { return Math.random().toString(36).slice(2,8).toUpperCase(); }
-  function pick(arr) { return arr[Math.floor(Math.random() * arr.length)]; }
-  function shuffle(arr) { return [...arr].sort(() => Math.random() - .5); }
-  function rand(min,max) { return Math.floor(Math.random() * (max - min + 1)) + min; }
+  function pick(arr) { return arr[Math.floor(rng() * arr.length)]; }
+  function shuffle(arr) { const out = [...arr]; for (let i = out.length - 1; i > 0; i--) { const j = Math.floor(rng() * (i + 1)); [out[i], out[j]] = [out[j], out[i]]; } return out; }
+  function rand(min,max) { return Math.floor(rng() * (max - min + 1)) + min; }
+  function rng() { return state?.rng ? state.rng() : Math.random(); }
+  function makeRng(seedText) { let h = 2166136261 >>> 0; for (const ch of String(seedText || 'LOCAL')) { h ^= ch.charCodeAt(0); h = Math.imul(h, 16777619); } return function () { h += 0x6D2B79F5; let t = h; t = Math.imul(t ^ t >>> 15, t | 1); t ^= t + Math.imul(t ^ t >>> 7, t | 61); return ((t ^ t >>> 14) >>> 0) / 4294967296; }; }
   function avg(arr) { return arr.length ? arr.reduce((a,b)=>a+b,0) / arr.length : 0; }
   function count(arr) { return arr.reduce((o,x) => (o[x] = (o[x] || 0) + 1, o), {}); }
   function clamp(n,min,max) { return Math.max(min, Math.min(max, n)); }
