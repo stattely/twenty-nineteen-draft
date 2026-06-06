@@ -4,7 +4,7 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="theme-color" content="#0a1420" />
-  <title>Five’s Pick · V2.6.2</title>
+  <title>Five’s Pick · V2.6.3.3</title>
   <style>
     :root {
       --bg: #eef2f4;
@@ -309,7 +309,7 @@
     @keyframes cardFlash { 0% { transform: scale(.985); box-shadow: 0 0 0 0 rgba(200,170,110,0); } 50% { transform: scale(1.01); box-shadow: 0 0 0 10px rgba(200,170,110,.12); } 100% { transform: scale(1); box-shadow: none; } }
     @keyframes sweepIn { 0% { opacity: .35; transform: translateY(8px); } 100% { opacity: 1; transform: translateY(0); } }
   
-    /* V2.6.2 verified role icons: these use the uploaded PNGs directly as background images. */
+    /* V2.6.3.3 verified role icons: these use the uploaded PNGs directly as background images. */
     .version-pill {
       border: 1px solid rgba(240,213,138,.34);
       border-radius: 999px;
@@ -449,7 +449,7 @@
     }
 
   
-    /* V2.6.2 HARD ROLE FIX:
+    /* V2.6.3.3 HARD ROLE FIX:
        These are the exact PNGs from IconsPositions.zip, copied raw into /assets/roles-original-v24/.
        The wrapper has no circle/border/background so the uploaded icon is not double-framed or rescaled weirdly. */
     .rolefix-pill {
@@ -511,7 +511,7 @@
     .chrono-card::after { content:''; position:absolute; inset:0; background:linear-gradient(115deg, transparent, rgba(255,255,255,.09), transparent); transform:translateX(-120%); animation:chartSweep 2.8s ease-in-out infinite; pointer-events:none; }
 
 
-    /* V2.6.2 */
+    /* V2.6.3.3 */
     .result-overlay.map-win .result-card, .result-overlay.map-loss .result-card {
       min-width: min(640px, calc(100vw - 28px));
       padding: 22px 28px;
@@ -591,7 +591,7 @@
     @media (max-width: 760px) { .objective-grid, .chrono-grid { grid-template-columns: 1fr; } .result-overlay.map-win .result-card, .result-overlay.map-loss .result-card { min-width: calc(100vw - 22px); padding: 18px; } }
 
   
-    /* V2.6.2 colorful composition tooltips */
+    /* V2.6.3.3 colorful composition tooltips */
     .icon-only { min-width: 48px; padding-inline: 13px; }
     .compose-popover {
       pointer-events: none;
@@ -641,7 +641,7 @@
     @keyframes softPulse { 50% { box-shadow: 0 0 0 5px rgba(16,185,129,.10); } }
 
   
-    /* V2.6.2 Teams archive */
+    /* V2.6.3.3 Teams archive */
     .teams-grid {
       display: grid;
       grid-template-columns: repeat(3, minmax(0, 1fr));
@@ -785,14 +785,125 @@
       .team-player-tags { grid-column: 1 / -1; }
     }
 
+  
+    /* V2.6.3 roster alignment, filters and wallet */
+    .global-wallet {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      border: 1px solid rgba(240,213,138,.28);
+      border-radius: 999px;
+      padding: 8px 10px;
+      background: rgba(200,170,110,.10);
+      color: var(--gold-2);
+      font-weight: 1000;
+      font-size: 12px;
+    }
+    .team-tools {
+      display: grid;
+      grid-template-columns: minmax(220px, 1.2fr) minmax(130px,.55fr) minmax(130px,.55fr) minmax(180px,.8fr) auto;
+      gap: 10px;
+      align-items: center;
+      margin-bottom: 14px;
+    }
+    .team-tools input, .team-tools select {
+      width: 100%;
+      min-height: 42px;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      padding: 0 12px;
+      background: var(--panel-2);
+      color: var(--ink);
+      font-weight: 800;
+      outline: none;
+    }
+    .search-box { display: flex; align-items: center; gap: 8px; border: 1px solid var(--line); border-radius: 999px; padding: 0 12px; background: var(--panel-2); }
+    .search-box input { border: 0; background: transparent; padding: 0; }
+    .view-toggle { display: flex; gap: 6px; justify-content: flex-end; }
+    .view-toggle button { border: 1px solid var(--line); border-radius: 999px; padding: 10px 11px; background: var(--panel-2); color: var(--ink); font-weight: 1000; font-size: 11px; }
+    .view-toggle button[aria-pressed="true"] { background: linear-gradient(135deg, var(--gold), var(--gold-2)); color: #07121a; border-color: transparent; }
+    .teams-grid.cols-5 { grid-template-columns: repeat(5, minmax(0, 1fr)); }
+    .teams-grid.cols-5 .team-card,
+    .teams-grid.cols-5 .team-card-inner { min-height: 470px; }
+    .teams-grid.cols-5 .team-logo-big { width: 96px; height: 96px; }
+    .teams-grid.cols-5 .team-title h3 { font-size: 18px; }
+    .teams-grid.cols-5 .team-overall { grid-template-columns: 1fr; }
+    .teams-grid.cols-5 .team-player-mini { grid-template-columns: 30px minmax(0,1fr) auto; min-height: 56px; padding: 7px 30px 7px 7px; }
+    .teams-grid.cols-5 .team-player-tags span:nth-child(n+3) { display: none; }
+
+    .team-player-mini {
+      grid-template-columns: 38px minmax(0, 1fr) 42px;
+      align-items: start;
+      padding: 9px 42px 9px 9px;
+      gap: 9px;
+    }
+    .team-player-role.role-chip {
+      position: absolute;
+      right: 8px;
+      top: 8px;
+      width: 28px !important;
+      height: 28px !important;
+      min-width: 28px !important;
+      min-height: 28px !important;
+      border-radius: 50%;
+      background: #07121a !important;
+      border: 1px solid rgba(240,213,138,.34) !important;
+      box-shadow: 0 4px 12px rgba(0,0,0,.28) !important;
+      overflow: hidden !important;
+      padding: 3px !important;
+    }
+    .team-player-role .role-glyph {
+      min-width: 0 !important;
+      min-height: 0 !important;
+      width: 100% !important;
+      height: 100% !important;
+      background-size: contain !important;
+    }
+    .team-player-copy { min-width: 0; }
+    .team-player-copy strong { display: flex !important; gap: 6px; align-items: center; min-width: 0; }
+    .prime-badge {
+      display: inline-flex;
+      border: 1px solid rgba(255,212,96,.42);
+      border-radius: 999px;
+      padding: 2px 5px;
+      color: #ffe49a;
+      background: rgba(255,212,96,.12);
+      font-size: 8px;
+      font-style: normal;
+      text-transform: uppercase;
+      letter-spacing: .08em;
+      flex: 0 0 auto;
+    }
+    .team-player-tags .player-tag {
+      border-radius: 999px;
+      padding: 3px 6px;
+      font-size: 9px;
+      font-weight: 1000;
+      text-transform: uppercase;
+    }
+    @media (max-width: 1180px) {
+      .teams-grid.cols-5 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+      .team-tools { grid-template-columns: 1fr 1fr; }
+      .search-box { grid-column: 1 / -1; }
+    }
+    @media (max-width: 760px) {
+      .quick-actions { flex-wrap: wrap; justify-content: flex-start; }
+      .global-wallet { order: -1; }
+      .team-tools { grid-template-columns: 1fr; }
+      .view-toggle { justify-content: stretch; }
+      .view-toggle button { flex: 1; }
+      .teams-grid.cols-5, .teams-grid.cols-3 { grid-template-columns: 1fr; }
+      .team-player-role.role-chip { width: 26px !important; height: 26px !important; }
+    }
+
   </style>
 </head>
 <body class="dark">
   <div class="app">
     <header class="topbar">
       <a class="brand" href="#" data-action="screen" data-screen="draft" aria-label="inicio"><span class="brand-mark">5V</span><span class="brand-copy">Five’s<br>Pick</span></a>
-      <div class="microline"><strong>Roll</strong><span>·</span><strong>Pick</strong><span>·</span><strong>Break</strong><span id="seedLabel">seed #LOCAL</span><span class="rolefix-pill">V2.6.2</span><span class="version-pill">V2.6.2</span></div>
-      <nav class="quick-actions"><button type="button" data-action="theme">tema</button><button type="button" data-action="copy">copiar</button><button type="button" data-action="reset">reset</button></nav>
+      <div class="microline"><strong>Roll</strong><span>·</span><strong>Pick</strong><span>·</span><strong>Break</strong><span id="seedLabel">seed #LOCAL</span><span class="rolefix-pill">V2.6.3.3</span><span class="version-pill">V2.6.3.3</span></div>
+      <nav class="quick-actions"><span class="global-wallet" title="Coins guardadas localmente">🪙 <b id="globalWallet">0</b></span><button type="button" data-action="theme">tema</button><button type="button" data-action="copy">copiar</button><button type="button" data-action="reset">reset</button></nav>
     </header>
     <nav class="tabs" aria-label="pantallas"><button type="button" data-action="screen" data-screen="draft" aria-pressed="true" title="Arma tu roster con tiradas, tienda y picks">Picks</button><button type="button" data-action="screen" data-screen="sim" aria-pressed="false" title="Ve la simulación partido por partido">Simulación</button><button type="button" data-action="screen" data-screen="stats" aria-pressed="false" title="Consulta tus estadísticas acumuladas">Stats</button><button type="button" data-action="screen" data-screen="history" aria-pressed="false" title="Revisa runs anteriores una por una">Historia</button><button type="button" data-action="screen" data-screen="teams" aria-pressed="false" title="Explora equipos, rosters y tags">Equipos</button><button type="button" data-action="screen" data-screen="objectives" aria-pressed="false" title="Objetivos y recompensas">Objetivos</button><button type="button" data-action="screen" data-screen="chrono" aria-pressed="false" title="Modo caótico experimental">Chrono</button></nav>
     <main>
@@ -856,7 +967,14 @@
 
       <section id="teamsScreen" data-panel="teams" hidden>
         <div class="screen-head panel"><div><p class="eyebrow">team archive</p><h2>Equipos</h2><p class="muted">Explora rosters históricos, ratings y tags buenos/malos. Da click en “Ver roster” para girar la tarjeta.</p></div><div class="screen-actions"><button type="button" class="btn" data-action="screen" data-screen="draft" data-icon="←">Picks</button><button type="button" class="btn" data-action="screen" data-screen="chrono" data-icon="↯">Chrono</button></div></div>
-        <section class="teams-grid" id="teamsGrid"></section>
+        <section class="panel team-tools">
+          <label class="search-box">🔎 <input id="teamSearch" type="search" placeholder="Buscar C9, Cloud9, FNC, tag, jugador..." autocomplete="off"></label>
+          <select id="teamRegionFilter" aria-label="Filtrar por región"><option value="all">Todas las regiones</option><option value="LCK">LCK</option><option value="LPL">LPL</option><option value="LEC">LEC</option><option value="LCS">LCS</option><option value="PCS">PCS</option></select>
+          <select id="teamRatingFilter" aria-label="Filtrar por average"><option value="all">Todos los averages</option><option value="97">97+</option><option value="94">94+</option><option value="90">90+</option><option value="85">85+</option></select>
+          <input id="teamTagFilter" type="search" placeholder="Filtrar tag: clutch, macro, flipper..." autocomplete="off">
+          <div class="view-toggle" aria-label="Columnas"><button type="button" data-action="teamColumns" data-cols="3" aria-pressed="true">3 cols</button><button type="button" data-action="teamColumns" data-cols="5" aria-pressed="false">5 cols</button></div>
+        </section>
+        <section class="teams-grid cols-3" id="teamsGrid"></section>
       </section>
 
       <section id="objectivesScreen" data-panel="objectives" hidden>
@@ -868,7 +986,7 @@
         <section class="panel"><div class="chrono-grid" id="chronoGrid"></div></section>
       </section>
 
-    <footer>Fan-made project not affiliated with Riot Games · V2.6.2</footer>
+    <footer>Fan-made project not affiliated with Riot Games · V2.6.3.3</footer>
   </div>
   <div class="result-overlay" id="resultOverlay" aria-live="polite"></div>
   <div class="toast" id="toast"></div>
@@ -1112,11 +1230,49 @@
 
   const $ = id => document.getElementById(id);
   const els = {};
-  ['seedLabel','draftScreen','simScreen','statsScreen','historyScreen','teamsScreen','objectivesScreen','chronoScreen','rollMeter','rollBar','runLogo','runMark','runNote','rollCard','teamLogo','rollTitle','rollSub','rollTags','players','summarySeed','picksCount','avgScore','synScore','cupChance','coinCount','coinHint','slots','market','metaBox','questBox','synergyBox','metaText','questText','synergyReasons','results','resultOverlay','toast','simSubtitle','simScoreline','liveFocus','simTimeline','scoreGrid','runLedger','pickLedger','simLedger','historyLedger','teamsGrid','objectiveList','chronoGrid'].forEach(id => els[id] = $(id));
+  ['seedLabel','draftScreen','simScreen','statsScreen','historyScreen','teamsScreen','objectivesScreen','chronoScreen','rollMeter','rollBar','runLogo','runMark','runNote','rollCard','teamLogo','rollTitle','rollSub','rollTags','players','summarySeed','picksCount','avgScore','synScore','cupChance','coinCount','coinHint','slots','market','metaBox','questBox','synergyBox','metaText','questText','synergyReasons','results','resultOverlay','toast','simSubtitle','simScoreline','liveFocus','simTimeline','scoreGrid','runLedger','pickLedger','simLedger','historyLedger','teamsGrid','teamSearch','teamRegionFilter','teamRatingFilter','teamTagFilter','globalWallet','objectiveList','chronoGrid'].forEach(id => els[id] = $(id));
+
+  const PLAYER_PATCHES = {
+    'g2-2018-Jankos-Jungle': { rating: 91, country: 'EU' },
+    'g2-2020-Jankos-Jungle': { rating: 91, country: 'EU' },
+    'g2-2020-Caps-Mid': { rating: 96, prime: true },
+    'g2-2023-Caps-Mid': { rating: 95, prime: true },
+    'fnc-2015-Rekkles-Bot': { rating: 93, prime: true },
+    'fnc-2019-Rekkles-Bot': { rating: 93, prime: true },
+    'fnc-2020-Rekkles-Bot': { rating: 93, prime: true },
+    'fnc-2015-Huni-Top': { rating: 92, country: 'KR' },
+    'fnc-2015-Reignover-Jungle': { rating: 91, country: 'KR' },
+    'h2k-2016-Jankos-Jungle': { rating: 90, country: 'EU' },
+    'h2k-2016-FORG1VEN-Bot': { rating: 91, country: 'EU', prime: true },
+    'og-2015-xPeke-Mid': { rating: 91, country: 'EU', prime: true },
+    'og-2015-Mithy-Support': { rating: 91, country: 'EU' },
+    'tsm-2016-Svenskeren-Jungle': { rating: 87, country: 'EU' },
+    'tsm-2016-Bjergsen-Mid': { rating: 92, country: 'EU', prime: true },
+    'tsm-2016-Doublelift-Bot': { rating: 91, country: 'NA', prime: true },
+    'tsm-2014-Bjergsen-Mid': { rating: 90, country: 'EU', prime: true },
+    'tsm-2014-Amazing-Jungle': { rating: 84, country: 'EU' },
+    'clg-2016-msi-aphromoo-Support': { rating: 90, country: 'NA', prime: true },
+    'clg-2016-msi-Stixxay-Bot': { rating: 89, country: 'NA' },
+    'tl-2018-Doublelift-Bot': { rating: 91, country: 'NA', prime: true },
+    'tl-2024-CoreJJ-Support': { rating: 90, country: 'KR', prime: true },
+    'c9-2021-Perkz-Mid': { rating: 90, country: 'EU' },
+    'c9-2021-Blaber-Jungle': { rating: 90, country: 'NA', prime: true },
+    'fly-2024-Inspired-Jungle': { rating: 90, country: 'EU' },
+    'eg-2022-Inspired-Jungle': { rating: 90, country: 'EU' },
+    'eg-2022-Danny-Bot': { rating: 89, country: 'NA', prime: true },
+    'rge-2022-Larssen-Mid': { rating: 90, country: 'EU' },
+    'rge-2022-Comp-Bot': { rating: 90, country: 'EU' }
+  };
+  ROSTERS.forEach(r => r.players.forEach(p => {
+    const patch = PLAYER_PATCHES[p.id];
+    if (!patch) return;
+    Object.assign(p, patch);
+  }));
+
   const allPlayers = ROSTERS.flatMap(r => r.players);
   const state = {
     screen: 'draft', seed: seed(), current: null, picks: Object.fromEntries(ROLES.map(r => [r, null])), difficulty: 'normal', mode: 'classic', filter: 'all',
-    rolls: 0, rerollUsed: false, scoutUsed: false, marketUsed: false, meta: null, quest: null, market: [], coins: readNumber(STORE.coins, STARTING_COINS), owned: readSet(STORE.owned), objectiveClaims: readSet(STORE.objectives), chrono: readObject(STORE.chrono, { inventory:{}, active:{} }), stats: readStats(), last: null, simming: false, openMatches: new Set()
+    rolls: 0, rerollUsed: false, scoutUsed: false, marketUsed: false, meta: null, quest: null, market: [], coins: readNumber(STORE.coins, STARTING_COINS), owned: readSet(STORE.owned), objectiveClaims: readSet(STORE.objectives), chrono: readObject(STORE.chrono, { inventory:{}, active:{} }), stats: readStats(), last: null, simming: false, openMatches: new Set(), teamCols: 3
   };
   state.rng = makeRng(state.seed);
 
@@ -1140,6 +1296,8 @@
     document.addEventListener('click', handleClick);
     document.addEventListener('keydown', handleKeys);
     document.addEventListener('error', imageFallback, true);
+    ['teamSearch','teamRegionFilter','teamRatingFilter','teamTagFilter'].forEach(id => els[id]?.addEventListener('input', renderTeams));
+    ['teamRegionFilter','teamRatingFilter'].forEach(id => els[id]?.addEventListener('change', renderTeams));
     bindTilt();
     render();
     window.__DRAFT_READY = true;
@@ -1168,6 +1326,7 @@
     if (action === 'clearStats') return clearStats();
     if (action === 'toggleMatch') return toggleMatch(Number(actionEl.dataset.match));
     if (action === 'flipTeam') return flipTeam(actionEl);
+    if (action === 'teamColumns') return setTeamCols(Number(actionEl.dataset.cols));
     if (action === 'claimObjective') return claimObjective(actionEl.dataset.objective);
     if (action === 'buyChrono') return buyChrono(actionEl.dataset.chrono);
     if (action === 'activateChrono') return activateChrono(actionEl.dataset.chrono);
@@ -1496,17 +1655,42 @@
   }
   function renderTeams() {
     if (!els.teamsGrid) return;
-    els.teamsGrid.innerHTML = ROSTERS
-      .slice()
-      .sort((a,b) => b.tier - a.tier || b.year - a.year || a.short.localeCompare(b.short))
-      .map(teamCard)
-      .join('');
+    const q = (els.teamSearch?.value || '').trim().toLowerCase();
+    const region = els.teamRegionFilter?.value || 'all';
+    const minRating = els.teamRatingFilter?.value === 'all' ? 0 : Number(els.teamRatingFilter?.value || 0);
+    const tagQ = (els.teamTagFilter?.value || '').trim().toLowerCase();
+    let list = ROSTERS.slice().filter(r => {
+      const prof = teamProfile(r);
+      const tags = prof.good.concat(prof.bad).map(t => t.name).concat(r.styles || []);
+      const hay = [r.id, r.name, r.short, r.org, r.region, r.country, r.tournament, String(r.year)]
+        .concat(tags)
+        .concat(r.players.flatMap(p => [p.name, p.role, p.country].concat(p.tags)))
+        .join(' ').toLowerCase();
+      if (q && !hay.includes(q)) return false;
+      if (region !== 'all' && r.region !== region) return false;
+      if (minRating && r.tier < minRating) return false;
+      if (tagQ && !tags.join(' ').toLowerCase().includes(tagQ)) return false;
+      return true;
+    });
+    list.sort((a,b) => b.tier - a.tier || b.year - a.year || a.short.localeCompare(b.short));
+    els.teamsGrid.classList.toggle('cols-5', state.teamCols === 5);
+    els.teamsGrid.classList.toggle('cols-3', state.teamCols !== 5);
+    document.querySelectorAll('[data-action="teamColumns"]').forEach(b => b.setAttribute('aria-pressed', String(Number(b.dataset.cols) === state.teamCols)));
+    els.teamsGrid.innerHTML = list.length ? list.map(teamCard).join('') : '<div class="empty">No encontré equipos con esos filtros.</div>';
   }
   function teamCard(r) {
     const prof = teamProfile(r);
     const ordered = ROLES.map(role => r.players.find(p => p.role === role)).filter(Boolean);
-    const back = ordered.map(p => `<article class="team-player-mini"><span class="team-player-flag">${flag(p.country)}</span><div><strong>${esc(p.name)}</strong><small>${esc(p.role)} · ${esc(p.short)} ${p.year}</small><div class="team-player-tags">${p.tags.slice(0,4).map(t=>`<span>${esc(t)}</span>`).join('')}</div></div><b class="team-player-rating">${p.rating}</b><span class="team-player-role role-chip">${roleGlyph(p.role)}</span></article>`).join('');
+    const back = ordered.map(p => `<article class="team-player-mini"><span class="team-player-flag">${flag(p.country)}</span><div class="team-player-copy"><strong>${esc(p.name)} ${p.prime ? '<em class="prime-badge">prime</em>' : ''}</strong><small>${esc(p.role)} · ${esc(p.short)} ${p.year}</small><div class="team-player-tags">${p.tags.slice(0,4).map(t=>playerTagPill(t)).join('')}</div></div><b class="team-player-rating">${p.rating}</b><span class="team-player-role role-chip">${roleGlyph(p.role)}</span></article>`).join('');
     return `<article class="team-card" data-team-card="${esc(r.id)}"><div class="team-card-inner"><section class="team-face front"><figure class="team-logo-big">${img(r.logo, r.short, badge(r.short,r.region))}</figure><div class="team-title"><h3>${esc(r.name)}</h3><p>${flag(r.country)} ${esc(r.year)} · ${esc(r.tournament)} · ${esc(r.region)}</p></div><div class="team-overall"><div><strong>${r.tier}</strong><span>overall</span></div><div><strong>${Math.round(avg(r.players.map(p=>p.rating)))}</strong><span>players</span></div><div><strong>${prof.net > 0 ? '+' : ''}${prof.net}</strong><span>tag net</span></div></div><div class="team-tags">${teamTagsHtml(r)}</div><button type="button" class="flip-btn" data-action="flipTeam">Ver roster</button></section><section class="team-face back"><div class="team-title"><h3>${esc(r.short)} ${r.year}</h3><p>Top · JG · Mid · Bot · Supp</p></div><div class="team-roster-list">${back}</div><button type="button" class="flip-btn" data-action="flipTeam">Volver</button></section></div></article>`;
+  }
+  function playerTagPill(tag) {
+    const tone = ({ carry:'purple', hands:'purple', clutch:'gold', shotcall:'gold', tempo:'blue', control:'blue', engage:'green', creative:'yellow', stable:'gray', late:'blue', flex:'yellow' })[tag] || 'gray';
+    return `<span class="player-tag tag-${tone}">${esc(tag)}</span>`;
+  }
+  function setTeamCols(cols) {
+    state.teamCols = cols === 5 ? 5 : 3;
+    renderTeams();
   }
   function flipTeam(button) {
     const card = button.closest('.team-card');
@@ -1518,7 +1702,7 @@
   function renderScreens() { ['draft','sim','stats','history','teams','objectives','chrono'].forEach(name => { const panel = $(`${name}Screen`); if (panel) panel.hidden = state.screen !== name; }); document.querySelectorAll('[data-action="screen"]').forEach(b => b.setAttribute('aria-pressed', String(b.dataset.screen === state.screen))); }
   function setScreen(screen) { state.screen = screen || 'picks'; render(); }
   function renderChoices() { document.querySelectorAll('[data-setting]').forEach(group => group.querySelectorAll('.choice').forEach(b => b.setAttribute('aria-pressed', String(state[group.dataset.setting] === b.dataset.value)))); }
-  function renderHeader() { text(els.seedLabel, `seed #${state.seed}`); text(els.summarySeed, `seed #${state.seed}`); text(els.rollMeter, `${state.rolls}/${MAX_ROLLS} tiradas`); els.rollBar.style.width = `${state.rolls / MAX_ROLLS * 100}%`; if (!state.current) { text(els.runMark,'—:—'); text(els.runNote,'tira para abrir roster'); image(els.runLogo,'','?'); return; } text(els.runMark, `${state.current.short}: ${state.current.year}`); text(els.runNote, `${state.current.tournament} · ${state.current.major ? 'campeón internacional' : 'contender'}`); image(els.runLogo, state.current.logo, state.current.short); }
+  function renderHeader() { text(els.globalWallet, state.coins); text(els.seedLabel, `seed #${state.seed}`); text(els.summarySeed, `seed #${state.seed}`); text(els.rollMeter, `${state.rolls}/${MAX_ROLLS} tiradas`); els.rollBar.style.width = `${state.rolls / MAX_ROLLS * 100}%`; if (!state.current) { text(els.runMark,'—:—'); text(els.runNote,'tira para abrir roster'); image(els.runLogo,'','?'); return; } text(els.runMark, `${state.current.short}: ${state.current.year}`); text(els.runNote, `${state.current.tournament} · ${state.current.major ? 'campeón internacional' : 'contender'}`); image(els.runLogo, state.current.logo, state.current.short); }
   function renderRoll() { els.rollCard.classList.toggle('is-gold', state.current?.rarity === 'rare'); if (!state.current) { image(els.teamLogo,'','?'); text(els.rollTitle,'Sin tirada'); text(els.rollSub,'Haz una tirada para revelar equipo, año y pool de jugadores.'); els.rollTags.innerHTML=''; return; } const r = state.current; image(els.teamLogo, r.logo, r.short); text(els.rollTitle, `${r.name} ${r.year}`); text(els.rollSub, `${flag(r.country)} ${r.region} · ${r.tournament} · tier ${r.tier}`); els.rollTags.innerHTML = (r.rarity === 'rare' ? `<span class="team-tag tag-gold">+5 carta dorada</span><span>1 de 6</span>` : '') + teamTagsHtml(r); }
   function renderPlayers() { if (!state.current) { els.players.innerHTML = '<div class="empty">Tira el dado para abrir tu primer roster.</div>'; return; } els.players.innerHTML = state.current.players.map((pl, i) => card(pl, i)).join(''); }
   function card(pl, i) { const locked = issue(pl); const hidden = state.mode === 'blind'; return `<article class="player-card tilt-card ${pl.major ? 'is-gold' : ''} ${locked ? 'is-locked' : ''}" data-player="${i}" tabindex="0" role="button"><div class="portrait-row"><figure class="round-icon role-chip">${roleGlyph(pl.role)}</figure><figure class="round-icon"><span>${esc(roleCode(pl.role))}</span></figure></div><div class="player-main"><h3>${hidden ? '???' : esc(pl.name)}</h3><p>${hidden ? esc(pl.role) : `${flag(pl.country)} ${esc(pl.short)} ${esc(pl.year)} · ${esc(pl.tournament)}`}</p></div><div class="tag-stack">${pl.tags.map(t => `<span class="synergy-tooltip" title="${esc(tagHint(pl, t))}">${esc(t)}</span>`).join('')}</div><span class="role-badge">${esc(pl.role)}</span><strong class="rating">${hidden ? '??' : pl.rating}</strong>${locked ? `<em class="lock-copy">${esc(locked)}</em>` : ''}${composePopover(pl)}</article>`; }

@@ -104,3 +104,13 @@ Cambios verificables:
 
 - Moves TEAM_PROFILES before `boot()` so renderTeams cannot access it before initialization.
 - Includes OG logo mapping.
+
+
+## V2.6.3 Roster filters
+
+- Fixes roster role icon alignment.
+- Adds player tag colors and prime badges.
+- Adds search and filters in Teams.
+- Adds 3/5 column view toggle.
+- Adds global wallet next to theme button.
+- Patches several western player ratings/countries.
