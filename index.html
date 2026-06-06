@@ -4,7 +4,7 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="theme-color" content="#0a1420" />
-  <title>20:19 Draft · v24 final polish</title>
+  <title>Five’s Pick · V2.6.1</title>
   <style>
     :root {
       --bg: #eef2f4;
@@ -128,7 +128,7 @@
     .lock-copy { font-size: 11px; color: var(--bad); font-style: normal; font-weight: 800; }
     .side-head { display: flex; justify-content: space-between; gap: 12px; align-items: start; }
     .side-head h2 { margin: 0; font-size: 34px; }
-    .draft-count { border: 1px solid var(--line); border-radius: 999px; padding: 8px 10px; color: var(--muted); font-weight: 1000; }
+    .picks-count { border: 1px solid var(--line); border-radius: 999px; padding: 8px 10px; color: var(--muted); font-weight: 1000; }
     .stats-row { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; margin: 14px 0; }
     .stat { border: 1px solid var(--line); border-radius: 18px; padding: 12px; background: var(--panel-2); }
     .stat strong { display: block; font-size: 24px; }
@@ -309,7 +309,7 @@
     @keyframes cardFlash { 0% { transform: scale(.985); box-shadow: 0 0 0 0 rgba(200,170,110,0); } 50% { transform: scale(1.01); box-shadow: 0 0 0 10px rgba(200,170,110,.12); } 100% { transform: scale(1); box-shadow: none; } }
     @keyframes sweepIn { 0% { opacity: .35; transform: translateY(8px); } 100% { opacity: 1; transform: translateY(0); } }
   
-    /* v24 verified role icons: these use the uploaded PNGs directly as background images. */
+    /* V2.6.1 verified role icons: these use the uploaded PNGs directly as background images. */
     .version-pill {
       border: 1px solid rgba(240,213,138,.34);
       border-radius: 999px;
@@ -449,7 +449,7 @@
     }
 
   
-    /* v24 HARD ROLE FIX:
+    /* V2.6.1 HARD ROLE FIX:
        These are the exact PNGs from IconsPositions.zip, copied raw into /assets/roles-original-v24/.
        The wrapper has no circle/border/background so the uploaded icon is not double-framed or rescaled weirdly. */
     .rolefix-pill {
@@ -511,7 +511,7 @@
     .chrono-card::after { content:''; position:absolute; inset:0; background:linear-gradient(115deg, transparent, rgba(255,255,255,.09), transparent); transform:translateX(-120%); animation:chartSweep 2.8s ease-in-out infinite; pointer-events:none; }
 
 
-    /* v24 final polish */
+    /* V2.6.1 */
     .result-overlay.map-win .result-card, .result-overlay.map-loss .result-card {
       min-width: min(640px, calc(100vw - 28px));
       padding: 22px 28px;
@@ -590,16 +590,211 @@
     @media (max-width: 980px) { .objective-grid, .chrono-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
     @media (max-width: 760px) { .objective-grid, .chrono-grid { grid-template-columns: 1fr; } .result-overlay.map-win .result-card, .result-overlay.map-loss .result-card { min-width: calc(100vw - 22px); padding: 18px; } }
 
+  
+    /* V2.6.1 colorful composition tooltips */
+    .icon-only { min-width: 48px; padding-inline: 13px; }
+    .compose-popover {
+      pointer-events: none;
+      position: absolute;
+      left: 10px;
+      right: 10px;
+      top: calc(100% - 8px);
+      z-index: 50;
+      display: grid;
+      gap: 8px;
+      max-height: 360px;
+      overflow: auto;
+      border: 1px solid rgba(240,213,138,.34);
+      border-radius: 18px;
+      padding: 12px;
+      background:
+        radial-gradient(circle at 100% 0%, rgba(200,170,110,.18), transparent 36%),
+        radial-gradient(circle at 0 100%, rgba(10,200,185,.14), transparent 32%),
+        #07121a;
+      color: #eef2f4;
+      box-shadow: 0 28px 74px rgba(0,0,0,.48);
+      opacity: 0;
+      transform: translateY(8px) scale(.98);
+      transition: opacity .16s ease, transform .16s ease;
+    }
+    .player-card:hover .compose-popover, .market-card:hover .compose-popover { opacity: 1; transform: translateY(0) scale(1); }
+    .compose-popover h4 { margin: 0; color: var(--gold-2); letter-spacing: .12em; text-transform: uppercase; font-size: 11px; }
+    .compose-popover p { margin: 0; color: #aeb9c5; font-size: 12px; line-height: 1.35; }
+    .comp-line, .comp-chip {
+      display: grid;
+      gap: 4px;
+      border: 1px solid rgba(255,255,255,.10);
+      border-radius: 14px;
+      padding: 8px;
+      background: rgba(255,255,255,.045);
+    }
+    .comp-line.is-active { border-color: rgba(36,180,126,.58); background: rgba(36,180,126,.10); }
+    .comp-line.is-potential { border-style: dashed; border-color: rgba(240,213,138,.42); }
+    .comp-line strong, .comp-chip strong { display: flex; align-items: center; gap: 6px; }
+    .plus { display: inline-flex; align-items: center; justify-content: center; min-width: 34px; border-radius: 999px; padding: 3px 7px; font-weight: 1000; }
+    .plus.tier1 { color: #dbeafe; background: rgba(96,165,250,.18); border: 1px solid rgba(96,165,250,.32); }
+    .plus.tier2 { color: #fef3c7; background: rgba(245,158,11,.18); border: 1px solid rgba(245,158,11,.36); }
+    .plus.tier3 { color: #d1fae5; background: rgba(16,185,129,.22); border: 1px solid rgba(16,185,129,.45); box-shadow: 0 0 18px rgba(16,185,129,.16); }
+    .comp-chip-wrap { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 6px; }
+    .comp-chip { display: inline-grid; width: fit-content; max-width: 100%; }
+    .comp-chip.tier3 { animation: softPulse 1.8s ease-in-out infinite; }
+    @keyframes softPulse { 50% { box-shadow: 0 0 0 5px rgba(16,185,129,.10); } }
+
+  
+    /* V2.6.1 Teams archive */
+    .teams-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 14px;
+    }
+    .team-card {
+      min-height: 520px;
+      perspective: 1200px;
+    }
+    .team-card-inner {
+      position: relative;
+      min-height: 520px;
+      transform-style: preserve-3d;
+      transition: transform .65s cubic-bezier(.2,.85,.2,1);
+    }
+    .team-card.is-flipped .team-card-inner { transform: rotateY(180deg); }
+    .team-face {
+      position: absolute;
+      inset: 0;
+      display: grid;
+      align-content: start;
+      gap: 12px;
+      border: 1px solid var(--line);
+      border-radius: 26px;
+      padding: 16px;
+      background:
+        radial-gradient(circle at 100% 0%, rgba(200,170,110,.16), transparent 34%),
+        radial-gradient(circle at 0 100%, rgba(10,200,185,.10), transparent 30%),
+        var(--panel-2);
+      box-shadow: var(--shadow);
+      overflow: hidden;
+      backface-visibility: hidden;
+    }
+    .team-face.back { transform: rotateY(180deg); }
+    .team-logo-big {
+      width: 132px;
+      height: 132px;
+      border-radius: 50%;
+      display: grid;
+      place-items: center;
+      justify-self: center;
+      overflow: hidden;
+      border: 1px solid rgba(240,213,138,.34);
+      background: #07121a;
+      box-shadow: inset 0 0 34px rgba(200,170,110,.10), 0 18px 44px rgba(0,0,0,.22);
+    }
+    .team-logo-big img { width: 100%; height: 100%; object-fit: contain; padding: 12%; }
+    .team-title { text-align: center; }
+    .team-title h3 { margin: 0; font-size: 22px; letter-spacing: -.03em; text-transform: none; }
+    .team-title p { margin: 5px 0 0; color: var(--muted); font-size: 12px; font-weight: 900; text-transform: uppercase; letter-spacing: .08em; }
+    .team-overall {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 8px;
+    }
+    .team-overall div {
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      padding: 10px;
+      background: color-mix(in srgb, var(--panel) 76%, transparent);
+      text-align: center;
+    }
+    .team-overall strong { display:block; font-size: 24px; color: var(--gold-2); }
+    .team-overall span { color: var(--muted); font-size: 10px; font-weight: 1000; text-transform: uppercase; }
+    .team-tags { display:flex; flex-wrap:wrap; gap:7px; }
+    .team-tag {
+      display:inline-flex;
+      align-items:center;
+      gap:5px;
+      border:1px solid var(--line);
+      border-radius:999px;
+      padding:5px 8px;
+      font-size:10px;
+      font-weight:1000;
+      text-transform:uppercase;
+      background: rgba(255,255,255,.04);
+    }
+    .tag-gold { color:#ffe49a; border-color:rgba(255,212,96,.55); background:rgba(255,212,96,.12); }
+    .tag-yellow { color:#fff4bf; border-color:rgba(255,238,170,.44); background:rgba(255,238,170,.09); }
+    .tag-purple { color:#e9d5ff; border-color:rgba(168,85,247,.44); background:rgba(168,85,247,.12); }
+    .tag-blue { color:#bfdbfe; border-color:rgba(59,130,246,.42); background:rgba(59,130,246,.11); }
+    .tag-green { color:#bbf7d0; border-color:rgba(34,197,94,.42); background:rgba(34,197,94,.10); }
+    .tag-gray { color:#d1d5db; border-color:rgba(156,163,175,.30); background:rgba(156,163,175,.10); }
+    .tag-red { color:#fecaca; border-color:rgba(248,113,113,.50); background:rgba(248,113,113,.12); }
+    .team-roster-list { display:grid; gap:8px; }
+    .team-player-mini {
+      position: relative;
+      display: grid;
+      grid-template-columns: 38px minmax(0, 1fr) auto;
+      gap: 9px;
+      align-items: center;
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      padding: 8px 34px 8px 8px;
+      background: color-mix(in srgb, var(--panel) 82%, transparent);
+      min-height: 64px;
+    }
+    .team-player-role {
+      width: 34px;
+      height: 34px;
+      border-radius: 50%;
+      position: absolute;
+      right: 8px;
+      top: 8px;
+    }
+    .team-player-flag {
+      width: 38px;
+      height: 38px;
+      border-radius: 50%;
+      display:grid;
+      place-items:center;
+      border:1px solid rgba(240,213,138,.26);
+      background:#07121a;
+      font-size: 18px;
+    }
+    .team-player-mini strong { display:block; font-size: 13px; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+    .team-player-mini small { display:block; color:var(--muted); font-size: 10px; font-weight:900; text-transform:uppercase; }
+    .team-player-rating { color: var(--gold-2); font-size: 20px; font-weight: 1000; }
+    .team-player-tags { grid-column: 2 / -1; display:flex; flex-wrap:wrap; gap:4px; margin-top:4px; }
+    .team-player-tags span { border:1px solid var(--line); border-radius:999px; padding:3px 6px; font-size:9px; color:var(--muted); text-transform:uppercase; font-weight:900; }
+    .flip-btn {
+      justify-self: center;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      padding: 9px 12px;
+      background: var(--panel);
+      color: var(--ink);
+      font-size: 11px;
+      font-weight: 1000;
+      text-transform: uppercase;
+      letter-spacing: .08em;
+    }
+    .flip-btn:hover { border-color: var(--gold); transform: translateY(-1px); }
+    @media (max-width: 1100px) { .teams-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+    @media (max-width: 720px) {
+      .teams-grid { grid-template-columns: 1fr; }
+      .team-card, .team-card-inner { min-height: 560px; }
+      .team-logo-big { width: 112px; height: 112px; }
+      .team-player-mini { grid-template-columns: 34px minmax(0, 1fr) auto; padding-right: 32px; }
+      .team-player-role { width: 30px; height: 30px; }
+      .team-player-tags { grid-column: 1 / -1; }
+    }
+
   </style>
 </head>
 <body class="dark">
   <div class="app">
     <header class="topbar">
-      <a class="brand" href="#" data-action="screen" data-screen="draft" aria-label="inicio"><span class="brand-mark">20:19</span><span class="brand-copy">Worlds<br>Draft</span></a>
-      <div class="microline"><strong>Draft</strong><span>·</span><strong>Pick</strong><span>·</span><strong>Win</strong><span id="seedLabel">seed #LOCAL</span><span class="rolefix-pill">v24 final polish</span><span class="version-pill">v24</span></div>
+      <a class="brand" href="#" data-action="screen" data-screen="draft" aria-label="inicio"><span class="brand-mark">5V</span><span class="brand-copy">Five’s<br>Pick</span></a>
+      <div class="microline"><strong>Roll</strong><span>·</span><strong>Pick</strong><span>·</span><strong>Break</strong><span id="seedLabel">seed #LOCAL</span><span class="rolefix-pill">V2.6.1</span><span class="version-pill">V2.6.1</span></div>
       <nav class="quick-actions"><button type="button" data-action="theme">tema</button><button type="button" data-action="copy">copiar</button><button type="button" data-action="reset">reset</button></nav>
     </header>
-    <nav class="tabs" aria-label="pantallas"><button type="button" data-action="screen" data-screen="draft" aria-pressed="true" title="Arma tu roster con tiradas, tienda y picks">Draft</button><button type="button" data-action="screen" data-screen="sim" aria-pressed="false" title="Ve la simulación partido por partido">Simulación</button><button type="button" data-action="screen" data-screen="stats" aria-pressed="false" title="Consulta tus estadísticas acumuladas">Stats</button><button type="button" data-action="screen" data-screen="history" aria-pressed="false" title="Revisa runs anteriores una por una">Historia</button><button type="button" data-action="screen" data-screen="objectives" aria-pressed="false" title="Objetivos y recompensas">Objetivos</button><button type="button" data-action="screen" data-screen="chrono" aria-pressed="false" title="Modo caótico experimental">Chrono</button></nav>
+    <nav class="tabs" aria-label="pantallas"><button type="button" data-action="screen" data-screen="draft" aria-pressed="true" title="Arma tu roster con tiradas, tienda y picks">Picks</button><button type="button" data-action="screen" data-screen="sim" aria-pressed="false" title="Ve la simulación partido por partido">Simulación</button><button type="button" data-action="screen" data-screen="stats" aria-pressed="false" title="Consulta tus estadísticas acumuladas">Stats</button><button type="button" data-action="screen" data-screen="history" aria-pressed="false" title="Revisa runs anteriores una por una">Historia</button><button type="button" data-action="screen" data-screen="teams" aria-pressed="false" title="Explora equipos, rosters y tags">Equipos</button><button type="button" data-action="screen" data-screen="objectives" aria-pressed="false" title="Objetivos y recompensas">Objetivos</button><button type="button" data-action="screen" data-screen="chrono" aria-pressed="false" title="Modo caótico experimental">Chrono</button></nav>
     <main>
       <section id="draftScreen" data-panel="draft">
         <div class="layout">
@@ -607,13 +802,13 @@
             <section class="panel hero">
               <div>
                 <p class="eyebrow">League of Legends · Worlds / MSI / First Stand</p>
-                <h1>Arma tu 5v histórico</h1>
-                <p class="lead">Tira, elige cinco leyendas y prueba si tu draft levanta la copa.</p>
+                <h1>Welcome to Five’s Pick</h1>
+                <p class="lead">Roll the legends. Build your five. Break the Nexus.</p>
                 <div class="actions">
                   <button type="button" class="btn primary" data-action="roll" data-icon="🎲">Tirar dado<span class="tip">Revela un equipo y torneo. Solo tienes 7 tiradas para completar tus 5 roles.</span></button>
                   <button type="button" class="btn" data-action="reroll" data-icon="↻">Reroll<span class="tip">Descarta la tirada actual y abre otra. Úsalo con cuidado: puede dejarte sin margen.</span></button>
-                  <button type="button" class="btn" data-action="scout" data-icon="◈">Scout pool<span class="tip">Arma una tirada mixta con opciones para roles abiertos. Es tu salvavidas si el draft se atoró.</span></button>
-                  <button type="button" class="btn primary" data-action="simulate" data-icon="⚔">Simular<span class="tip">Cambia a la sala de simulación y juega grupos, playoffs y final partido a partido.</span></button>
+                  <button type="button" class="btn" data-action="scout" data-icon="◈">Scout pool<span class="tip">Arma una tirada mixta con opciones para roles abiertos. Es tu salvavidas si los picks se atoró.</span></button>
+                  <button type="button" class="btn primary" data-action="simulate" data-icon="⚔">Simular<span class="tip">Cambia a la sala de simulación y juega grupos, playoffs y final partido a partido.</span></button><button type="button" class="btn icon-only" data-action="reset" data-icon="↻" title="Reset run"><span class="tip">Reinicia la run actual sin borrar coins, stats ni objetivos.</span></button>
                 </div>
               </div>
               <aside class="run-card">
@@ -626,11 +821,11 @@
               <div class="choice-group"><p>modo</p><div class="choices" data-setting="mode"><button type="button" class="choice" data-value="classic">clásico</button><button type="button" class="choice" data-value="blind">memoria</button></div></div>
               <div class="choice-group"><p>rosters</p><div class="choices" data-setting="filter"><button type="button" class="choice" data-value="all">todos</button><button type="button" class="choice" data-value="winner">campeones</button><button type="button" class="choice" data-value="east">east</button><button type="button" class="choice" data-value="west">west</button></div></div>
             </section>
-            <section class="panel roll-card tilt-card" id="rollCard"><div class="roll-line"><div class="team-logo" id="teamLogo">?</div><div class="roll-copy"><h2 id="rollTitle">Sin tirada</h2><p id="rollSub">Haz una tirada para revelar equipo, año y pool de jugadores.</p><div class="pill-row" id="rollTags"></div></div><button type="button" class="btn" data-action="skip" data-icon="→">saltar</button></div></section>
-            <section class="players-grid" id="players"><div class="empty">tira el dado para abrir tu primer roster.</div></section>
+            <section class="panel roll-card tilt-card" id="rollCard"><div class="roll-line"><div class="team-logo" id="teamLogo">?</div><div class="roll-copy"><h2 id="rollTitle">Sin tirada</h2><p id="rollSub">Haz una tirada para revelar equipo, año y pool de jugadores.</p><div class="pill-row" id="rollTags"></div></div><button type="button" class="btn" data-action="skip" data-icon="→">Saltar</button></div></section>
+            <section class="players-grid" id="players"><div class="empty">Tira el dado para abrir tu primer roster.</div></section>
           </div>
           <aside class="panel side-col">
-            <div class="side-head"><div><h2>5v</h2><p class="muted" id="summarySeed">seed local</p></div><span class="draft-count" id="draftCount">0/5</span></div>
+            <div class="side-head"><div><h2>5v</h2><p class="muted" id="summarySeed">seed local</p></div><span class="picks-count" id="picksCount">0/5</span></div>
             <div class="stats-row"><div class="stat"><strong id="avgScore">0</strong><span>overall</span></div><div class="stat"><strong id="synScore">0</strong><span>sinergia</span></div><div class="stat"><strong id="cupChance">0%</strong><span>chance</span></div></div>
             <div class="wallet"><div><span>coins</span><strong id="coinCount">0</strong></div><p class="muted" id="coinHint">se guardan localmente</p></div>
             <div class="slots" id="slots"></div>
@@ -644,30 +839,36 @@
         </div>
       </section>
       <section id="simScreen" data-panel="sim" hidden>
-        <div class="screen-head panel"><div><p class="eyebrow">match room</p><h2>simulación</h2><p class="muted" id="simSubtitle">completa tu 5v para correr la run.</p></div><div class="screen-actions"><button type="button" class="btn" data-action="screen" data-screen="draft" data-icon="←">Draft</button><button type="button" class="btn primary" data-action="reset" data-icon="↻">repetir</button><button type="button" class="btn" data-action="screen" data-screen="stats" data-icon="▦">Stats</button></div></div>
+        <div class="screen-head panel"><div><p class="eyebrow">match room</p><h2>simulación</h2><p class="muted" id="simSubtitle">completa tu 5v para correr la run.</p></div><div class="screen-actions"><button type="button" class="btn" data-action="screen" data-screen="draft" data-icon="←">Picks</button><button type="button" class="btn primary" data-action="reset" data-icon="↻">repetir</button><button type="button" class="btn" data-action="screen" data-screen="stats" data-icon="▦">Stats</button></div></div>
         <section class="panel sim-board"><div class="scoreline" id="simScoreline"></div><div class="focus" id="liveFocus"><p class="muted">sin simulación cargada.</p></div><div class="timeline" id="simTimeline"></div></section>
       </section>
       <section id="statsScreen" data-panel="stats" hidden>
-        <div class="screen-head panel"><div><p class="eyebrow">scoreboard</p><h2>Estadísticas</h2><p class="muted">Resumen local con detalle de runs, picks y objetivos.</p></div><div class="screen-actions"><button type="button" class="btn" data-action="screen" data-screen="draft" data-icon="←">Draft</button><button type="button" class="btn" data-action="screen" data-screen="history" data-icon="≣">Historia</button><button type="button" class="btn" data-action="clearStats" data-icon="×">Limpiar stats</button></div></div>
+        <div class="screen-head panel"><div><p class="eyebrow">scoreboard</p><h2>Estadísticas</h2><p class="muted">Resumen local con detalle de runs, picks y objetivos.</p></div><div class="screen-actions"><button type="button" class="btn" data-action="screen" data-screen="draft" data-icon="←">Picks</button><button type="button" class="btn" data-action="screen" data-screen="history" data-icon="≣">Historia</button><button type="button" class="btn" data-action="clearStats" data-icon="×">Limpiar stats</button></div></div>
         <section class="score-layout"><div class="score-grid" id="scoreGrid"></div><article class="panel"><h3>Últimas runs</h3><div class="ledger" id="runLedger"></div></article><article class="panel"><h3>Top picks</h3><div class="ledger" id="pickLedger"></div></article><article class="panel wide"><h3>Historial de simulación</h3><div class="ledger" id="simLedger"></div></article></section>
       </section>
       <section id="historyScreen" data-panel="history" hidden>
-        <div class="screen-head panel"><div><p class="eyebrow">archive</p><h2>Historia</h2><p class="muted">Revisa cada run con picks, marcador y detalle plegable.</p></div><div class="screen-actions"><button type="button" class="btn" data-action="screen" data-screen="draft" data-icon="←">Draft</button><button type="button" class="btn" data-action="screen" data-screen="stats" data-icon="▦">Stats</button></div></div>
+        <div class="screen-head panel"><div><p class="eyebrow">archive</p><h2>Historia</h2><p class="muted">Revisa cada run con picks, marcador y detalle plegable.</p></div><div class="screen-actions"><button type="button" class="btn" data-action="screen" data-screen="draft" data-icon="←">Picks</button><button type="button" class="btn" data-action="screen" data-screen="stats" data-icon="▦">Stats</button></div></div>
         <section class="panel"><div class="history-grid" id="historyLedger"></div></section>
       </section>
     </main>
 
 
+
+      <section id="teamsScreen" data-panel="teams" hidden>
+        <div class="screen-head panel"><div><p class="eyebrow">team archive</p><h2>Equipos</h2><p class="muted">Explora rosters históricos, ratings y tags buenos/malos. Da click en “Ver roster” para girar la tarjeta.</p></div><div class="screen-actions"><button type="button" class="btn" data-action="screen" data-screen="draft" data-icon="←">Picks</button><button type="button" class="btn" data-action="screen" data-screen="chrono" data-icon="↯">Chrono</button></div></div>
+        <section class="teams-grid" id="teamsGrid"></section>
+      </section>
+
       <section id="objectivesScreen" data-panel="objectives" hidden>
-        <div class="screen-head panel"><div><p class="eyebrow">coin board</p><h2>Objetivos</h2><p class="muted">Misiones permanentes para ganar coins. Se calculan con tu historial local.</p></div><div class="screen-actions"><button type="button" class="btn" data-action="screen" data-screen="draft" data-icon="←">Draft</button><button type="button" class="btn" data-action="screen" data-screen="chrono" data-icon="◈">Chrono</button></div></div>
+        <div class="screen-head panel"><div><p class="eyebrow">coin board</p><h2>Objetivos</h2><p class="muted">Misiones permanentes para ganar coins. Se calculan con tu historial local.</p></div><div class="screen-actions"><button type="button" class="btn" data-action="screen" data-screen="draft" data-icon="←">Picks</button><button type="button" class="btn" data-action="screen" data-screen="chrono" data-icon="◈">Chrono</button></div></div>
         <section class="panel"><div class="objective-grid" id="objectiveList"></div></section>
       </section>
       <section id="chronoScreen" data-panel="chrono" hidden>
-        <div class="screen-head panel"><div><p class="eyebrow">experimental mode</p><h2>Chrono Lab</h2><p class="muted">Compra bendiciones caóticas, actívalas antes de simular y se consumirán automáticamente cuando aplique.</p></div><div class="screen-actions"><button type="button" class="btn" data-action="screen" data-screen="draft" data-icon="←">Draft</button><button type="button" class="btn" data-action="screen" data-screen="objectives" data-icon="◎">Objetivos</button></div></div>
+        <div class="screen-head panel"><div><p class="eyebrow">experimental mode</p><h2>Chrono Lab</h2><p class="muted">Compra bendiciones caóticas, actívalas antes de simular y se consumirán automáticamente cuando aplique.</p></div><div class="screen-actions"><button type="button" class="btn" data-action="screen" data-screen="draft" data-icon="←">Picks</button><button type="button" class="btn" data-action="screen" data-screen="objectives" data-icon="◎">Objetivos</button></div></div>
         <section class="panel"><div class="chrono-grid" id="chronoGrid"></div></section>
       </section>
 
-    <footer>Fan-made project not affiliated with Riot Games · v24 final polish</footer>
+    <footer>Fan-made project not affiliated with Riot Games · V2.6.1</footer>
   </div>
   <div class="result-overlay" id="resultOverlay" aria-live="polite"></div>
   <div class="toast" id="toast"></div>
@@ -685,9 +886,30 @@
   const RATING_OFFSET = -3;
   const MARKET_COST = 10;
   const ENEMY_HANDICAP = 1.5;
-  const STORE = { coins: 'draft_coins_v11', stats: 'draft_stats_v11', theme: 'draft_theme_v11', owned: 'draft_owned_v11', objectives: 'draft_objectives_v24', chrono: 'draft_chrono_v24' };
+  const STORE = { coins: 'draft_coins_v11', stats: 'draft_stats_v11', theme: 'draft_theme_v11', owned: 'draft_owned_v11', objectives: 'draft_objectives_v25', chrono: 'draft_chrono_v25' };
 
   const historicalTeamLogos = {
+    "og-2015": "/assets/teams-historical/worlds-og-2015.png",
+    "g2-2018": "/assets/teams-historical/msi-g2-2019.png",
+    "g2-2020": "/assets/teams-historical/msi-g2-2019.png",
+    "g2-2023": "/assets/teams-historical/msi-g2-2019.png",
+    "fnc-2015": "/assets/teams-historical/worlds-fnc-2018.png",
+    "fnc-2019": "/assets/teams-historical/worlds-fnc-2018.png",
+    "fnc-2020": "/assets/teams-historical/worlds-fnc-2018.png",
+    "msf-2017-alt": "/assets/teams-historical/worlds-msf-2017.png",
+    "c9-2016": "/assets/teams-historical/worlds-c9-2018.png",
+    "c9-2021": "/assets/teams-historical/worlds-c9-2018.png",
+    "tl-2018": "/assets/teams-historical/msi-tl-2019.png",
+    "tl-2024": "/assets/teams-historical/msi-tl-2019.png",
+    "h2k-2016": "/assets/teams-historical/worlds-h2k-2016.png",
+    "spy-2019": "/assets/teams-historical/worlds-spy-2019.png",
+    "rge-2022": "/assets/teams-historical/worlds-rge-2022.png",
+    "bds-2023": "/assets/teams-historical/worlds-bds-2023.png",
+    "clg-2016-msi": "/assets/teams-historical/msi-clg-2016.png",
+    "tsm-2014": "/assets/teams-historical/worlds-tsm-2014.svg",
+    "tsm-2016": "/assets/teams-historical/worlds-tsm-2016.png",
+    "fly-2024": "/assets/teams-historical/worlds-fly-2024.svg",
+    "eg-2022": "/assets/teams-historical/worlds-eg-2022.png",
     "t1-2023": "/assets/teams-historical/worlds-t1-2023.png",
     "drx-2022": "/assets/teams-historical/worlds-drx-2022.png",
     "edg-2021": "/assets/teams-historical/worlds-edg-2021.png",
@@ -726,6 +948,15 @@
   };
 
   const teamLogos = {
+    "OG": "/assets/teams-historical/worlds-og-2015.png",
+    "H2K": "/assets/teams-historical/worlds-h2k-2016.png",
+    "SPY": "/assets/teams-historical/worlds-spy-2019.png",
+    "RGE": "/assets/teams-historical/worlds-rge-2022.png",
+    "BDS": "/assets/teams-historical/worlds-bds-2023.png",
+    "CLG": "/assets/teams-historical/msi-clg-2016.png",
+    "TSM": "/assets/teams-historical/worlds-tsm-2016.png",
+    "FLY": "/assets/teams-historical/worlds-fly-2024.svg",
+    "EG": "/assets/teams-historical/worlds-eg-2022.png",
     "T1": "/assets/teams-historical/worlds-t1-2023.png",
     "SKT": "/assets/teams-historical/worlds-skt-2016.png",
     "GEN": "/assets/teams-historical/msi-gen-2024.png",
@@ -758,7 +989,12 @@
   };
 
   const orgMap = { SKT: 'T1', T1: 'T1', DWG: 'DK', DK: 'DK', SSG: 'GEN', GEN: 'GEN', SSW: 'GEN', SSB: 'GEN', KOO: 'ROX', ROX: 'ROX' };
-  function tuneRating(rating) { return clamp(rating + RATING_OFFSET, 82, 98); }
+  function balanceTier(id, tier) {
+    const elite = { 'ssw-2014': 99, 'skt-2015': 98, 't1-2023': 97 };
+    if (elite[id]) return elite[id];
+    return Math.min(96, tier);
+  }
+    function tuneRating(rating) { return clamp(rating + RATING_OFFSET, 82, 98); }
   function roleCode(role) { return ({ Top:'TOP', Jungle:'JG', Mid:'MID', Bot:'BOT', Support:'SUP' })[role] || role; }
   function roleClass(role) { return ({ Top:'role-top', Jungle:'role-jungle', Mid:'role-mid', Bot:'role-bot', Support:'role-support' })[role] || 'role-top'; }
   function roleGlyph(role) { return `<span class="role-glyph ${esc(roleClass(role))}" aria-label="${esc(role)}" title="${esc(role)}"></span>`; }
@@ -769,7 +1005,7 @@
     const major = extra?.majorChampion ?? champion;
     const rarity = major ? 'rare' : 'normal';
     const logo = historicalTeamLogos[id] || teamLogos[short] || badge(short, region);
-    return { id, name, short, org, year, region, country, champion, major, tournament, tier, styles, rarity, logo, players: players.map(x => ({ ...x, id: `${org}-${year}-${tournament}-${x.role}-${x.name}`.replace(/\s+/g, '-'), team: name, short, org, year, region, country, tournament, major, logo })) };
+    return { id, name, short, org, year, region, country, champion, major, tournament, tier: balanceTier(id, tier), rawTier: tier, styles, rarity, logo, players: players.map(x => ({ ...x, id: `${org}-${year}-${tournament}-${x.role}-${x.name}`.replace(/\s+/g, '-'), team: name, short, org, year, region, country, tournament, major, logo })) };
   }
   const ROSTERS = [
     r('t1-2023', 'T1', 'T1', 2023, 'LCK', 'KR', true, 98, ['clutch','macro'], [p('Zeus','Top',96,['hands','carry']),p('Oner','Jungle',94,['tempo']),p('Faker','Mid',99,['clutch','shotcall']),p('Gumayusi','Bot',96,['carry']),p('Keria','Support',97,['creative','shotcall'])]),
@@ -821,9 +1057,32 @@
     { name: 'no repetir año', text: '+2 si ningún jugador comparte año.', bonus: 2, ok: ps => new Set(ps.map(x => x.year)).size === ps.length },
     { name: 'duo bot real', text: '+3 si Bot y Support son del mismo equipo/año.', bonus: 3, ok: ps => sameTeam(ps,'Bot','Support') },
     { name: 'pasado y presente', text: '+2 si mezclas antes de 2018 y después de 2021.', bonus: 2, ok: ps => ps.some(x => x.year < 2018) && ps.some(x => x.year > 2021) },
-    { name: 'oeste unido', text: '+2 si armas 3+ jugadores LEC/LCS.', bonus: 2, ok: ps => ps.filter(x => ['LEC','LCS'].includes(x.region)).length >= 3 }
+    { name: 'oeste unido', text: '+2 si armas 3+ jugadores LEC/LCS.', bonus: 2, ok: ps => ps.filter(x => ['LEC','LCS'].includes(x.region)).length >= 3 },
+
+    r('g2-2018', 'G2 Esports', 'G2', 2018, 'LEC', 'EU', false, 88, ['upset','creative'], [p('Wunder','Top',91,['carry','flex']),p('Jankos','Jungle',91,['tempo']),p('Perkz','Mid',94,['clutch','hands']),p('Hjarnan','Bot',86,['stable']),p('Wadid','Support',86,['engage'])]),
+    r('g2-2020', 'G2 Esports', 'G2', 2020, 'LEC', 'EU', false, 91, ['flex','skirmish'], [p('Wunder','Top',91,['carry','flex']),p('Jankos','Jungle',92,['tempo','shotcall']),p('Caps','Mid',97,['hands','clutch']),p('Perkz','Bot',92,['creative','clutch']),p('Mikyx','Support',93,['engage','creative'])]),
+    r('fnc-2015', 'Fnatic', 'FNC', 2015, 'LEC', 'EU', false, 90, ['macro','western'], [p('Huni','Top',93,['carry','hands']),p('Reignover','Jungle',92,['tempo']),p('Febiven','Mid',92,['hands']),p('Rekkles','Bot',94,['late','carry']),p('YellOwStaR','Support',94,['shotcall'])]),
+    r('fnc-2019', 'Fnatic', 'FNC', 2019, 'LEC', 'EU', false, 88, ['teamfight','western'], [p('Bwipo','Top',90,['carry']),p('Broxah','Jungle',90,['tempo']),p('Nemesis','Mid',89,['control']),p('Rekkles','Bot',94,['late','carry']),p('Hylissang','Support',92,['engage','creative'])]),
+    r('fnc-2020', 'Fnatic', 'FNC', 2020, 'LEC', 'EU', false, 89, ['bot','teamfight'], [p('Bwipo','Top',90,['carry']),p('Selfmade','Jungle',93,['carry','tempo']),p('Nemesis','Mid',89,['control']),p('Rekkles','Bot',94,['late','carry']),p('Hylissang','Support',92,['engage','creative'])]),
+    r('og-2015', 'Origen', 'OG', 2015, 'LEC', 'EU', false, 88, ['legacy','control'], [p('sOAZ','Top',91,['stable','carry']),p('Amazing','Jungle',89,['tempo']),p('xPeke','Mid',92,['clutch','shotcall']),p('Niels','Bot',91,['carry']),p('Mithy','Support',92,['shotcall','engage'])]),
+    r('h2k-2016', 'H2K', 'H2K', 2016, 'LEC', 'EU', false, 87, ['macro','underdog'], [p('Odoamne','Top',90,['stable']),p('Jankos','Jungle',91,['tempo']),p('Ryu','Mid',89,['control']),p('FORG1VEN','Bot',92,['carry']),p('Vander','Support',88,['engage'])]),
+    r('msf-2017-alt', 'Misfits Gaming', 'MSF', 2017, 'LEC', 'EU', false, 87, ['upset','creative'], [p('Alphari','Top',90,['stable']),p('Maxlore','Jungle',88,['tempo']),p('PowerOfEvil','Mid',91,['control']),p('Hans sama','Bot',90,['carry']),p('IgNar','Support',91,['engage','creative'])]),
+    r('spy-2019', 'Splyce', 'SPY', 2019, 'LEC', 'EU', false, 86, ['scaling','late'], [p('Vizicsacsi','Top',87,['stable']),p('Xerxe','Jungle',88,['tempo','creative']),p('Humanoid','Mid',90,['control','hands']),p('Kobbe','Bot',90,['late','carry']),p('Norskeren','Support',86,['engage'])]),
+    r('rge-2022', 'Rogue', 'RGE', 2022, 'LEC', 'EU', false, 88, ['control','western'], [p('Odoamne','Top',90,['stable']),p('Malrang','Jungle',90,['tempo','creative']),p('Larssen','Mid',91,['control']),p('Comp','Bot',91,['carry']),p('Trymbi','Support',90,['engage','creative'])]),
+    r('g2-2023', 'G2 Esports', 'G2', 2023, 'LEC', 'EU', false, 89, ['skirmish','creative'], [p('BrokenBlade','Top',90,['carry','stable']),p('Yike','Jungle',90,['tempo']),p('Caps','Mid',96,['hands','clutch']),p('Hans sama','Bot',91,['carry']),p('Mikyx','Support',93,['engage','creative'])]),
+    r('bds-2023', 'Team BDS', 'BDS', 2023, 'LEC', 'EU', false, 84, ['underdog','western'], [p('Adam','Top',89,['carry','creative']),p('Sheo','Jungle',85,['tempo']),p('nuc','Mid',86,['control']),p('Crownie','Bot',87,['late']),p('Labrov','Support',86,['engage'])]),
+    r('c9-2016', 'Cloud9', 'C9', 2016, 'LCS', 'NA', false, 85, ['underdog','western'], [p('Impact','Top',89,['stable']),p('Meteos','Jungle',86,['tempo']),p('Jensen','Mid',90,['control','hands']),p('Sneaky','Bot',89,['late']),p('Smoothie','Support',86,['engage'])]),
+    r('c9-2021', 'Cloud9', 'C9', 2021, 'LCS', 'NA', false, 86, ['upset','skirmish'], [p('Fudge','Top',88,['stable']),p('Blaber','Jungle',91,['tempo','carry']),p('Perkz','Mid',91,['clutch']),p('Zven','Bot',88,['late']),p('Vulcan','Support',89,['engage'])]),
+    r('clg-2016-msi', 'Counter Logic Gaming', 'CLG', 2016, 'LCS', 'NA', false, 87, ['upset','teamfight'], [p('Darshan','Top',87,['carry']),p('Xmithie','Jungle',88,['tempo']),p('Huhi','Mid',87,['control']),p('Stixxay','Bot',90,['carry','clutch']),p('aphromoo','Support',91,['shotcall','engage'])], { tournament: 'MSI' }),
+    r('tsm-2014', 'Team SoloMid', 'TSM', 2014, 'LCS', 'NA', false, 84, ['legacy','western'], [p('Dyrus','Top',86,['stable']),p('Amazing','Jungle',85,['tempo']),p('Bjergsen','Mid',91,['hands','clutch']),p('WildTurtle','Bot',86,['carry']),p('Lustboy','Support',86,['engage'])]),
+    r('tsm-2016', 'Team SoloMid', 'TSM', 2016, 'LCS', 'NA', false, 88, ['teamfight','western'], [p('Hauntzer','Top',89,['carry','stable']),p('Svenskeren','Jungle',89,['tempo']),p('Bjergsen','Mid',93,['control','clutch']),p('Doublelift','Bot',92,['carry']),p('Biofrost','Support',88,['engage'])]),
+    r('tl-2018', 'Team Liquid', 'TL', 2018, 'LCS', 'NA', false, 84, ['bot','western'], [p('Impact','Top',88,['stable']),p('Xmithie','Jungle',87,['tempo']),p('Pobelter','Mid',85,['control']),p('Doublelift','Bot',92,['carry']),p('Olleh','Support',84,['engage'])]),
+    r('tl-2024', 'Team Liquid', 'TL', 2024, 'LCS', 'NA', false, 86, ['macro','western'], [p('Impact','Top',89,['stable']),p('UmTi','Jungle',86,['shotcall','tempo']),p('APA','Mid',86,['creative']),p('Yeon','Bot',88,['carry']),p('CoreJJ','Support',91,['shotcall','engage'])]),
+    r('fly-2024', 'FlyQuest', 'FLY', 2024, 'LCS', 'NA', false, 87, ['teamfight','western'], [p('Bwipo','Top',89,['carry','creative']),p('Inspired','Jungle',91,['tempo','shotcall']),p('Quad','Mid',87,['control']),p('Massu','Bot',88,['carry']),p('Busio','Support',87,['engage','creative'])]),
+    r('eg-2022', 'Evil Geniuses', 'EG', 2022, 'LCS', 'NA', false, 86, ['upset','skirmish'], [p('Impact','Top',89,['stable']),p('Inspired','Jungle',91,['tempo']),p('Jojopyun','Mid',88,['hands','creative']),p('Danny','Bot',90,['carry','clutch']),p('Vulcan','Support',89,['engage'])])
+
   ];
-  const COMP_RULES = [{"name":"Mid/Jungle Tempo","points":2,"desc":"Jungla de tempo habilita mid de control o manos","req":[{"role":"Jungle","tag":"tempo"},{"role":"Mid","tag":"control"}]},{"name":"Mid/Jungle Hands","points":2,"desc":"Jungla agresivo habilita mid mecánico","req":[{"role":"Jungle","tag":"tempo"},{"role":"Mid","tag":"hands"}]},{"name":"Shotcall Engage","points":1,"desc":"Shotcaller coordina engage primario","req":[{"role":"Jungle","tag":"shotcall"},{"role":"Support","tag":"engage"}]},{"name":"Support Engage + Bot Carry","points":2,"desc":"Engage abre ventana al carry de bot","req":[{"role":"Support","tag":"engage"},{"role":"Bot","tag":"carry"}]},{"name":"Late Game Insurance","points":2,"desc":"Bot late con soporte shotcaller escala mejor","req":[{"role":"Bot","tag":"late"},{"role":"Support","tag":"shotcall"}]},{"name":"Weakside Top + Bot Carry","points":2,"desc":"Top absorbe presión para jugar bot side","req":[{"role":"Top","tag":"weakside"},{"role":"Bot","tag":"carry"}]},{"name":"Carry Top + Tempo Jungle","points":2,"desc":"Jungla acelera carry de top","req":[{"role":"Top","tag":"carry"},{"role":"Jungle","tag":"tempo"}]},{"name":"Roam Mid + Engage Support","points":2,"desc":"Roams conectan con engage de support","req":[{"role":"Mid","tag":"roam"},{"role":"Support","tag":"engage"}]},{"name":"Control Mid + Vision Support","points":2,"desc":"Control de mid y visión estabilizan mapa","req":[{"role":"Mid","tag":"control"},{"role":"Support","tag":"vision"}]},{"name":"Clutch Core","points":3,"desc":"Dos jugadores clutch elevan cierre de mapas","req":[{"role":null,"tag":"clutch"},{"role":null,"tag":"clutch"}]},{"name":"Hands Trio","points":3,"desc":"Tres perfiles hands/carry elevan peleas","req":[{"role":null,"tag":"hands"},{"role":null,"tag":"carry"},{"role":null,"tag":"carry"}]},{"name":"Macro Spine","points":3,"desc":"Shotcall + control + stable sostienen macro","req":[{"role":"Jungle","tag":"shotcall"},{"role":"Mid","tag":"control"},{"role":"Top","tag":"stable"}]},{"name":"Teamfight Front-to-Back","points":3,"desc":"Top estable, bot carry y supp engage","req":[{"role":"Top","tag":"stable"},{"role":"Bot","tag":"carry"},{"role":"Support","tag":"engage"}]},{"name":"Skirmish Chaos","points":3,"desc":"Tempo, hands y creative buscan peleas raras","req":[{"role":"Jungle","tag":"tempo"},{"role":"Mid","tag":"hands"},{"role":"Support","tag":"creative"}]},{"name":"Bot Kingdom","points":3,"desc":"Bot carry + supp engage/shotcall dominan 2v2","req":[{"role":"Bot","tag":"carry"},{"role":"Support","tag":"engage"},{"role":"Support","tag":"shotcall"}]},{"name":"Top Island","points":1,"desc":"Top estable y jungla tempo evitan snowball rival","req":[{"role":"Top","tag":"stable"},{"role":"Jungle","tag":"tempo"}]},{"name":"Vision Trap","points":2,"desc":"Shotcall con visión crea picks de Nashor","req":[{"role":"Support","tag":"shotcall"},{"role":"Jungle","tag":"tempo"}]},{"name":"Creative Map","points":2,"desc":"Soporte creativo habilita mid roam","req":[{"role":"Support","tag":"creative"},{"role":"Mid","tag":"roam"}]},{"name":"Control Scaling","points":2,"desc":"Mid control y bot late juegan a escalar","req":[{"role":"Mid","tag":"control"},{"role":"Bot","tag":"late"}]},{"name":"Carry Triangle","points":3,"desc":"Top/Mid/Bot con carry/hands presionan 3 lanes","req":[{"role":"Top","tag":"carry"},{"role":"Mid","tag":"hands"},{"role":"Bot","tag":"carry"}]},{"name":"Clutch ADC","points":2,"desc":"Bot clutch convierte finales cerrados","req":[{"role":"Bot","tag":"clutch"},{"role":"Support","tag":"engage"}]},{"name":"Jungle Carry","points":2,"desc":"Jungla carry con mid control invade mejor","req":[{"role":"Jungle","tag":"carry"},{"role":"Mid","tag":"control"}]},{"name":"Roam Snowball","points":2,"desc":"Mid roam y jungla tempo aceleran side lanes","req":[{"role":"Mid","tag":"roam"},{"role":"Jungle","tag":"tempo"}]},{"name":"Weakside Discipline","points":2,"desc":"Top weakside + support shotcall reducen throws","req":[{"role":"Top","tag":"weakside"},{"role":"Support","tag":"shotcall"}]},{"name":"Late Engage","points":2,"desc":"Engage protege condiciones de late game","req":[{"role":"Bot","tag":"late"},{"role":"Support","tag":"engage"}]},{"name":"Macro Control","points":2,"desc":"Macro y control convierten objetivos","req":[{"role":"Mid","tag":"control"},{"role":null,"tag":"macro"}]},{"name":"Underdog Spark","points":1,"desc":"Underdog con clutch encuentra upset","req":[{"role":null,"tag":"underdog"},{"role":null,"tag":"clutch"}]},{"name":"Flex Pressure","points":1,"desc":"Flex con creative complica draft rival","req":[{"role":null,"tag":"flex"},{"role":"Support","tag":"creative"}]},{"name":"Bot Side Identity","points":2,"desc":"Tags bot + carry refuerzan win condition","req":[{"role":null,"tag":"bot"},{"role":"Bot","tag":"carry"}]},{"name":"Engage Chain","points":2,"desc":"Engage múltiple fuerza teamfights","req":[{"role":null,"tag":"engage"},{"role":null,"tag":"engage"}]},{"name":"Stable Carry Cover","points":2,"desc":"Top estable cubre carry vulnerable","req":[{"role":"Top","tag":"stable"},{"role":"Bot","tag":"carry"}]},{"name":"Mid Clutch","points":2,"desc":"Mid clutch y jungle tempo cierran fights","req":[{"role":"Mid","tag":"clutch"},{"role":"Jungle","tag":"tempo"}]},{"name":"Top Clutch","points":2,"desc":"Top clutch y support engage abren picks","req":[{"role":"Top","tag":"clutch"},{"role":"Support","tag":"engage"}]},{"name":"Support Brain","points":2,"desc":"Support shotcall + jungla tempo controla mapa","req":[{"role":"Support","tag":"shotcall"},{"role":"Jungle","tag":"tempo"}]},{"name":"Control Engage","points":2,"desc":"Mid control setupea engage limpio","req":[{"role":"Mid","tag":"control"},{"role":"Support","tag":"engage"}]},{"name":"Creative Bot","points":1,"desc":"Bot creative con support engage genera picks","req":[{"role":"Bot","tag":"creative"},{"role":"Support","tag":"engage"}]},{"name":"Late Shotcall","points":2,"desc":"Shotcall protege escalado late","req":[{"role":null,"tag":"late"},{"role":null,"tag":"shotcall"}]},{"name":"Hands Check Duo","points":2,"desc":"Dos manos fuertes ganan skirmishes","req":[{"role":null,"tag":"hands"},{"role":null,"tag":"hands"}]},{"name":"Carry Jungle Bot","points":2,"desc":"Jungle carry y bot carry reparten recursos","req":[{"role":"Jungle","tag":"carry"},{"role":"Bot","tag":"carry"}]},{"name":"Roam Support","points":2,"desc":"Support creativo y mid roam mueven mapa","req":[{"role":"Support","tag":"creative"},{"role":"Mid","tag":"roam"}]},{"name":"Teamfight Call","points":2,"desc":"Teamfight + shotcall mejora 5v5","req":[{"role":null,"tag":"teamfight"},{"role":null,"tag":"shotcall"}]},{"name":"Skirmish Tempo","points":2,"desc":"Skirmish con tempo acelera early","req":[{"role":null,"tag":"skirmish"},{"role":"Jungle","tag":"tempo"}]},{"name":"Vision Macro","points":2,"desc":"Vision y macro traducen ventajas","req":[{"role":null,"tag":"vision"},{"role":null,"tag":"macro"}]},{"name":"Upset Angle","points":1,"desc":"Upset con engage encuentra sorpresa","req":[{"role":null,"tag":"upset"},{"role":null,"tag":"engage"}]},{"name":"Top Hands Jungle Tempo","points":3,"desc":"Top mecánico con jungla tempo amenaza dive","req":[{"role":"Top","tag":"hands"},{"role":"Jungle","tag":"tempo"}]},{"name":"Mid Hands Support Engage","points":3,"desc":"Mid mecánico capitaliza engage del support","req":[{"role":"Mid","tag":"hands"},{"role":"Support","tag":"engage"}]},{"name":"Bot Carry Jungle Tempo","points":3,"desc":"Jungle tempo juega alrededor del carry bot","req":[{"role":"Bot","tag":"carry"},{"role":"Jungle","tag":"tempo"}]},{"name":"Control Shotcall Engage","points":3,"desc":"Control, shotcall y engage ejecutan limpio","req":[{"role":"Mid","tag":"control"},{"role":null,"tag":"shotcall"},{"role":"Support","tag":"engage"}]},{"name":"Triple Clutch","points":3,"desc":"Tres clutch suben finales y game 5","req":[{"role":null,"tag":"clutch"},{"role":null,"tag":"clutch"},{"role":null,"tag":"clutch"}]},{"name":"Triple Carry","points":3,"desc":"Tres carries aumentan techo mecánico","req":[{"role":null,"tag":"carry"},{"role":null,"tag":"carry"},{"role":null,"tag":"carry"}]},{"name":"Stable Macro Late","points":3,"desc":"Estabilidad, macro y late juegan al scaling","req":[{"role":null,"tag":"stable"},{"role":null,"tag":"macro"},{"role":null,"tag":"late"}]},{"name":"Tempo Roam Engage","points":3,"desc":"Tempo + roam + engage crean picks","req":[{"role":"Jungle","tag":"tempo"},{"role":"Mid","tag":"roam"},{"role":"Support","tag":"engage"}]},{"name":"Vision Baron Setup","points":2,"desc":"Vision + jungle tempo mejora Nashor","req":[{"role":null,"tag":"vision"},{"role":"Jungle","tag":"tempo"}]},{"name":"Bot Late Peel","points":2,"desc":"Late carry con shotcall evita throw","req":[{"role":"Bot","tag":"late"},{"role":"Support","tag":"shotcall"}]},{"name":"Creative Chaos","points":2,"desc":"Creative + skirmish generan partidas raras","req":[{"role":null,"tag":"creative"},{"role":null,"tag":"skirmish"}]},{"name":"Weakside Macro","points":2,"desc":"Weakside + macro libera recursos","req":[{"role":null,"tag":"weakside"},{"role":null,"tag":"macro"}]},{"name":"Hands Carry Control","points":3,"desc":"Hands, carry y control combinan daño y orden","req":[{"role":null,"tag":"hands"},{"role":null,"tag":"carry"},{"role":null,"tag":"control"}]},{"name":"Support Engage Jungle Carry","points":2,"desc":"Engage habilita jungla carry","req":[{"role":"Support","tag":"engage"},{"role":"Jungle","tag":"carry"}]},{"name":"Mid Control Bot Late","points":2,"desc":"Control mid compra tiempo al bot late","req":[{"role":"Mid","tag":"control"},{"role":"Bot","tag":"late"}]},{"name":"Top Carry Support Shotcall","points":2,"desc":"Shotcall organiza recursos para top carry","req":[{"role":"Top","tag":"carry"},{"role":"Support","tag":"shotcall"}]},{"name":"Roam Bot Side","points":2,"desc":"Mid roam habilita bot side","req":[{"role":null,"tag":"bot"},{"role":"Mid","tag":"roam"}]},{"name":"Frontline Stable","points":1,"desc":"Stable + engage da frontline","req":[{"role":null,"tag":"stable"},{"role":null,"tag":"engage"}]},{"name":"Ace Threat","points":2,"desc":"Carry + clutch amenaza ace tardío","req":[{"role":null,"tag":"carry"},{"role":null,"tag":"clutch"}]},{"name":"Objective Control","points":2,"desc":"Tempo + vision/control gana objetivos","req":[{"role":"Jungle","tag":"tempo"},{"role":null,"tag":"vision"},{"role":null,"tag":"control"}]},{"name":"Dive Comp","points":3,"desc":"Top carry, jungle tempo y support engage divean","req":[{"role":"Top","tag":"carry"},{"role":"Jungle","tag":"tempo"},{"role":"Support","tag":"engage"}]},{"name":"Pick Comp","points":3,"desc":"Vision, roam y engage castigan errores","req":[{"role":null,"tag":"vision"},{"role":"Mid","tag":"roam"},{"role":"Support","tag":"engage"}]},{"name":"Scaling Comp","points":3,"desc":"Late, control y shotcall escalan ordenado","req":[{"role":null,"tag":"late"},{"role":"Mid","tag":"control"},{"role":null,"tag":"shotcall"}]},{"name":"Brawl Comp","points":3,"desc":"Skirmish, hands y carry fuerzan peleas","req":[{"role":null,"tag":"skirmish"},{"role":null,"tag":"hands"},{"role":null,"tag":"carry"}]},{"name":"Classic LCK Spine","points":3,"desc":"Stable top, control mid y shotcall support","req":[{"role":"Top","tag":"stable"},{"role":"Mid","tag":"control"},{"role":"Support","tag":"shotcall"}]},{"name":"Classic LPL Fight","points":3,"desc":"Carry top, tempo jungle y bot carry","req":[{"role":"Top","tag":"carry"},{"role":"Jungle","tag":"tempo"},{"role":"Bot","tag":"carry"}]},{"name":"Western Upset","points":2,"desc":"Creative y upset abren ventanas raras","req":[{"role":null,"tag":"creative"},{"role":null,"tag":"upset"}]},{"name":"Calm Finish","points":2,"desc":"Clutch y shotcall reducen throws","req":[{"role":null,"tag":"clutch"},{"role":null,"tag":"shotcall"}]}];
+  const COMP_RULES = [{"name":"Mid/Jungle Tempo","points":2,"desc":"Jungla de tempo habilita mid de control o manos","req":[{"role":"Jungle","tag":"tempo"},{"role":"Mid","tag":"control"}]},{"name":"Mid/Jungle Hands","points":2,"desc":"Jungla agresivo habilita mid mecánico","req":[{"role":"Jungle","tag":"tempo"},{"role":"Mid","tag":"hands"}]},{"name":"Shotcall Engage","points":1,"desc":"Shotcaller coordina engage primario","req":[{"role":"Jungle","tag":"shotcall"},{"role":"Support","tag":"engage"}]},{"name":"Support Engage + Bot Carry","points":2,"desc":"Engage abre ventana al carry de bot","req":[{"role":"Support","tag":"engage"},{"role":"Bot","tag":"carry"}]},{"name":"Late Game Insurance","points":2,"desc":"Bot late con soporte shotcaller escala mejor","req":[{"role":"Bot","tag":"late"},{"role":"Support","tag":"shotcall"}]},{"name":"Weakside Top + Bot Carry","points":2,"desc":"Top absorbe presión para jugar bot side","req":[{"role":"Top","tag":"weakside"},{"role":"Bot","tag":"carry"}]},{"name":"Carry Top + Tempo Jungle","points":2,"desc":"Jungla acelera carry de top","req":[{"role":"Top","tag":"carry"},{"role":"Jungle","tag":"tempo"}]},{"name":"Roam Mid + Engage Support","points":2,"desc":"Roams conectan con engage de support","req":[{"role":"Mid","tag":"roam"},{"role":"Support","tag":"engage"}]},{"name":"Control Mid + Vision Support","points":2,"desc":"Control de mid y visión estabilizan mapa","req":[{"role":"Mid","tag":"control"},{"role":"Support","tag":"vision"}]},{"name":"Clutch Core","points":3,"desc":"Dos jugadores clutch elevan cierre de mapas","req":[{"role":null,"tag":"clutch"},{"role":null,"tag":"clutch"}]},{"name":"Hands Trio","points":3,"desc":"Tres perfiles hands/carry elevan peleas","req":[{"role":null,"tag":"hands"},{"role":null,"tag":"carry"},{"role":null,"tag":"carry"}]},{"name":"Macro Spine","points":3,"desc":"Shotcall + control + stable sostienen macro","req":[{"role":"Jungle","tag":"shotcall"},{"role":"Mid","tag":"control"},{"role":"Top","tag":"stable"}]},{"name":"Teamfight Front-to-Back","points":3,"desc":"Top estable, bot carry y supp engage","req":[{"role":"Top","tag":"stable"},{"role":"Bot","tag":"carry"},{"role":"Support","tag":"engage"}]},{"name":"Skirmish Chaos","points":3,"desc":"Tempo, hands y creative buscan peleas raras","req":[{"role":"Jungle","tag":"tempo"},{"role":"Mid","tag":"hands"},{"role":"Support","tag":"creative"}]},{"name":"Bot Kingdom","points":3,"desc":"Bot carry + supp engage/shotcall dominan 2v2","req":[{"role":"Bot","tag":"carry"},{"role":"Support","tag":"engage"},{"role":"Support","tag":"shotcall"}]},{"name":"Top Island","points":1,"desc":"Top estable y jungla tempo evitan snowball rival","req":[{"role":"Top","tag":"stable"},{"role":"Jungle","tag":"tempo"}]},{"name":"Vision Trap","points":2,"desc":"Shotcall con visión crea picks de Nashor","req":[{"role":"Support","tag":"shotcall"},{"role":"Jungle","tag":"tempo"}]},{"name":"Creative Map","points":2,"desc":"Soporte creativo habilita mid roam","req":[{"role":"Support","tag":"creative"},{"role":"Mid","tag":"roam"}]},{"name":"Control Scaling","points":2,"desc":"Mid control y bot late juegan a escalar","req":[{"role":"Mid","tag":"control"},{"role":"Bot","tag":"late"}]},{"name":"Carry Triangle","points":3,"desc":"Top/Mid/Bot con carry/hands presionan 3 lanes","req":[{"role":"Top","tag":"carry"},{"role":"Mid","tag":"hands"},{"role":"Bot","tag":"carry"}]},{"name":"Clutch ADC","points":2,"desc":"Bot clutch convierte finales cerrados","req":[{"role":"Bot","tag":"clutch"},{"role":"Support","tag":"engage"}]},{"name":"Jungle Carry","points":2,"desc":"Jungla carry con mid control invade mejor","req":[{"role":"Jungle","tag":"carry"},{"role":"Mid","tag":"control"}]},{"name":"Roam Snowball","points":2,"desc":"Mid roam y jungla tempo aceleran side lanes","req":[{"role":"Mid","tag":"roam"},{"role":"Jungle","tag":"tempo"}]},{"name":"Weakside Discipline","points":2,"desc":"Top weakside + support shotcall reducen throws","req":[{"role":"Top","tag":"weakside"},{"role":"Support","tag":"shotcall"}]},{"name":"Late Engage","points":2,"desc":"Engage protege condiciones de late game","req":[{"role":"Bot","tag":"late"},{"role":"Support","tag":"engage"}]},{"name":"Macro Control","points":2,"desc":"Macro y control convierten objetivos","req":[{"role":"Mid","tag":"control"},{"role":null,"tag":"macro"}]},{"name":"Underdog Spark","points":1,"desc":"Underdog con clutch encuentra upset","req":[{"role":null,"tag":"underdog"},{"role":null,"tag":"clutch"}]},{"name":"Flex Pressure","points":1,"desc":"Flex con creative complica pick phase rival","req":[{"role":null,"tag":"flex"},{"role":"Support","tag":"creative"}]},{"name":"Bot Side Identity","points":2,"desc":"Tags bot + carry refuerzan win condition","req":[{"role":null,"tag":"bot"},{"role":"Bot","tag":"carry"}]},{"name":"Engage Chain","points":2,"desc":"Engage múltiple fuerza teamfights","req":[{"role":null,"tag":"engage"},{"role":null,"tag":"engage"}]},{"name":"Stable Carry Cover","points":2,"desc":"Top estable cubre carry vulnerable","req":[{"role":"Top","tag":"stable"},{"role":"Bot","tag":"carry"}]},{"name":"Mid Clutch","points":2,"desc":"Mid clutch y jungle tempo cierran fights","req":[{"role":"Mid","tag":"clutch"},{"role":"Jungle","tag":"tempo"}]},{"name":"Top Clutch","points":2,"desc":"Top clutch y support engage abren picks","req":[{"role":"Top","tag":"clutch"},{"role":"Support","tag":"engage"}]},{"name":"Support Brain","points":2,"desc":"Support shotcall + jungla tempo controla mapa","req":[{"role":"Support","tag":"shotcall"},{"role":"Jungle","tag":"tempo"}]},{"name":"Control Engage","points":2,"desc":"Mid control setupea engage limpio","req":[{"role":"Mid","tag":"control"},{"role":"Support","tag":"engage"}]},{"name":"Creative Bot","points":1,"desc":"Bot creative con support engage genera picks","req":[{"role":"Bot","tag":"creative"},{"role":"Support","tag":"engage"}]},{"name":"Late Shotcall","points":2,"desc":"Shotcall protege escalado late","req":[{"role":null,"tag":"late"},{"role":null,"tag":"shotcall"}]},{"name":"Hands Check Duo","points":2,"desc":"Dos manos fuertes ganan skirmishes","req":[{"role":null,"tag":"hands"},{"role":null,"tag":"hands"}]},{"name":"Carry Jungle Bot","points":2,"desc":"Jungle carry y bot carry reparten recursos","req":[{"role":"Jungle","tag":"carry"},{"role":"Bot","tag":"carry"}]},{"name":"Roam Support","points":2,"desc":"Support creativo y mid roam mueven mapa","req":[{"role":"Support","tag":"creative"},{"role":"Mid","tag":"roam"}]},{"name":"Teamfight Call","points":2,"desc":"Teamfight + shotcall mejora 5v5","req":[{"role":null,"tag":"teamfight"},{"role":null,"tag":"shotcall"}]},{"name":"Skirmish Tempo","points":2,"desc":"Skirmish con tempo acelera early","req":[{"role":null,"tag":"skirmish"},{"role":"Jungle","tag":"tempo"}]},{"name":"Vision Macro","points":2,"desc":"Vision y macro traducen ventajas","req":[{"role":null,"tag":"vision"},{"role":null,"tag":"macro"}]},{"name":"Upset Angle","points":1,"desc":"Upset con engage encuentra sorpresa","req":[{"role":null,"tag":"upset"},{"role":null,"tag":"engage"}]},{"name":"Top Hands Jungle Tempo","points":3,"desc":"Top mecánico con jungla tempo amenaza dive","req":[{"role":"Top","tag":"hands"},{"role":"Jungle","tag":"tempo"}]},{"name":"Mid Hands Support Engage","points":3,"desc":"Mid mecánico capitaliza engage del support","req":[{"role":"Mid","tag":"hands"},{"role":"Support","tag":"engage"}]},{"name":"Bot Carry Jungle Tempo","points":3,"desc":"Jungle tempo juega alrededor del carry bot","req":[{"role":"Bot","tag":"carry"},{"role":"Jungle","tag":"tempo"}]},{"name":"Control Shotcall Engage","points":3,"desc":"Control, shotcall y engage ejecutan limpio","req":[{"role":"Mid","tag":"control"},{"role":null,"tag":"shotcall"},{"role":"Support","tag":"engage"}]},{"name":"Triple Clutch","points":3,"desc":"Tres clutch suben finales y game 5","req":[{"role":null,"tag":"clutch"},{"role":null,"tag":"clutch"},{"role":null,"tag":"clutch"}]},{"name":"Triple Carry","points":3,"desc":"Tres carries aumentan techo mecánico","req":[{"role":null,"tag":"carry"},{"role":null,"tag":"carry"},{"role":null,"tag":"carry"}]},{"name":"Stable Macro Late","points":3,"desc":"Estabilidad, macro y late juegan al scaling","req":[{"role":null,"tag":"stable"},{"role":null,"tag":"macro"},{"role":null,"tag":"late"}]},{"name":"Tempo Roam Engage","points":3,"desc":"Tempo + roam + engage crean picks","req":[{"role":"Jungle","tag":"tempo"},{"role":"Mid","tag":"roam"},{"role":"Support","tag":"engage"}]},{"name":"Vision Baron Setup","points":2,"desc":"Vision + jungle tempo mejora Nashor","req":[{"role":null,"tag":"vision"},{"role":"Jungle","tag":"tempo"}]},{"name":"Bot Late Peel","points":2,"desc":"Late carry con shotcall evita throw","req":[{"role":"Bot","tag":"late"},{"role":"Support","tag":"shotcall"}]},{"name":"Creative Chaos","points":2,"desc":"Creative + skirmish generan partidas raras","req":[{"role":null,"tag":"creative"},{"role":null,"tag":"skirmish"}]},{"name":"Weakside Macro","points":2,"desc":"Weakside + macro libera recursos","req":[{"role":null,"tag":"weakside"},{"role":null,"tag":"macro"}]},{"name":"Hands Carry Control","points":3,"desc":"Hands, carry y control combinan daño y orden","req":[{"role":null,"tag":"hands"},{"role":null,"tag":"carry"},{"role":null,"tag":"control"}]},{"name":"Support Engage Jungle Carry","points":2,"desc":"Engage habilita jungla carry","req":[{"role":"Support","tag":"engage"},{"role":"Jungle","tag":"carry"}]},{"name":"Mid Control Bot Late","points":2,"desc":"Control mid compra tiempo al bot late","req":[{"role":"Mid","tag":"control"},{"role":"Bot","tag":"late"}]},{"name":"Top Carry Support Shotcall","points":2,"desc":"Shotcall organiza recursos para top carry","req":[{"role":"Top","tag":"carry"},{"role":"Support","tag":"shotcall"}]},{"name":"Roam Bot Side","points":2,"desc":"Mid roam habilita bot side","req":[{"role":null,"tag":"bot"},{"role":"Mid","tag":"roam"}]},{"name":"Frontline Stable","points":1,"desc":"Stable + engage da frontline","req":[{"role":null,"tag":"stable"},{"role":null,"tag":"engage"}]},{"name":"Ace Threat","points":2,"desc":"Carry + clutch amenaza ace tardío","req":[{"role":null,"tag":"carry"},{"role":null,"tag":"clutch"}]},{"name":"Objective Control","points":2,"desc":"Tempo + vision/control gana objetivos","req":[{"role":"Jungle","tag":"tempo"},{"role":null,"tag":"vision"},{"role":null,"tag":"control"}]},{"name":"Dive Comp","points":3,"desc":"Top carry, jungle tempo y support engage divean","req":[{"role":"Top","tag":"carry"},{"role":"Jungle","tag":"tempo"},{"role":"Support","tag":"engage"}]},{"name":"Pick Comp","points":3,"desc":"Vision, roam y engage castigan errores","req":[{"role":null,"tag":"vision"},{"role":"Mid","tag":"roam"},{"role":"Support","tag":"engage"}]},{"name":"Scaling Comp","points":3,"desc":"Late, control y shotcall escalan ordenado","req":[{"role":null,"tag":"late"},{"role":"Mid","tag":"control"},{"role":null,"tag":"shotcall"}]},{"name":"Brawl Comp","points":3,"desc":"Skirmish, hands y carry fuerzan peleas","req":[{"role":null,"tag":"skirmish"},{"role":null,"tag":"hands"},{"role":null,"tag":"carry"}]},{"name":"Classic LCK Spine","points":3,"desc":"Stable top, control mid y shotcall support","req":[{"role":"Top","tag":"stable"},{"role":"Mid","tag":"control"},{"role":"Support","tag":"shotcall"}]},{"name":"Classic LPL Fight","points":3,"desc":"Carry top, tempo jungle y bot carry","req":[{"role":"Top","tag":"carry"},{"role":"Jungle","tag":"tempo"},{"role":"Bot","tag":"carry"}]},{"name":"Western Upset","points":2,"desc":"Creative y upset abren ventanas raras","req":[{"role":null,"tag":"creative"},{"role":null,"tag":"upset"}]},{"name":"Calm Finish","points":2,"desc":"Clutch y shotcall reducen throws","req":[{"role":null,"tag":"clutch"},{"role":null,"tag":"shotcall"}]}];
   const OBJECTIVES = [
     { id:'first-run', name:'Primera run', text:'Completa cualquier run.', reward:20, goal:1, progress:s=>s.runs },
     { id:'first-crown', name:'Levanta la copa', text:'Gana una run completa.', reward:80, goal:1, progress:s=>s.wins },
@@ -840,12 +1099,12 @@
     { id:'comeback', name:'Comeback script', text:'Gana una partida marcada como comeback.', reward:60, goal:1, progress:s=>s.comebacks||0 },
     { id:'market-five', name:'Scouter', text:'Desbloquea 5 jugadores en mercado.', reward:50, goal:5, progress:()=>state.owned.size },
     { id:'chrono-buyer', name:'Chrono shopper', text:'Compra cualquier poder Chrono.', reward:30, goal:1, progress:()=>Object.values(state.chrono.inventory||{}).reduce((a,b)=>a+Number(b||0),0) },
-    { id:'seventy-synergy', name:'Teórico de draft', text:'Activa 8+ sinergias de composición en una run.', reward:75, goal:1, progress:s=>hasHistoryRun(s,h=>(h.compCount||0)>=8)?1:0 }
+    { id:'seventy-synergy', name:'Teórico de picks', text:'Activa 8+ sinergias de composición en una run.', reward:75, goal:1, progress:s=>hasHistoryRun(s,h=>(h.compCount||0)>=8)?1:0 }
   ];
   const CHRONO_POWERS = [
     { id:'chrono-reset', name:'Chrono Reset', cost:60, text:'Repite automáticamente el primer mapa perdido y tira un nuevo resultado.' },
     { id:'coach-sub', name:'Coach Sub', cost:45, text:'El rival juega un mapa con suplente improvisado: -5 power rival.' },
-    { id:'scrim-leak', name:'Scrim Leak', cost:35, text:'Tu draft lee el plan rival: +4 power en el próximo mapa.' },
+    { id:'scrim-leak', name:'Scrim Leak', cost:35, text:'Tus picks lee el plan rival: +4 power en el próximo mapa.' },
     { id:'baron-ward', name:'Baron Ward', cost:40, text:'Mejora tus peleas alrededor de Nashor y reduce throws.' }
   ];
   const DIFF = { normal: { enemy: 2, variance: 8 }, hard: { enemy: 6, variance: 7 }, chaos: { enemy: 4, variance: 15 } };
@@ -853,7 +1112,7 @@
 
   const $ = id => document.getElementById(id);
   const els = {};
-  ['seedLabel','draftScreen','simScreen','statsScreen','historyScreen','objectivesScreen','chronoScreen','rollMeter','rollBar','runLogo','runMark','runNote','rollCard','teamLogo','rollTitle','rollSub','rollTags','players','summarySeed','draftCount','avgScore','synScore','cupChance','coinCount','coinHint','slots','market','metaBox','questBox','synergyBox','metaText','questText','synergyReasons','results','resultOverlay','toast','simSubtitle','simScoreline','liveFocus','simTimeline','scoreGrid','runLedger','pickLedger','simLedger','historyLedger','objectiveList','chronoGrid'].forEach(id => els[id] = $(id));
+  ['seedLabel','draftScreen','simScreen','statsScreen','historyScreen','teamsScreen','objectivesScreen','chronoScreen','rollMeter','rollBar','runLogo','runMark','runNote','rollCard','teamLogo','rollTitle','rollSub','rollTags','players','summarySeed','picksCount','avgScore','synScore','cupChance','coinCount','coinHint','slots','market','metaBox','questBox','synergyBox','metaText','questText','synergyReasons','results','resultOverlay','toast','simSubtitle','simScoreline','liveFocus','simTimeline','scoreGrid','runLedger','pickLedger','simLedger','historyLedger','teamsGrid','objectiveList','chronoGrid'].forEach(id => els[id] = $(id));
   const allPlayers = ROSTERS.flatMap(r => r.players);
   const state = {
     screen: 'draft', seed: seed(), current: null, picks: Object.fromEntries(ROLES.map(r => [r, null])), difficulty: 'normal', mode: 'classic', filter: 'all',
@@ -896,6 +1155,7 @@
     if (action === 'market') return rotateMarketManual();
     if (action === 'clearStats') return clearStats();
     if (action === 'toggleMatch') return toggleMatch(Number(actionEl.dataset.match));
+    if (action === 'flipTeam') return flipTeam(actionEl);
     if (action === 'claimObjective') return claimObjective(actionEl.dataset.objective);
     if (action === 'buyChrono') return buyChrono(actionEl.dataset.chrono);
     if (action === 'activateChrono') return activateChrono(actionEl.dataset.chrono);
@@ -1068,8 +1328,18 @@
     let our = Math.round(state.last.power + modBonus + fatigue + clutch + rand(-d.variance, d.variance));
     let rival = Math.round((series.enemy.tier + series.gate) / 2 + d.enemy + ENEMY_HANDICAP + rand(-4, 5));
     if (chronoReady('coach-sub')) { rival -= 5; consumeChrono('coach-sub'); chronoEvents.push(chronoEvent('Coach Sub', 'El rival juega el mapa con suplente improvisado.')); }
-    if (chronoReady('scrim-leak')) { our += 4; consumeChrono('scrim-leak'); chronoEvents.push(chronoEvent('Scrim Leak', 'Tu draft lee el plan rival antes del early game.')); }
+    if (chronoReady('scrim-leak')) { our += 4; consumeChrono('scrim-leak'); chronoEvents.push(chronoEvent('Scrim Leak', 'Tus picks lee el plan rival antes del early game.')); }
     if (chronoReady('baron-ward')) { our += 2; consumeChrono('baron-ward'); chronoEvents.push(chronoEvent('Baron Ward', 'Control de visión mejorado alrededor de Nashor.')); }
+    if (chronoReady('peineta')) { our += 3; consumeChrono('peineta'); chronoEvents.push(chronoEvent('Una peineta', 'Aura +3: alguien se agranda y juega con swagger.')); }
+    if (chronoReady('pause-diff')) { our += 2; consumeChrono('pause-diff'); chronoEvents.push(chronoEvent('Pause Diff', 'El equipo respira, corta el tilt y vuelve al mapa.')); }
+    if (chronoReady('coach-gap')) { rival -= 3; consumeChrono('coach-gap'); chronoEvents.push(chronoEvent('Coach Gap', 'El rival pierde claridad macro por un mapa.')); }
+    if (chronoReady('visa-trouble')) { rival -= 4; consumeChrono('visa-trouble'); chronoEvents.push(chronoEvent('Visa Trouble', 'El rival improvisa un reemplazo de emergencia.')); }
+    if (chronoReady('mic-check')) { our += 3; consumeChrono('mic-check'); chronoEvents.push(chronoEvent('Mic Check', 'Comunicación limpia: todos escuchan el call correcto.')); }
+    if (chronoReady('legacy-buff') && picked().some(p => p.major)) { our += 2; consumeChrono('legacy-buff'); chronoEvents.push(chronoEvent('Legacy Buff', 'La experiencia internacional pesa en el mapa.')); }
+    if (chronoReady('crowd-buff') && series.label === 'Final') { our += 3; consumeChrono('crowd-buff'); chronoEvents.push(chronoEvent('Crowd Buff', 'La arena empuja tus picks en la Final.')); }
+    if (chronoReady('reverse-sweep') && series.rivalWins >= series.need - 1 && series.ourWins < series.rivalWins) { our += 5; consumeChrono('reverse-sweep'); chronoEvents.push(chronoEvent('Reverse Sweep Script', 'Contra la pared, tus picks encuentran clutch.')); }
+    if (chronoReady('soloq-tilt')) { const highroll = rng() > .5; our += highroll ? 6 : -3; consumeChrono('soloq-tilt'); chronoEvents.push(chronoEvent('SoloQ Tilt', highroll ? 'Highroll mecánico: alguien se prende.' : 'Lowroll mental: alguien se tiltea.')); }
+    if (chronoReady('baron-fiesta') && mapNo >= 2) { our += rand(-2, 6); consumeChrono('baron-fiesta'); chronoEvents.push(chronoEvent('Baron Fiesta', 'Nashor se vuelve fiesta: nadie sabe quién sale vivo.')); }
     let chance = clamp(.5 + (our - rival) * .042, .13, .87);
     let win = rng() < chance;
     if (!win && chronoReady('chrono-reset')) { consumeChrono('chrono-reset'); chronoEvents.push(chronoEvent('Chrono Reset', 'Se repite el mapa perdido y el destino vuelve a tirar dados.')); chance = clamp(chance + .16, .18, .92); win = rng() < chance; our += rand(0,4); }
@@ -1099,12 +1369,12 @@
 
     const oursBeforeNexus = events.filter(e => e.ours && ['blood','dragon','inhibitor','baron','soul'].includes(e.type)).length;
     const themBeforeNexus = events.filter(e => !e.ours && ['blood','dragon','inhibitor','baron','soul'].includes(e.type)).length;
-    if (win && themBeforeNexus > oursBeforeNexus) events.push(storyEvent('mvp', 'Epic comeback', true, pickedLogo(), 'El draft aguanta el asedio y remonta la partida.'));
+    if (win && themBeforeNexus > oursBeforeNexus) events.push(storyEvent('mvp', 'Epic comeback', true, pickedLogo(), 'Los picks aguanta el asedio y remonta la partida.'));
     if (!win && oursBeforeNexus > themBeforeNexus) events.push(storyEvent('mvp', 'Throw', false, enemy.logo, `${enemy.short} castiga un mal cierre y roba el mapa.`));
 
-    events.push({ type:'mvp', label:'Player of the game', who: win ? '20:19 Draft' : enemy.short, actor:mvp, copy:`${mvp} fue el jugador de la partida.`, icon:OBJ.mvp, logo: win ? pickedLogo() : enemy.logo, ours:win, visible:false });
+    events.push({ type:'mvp', label:'Player of the game', who: win ? 'Five’s Pick' : enemy.short, actor:mvp, copy:`${mvp} fue el jugador de la partida.`, icon:OBJ.mvp, logo: win ? pickedLogo() : enemy.logo, ours:win, visible:false });
     events.push({ type:'clock', label:'Game time', who: win ? 'WIN' : 'LOSS', actor:fmtDuration(durationSec), copy:`Duración ${fmtDuration(durationSec)} · el nexo decide la partida.`, icon:OBJ.inhibitor, logo: win ? pickedLogo() : enemy.logo, ours:win, visible:false });
-    events.push({ type:'nexus', label:'Nexus destroyed', who: win ? '20:19 Draft' : enemy.short, actor: win ? '20:19 Draft' : enemy.short, copy:`${win ? 'Tu draft' : enemy.short} destruye el nexo enemigo y gana el mapa.`, icon:OBJ.inhibitor, logo: win ? pickedLogo() : enemy.logo, ours:win, visible:false });
+    events.push({ type:'nexus', label:'Nexus destroyed', who: win ? 'Five’s Pick' : enemy.short, actor: win ? 'Five’s Pick' : enemy.short, copy:`${win ? 'Tus picks' : enemy.short} destruye el nexo enemigo y gana el mapa.`, icon:OBJ.inhibitor, logo: win ? pickedLogo() : enemy.logo, ours:win, visible:false });
     return events;
   }
 
@@ -1122,7 +1392,7 @@
       : context === 'inhibitor'
         ? weightedPick(pool, ['Top','Mid','Bot','Bot','Jungle'])
         : weightedPick(pool, ['Top','Jungle','Mid','Bot','Support']);
-    return { who: ours ? '20:19 Draft' : enemy.short, actor: player.name, role: player.role, logo: ours ? player.logo : enemy.logo, ours };
+    return { who: ours ? 'Five’s Pick' : enemy.short, actor: player.name, role: player.role, logo: ours ? player.logo : enemy.logo, ours };
   }
 
   function baronEvent(win, enemy) {
@@ -1142,10 +1412,10 @@
     const roll = rng();
     const label = roll > .86 ? 'Pentakill' : roll > .62 ? 'Quadra kill' : 'Teamfight ace';
     const copy = label === 'Pentakill' ? `${carry.name} encuentra el pentakill.` : label === 'Quadra kill' ? `${carry.name} firma la quadra.` : `${carry.name} lidera un ace importante.`;
-    return { type:'fight', label, who: ours ? '20:19 Draft' : enemy.short, actor: carry.name, copy, icon:OBJ.blood, logo: ours ? carry.logo : enemy.logo, ours, visible:false };
+    return { type:'fight', label, who: ours ? 'Five’s Pick' : enemy.short, actor: carry.name, copy, icon:OBJ.blood, logo: ours ? carry.logo : enemy.logo, ours, visible:false };
   }
 
-  function storyEvent(type, label, ours, logo, copy) { return { type, label, who: ours ? '20:19 Draft' : 'Rival', actor: label, copy, icon:OBJ.mvp, logo, ours, visible:false }; }
+  function storyEvent(type, label, ours, logo, copy) { return { type, label, who: ours ? 'Five’s Pick' : 'Rival', actor: label, copy, icon:OBJ.mvp, logo, ours, visible:false }; }
   function event(type, label, team, copy) { return { type, label, who:team.who, actor:team.actor, role:team.role, copy, icon:OBJ[type] || OBJ.mvp, logo:team.logo, ours:team.ours, visible:false }; }
   function selectMvp(win, enemy) { return win ? weightedPick(picked(), ['Mid','Bot','Jungle','Top','Support']) : weightedPick(enemy.players, ['Mid','Bot','Jungle','Top','Support']); }
   function weightedPick(players, roles) { const bag = roles.flatMap(role => players.filter(p => p.role === role)); return pick(bag.length ? bag : players); }
@@ -1154,24 +1424,113 @@
   function enemyTeam() { const blocked = usedOrgs(); const pool = ROSTERS.filter(r => !blocked.has(r.org)); return pick(pool.length ? pool : ROSTERS); }
   function roundModifier() { const ps = picked(); const pool = METAS.map(x => ({ kind:'meta', name:x.name, ok:x.score(ps)>0 })).concat(QUESTS.map(x => ({ kind:'quest', name:x.name, ok:x.ok(ps) }))); return pick(pool); }
 
-  function render() { renderScreens(); renderChoices(); renderHeader(); renderRoll(); renderPlayers(); renderSide(); renderMarket(); renderMini(); renderSim(); renderStats(); renderObjectives(); renderChrono(); }
-  function renderScreens() { ['draft','sim','stats','history','objectives','chrono'].forEach(name => { const panel = $(`${name}Screen`); if (panel) panel.hidden = state.screen !== name; }); document.querySelectorAll('[data-action="screen"]').forEach(b => b.setAttribute('aria-pressed', String(b.dataset.screen === state.screen))); }
-  function setScreen(screen) { state.screen = screen || 'draft'; render(); }
+
+  function tagTone(points, bad) {
+    if (bad) return 'red';
+    if (points >= 5) return 'gold';
+    if (points === 4) return 'yellow';
+    if (points === 3) return 'purple';
+    if (points === 2) return 'blue';
+    if (points === 1) return 'green';
+    return 'gray';
+  }
+  function teamProfile(r) {
+    const explicit = TEAM_PROFILES[r.id];
+    const good = explicit?.good?.slice() || autoGoodTags(r);
+    const bad = explicit?.bad?.slice() || autoBadTags(r);
+    return {
+      overall: r.tier,
+      good: good.slice(0, r.tier >= 97 ? 4 : 3),
+      bad: r.tier >= 97 ? [] : bad.slice(0, 3),
+      net: good.reduce((a,t)=>a+t.points,0) - bad.length
+    };
+  }
+  function autoGoodTags(r) {
+    const out = [];
+    const add = (name, points) => out.push({ name, points });
+    r.styles.forEach(s => {
+      const map = {
+        clutch:['Clutch',4], macro:['Macro control',3], control:['Control map',3], teamfight:['Teamfight',3], tempo:['Tempo',3],
+        skirmish:['Skirmish',2], scaling:['Scaling',2], late:['Late game',2], bot:['Bot side',2], flex:['Flex picks',3],
+        creative:['Creative',2], upset:['Upset factor',2], underdog:['Underdog spark',1], western:['Western hope',1], legacy:['Legacy aura',2]
+      };
+      const v = map[s]; if (v) add(v[0], v[1]);
+    });
+    if (r.region === 'LCK') add('Discipline',2);
+    if (r.region === 'LPL') add('Hands diff',2);
+    if (r.region === 'LEC' || r.region === 'LCS') add('Chaos pocket',1);
+    while (out.length < 3) add('Stable core',1);
+    return out;
+  }
+  function autoBadTags(r) {
+    const out = [];
+    if (r.styles.includes('creative') || r.styles.includes('flex')) out.push({ name:'Draft risk', points:-1 });
+    if (r.styles.includes('skirmish') || r.styles.includes('upset')) out.push({ name:'Flipper', points:-1 });
+    if (r.styles.includes('scaling') || r.styles.includes('late')) out.push({ name:'Slow early', points:-1 });
+    if (r.styles.includes('bot')) out.push({ name:'Bot dependent', points:-1 });
+    if (r.region === 'LCS') out.push({ name:'Week 2 tax', points:-1 });
+    if (r.region === 'LEC') out.push({ name:'Baron throw', points:-1 });
+    if (!out.length) out.push({ name:'Low volatility', points:-1 });
+    return out;
+  }
+  const TEAM_PROFILES = {
+    'ssw-2014': { good:[{name:'Vision kingdom',points:5},{name:'Macro choke',points:5},{name:'Map suffocation',points:4},{name:'Teamfight',points:4}], bad:[] },
+    'skt-2015': { good:[{name:'Dynasty aura',points:5},{name:'Macro control',points:4},{name:'Clutch',points:4},{name:'Late game',points:4}], bad:[] },
+    't1-2023': { good:[{name:'Clutch dynasty',points:5},{name:'Teamfight',points:4},{name:'Lane pressure',points:4},{name:'Champion pool',points:3}], bad:[] },
+    'g2-2019-msi': { good:[{name:'Flex gods',points:4},{name:'Creative chaos',points:3},{name:'Tempo',points:3}], bad:[{name:'Flipper',points:-1}] },
+    'g2-2020': { good:[{name:'Flex picks',points:3},{name:'Skirmish',points:3},{name:'Caps factor',points:3}], bad:[{name:'Overforce',points:-1}] },
+    'fnc-2015': { good:[{name:'Western peak',points:3},{name:'Lane pressure',points:3},{name:'Macro',points:2}], bad:[{name:'Scaling tax',points:-1}] },
+    'clg-2016-msi': { good:[{name:'MSI miracle',points:3},{name:'Teamfight',points:3},{name:'Bot side',points:2}], bad:[{name:'Low floor',points:-1}] },
+    'tsm-2016': { good:[{name:'NA superteam',points:3},{name:'Lane pressure',points:2},{name:'Bot side',points:2}], bad:[{name:'Worlds curse',points:-1}] },
+    'fly-2024': { good:[{name:'Teamfight',points:3},{name:'Creative top',points:2},{name:'Western hope',points:2}], bad:[{name:'Flipper',points:-1}] }
+  };
+  function teamTagPill(t, bad) {
+    const points = bad ? -1 : t.points;
+    const tone = tagTone(Math.abs(points), bad);
+    return `<span class="team-tag tag-${tone}" title="${esc(t.name)} · ${points > 0 ? '+' : ''}${points}">${points > 0 ? '+' : ''}${points} ${esc(t.name)}</span>`;
+  }
+  function teamTagsHtml(r) {
+    const prof = teamProfile(r);
+    return prof.good.map(t => teamTagPill(t, false)).concat(prof.bad.map(t => teamTagPill(t, true))).join('');
+  }
+  function renderTeams() {
+    if (!els.teamsGrid) return;
+    els.teamsGrid.innerHTML = ROSTERS
+      .slice()
+      .sort((a,b) => b.tier - a.tier || b.year - a.year || a.short.localeCompare(b.short))
+      .map(teamCard)
+      .join('');
+  }
+  function teamCard(r) {
+    const prof = teamProfile(r);
+    const ordered = ROLES.map(role => r.players.find(p => p.role === role)).filter(Boolean);
+    const back = ordered.map(p => `<article class="team-player-mini"><span class="team-player-flag">${flag(p.country)}</span><div><strong>${esc(p.name)}</strong><small>${esc(p.role)} · ${esc(p.short)} ${p.year}</small><div class="team-player-tags">${p.tags.slice(0,4).map(t=>`<span>${esc(t)}</span>`).join('')}</div></div><b class="team-player-rating">${p.rating}</b><span class="team-player-role role-chip">${roleGlyph(p.role)}</span></article>`).join('');
+    return `<article class="team-card" data-team-card="${esc(r.id)}"><div class="team-card-inner"><section class="team-face front"><figure class="team-logo-big">${img(r.logo, r.short, badge(r.short,r.region))}</figure><div class="team-title"><h3>${esc(r.name)}</h3><p>${flag(r.country)} ${esc(r.year)} · ${esc(r.tournament)} · ${esc(r.region)}</p></div><div class="team-overall"><div><strong>${r.tier}</strong><span>overall</span></div><div><strong>${Math.round(avg(r.players.map(p=>p.rating)))}</strong><span>players</span></div><div><strong>${prof.net > 0 ? '+' : ''}${prof.net}</strong><span>tag net</span></div></div><div class="team-tags">${teamTagsHtml(r)}</div><button type="button" class="flip-btn" data-action="flipTeam">Ver roster</button></section><section class="team-face back"><div class="team-title"><h3>${esc(r.short)} ${r.year}</h3><p>Top · JG · Mid · Bot · Supp</p></div><div class="team-roster-list">${back}</div><button type="button" class="flip-btn" data-action="flipTeam">Volver</button></section></div></article>`;
+  }
+  function flipTeam(button) {
+    const card = button.closest('.team-card');
+    if (card) card.classList.toggle('is-flipped');
+  }
+
+
+  function render() { renderScreens(); renderChoices(); renderHeader(); renderRoll(); renderPlayers(); renderSide(); renderMarket(); renderMini(); renderSim(); renderStats(); renderTeams(); renderObjectives(); renderChrono(); }
+  function renderScreens() { ['draft','sim','stats','history','teams','objectives','chrono'].forEach(name => { const panel = $(`${name}Screen`); if (panel) panel.hidden = state.screen !== name; }); document.querySelectorAll('[data-action="screen"]').forEach(b => b.setAttribute('aria-pressed', String(b.dataset.screen === state.screen))); }
+  function setScreen(screen) { state.screen = screen || 'picks'; render(); }
   function renderChoices() { document.querySelectorAll('[data-setting]').forEach(group => group.querySelectorAll('.choice').forEach(b => b.setAttribute('aria-pressed', String(state[group.dataset.setting] === b.dataset.value)))); }
   function renderHeader() { text(els.seedLabel, `seed #${state.seed}`); text(els.summarySeed, `seed #${state.seed}`); text(els.rollMeter, `${state.rolls}/${MAX_ROLLS} tiradas`); els.rollBar.style.width = `${state.rolls / MAX_ROLLS * 100}%`; if (!state.current) { text(els.runMark,'—:—'); text(els.runNote,'tira para abrir roster'); image(els.runLogo,'','?'); return; } text(els.runMark, `${state.current.short}: ${state.current.year}`); text(els.runNote, `${state.current.tournament} · ${state.current.major ? 'campeón internacional' : 'contender'}`); image(els.runLogo, state.current.logo, state.current.short); }
-  function renderRoll() { els.rollCard.classList.toggle('is-gold', state.current?.rarity === 'rare'); if (!state.current) { image(els.teamLogo,'','?'); text(els.rollTitle,'Sin tirada'); text(els.rollSub,'Haz una tirada para revelar equipo, año y pool de jugadores.'); els.rollTags.innerHTML=''; return; } const r = state.current; image(els.teamLogo, r.logo, r.short); text(els.rollTitle, `${r.name} ${r.year}`); text(els.rollSub, `${flag(r.country)} ${r.region} · ${r.tournament} · tier ${r.tier}`); els.rollTags.innerHTML = (r.rarity === 'rare' ? ['carta dorada','1 de 6'] : []).concat(r.styles).map(x => `<span>${esc(x)}</span>`).join(''); }
-  function renderPlayers() { if (!state.current) { els.players.innerHTML = '<div class="empty">tira el dado para abrir tu primer roster.</div>'; return; } els.players.innerHTML = state.current.players.map((pl, i) => card(pl, i)).join(''); }
-  function card(pl, i) { const locked = issue(pl); const hidden = state.mode === 'blind'; const hint = synergyPreview(pl); return `<article class="player-card tilt-card ${pl.major ? 'is-gold' : ''} ${locked ? 'is-locked' : ''}" data-player="${i}" tabindex="0" role="button" title="${esc(hint)}"><div class="portrait-row"><figure class="round-icon role-chip">${roleGlyph(pl.role)}</figure><figure class="round-icon"><span>${esc(roleCode(pl.role))}</span></figure></div><div class="player-main"><h3>${hidden ? '???' : esc(pl.name)}</h3><p>${hidden ? esc(pl.role) : `${flag(pl.country)} ${esc(pl.short)} ${esc(pl.year)} · ${esc(pl.tournament)}`}</p></div><div class="tag-stack">${pl.tags.map(t => `<span class="synergy-tooltip" title="${esc(tagHint(pl, t))}">${esc(t)}</span>`).join('')}</div><span class="role-badge">${esc(pl.role)}</span><strong class="rating">${hidden ? '??' : pl.rating}</strong>${locked ? `<em class="lock-copy">${esc(locked)}</em>` : ''}</article>`; }
+  function renderRoll() { els.rollCard.classList.toggle('is-gold', state.current?.rarity === 'rare'); if (!state.current) { image(els.teamLogo,'','?'); text(els.rollTitle,'Sin tirada'); text(els.rollSub,'Haz una tirada para revelar equipo, año y pool de jugadores.'); els.rollTags.innerHTML=''; return; } const r = state.current; image(els.teamLogo, r.logo, r.short); text(els.rollTitle, `${r.name} ${r.year}`); text(els.rollSub, `${flag(r.country)} ${r.region} · ${r.tournament} · tier ${r.tier}`); els.rollTags.innerHTML = (r.rarity === 'rare' ? `<span class="team-tag tag-gold">+5 carta dorada</span><span>1 de 6</span>` : '') + teamTagsHtml(r); }
+  function renderPlayers() { if (!state.current) { els.players.innerHTML = '<div class="empty">Tira el dado para abrir tu primer roster.</div>'; return; } els.players.innerHTML = state.current.players.map((pl, i) => card(pl, i)).join(''); }
+  function card(pl, i) { const locked = issue(pl); const hidden = state.mode === 'blind'; return `<article class="player-card tilt-card ${pl.major ? 'is-gold' : ''} ${locked ? 'is-locked' : ''}" data-player="${i}" tabindex="0" role="button"><div class="portrait-row"><figure class="round-icon role-chip">${roleGlyph(pl.role)}</figure><figure class="round-icon"><span>${esc(roleCode(pl.role))}</span></figure></div><div class="player-main"><h3>${hidden ? '???' : esc(pl.name)}</h3><p>${hidden ? esc(pl.role) : `${flag(pl.country)} ${esc(pl.short)} ${esc(pl.year)} · ${esc(pl.tournament)}`}</p></div><div class="tag-stack">${pl.tags.map(t => `<span class="synergy-tooltip" title="${esc(tagHint(pl, t))}">${esc(t)}</span>`).join('')}</div><span class="role-badge">${esc(pl.role)}</span><strong class="rating">${hidden ? '??' : pl.rating}</strong>${locked ? `<em class="lock-copy">${esc(locked)}</em>` : ''}${composePopover(pl)}</article>`; }
   function renderSide() {
     const ps = picked(), syn = synergy(), meta = metaBonus(), quest = questBonus(), pow = power(), av = ps.length ? Math.round(avg(ps.map(x => x.rating))) : 0;
-    text(els.draftCount, `${ps.length}/5`); text(els.avgScore, av); text(els.synScore, syn.points + meta + quest); text(els.cupChance, `${clamp(Math.round((pow - 76) * 2.7),0,96)}%`); text(els.coinCount, state.coins); text(els.coinHint, `${state.owned.size} desbloqueados · ${state.marketUsed ? 'rotación usada' : 'rotar 10c'}`);
+    text(els.picksCount, `${ps.length}/5`); text(els.avgScore, av); text(els.synScore, syn.points + meta + quest); text(els.cupChance, `${clamp(Math.round((pow - 76) * 2.7),0,96)}%`); text(els.coinCount, state.coins); text(els.coinHint, `${state.owned.size} desbloqueados · ${state.marketUsed ? 'rotación usada' : 'rotar 10c'}`);
     if (els.metaText) els.metaText.innerHTML = state.meta ? `${esc(state.meta.name)}: ${esc(state.meta.text)}<small class="calc-note">Meta es la regla especial de esta run. Solo cuenta si coincide con la condición mostrada.</small>` : 'Se revela con la primera tirada.';
     if (els.questText) els.questText.innerHTML = state.quest ? `${esc(state.quest.name)}: ${esc(state.quest.text)}<small class="calc-note">Quest se paga como bonus al completar el 5v. Es distinta de Meta.</small>` : 'Se revela con la primera tirada.';
-    if (els.synergyReasons) els.synergyReasons.innerHTML = syn.reasons.length ? syn.reasons.slice(0,10).map(x => `<span title="${esc(x)}">${esc(x)}</span>`).join(' ') + `<small class="calc-note">Sinergia = región/país, mismo equipo/org y compos por tags. ${syn.comps.length} compos activas.</small>` : 'Sin picks todavía.';
+    if (els.synergyReasons) els.synergyReasons.innerHTML = syn.reasons.length ? synergySummary(syn) : 'Sin picks todavía.';
     els.metaBox.classList.toggle('is-done', meta > 0); els.questBox.classList.toggle('is-done', quest > 0); els.synergyBox.classList.toggle('is-done', syn.points > 0);
     els.slots.innerHTML = ROLES.map(role => { const pl = state.picks[role]; return `<article class="slot" data-slot="${role}"><span class="slot-role ${pl ? '': 'role-chip'}">${pl ? img(pl.logo, pl.short, ROLE_ICONS[role]) : roleGlyph(role)}</span><div><strong>${pl ? esc(pl.name) : role}</strong><p>${pl ? `${flag(pl.country)} ${esc(pl.short)} ${pl.year} · ${esc(pl.tournament)}` : 'pendiente'}</p></div><span class="slot-score">${pl ? pl.rating : '—'}</span></article>`; }).join('');
   }
-  function renderMarket() { ensureMarket(); const button = document.querySelector('[data-action="market"]'); if (button) { button.textContent = state.marketUsed ? 'usado' : 'rotar 10c'; button.disabled = state.marketUsed; } els.market.innerHTML = state.market.map((id, i) => { const pl = allPlayers.find(x => x.id === id); if (!pl) return ''; const owned = state.owned.has(pl.id); const cost = costOf(pl); const disabled = owned && issue(pl); return `<article class="market-card tilt-card ${pl.major ? 'is-gold' : ''}" title="${esc(synergyPreview(pl))}"><span class="market-logo">${img(pl.logo, pl.short, ROLE_ICONS[pl.role])}</span><div><strong>${esc(pl.name)}</strong><small>${esc(pl.role)} · ${esc(pl.short)} ${pl.year}</small></div><button type="button" data-market="${i}" ${disabled ? 'disabled' : ''}>${owned ? 'firmar' : cost + 'c'}</button></article>`; }).join(''); }
+  function renderMarket() { ensureMarket(); const button = document.querySelector('[data-action="market"]'); if (button) { button.textContent = state.marketUsed ? 'usado' : 'rotar 10c'; button.disabled = state.marketUsed; } els.market.innerHTML = state.market.map((id, i) => { const pl = allPlayers.find(x => x.id === id); if (!pl) return ''; const owned = state.owned.has(pl.id); const cost = costOf(pl); const disabled = owned && issue(pl); return `<article class="market-card tilt-card ${pl.major ? 'is-gold' : ''}"><span class="market-logo">${img(pl.logo, pl.short, ROLE_ICONS[pl.role])}</span><div><strong>${esc(pl.name)}</strong><small>${esc(pl.role)} · ${esc(pl.short)} ${pl.year}</small></div><button type="button" data-market="${i}" ${disabled ? 'disabled' : ''}>${owned ? 'firmar' : cost + 'c'}</button>${composePopover(pl)}</article>`; }).join(''); }
   function renderMini() { if (!state.last) { els.results.innerHTML = '<p class="muted">sin simulación todavía.</p>'; return; } const wins = state.last.matches.filter(m => m.finished && m.win).length, losses = state.last.matches.filter(m => m.finished && !m.win).length; els.results.innerHTML = `<strong>${state.last.complete ? (state.last.won ? 'campeón' : 'eliminado') : 'en vivo'}</strong><p class="muted">${wins}-${losses} · power ${state.last.power}</p>`; }
   function renderSim() {
     if (!state.last) {
@@ -1235,7 +1594,7 @@
     const cards = [
       statCard('Runs', s.runs, [bar('runs', s.runs, 'Runs totales jugadas'), bar('wins', s.wins, 'Runs ganadas'), bar('finales', s.finals, 'Finales alcanzadas')], `${s.finals} finales`, 'Volumen general de runs: jugadas, ganadas y finales.'),
       statCard('Winrate', winrate + '%', [bar('win%', winrate, 'Porcentaje de runs ganadas'), bar('loss%', 100 - winrate, 'Porcentaje de runs perdidas'), bar('streak', Math.min(100, s.bestStreak * 20), 'Mejor racha escalada')], `racha actual ${s.currentStreak}`, 'Win%, loss% y mejor racha como barra visual.'),
-      statCard('Mapas', s.games, [bar('maps', s.games, 'Mapas simulados'), bar('nexus', s.nexus || 0, 'Nexos destruidos por tu draft'), bar('baron', s.barons || 0, 'Barones a favor')], `${s.games ? Math.round(s.games / Math.max(1, s.runs)) : 0} por run`, 'Ya no se decide por objetivos: el nexo es el cierre.'),
+      statCard('Mapas', s.games, [bar('maps', s.games, 'Mapas simulados'), bar('nexus', s.nexus || 0, 'Nexos destruidos por tus picks'), bar('baron', s.barons || 0, 'Barones a favor')], `${s.games ? Math.round(s.games / Math.max(1, s.runs)) : 0} por run`, 'Ya no se decide por objetivos: el nexo es el cierre.'),
       statCard('Power avg', avgPow, [bar('avg', avgPow, 'Power promedio'), bar('max', s.highestPower || avgPow, 'Power máximo logrado'), bar('floor', Math.max(0, avgPow - 8), 'Referencia baja del rango')], `max ${s.highestPower}`, 'Compara promedio, máximo y piso aproximado de poder.'),
       statCard('First blood', s.bloods, [bar('for', bloodRate, 'First bloods a favor'), bar('miss', Math.max(0, 100 - bloodRate), 'First bloods no conseguidas'), bar('impact', Math.min(100, bloodRate * .6), 'Impacto visual estimado')], `${bloodRate}% de las partidas`, 'First blood a favor contra first blood rival.'),
       statCard('Dragones', s.dragons, [bar('for', dragonRate, 'Primer drake a favor'), bar('miss', Math.max(0, 100 - dragonRate), 'Primer drake rival'), bar('soul', s.souls || 0, 'Almas elementales a favor')], `${dragonRate}% de las partidas`, 'Control temprano y escalado de dragones.'),
@@ -1327,7 +1686,7 @@
   function marketAction(i) { const pl = allPlayers.find(x => x.id === state.market[i]); if (!pl) return; if (!state.owned.has(pl.id)) { const c = costOf(pl); if (state.coins < c) return toast(`te faltan ${c - state.coins} coins.`); state.coins -= c; state.owned.add(pl.id); write(STORE.coins, state.coins); write(STORE.owned, JSON.stringify([...state.owned])); toast(`${pl.name} desbloqueado.`); return render(); } const problem = issue(pl); if (problem) return toast(problem); state.picks[pl.role] = pl; render(); toast(`${pl.name} firmado desde tienda.`); }
   function toggleMatch(index) { if (Number.isNaN(index) || !state.last?.matches?.[index]) return; if (state.openMatches.has(index)) state.openMatches.delete(index); else state.openMatches.add(index); renderSim(); }
   function flash(el, klass) { if (!el) return; el.classList.remove(klass); void el.offsetWidth; el.classList.add(klass); setTimeout(() => el.classList.remove(klass), 420); }
-  function resetRun() { state.seed=seed(); state.rng=makeRng(state.seed); state.current=null; state.picks=Object.fromEntries(ROLES.map(r=>[r,null])); state.rolls=0; state.rerollUsed=false; state.scoutUsed=false; state.marketUsed=false; state.meta=null; state.quest=null; state.last=null; state.simming=false; state.openMatches = new Set(); rotateMarket(false); setScreen('draft'); toast('run reiniciada.'); }
+  function resetRun() { state.seed=seed(); state.rng=makeRng(state.seed); state.current=null; state.picks=Object.fromEntries(ROLES.map(r=>[r,null])); state.rolls=0; state.rerollUsed=false; state.scoutUsed=false; state.marketUsed=false; state.meta=null; state.quest=null; state.last=null; state.simming=false; state.openMatches = new Set(); rotateMarket(false); setScreen('picks'); toast('run reiniciada.'); }
   function clearStats() { if (!confirm('¿Borrar estadísticas locales?')) return; state.stats = defaultStats(); write(STORE.stats, JSON.stringify(state.stats)); renderStats(); toast('Stats reiniciadas.'); }
   async function showResult(kind, title, copy) {
     if (!els.resultOverlay) return;
@@ -1368,7 +1727,7 @@
   }
 
   function toggleTheme() { document.body.classList.toggle('dark'); write(STORE.theme, document.body.classList.contains('dark') ? 'dark' : 'light'); }
-  function copySummary() { const lines = [`20:19 Draft · seed #${state.seed}`, `Tiradas ${state.rolls}/${MAX_ROLLS}`].concat(ROLES.map(r => `${r}: ${state.picks[r] ? state.picks[r].name + ' (' + state.picks[r].short + ')' : 'pendiente'}`)); navigator.clipboard?.writeText(lines.join('\n')).then(() => toast('copiado.')).catch(() => toast('no se pudo copiar.')); }
+  function copySummary() { const lines = [`Five’s Pick · seed #${state.seed}`, `Tiradas ${state.rolls}/${MAX_ROLLS}`].concat(ROLES.map(r => `${r}: ${state.picks[r] ? state.picks[r].name + ' (' + state.picks[r].short + ')' : 'pendiente'}`)); navigator.clipboard?.writeText(lines.join('\n')).then(() => toast('copiado.')).catch(() => toast('no se pudo copiar.')); }
 
   function power() { const ps = picked(); if (!ps.length) return 0; return Math.round(avg(ps.map(x=>x.rating)) + synergy().points + metaBonus() + questBonus()); }
   function synergy() {
@@ -1413,6 +1772,40 @@
   function tagHint(player, tag) {
     const comps = COMP_RULES.filter(c => c.req.some(r => r.tag === tag));
     return `${tag}: aparece en ${comps.length} compos. ${comps.slice(0,4).map(c=>c.name).join(', ')}`;
+  }
+  function pointTier(points) { return points >= 3 ? 'tier3' : points === 2 ? 'tier2' : 'tier1'; }
+  function synergySummary(syn) {
+    const compChips = syn.comps.slice(0,8).map(c => `<span class="comp-chip ${pointTier(c.points)}"><strong><b class="plus ${pointTier(c.points)}">+${c.points}</b>${esc(c.name)}</strong><small>${esc(c.desc)}</small></span>`).join('');
+    const basics = syn.reasons.filter(x => !x.includes('+')).slice(0,6).map(x => `<span class="story-chip">${esc(x)}</span>`).join('');
+    return `<div class="comp-chip-wrap">${compChips || basics}</div><small class="calc-note">Sinergia = región/país, mismo equipo/org y compos por tags. ${syn.comps.length} compos activas.</small>`;
+  }
+  function composePopover(candidate) {
+    const base = picked().filter(p => p.role !== candidate.role);
+    const ps = base.concat(candidate);
+    const active = matchedComps(ps).filter(c => c.players.some(p => p.id === candidate.id)).slice(0,6);
+    const activeIds = new Set(active.map(c => c.name));
+    const potential = COMP_RULES
+      .filter(rule => !activeIds.has(rule.name) && rule.req.some(req => (!req.role || req.role === candidate.role) && (!req.tag || candidate.tags.includes(req.tag))))
+      .map(rule => ({ ...rule, missing: missingComp(rule, ps), partial: partialComp(rule, ps) }))
+      .filter(x => x.partial.length || x.missing.length)
+      .slice(0,5);
+    const affinity = base.filter(p => p.region === candidate.region || p.country === candidate.country || p.org === candidate.org).slice(0,4);
+    const activeHtml = active.length ? active.map(c => `<div class="comp-line is-active"><strong><b class="plus ${pointTier(c.points)}">+${c.points}</b>${esc(c.name)}</strong><p>${esc(c.desc)}</p><p>${c.players.map(p=>esc(p.name)).join(' + ')}</p></div>`).join('') : '<p>Sin composición activa todavía con tus picks actuales.</p>';
+    const potentialHtml = potential.length ? potential.map(c => `<div class="comp-line is-potential"><strong><b class="plus ${pointTier(c.points)}">+${c.points}</b>${esc(c.name)}</strong><p>${esc(c.desc)}</p><p>Falta: ${esc(c.missing.join(', ') || 'un pick compatible')}</p></div>`).join('') : '';
+    const affinityHtml = affinity.length ? `<p><strong>Afinidad:</strong> ${affinity.map(p=>`${esc(p.name)} (${esc(p.region)}/${esc(p.org)})`).join(' · ')}</p>` : '';
+    return `<div class="compose-popover"><h4>${esc(candidate.name)} · ${esc(candidate.role)}</h4><p>Tags: ${candidate.tags.map(esc).join(', ')}</p>${activeHtml}${potentialHtml}${affinityHtml}</div>`;
+  }
+  function missingComp(rule, ps) {
+    const used = new Set(); const missing = [];
+    for (const req of rule.req) {
+      const found = ps.find(p => !used.has(p.id) && (!req.role || p.role === req.role) && (!req.tag || p.tags.includes(req.tag)));
+      if (found) used.add(found.id);
+      else missing.push(`${req.role || 'Any'}:${req.tag || 'any'}`);
+    }
+    return missing;
+  }
+  function partialComp(rule, ps) {
+    return ps.filter(p => rule.req.some(req => (!req.role || req.role === p.role) && (!req.tag || p.tags.includes(req.tag))));
   }
   function metaBonus() { const ps = picked(); return state.meta && ps.length === 5 ? state.meta.score(ps) : 0; }
   function questBonus() { const ps = picked(); return state.quest && ps.length === 5 && state.quest.ok(ps) ? state.quest.bonus : 0; }

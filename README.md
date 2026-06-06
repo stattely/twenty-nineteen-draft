@@ -78,3 +78,29 @@ Cambios verificables:
 - Los eventos ocultos muestran `Carta cerrada` y no revelan tipo, jugador ni equipo.
 - `Sin simulación cargada` se muestra como burbuja discreta.
 - Las cartas tienen clase `tilt-card` y hover 3D en desktop.
+
+
+## V2.5 Five's Pick
+
+- New title/copy: Welcome to Five’s Pick.
+- Expanded Western pool with additional LEC/LCS rosters.
+- Added colorful composition popovers.
+- Added extra Chrono powers.
+- Added reset icon next to Simular.
+- Added `docs/ASSETS_GUIDE.md`.
+- Added `docs/DATABASE_PLAN.md`.
+
+
+## V2.6 Teams Final
+
+- Adds Equipos tab with flipping team cards.
+- Adds team rating cap and team tag balance.
+- Adds uploaded western logos from Icons2.zip.
+- Reuses existing logos when specific historical logo is missing.
+- Fixes screen routing to keep Picks screen stable.
+
+
+## V2.6.1 OG logo
+
+- Adds normalized Origen 2015 logo.
+- Updates OG logo mapping for team archive and rolls.
