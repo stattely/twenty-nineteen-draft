@@ -4,7 +4,7 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="theme-color" content="#0a1420" />
-  <title>Five’s Pick · V2.6.8</title>
+  <title>Five’s Pick · V2.6.9</title>
   <style>
     :root {
       --bg: #eef2f4;
@@ -309,7 +309,7 @@
     @keyframes cardFlash { 0% { transform: scale(.985); box-shadow: 0 0 0 0 rgba(200,170,110,0); } 50% { transform: scale(1.01); box-shadow: 0 0 0 10px rgba(200,170,110,.12); } 100% { transform: scale(1); box-shadow: none; } }
     @keyframes sweepIn { 0% { opacity: .35; transform: translateY(8px); } 100% { opacity: 1; transform: translateY(0); } }
   
-    /* V2.6.8 verified role icons: these use the uploaded PNGs directly as background images. */
+    /* V2.6.9 verified role icons: these use the uploaded PNGs directly as background images. */
     .version-pill {
       border: 1px solid rgba(240,213,138,.34);
       border-radius: 999px;
@@ -449,7 +449,7 @@
     }
 
   
-    /* V2.6.8 HARD ROLE FIX:
+    /* V2.6.9 HARD ROLE FIX:
        These are the exact PNGs from IconsPositions.zip, copied raw into /assets/roles-original-v24/.
        The wrapper has no circle/border/background so the uploaded icon is not double-framed or rescaled weirdly. */
     .rolefix-pill {
@@ -511,7 +511,7 @@
     .chrono-card::after { content:''; position:absolute; inset:0; background:linear-gradient(115deg, transparent, rgba(255,255,255,.09), transparent); transform:translateX(-120%); animation:chartSweep 2.8s ease-in-out infinite; pointer-events:none; }
 
 
-    /* V2.6.8 */
+    /* V2.6.9 */
     .result-overlay.map-win .result-card, .result-overlay.map-loss .result-card {
       min-width: min(640px, calc(100vw - 28px));
       padding: 22px 28px;
@@ -591,7 +591,7 @@
     @media (max-width: 760px) { .objective-grid, .chrono-grid { grid-template-columns: 1fr; } .result-overlay.map-win .result-card, .result-overlay.map-loss .result-card { min-width: calc(100vw - 22px); padding: 18px; } }
 
   
-    /* V2.6.8 colorful composition tooltips */
+    /* V2.6.9 colorful composition tooltips */
     .icon-only { min-width: 48px; padding-inline: 13px; }
     .compose-popover {
       pointer-events: none;
@@ -641,7 +641,7 @@
     @keyframes softPulse { 50% { box-shadow: 0 0 0 5px rgba(16,185,129,.10); } }
 
   
-    /* V2.6.8 Teams archive */
+    /* V2.6.9 Teams archive */
     .teams-grid {
       display: grid;
       grid-template-columns: repeat(3, minmax(0, 1fr));
@@ -786,7 +786,7 @@
     }
 
   
-    /* V2.6.8 roster alignment, filters and wallet */
+    /* V2.6.9 roster alignment, filters and wallet */
     .global-wallet {
       display: inline-flex;
       align-items: center;
@@ -897,7 +897,7 @@
     }
 
   
-    /* V2.6.8 market popover + tag tooltips */
+    /* V2.6.9 market popover + tag tooltips */
     .player-card { overflow: visible; }
     .player-card:hover, .player-card:focus-within { z-index: 9; }
     .market, .player-grid { overflow: visible; }
@@ -973,7 +973,7 @@
     }
 
   
-    /* V2.6.8 compact team cards + drawn flags */
+    /* V2.6.9 compact team cards + drawn flags */
     .teams-grid { gap: 10px; }
     .team-card, .team-card-inner { min-height: 455px; }
     .team-face {
@@ -1098,14 +1098,85 @@
       .team-face.back .flip-btn { transform: translateY(-2px); }
     }
 
+  
+    /* V2.6.9 no-scroll compact popovers */
+    .compose-popover,
+    .compose-popover.compact-popover {
+      width: min(255px, calc(100vw - 28px)) !important;
+      max-height: none !important;
+      overflow: visible !important;
+      padding: 8px !important;
+      gap: 5px !important;
+      border-radius: 14px !important;
+    }
+    .player-card .compose-popover {
+      left: 0 !important;
+      right: auto !important;
+      top: calc(100% + 6px) !important;
+    }
+    .market-card .compose-popover {
+      width: 100% !important;
+      max-height: none !important;
+      overflow: visible !important;
+      grid-column: 1 / -1 !important;
+    }
+    .compose-popover h4 {
+      font-size: 10px !important;
+      margin: 0 !important;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    .compose-popover p,
+    .compact-note {
+      font-size: 10px !important;
+      line-height: 1.25 !important;
+      margin: 0 !important;
+      color: var(--muted);
+    }
+    .comp-line {
+      padding: 6px !important;
+      gap: 2px !important;
+      border-radius: 11px !important;
+    }
+    .comp-line strong {
+      font-size: 11px !important;
+      line-height: 1.05 !important;
+      min-width: 0;
+    }
+    .plus {
+      min-width: 28px !important;
+      padding: 2px 6px !important;
+      font-size: 10px !important;
+    }
+    .tag-hovercard {
+      max-height: none !important;
+      overflow: visible !important;
+      width: min(210px, 74vw) !important;
+    }
+    .tag-hovercard span {
+      display: block;
+      max-height: 64px;
+      overflow: hidden;
+    }
+    .tag-hovercard span span:nth-child(n+3) {
+      display: none;
+    }
+    .player-card:hover,
+    .player-card:focus-within,
+    .market-card:hover,
+    .market-card:focus-within {
+      z-index: 25;
+    }
+
   </style>
 </head>
 <body class="dark">
-  <!-- BUILD_MARKER_V268_COMPACT_TEAMS_FLAGS -->
+  <!-- BUILD_MARKER_V269_NO_SCROLL_POPOVERS -->
   <div class="app">
     <header class="topbar">
       <a class="brand" href="#" data-action="screen" data-screen="draft" aria-label="inicio"><span class="brand-mark">5V</span><span class="brand-copy">Five’s<br>Pick</span></a>
-      <div class="microline"><strong>Roll</strong><span>·</span><strong>Pick</strong><span>·</span><strong>Break</strong><span id="seedLabel">seed #LOCAL</span><span class="rolefix-pill">V2.6.8</span><span class="version-pill">V2.6.8</span></div>
+      <div class="microline"><strong>Roll</strong><span>·</span><strong>Pick</strong><span>·</span><strong>Break</strong><span id="seedLabel">seed #LOCAL</span><span class="rolefix-pill">V2.6.9</span><span class="version-pill">V2.6.9</span></div>
       <nav class="quick-actions"><span class="global-wallet" title="Coins guardadas localmente">🪙 <b id="globalWallet">0</b></span><button type="button" data-action="theme">tema</button><button type="button" data-action="copy">copiar</button><button type="button" data-action="reset">reset</button></nav>
     </header>
     <nav class="tabs" aria-label="pantallas"><button type="button" data-action="screen" data-screen="draft" aria-pressed="true" title="Arma tu roster con tiradas, tienda y picks">Picks</button><button type="button" data-action="screen" data-screen="sim" aria-pressed="false" title="Ve la simulación partido por partido">Simulación</button><button type="button" data-action="screen" data-screen="stats" aria-pressed="false" title="Consulta tus estadísticas acumuladas">Stats</button><button type="button" data-action="screen" data-screen="history" aria-pressed="false" title="Revisa runs anteriores una por una">Historia</button><button type="button" data-action="screen" data-screen="teams" aria-pressed="false" title="Explora equipos, rosters y tags">Equipos</button><button type="button" data-action="screen" data-screen="objectives" aria-pressed="false" title="Objetivos y recompensas">Objetivos</button><button type="button" data-action="screen" data-screen="chrono" aria-pressed="false" title="Modo caótico experimental">Chrono</button></nav>
@@ -1189,7 +1260,7 @@
         <section class="panel"><div class="chrono-grid" id="chronoGrid"></div></section>
       </section>
 
-    <footer>Fan-made project not affiliated with Riot Games · V2.6.8</footer>
+    <footer>Fan-made project not affiliated with Riot Games · V2.6.9</footer>
   </div>
   <div class="result-overlay" id="resultOverlay" aria-live="polite"></div>
   <div class="toast" id="toast"></div>
@@ -2198,16 +2269,20 @@
   function composePopover(candidate) {
     const base = picked().filter(p => p.role !== candidate.role);
     const ps = base.concat(candidate);
-    const active = matchedComps(ps).filter(c => c.players.some(p => p.id === candidate.id)).slice(0,4);
+    const active = matchedComps(ps).filter(c => c.players.some(p => p.id === candidate.id)).slice(0,2);
     const activeIds = new Set(active.map(c => c.name));
     const potential = COMP_RULES
       .filter(rule => !activeIds.has(rule.name) && rule.req.some(req => (!req.role || req.role === candidate.role) && (!req.tag || candidate.tags.includes(req.tag))))
-      .map(rule => ({ ...rule, missing: missingComp(rule, ps), partial: partialComp(rule, ps) }))
-      .filter(x => x.partial.length || x.missing.length)
-      .slice(0,3);
-    const activeHtml = active.length ? active.map(c => `<div class="comp-line is-active"><strong><b class="plus ${pointTier(c.points)}">+${c.points}</b>${esc(c.name)}</strong><p>${c.players.map(p=>esc(p.name)).join(' + ')}</p></div>`).join('') : '<p>Sin comp activa todavía.</p>';
-    const potentialHtml = potential.length ? potential.map(c => `<div class="comp-line is-potential"><strong><b class="plus ${pointTier(c.points)}">+${c.points}</b>${esc(c.name)}</strong><p>Falta: ${esc(c.missing.join(', ') || 'pick compatible')}</p></div>`).join('') : '';
-    return `<div class="compose-popover"><h4>${esc(candidate.name)} · ${esc(candidate.role)}</h4>${activeHtml}${potentialHtml}</div>`;
+      .map(rule => ({ ...rule, missing: missingComp(rule, ps) }))
+      .filter(x => x.missing.length)
+      .slice(0,2);
+    const activeHtml = active.length
+      ? active.map(c => `<div class="comp-line is-active"><strong><b class="plus ${pointTier(c.points)}">+${c.points}</b>${esc(c.name)}</strong><p>${c.players.map(p=>esc(p.name)).join(' + ')}</p></div>`).join('')
+      : '<p class="compact-note">Sin comp activa.</p>';
+    const potentialHtml = potential.length
+      ? potential.map(c => `<div class="comp-line is-potential"><strong><b class="plus ${pointTier(c.points)}">+${c.points}</b>${esc(c.name)}</strong><p>Falta: ${esc(c.missing.slice(0,2).join(', '))}</p></div>`).join('')
+      : '';
+    return `<div class="compose-popover compact-popover"><h4>${esc(candidate.name)}</h4>${activeHtml}${potentialHtml}</div>`;
   }
   function missingComp(rule, ps) {
     const used = new Set(); const missing = [];

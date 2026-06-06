@@ -148,3 +148,10 @@ Cambios verificables:
 - Moves back-side button upward so it is not clipped.
 - Replaces OS flag emoji rendering with local CSS flags, because Windows often renders flag emojis as KR/CN text.
 - Shortens composition popovers.
+
+
+## V2.6.9 no-scroll popovers
+
+- Removes internal scrollbars from composition popovers.
+- Makes player/market hover panels shorter and clearer.
+- Limits visible active/potential compositions to avoid card overlap.
