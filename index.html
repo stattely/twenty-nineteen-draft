@@ -4,7 +4,7 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="theme-color" content="#0a1420" />
-  <title>Five’s Pick · V3.0.5</title>
+  <title>Five’s Pick · V3.0.7</title>
   <style>
     :root {
       --bg: #eef2f4;
@@ -309,7 +309,7 @@
     @keyframes cardFlash { 0% { transform: scale(.985); box-shadow: 0 0 0 0 rgba(200,170,110,0); } 50% { transform: scale(1.01); box-shadow: 0 0 0 10px rgba(200,170,110,.12); } 100% { transform: scale(1); box-shadow: none; } }
     @keyframes sweepIn { 0% { opacity: .35; transform: translateY(8px); } 100% { opacity: 1; transform: translateY(0); } }
   
-    /* V3.0.5 verified role icons: these use the uploaded PNGs directly as background images. */
+    /* V3.0.7 verified role icons: these use the uploaded PNGs directly as background images. */
     .version-pill {
       border: 1px solid rgba(240,213,138,.34);
       border-radius: 999px;
@@ -449,7 +449,7 @@
     }
 
   
-    /* V3.0.5 HARD ROLE FIX:
+    /* V3.0.7 HARD ROLE FIX:
        These are the exact PNGs from IconsPositions.zip, copied raw into /assets/roles-original-v24/.
        The wrapper has no circle/border/background so the uploaded icon is not double-framed or rescaled weirdly. */
     .rolefix-pill {
@@ -511,7 +511,7 @@
     .chrono-card::after { content:''; position:absolute; inset:0; background:linear-gradient(115deg, transparent, rgba(255,255,255,.09), transparent); transform:translateX(-120%); animation:chartSweep 2.8s ease-in-out infinite; pointer-events:none; }
 
 
-    /* V3.0.5 */
+    /* V3.0.7 */
     .result-overlay.map-win .result-card, .result-overlay.map-loss .result-card {
       min-width: min(640px, calc(100vw - 28px));
       padding: 22px 28px;
@@ -591,7 +591,7 @@
     @media (max-width: 760px) { .objective-grid, .chrono-grid { grid-template-columns: 1fr; } .result-overlay.map-win .result-card, .result-overlay.map-loss .result-card { min-width: calc(100vw - 22px); padding: 18px; } }
 
   
-    /* V3.0.5 colorful composition tooltips */
+    /* V3.0.7 colorful composition tooltips */
     .icon-only { min-width: 48px; padding-inline: 13px; }
     .compose-popover {
       pointer-events: none;
@@ -641,7 +641,7 @@
     @keyframes softPulse { 50% { box-shadow: 0 0 0 5px rgba(16,185,129,.10); } }
 
   
-    /* V3.0.5 Teams archive */
+    /* V3.0.7 Teams archive */
     .teams-grid {
       display: grid;
       grid-template-columns: repeat(3, minmax(0, 1fr));
@@ -786,7 +786,7 @@
     }
 
   
-    /* V3.0.5 roster alignment, filters and wallet */
+    /* V3.0.7 roster alignment, filters and wallet */
     .global-wallet {
       display: inline-flex;
       align-items: center;
@@ -897,7 +897,7 @@
     }
 
   
-    /* V3.0.5 market popover + tag tooltips */
+    /* V3.0.7 market popover + tag tooltips */
     .player-card { overflow: visible; }
     .player-card:hover, .player-card:focus-within { z-index: 9; }
     .market, .player-grid { overflow: visible; }
@@ -973,7 +973,7 @@
     }
 
   
-    /* V3.0.5 compact team cards + drawn flags */
+    /* V3.0.7 compact team cards + drawn flags */
     .teams-grid { gap: 10px; }
     .team-card, .team-card-inner { min-height: 455px; }
     .team-face {
@@ -1099,7 +1099,7 @@
     }
 
   
-    /* V3.0.5 no-scroll compact popovers */
+    /* V3.0.7 no-scroll compact popovers */
     .compose-popover,
     .compose-popover.compact-popover {
       width: min(255px, calc(100vw - 28px)) !important;
@@ -1170,7 +1170,7 @@
     }
 
   
-    /* V3.0.5 simulation recovery */
+    /* V3.0.7 simulation recovery */
     .error-bubble {
       color: #fecaca !important;
       border-color: rgba(248,113,113,.45) !important;
@@ -1180,7 +1180,7 @@
     #simScreen:not([hidden]) { display: block; }
 
   
-    /* V3.0.5 flags */
+    /* V3.0.7 flags */
     .flag-kr {
       background: #fff;
     }
@@ -1225,7 +1225,7 @@
     }
 
   
-    /* V3.0.5 final systems */
+    /* V3.0.7 final systems */
     .bracket-panel {
       border: 1px solid var(--line);
       border-radius: 18px;
@@ -1309,7 +1309,7 @@
     }
 
   
-    /* V3.0.5 final polish */
+    /* V3.0.7 final polish */
     body:not(.dark) {
       --bg: #ece7dc;
       --panel: rgba(255,250,238,.88);
@@ -1449,7 +1449,7 @@
     }
 
   
-    /* V3.0.5 targeted fixes */
+    /* V3.0.7 targeted fixes */
     .player-card > .compose-popover { display: none !important; }
     .tag-stack { overflow: visible !important; max-height: none !important; }
     .tag-stack .player-tag {
@@ -1515,7 +1515,7 @@
     .bracket-other span { display:block; color:var(--muted); font-size:11px; padding:3px 0; }
 
   
-    /* V3.0.5b visual cleanup */
+    /* V3.0.7b visual cleanup */
     .player-card .compose-popover { display:none !important; }
     .tag-stack {
       overflow: visible !important;
@@ -1563,7 +1563,7 @@
     }
 
   
-    /* V3.0.5 Guided Arcade UX */
+    /* V3.0.7 Guided Arcade UX */
     .screen-head .muted,
     .panel > .muted,
     .calc-note {
@@ -1739,7 +1739,7 @@
     }
 
   
-    /* V3.0.5 hotfix: clean cards, tag tooltips, bracket visibility */
+    /* V3.0.7 hotfix: clean cards, tag tooltips, bracket visibility */
     .player-card { overflow: hidden !important; }
     .player-card .compose-popover { display: none !important; }
     .player-card .tag-hovercard { display: none !important; }
@@ -1808,7 +1808,7 @@
     }
 
   
-    /* V3.0.5 compact layout + title-case polish */
+    /* V3.0.7 compact layout + title-case polish */
     .screen-head.panel {
       padding: 12px 14px !important;
       margin-bottom: 10px !important;
@@ -2001,7 +2001,7 @@
     }
 
   
-    /* V3.0.5 real bracket + i18n + compact polish */
+    /* V3.0.7 real bracket + i18n + compact polish */
     .screen-head.panel { padding: 9px 12px !important; margin-bottom: 8px !important; min-height: 0 !important; }
     .screen-head h2 { font-size: clamp(24px, 3.4vw, 44px) !important; line-height: .94 !important; margin: 0 !important; }
     .screen-head .eyebrow { font-size: 9px !important; margin: 0 0 3px !important; text-transform: none !important; }
@@ -2116,7 +2116,7 @@
     }
 
   
-    /* V3.0.5 endboss bracket + clean native tag tooltips */
+    /* V3.0.7 endboss bracket + clean native tag tooltips */
     .player-card { overflow: hidden !important; isolation: isolate; }
     .player-card .compose-popover,
     .player-card .tag-hovercard,
@@ -2202,7 +2202,7 @@
     @media (max-width: 900px) { .bracket-stage-grid { grid-template-columns: 1fr; } }
 
   
-    /* V3.0.5 Swiss field + power bracket */
+    /* V3.0.7 Swiss field + power bracket */
     .player-card .compose-popover,
     .player-card .tag-hovercard,
     .player-card .mini-tag-tip,
@@ -2242,14 +2242,68 @@
     .tag-red { color:#fecaca !important; border-color:rgba(248,113,113,.52) !important; background:rgba(248,113,113,.12) !important; }
     .tag-gray { color:#d1d5db !important; border-color:rgba(156,163,175,.32) !important; background:rgba(156,163,175,.10) !important; }
 
+  
+    /* V3.0.7 Negative DNA */
+    .synergy-net {
+      display:grid;
+      grid-template-columns:auto 1fr auto 1fr auto 1fr;
+      gap:4px 6px;
+      align-items:center;
+      margin: 6px 0 8px;
+      font-size:10px;
+      color:var(--muted);
+      text-transform:uppercase;
+      letter-spacing:.04em;
+    }
+    .synergy-net b { color:#bbf7d0; font-size:13px; }
+    .synergy-net b.bad { color:#fecaca; }
+    .risk-chip {
+      display:grid;
+      gap:2px;
+      border:1px solid rgba(248,113,113,.34);
+      border-radius:12px;
+      padding:7px 8px;
+      background:rgba(248,113,113,.08);
+      color:#fecaca;
+    }
+    .risk-chip strong {
+      display:flex;
+      align-items:center;
+      gap:5px;
+      font-size:10px;
+      text-transform:uppercase;
+      letter-spacing:.05em;
+    }
+    .risk-chip b { color:#f87171; }
+    .risk-chip small {
+      color:#fecaca;
+      opacity:.82;
+      line-height:1.25;
+      font-size:10px;
+    }
+    .challenge.is-risky {
+      border-color:rgba(248,113,113,.42) !important;
+      box-shadow: inset 0 0 0 1px rgba(248,113,113,.14), 0 0 18px rgba(248,113,113,.08);
+    }
+
+  
+    /* V3.0.7 Mental tags + Chaos implosion */
+    .risk-chip.is-good {
+      border-color: rgba(36,180,126,.38) !important;
+      background: rgba(36,180,126,.08) !important;
+      color:#bbf7d0 !important;
+    }
+    .risk-chip.is-good b { color:#86efac !important; }
+    .risk-chip.is-good small { color:#bbf7d0 !important; }
+
   </style>
 </head>
 <body class="dark">
-  <!-- BUILD_MARKER_V305_SWISS_POWER_FIELD -->
+  <!-- BUILD_MARKER_V307_TILT_CHAOS_FIELD -->
   <div class="app">
     <header class="topbar">
       <a class="brand" href="#" data-action="screen" data-screen="draft" aria-label="inicio"><span class="brand-mark">5V</span><span class="brand-copy">Five’s<br>Pick</span></a>
-      <div class="microline"><strong>Roll</strong><span>·</span><strong>Pick</strong><span>·</span><strong>Break</strong><span id="seedLabel">seed #LOCAL</span><span class="rolefix-pill">V3.0.5</span><span class="version-pill">V3.0.5</span></div>
+      <div class="microline"><strong>Roll</strong><span>·</span><strong>Pick</strong><span>·</span><strong>Break</strong><span id="seedLabel">seed #LOCAL</span><span class="rolefix-pill">V3.0.7</span><span class="version-pill">V3.0.7</span></div>
       <nav class="quick-actions"><button type="button" data-action="lang" id="langBtn" title="Cambiar idioma">ES</button><span class="global-wallet" title="Coins guardadas localmente">🪙 <b id="globalWallet">0</b></span><button type="button" data-action="theme">Tema</button><button type="button" data-action="copy">copiar</button><button type="button" data-action="reset">reset</button></nav>
     </header>
     <nav class="tabs" aria-label="pantallas"><button type="button" data-action="screen" data-screen="draft" aria-pressed="true" title="Arma tu roster con tiradas, tienda y picks">Picks</button><button type="button" data-action="screen" data-screen="sim" aria-pressed="false" title="Ve la simulación partido por partido">Simulación</button><button type="button" data-action="screen" data-screen="stats" aria-pressed="false" title="Consulta tus estadísticas acumuladas">Stats</button><button type="button" data-action="screen" data-screen="history" aria-pressed="false" title="Revisa runs anteriores una por una">Historia</button><button type="button" data-action="screen" data-screen="teams" aria-pressed="false" title="Explora equipos, rosters y tags">Equipos</button><button type="button" data-action="screen" data-screen="objectives" aria-pressed="false" title="Objetivos y recompensas">Objetivos</button><button type="button" data-action="screen" data-screen="chrono" aria-pressed="false" title="Modo caótico experimental">Chrono</button></nav>
@@ -2354,7 +2408,7 @@
         <section class="panel"><div class="chrono-grid" id="chronoGrid"></div></section>
       </section>
 
-    <footer>Fan-made project not affiliated with Riot Games · V3.0.5</footer>
+    <footer>Fan-made project not affiliated with Riot Games · V3.0.7</footer>
   </div>
   <div class="result-overlay" id="resultOverlay" aria-live="polite"></div>
   <div class="toast" id="toast"></div>
@@ -2689,6 +2743,42 @@
   }));
 
 
+
+  const MENTAL_TAG_PATCH = {
+    Doublelift:['choker','momentum'],
+    Bjergsen:['pechoFrio','control'],
+    Jensen:['choker'],
+    Perkz:['momentum','explosive'],
+    Caps:['explosive','momentum'],
+    Mikyx:['explosive'],
+    Jankos:['momentum'],
+    Rekkles:['pechoFrio','stable'],
+    Humanoid:['tilted','hands'],
+    Inspired:['pechoFrio'],
+    Sneaky:['antiTilt'],
+    Darshan:['weakside'],
+    Faker:['ice','momentum'],
+    Bengi:['antiTilt'],
+    Bang:['ice'],
+    Wolf:['antiTilt'],
+    Canyon:['momentum'],
+    ShowMaker:['ice','hands'],
+    Chovy:['pechoFrio','hands'],
+    Ruler:['ice','carry'],
+    Deft:['ice','clutch'],
+    Uzi:['momentum','tilted'],
+    TheShy:['explosive','flipper'],
+    JackeyLove:['explosive'],
+    Doinb:['creative','shotcall'],
+    Xiaohu:['momentum'],
+    Peanut:['explosive'],
+    Knight:['hands','pechoFrio']
+  };
+  ROSTERS.forEach(r => r.players.forEach(p => {
+    const extra = MENTAL_TAG_PATCH[p.name] || [];
+    p.tags = Array.from(new Set([...(p.tags || []), ...extra]));
+  }));
+
   ROSTERS.forEach(r => {
     const regionNerf = ['LEC','LCS'].includes(r.region) ? 5 : ['LCK','LPL'].includes(r.region) ? 1 : 2;
     r.tier = Math.max(70, Math.min(99, r.tier - regionNerf));
@@ -2737,12 +2827,23 @@
       upset: 'Capaz de romper pronósticos.',
       roam: 'Rota rápido para crear ventaja en otras líneas.',
       weakside: 'Juega con pocos recursos sin perder el mapa.',
-      roam: 'Rota rápido para crear ventaja en otras líneas.',
       vision: 'Aporta control de mapa con visión.',
       lane: 'Presiona fuerte desde línea.',
       objective: 'Prioriza dragones, Nashor y cierres.',
-      teamfight: 'Fuerte en peleas 5v5.'
-    };
+      teamfight: 'Fuerte en peleas 5v5.',
+      flipper: 'Mucho highroll, pero más throws.',
+      overforce: 'Fuerza jugadas incluso cuando no debe.',
+      lowvision: 'Le cuesta controlar mapa y Nashor.',
+      noengage: 'Tiene daño, pero poca forma de iniciar.',
+      greed: 'Quiere recursos en demasiadas líneas.',
+      choker: 'Baja rendimiento en mapas de presión.',
+      pechoFrio: 'Mucho talento, poca sangre en cierres.',
+      tilted: 'Si pierde temprano, puede explotar mentalmente.',
+      explosive: 'Puede romper el mapa o romper al equipo.',
+      momentum: 'Si gana un mapa grande, se prende más de lo normal.',
+      ice: 'Aguanta presión y reduce tilt del equipo.',
+      antiTilt: 'Estabiliza comms después de throws.'
+    }
 
   function boot() {
     if (read(STORE.theme) === 'light') document.body.classList.remove('dark');
@@ -2964,6 +3065,8 @@
     const westUpset = series.win && ['LCK','LPL'].includes(series.enemy.region) && picked().filter(p=>['LEC','LCS'].includes(p.region)).length >= 3;
     if (westUpset) state.last.momentum = Math.min(7, (state.last.momentum || 0) + 3);
     else state.last.momentum = Math.max(0, Math.round((state.last.momentum || 0) * .55));
+    const mentalWin = series.win && (synergy().risks || []).some(r => ['Implosión Interna','Pecho Frío Core','Volcán De Ego'].includes(r.name));
+    if (mentalWin) state.last.momentum = Math.min(7, (state.last.momentum || 0) + 2);
     state.last.activeGame = -1;
     state.last.activeEvent = -1;
     state.openMatches.delete(state.last.activeMatch);
@@ -2986,11 +3089,25 @@
     const chronoEvents = [];
     const chronoWindow = mapNo === (series.chronoMap || 1);
     const momentumBonus = Math.min(5, state.last.momentum || 0);
-    let our = Math.round(state.last.power + modBonus + fatigue + clutch + momentumBonus + rand(-d.variance, d.variance));
+    const syn = synergy();
+    const riskV = syn.volatility || 0;
+    const riskSwing = riskV ? rand(-riskV, Math.ceil(riskV / 2)) : 0;
+    let our = Math.round(state.last.power + modBonus + fatigue + clutch + momentumBonus + riskSwing + rand(-d.variance, d.variance));
     const enemyP = teamPower(series.enemy);
     const endboss = ['LCK','LPL'].includes(series.enemy.region) ? 2 : 0;
     const stageWeight = series.label === 'Final' ? 2 : series.label === 'Semis' ? 1 : 0;
     let rival = Math.round(enemyP * .86 + series.gate * .14 + d.enemy + endboss + stageWeight + ENEMY_HANDICAP + rand(-d.variance, d.variance));
+    const chaosImplosion = state.difficulty === 'chaos' && (syn.risks || []).some(r => ['Implosión Interna','Pecho Frío Core','Volcán De Ego'].includes(r.name)) && rng() < .24;
+    if (chaosImplosion) {
+      const implosion = pick((syn.risks || []).filter(r => ['Implosión Interna','Pecho Frío Core','Volcán De Ego'].includes(r.name))) || { name:'Implosión Interna', desc:'Las comms se rompen por un mapa.' };
+      our -= rand(3,7);
+      chronoEvents.push(chronoEvent(implosion.name, implosion.desc));
+    }
+    const mentalReset = state.difficulty === 'chaos' && !chaosImplosion && (syn.risks || []).some(r => r.positiveRisk) && rng() < .18;
+    if (mentalReset) {
+      our += rand(2,4);
+      chronoEvents.push(chronoEvent('Momentum Reset', 'Ganar una pelea limpia apaga el tilt y prende al equipo.'));
+    }
     if (chronoWindow && chronoReady('star-heist', series)) { our += 5; rival -= 3; consumeChrono('star-heist', series); chronoEvents.push(chronoEvent('Robo De Estrella', 'Tu staff apaga la win condition rival por un mapa.')); }
     if (chronoWindow && chronoReady('coach-sub', series)) { rival -= 5; consumeChrono('coach-sub', series); chronoEvents.push(chronoEvent('Coach Sub', 'El rival juega el mapa con suplente improvisado.')); }
     if (chronoWindow && chronoReady('scrim-leak', series)) { our += 4; consumeChrono('scrim-leak', series); chronoEvents.push(chronoEvent('Scrim Leak', 'Tus picks lee el plan rival antes del early game.')); }
@@ -3028,8 +3145,8 @@
       ['g2-vacation',rng()>.5?4:-2,0,'G2 Vacation Mode','Puede ser genial o terrible.']
     ];
     for (const [id, ourDelta, rivalDelta, label, copy] of genericChronos) {
-      if (chronoWindow && chronoReady(id)) {
-        our += ourDelta; rival += rivalDelta; consumeChrono(id);
+      if (chronoWindow && chronoReady(id, series)) {
+        our += ourDelta; rival += rivalDelta; consumeChrono(id, series);
         chronoEvents.push(chronoEvent(label, copy));
       }
     }
@@ -3038,7 +3155,8 @@
     if (!win && chronoReady('chrono-reset', series)) { consumeChrono('chrono-reset', series); chronoEvents.push(chronoEvent('Chrono Reset', 'Se repite el mapa perdido y el destino vuelve a tirar dados.')); chance = clamp(chance + .16, .18, .92); win = rng() < chance; our += rand(0,4); }
     const durationSec = gameDuration(win, our, rival);
     const mvp = selectMvp(win, series.enemy).name;
-    return { label: `Mapa ${mapNo}`, our, rival, chance, win, durationSec, duration: fmtDuration(durationSec), mvp, finished: false, events: chronoEvents.concat(matchEvents(win, series.enemy, durationSec, mvp, our, rival)) };
+    const riskEvents = (syn.risks || []).filter(r => Math.abs(r.points) >= 3 && rng() < .38).slice(0,1).map(r => storyEvent('mvp', r.name, false, pickedLogo(), r.desc));
+    return { label: `Mapa ${mapNo}`, our, rival, chance, win, durationSec, duration: fmtDuration(durationSec), mvp, finished: false, events: chronoEvents.concat(riskEvents, matchEvents(win, series.enemy, durationSec, mvp, our, rival)) };
   }
   function chronoEvent(label, copy) { return { type:'chrono', label, who:'Chrono Lab', actor:label, copy, icon:OBJ.mvp, logo:pickedLogo(), ours:true, visible:false }; }
 
@@ -3270,7 +3388,7 @@
     return `<article class="team-card" data-team-card="${esc(r.id)}"><div class="team-card-inner"><section class="team-face front"><figure class="team-logo-big">${img(r.logo, r.short, badge(r.short,r.region))}</figure><div class="team-title"><h3>${esc(r.name)}</h3><p>${flagIcon(r.country)} ${esc(r.year)} · ${esc(r.tournament)} · ${esc(r.region)}</p></div><div class="team-overall"><div><strong>${r.tier}</strong><span>overall</span></div><div><strong>${Math.round(avg(r.players.map(p=>p.rating)))}</strong><span>players</span></div><div><strong>${prof.net > 0 ? '+' : ''}${prof.net}</strong><span>tag net</span></div></div><div class="team-tags">${teamTagsHtml(r)}</div><div class="team-actions"><button type="button" class="flip-btn" data-action="flipTeam">Ver roster</button><button type="button" class="flip-btn" data-action="teamStats">Stats</button></div></section><section class="team-face back"><div class="team-title"><h3>${esc(r.short)} ${r.year}</h3><p>Top · JG · Mid · Bot · Supp</p></div><div class="team-roster-list">${back}</div><button type="button" class="flip-btn" data-action="flipTeam">Volver</button></section><section class="team-face stats"><div class="team-title"><h3>${esc(r.short)} ${r.year}</h3><p>Team radar</p></div>${radar(r)}<div class="team-tags">${teamTagsHtml(r)}</div><button type="button" class="flip-btn" data-action="teamStats">Volver</button></section></div></article>`;
   }
   function playerTagPill(player, tag) {
-    const tone = ({ carry:'purple', hands:'purple', clutch:'gold', shotcall:'gold', tempo:'blue', control:'blue', engage:'green', creative:'yellow', stable:'gray', late:'blue', flex:'yellow', macro:'blue', skirmish:'red', scaling:'blue', bot:'green', upset:'red', underdog:'green', weakside:'gray', roam:'green', vision:'blue', lane:'purple', objective:'blue', teamfight:'gold' })[tag] || 'gray';
+    const tone = ({ carry:'purple', hands:'purple', clutch:'gold', shotcall:'gold', tempo:'blue', control:'blue', engage:'green', creative:'yellow', stable:'gray', late:'blue', flex:'yellow', macro:'blue', skirmish:'red', scaling:'blue', bot:'green', upset:'red', underdog:'green', weakside:'gray', roam:'green', vision:'blue', lane:'purple', objective:'blue', teamfight:'gold', choker:'red', pechoFrio:'red', tilted:'red', explosive:'yellow', momentum:'gold', ice:'blue', antiTilt:'green', flipper:'red' })[tag] || 'gray';
     const info = `${tag}: ${tagInfo(tag)}`;
     return `<span class="player-tag tag-${tone}" title="${esc(info)}" aria-label="${esc(info)}">${esc(tag)}</span>`;
   }
@@ -3410,7 +3528,7 @@
     if (els.metaText) els.metaText.innerHTML = state.meta ? `${esc(state.meta.name)}: ${esc(state.meta.text)}<small class="calc-note">Meta es la regla especial de esta run. Solo cuenta si coincide con la condición mostrada.</small>` : 'Primera tirada.';
     if (els.questText) els.questText.innerHTML = state.quest ? `${esc(state.quest.name)}: ${esc(state.quest.text)}<small class="calc-note">Quest se paga como bonus al completar el 5v. Es distinta de Meta.</small>` : 'Primera tirada.';
     if (els.synergyReasons) els.synergyReasons.innerHTML = syn.reasons.length ? synergySummary(syn) : 'Sin picks.';
-    els.metaBox.classList.toggle('is-done', meta > 0); els.questBox.classList.toggle('is-done', quest > 0); els.synergyBox.classList.toggle('is-done', syn.points > 0);
+    els.metaBox.classList.toggle('is-done', meta > 0); els.questBox.classList.toggle('is-done', quest > 0); els.synergyBox.classList.toggle('is-done', syn.points > 0); els.synergyBox.classList.toggle('is-risky', (syn.negative || 0) >= 4);
     els.slots.innerHTML = ROLES.map(role => { const p = state.picks[role], b = state.bench?.[role]; const canUndo = p && state.current && (p.rosterId === state.current.id || p.org === state.current.org); return `<div class="slot ${p ? 'filled' : ''}"><span>${esc(roleCode(role))}</span><strong>${p ? esc(p.name) : '—'}</strong>${canUndo ? `<button type="button" class="mini-action" data-action="undoPick" data-role="${esc(role)}" title="Deshacer pick del equipo actual">↶</button>` : ''}${b ? `<button type="button" class="mini-action" data-action="swapBench" data-role="${esc(role)}" title="Swap con ${esc(b.name)}">⋮</button><em class="bench-pill">bench ${esc(b.name)}</em>` : ''}</div>`; }).join('');
   }
   function renderMarket() { ensureMarket(); const button = document.querySelector('[data-action="market"]'); if (button) { button.textContent = state.marketUsed ? 'usado' : 'rotar 10c'; button.disabled = state.marketUsed; } els.market.innerHTML = state.market.map((id, i) => { const pl = allPlayers.find(x => x.id === id); if (!pl) return ''; const owned = state.owned.has(pl.id); const cost = costOf(pl); const disabled = owned && issue(pl); return `<article class="market-card tilt-card ${pl.major ? 'is-gold' : ''}"><span class="market-logo">${img(pl.logo, pl.short, ROLE_ICONS[pl.role])}</span><div><strong>${esc(pl.name)}</strong><small>${esc(pl.role)} · ${esc(pl.short)} ${pl.year}</small></div><button type="button" data-market="${i}" ${disabled ? 'disabled' : ''} title="${owned ? 'Agregar al pick si pasa validación' : 'Comprar por ' + cost + ' coins'}">${owned ? 'firmar' : cost + 'c'}</button>${composePopover(pl)}</article>`; }).join(''); }
@@ -3526,11 +3644,21 @@
   function buildTournamentField() {
     const blocked = usedOrgs();
     const pool = ROSTERS.filter(r => !blocked.has(r.org)).map(teamEntry).sort((a,b) => b.power - a.power);
-    const bosses = pool.filter(t => ['LCK','LPL'].includes(t.region)).slice(0, 9);
-    const wildcards = shuffle(pool.filter(t => !bosses.some(b => b.id === t.id))).slice(0, 6);
-    const field = [userEntry(), ...bosses, ...wildcards].slice(0, 16);
+    const asiaPool = pool.filter(t => ['LCK','LPL'].includes(t.region)).sort((a,b)=>b.power-a.power);
+    const euPool = pool.filter(t => t.region === 'LEC').sort((a,b)=>b.power-a.power);
+    const fillerPool = shuffle(pool.filter(t => !['LCK','LPL','LEC'].includes(t.region)));
+    const validSplits = [[8,6],[8,7],[9,5],[9,6],[10,5]];
+    const [asiaCount, euCount] = pick(validSplits);
+    const field = [userEntry()];
+    asiaPool.slice(0, asiaCount).forEach(t => field.push(t));
+    euPool.slice(0, euCount).forEach(t => field.push(t));
+    let filler = fillerPool.concat(pool.filter(t => !field.some(x => x.id === t.id)));
+    for (const t of filler) {
+      if (field.length >= 16) break;
+      if (!field.some(x => x.id === t.id)) field.push(t);
+    }
     field.forEach((t,i) => t.seed = i + 1);
-    return field;
+    return field.slice(0,16);
   }
   function tournament() {
     if (!state.last.tournament) state.last.tournament = { field: buildTournamentField(), swiss: [], bracket:null };
@@ -3947,28 +4075,75 @@
     if (west >= 4 && east <= 1) raw = Math.min(raw, 98);
     return Math.round(raw);
   }
-  function synergy() {
+  
+  function tagCount(ps, tag) {
+    return ps.reduce((n,p) => n + ((p.tags || []).includes(tag) ? 1 : 0), 0);
+  }
+  function hasRoleTag(ps, role, tag) {
+    return ps.some(p => p.role === role && (p.tags || []).includes(tag));
+  }
+  function addRisk(out, name, points, desc, tags=[]) {
+    out.push({ name, points: -Math.abs(points), desc, tags });
+  }
+  function synergyRisks(ps) {
+    const out = [];
+    if (!ps.length) return out;
+    const hands = tagCount(ps,'hands'), carry = tagCount(ps,'carry'), creative = tagCount(ps,'creative'), skirmish = tagCount(ps,'skirmish');
+    const shotcall = tagCount(ps,'shotcall'), control = tagCount(ps,'control'), stable = tagCount(ps,'stable'), engage = tagCount(ps,'engage');
+    const late = tagCount(ps,'late'), scaling = tagCount(ps,'scaling'), vision = tagCount(ps,'vision'), tempo = tagCount(ps,'tempo');
+    const choker = tagCount(ps,'choker'), pecho = tagCount(ps,'pechoFrio'), tilted = tagCount(ps,'tilted'), explosive = tagCount(ps,'explosive'), ice = tagCount(ps,'ice'), antiTilt = tagCount(ps,'antiTilt'), momentum = tagCount(ps,'momentum');
+    const regionMax = maxGroup(ps.map(p => p.region)); const orgMax = maxGroup(ps.map(p => p.org));
+    const east = ps.filter(p => ['LCK','LPL'].includes(p.region)).length;
+    const west = ps.filter(p => ['LEC','LCS'].includes(p.region)).length;
+
+    if (hands >= 3 || hands + carry + creative >= 5) addRisk(out, 'Flipper Mecánico', 3, 'Demasiadas manos: puedes stomppear, pero también regalar peleas.', ['hands','carry','creative']);
+    if (carry >= 3) addRisk(out, 'Triple Carry Tax', 3, 'Tres carries compiten por recursos y waves.', ['carry']);
+    if (shotcall === 0 && control <= 1) addRisk(out, 'Sin Shotcaller', 4, 'Nadie baja revoluciones cuando el mapa se rompe.', ['shotcall','control']);
+    if (engage === 0 && carry + hands >= 2) addRisk(out, 'Sin Botón De Inicio', 2, 'Hay daño, pero cuesta iniciar peleas limpias.', ['engage']);
+    if (vision === 0 && shotcall === 0 && control === 0) addRisk(out, 'Vision Gap', 3, 'Nashor y objetivos se vuelven coinflip.', ['vision','control']);
+    if (late + scaling >= 3 && tempo <= 1) addRisk(out, 'Early Game En Deuda', 2, 'Escala bien, pero puede llegar muerto al minuto 20.', ['late','scaling']);
+    if (skirmish + creative + carry >= 4 && stable <= 1) addRisk(out, 'Overforce Chain', 2, 'El equipo ve pelea y entra aunque no toque.', ['skirmish','creative']);
+    if (hasRoleTag(ps,'Top','carry') && hasRoleTag(ps,'Bot','carry') && shotcall === 0) addRisk(out, 'Dos Lados Piden Recursos', 2, 'Top y bot quieren ser win condition al mismo tiempo.', ['carry']);
+    if (orgMax === 1 && regionMax < 3) addRisk(out, 'SoloQ Comms', 2, 'Cinco estrellas sin lenguaje común ni historial.', []);
+    if (west >= 4 && east === 0) addRisk(out, 'Hopium Tax', 4, 'Full West contra endbosses necesita Chronos o milagro.', ['underdog']);
+    if (shotcall >= 3) addRisk(out, 'Too Many Chiefs', 1, 'Demasiadas voces pueden romper una call decisiva.', ['shotcall']);
+    if (hasRoleTag(ps,'Top','carry') && tempo >= 2 && stable === 0 && tagCount(ps,'weakside') === 0) addRisk(out, 'No Weakside', 1, 'Todos quieren jugar hacia adelante; nadie absorbe presión.', ['carry','tempo']);
+    if (choker + pecho >= 2 && ice + antiTilt === 0) addRisk(out, 'Pecho Frío Core', 3, 'En mapa de eliminación puede temblar la mano.', ['choker','pechoFrio']);
+    if (tilted + explosive >= 2 && antiTilt === 0) addRisk(out, 'Implosión Interna', 4, 'Si algo sale mal, las comms pueden explotar.', ['tilted','explosive']);
+    if (explosive >= 3) addRisk(out, 'Volcán De Ego', 2, 'Demasiada personalidad explosiva en el mismo server.', ['explosive']);
+    if (momentum >= 2 && tilted === 0) out.push({ name:'Momentum Core', points:2, desc:'Si gana una serie grande, el equipo se prende.', tags:['momentum'], positiveRisk:true });
+    return out.slice(0, 8);
+  }
+  function riskPenalty(risks) { return risks.reduce((a,r) => a + (r.positiveRisk ? 0 : Math.abs(r.points || 0)), 0); }
+  function riskVolatility(risks) { return Math.min(8, risks.filter(r=>!r.positiveRisk).reduce((a,r) => a + (Math.abs(r.points || 0) >= 3 ? 2 : 1), 0)); }
+
+function synergy() {
     const ps = picked();
-    let points = 0; const reasons = [];
+    let positive = 0; const reasons = [];
     const regions = count(ps.map(x=>x.region)); const countries = count(ps.map(x=>x.country)); const orgs = count(ps.map(x=>x.org));
     const regionMax = maxGroup(ps.map(x=>x.region)); const countryMax = maxGroup(ps.map(x=>x.country)); const orgMax = maxGroup(ps.map(x=>x.org));
-    if (regionMax >= 3) { points += 2; reasons.push('núcleo regional 3+'); }
-    if (countryMax >= 3) { points += 1; reasons.push('núcleo país 3+'); }
-    if (regionMax === 5) { points += 2; reasons.push('región completa'); }
-    if (countries.KR === 5) { points += 5; reasons.push('Aura Corea +5'); }
-    if (countries.CN === 5) { points += 4; reasons.push('Aura China +4'); }
-    if (countries.NA === 5) { points += 2; reasons.push('Aura NA +2'); }
-    if (countries.EU === 5) { points += 2; reasons.push('Aura EU +2'); }
-    if (orgMax >= 2) { points += Math.min(3, orgMax - 1); reasons.push('misma organización ' + orgMax); }
-    if (orgMax >= 3) { points += 2; reasons.push('legado de compañeros +2'); }
-    if (sameRegion(ps,'Jungle','Mid')) { points += 2; reasons.push('Jungle/Mid región'); }
-    if (sameTeam(ps,'Bot','Support')) { points += 4; reasons.push('duo bot real'); }
+    if (regionMax >= 3) { positive += 2; reasons.push('núcleo regional 3+'); }
+    if (countryMax >= 3) { positive += 1; reasons.push('núcleo país 3+'); }
+    if (regionMax === 5) { positive += 2; reasons.push('región completa'); }
+    if (countries.KR === 5) { positive += 5; reasons.push('Aura Corea +5'); }
+    if (countries.CN === 5) { positive += 4; reasons.push('Aura China +4'); }
+    if (countries.NA === 5) { positive += 2; reasons.push('Aura NA +2'); }
+    if (countries.EU === 5) { positive += 2; reasons.push('Aura EU +2'); }
+    if (orgMax >= 2) { positive += Math.min(3, orgMax - 1); reasons.push('misma organización ' + orgMax); }
+    if (orgMax >= 3) { positive += 2; reasons.push('legado de compañeros +2'); }
+    if (sameRegion(ps,'Jungle','Mid')) { positive += 2; reasons.push('Jungle/Mid región'); }
+    if (sameTeam(ps,'Bot','Support')) { positive += 4; reasons.push('duo bot real'); }
     const matched = matchedComps(ps);
     const compPoints = Math.min(12, matched.reduce((a,c)=>a+c.points,0));
-    points += compPoints;
+    positive += compPoints;
     matched.slice(0,8).forEach(c => reasons.push(`${c.name} +${c.points}`));
-    if (ps.some(x=>x.major)) { points += 1; reasons.push('aura internacional'); }
-    return { points, reasons, comps: matched };
+    if (ps.some(x=>x.major)) { positive += 1; reasons.push('aura internacional'); }
+    const risks = synergyRisks(ps);
+    const mentalBoost = risks.filter(r=>r.positiveRisk).reduce((a,r)=>a+(r.points||0),0);
+    positive += mentalBoost;
+    const neg = riskPenalty(risks);
+    risks.forEach(r => reasons.push(`${r.name} ${r.points > 0 ? '+' : ''}${r.points}`));
+    return { points: positive - neg, positive, negative: neg, risks, reasons, comps: matched, volatility: riskVolatility(risks) };
   }
   function matchedComps(ps) { return COMP_RULES.map(rule => matchComp(rule, ps)).filter(Boolean); }
   function matchComp(rule, ps) {
@@ -4007,9 +4182,11 @@
   }
   function pointTier(points) { return points >= 3 ? 'tier3' : points === 2 ? 'tier2' : 'tier1'; }
   function synergySummary(syn) {
-    const compChips = syn.comps.slice(0,8).map(c => `<span class="comp-chip ${pointTier(c.points)}"><strong><b class="plus ${pointTier(c.points)}">+${c.points}</b>${esc(c.name)}</strong><small>${esc(c.desc)}</small></span>`).join('');
-    const basics = syn.reasons.filter(x => !x.includes('+')).slice(0,6).map(x => `<span class="story-chip">${esc(x)}</span>`).join('');
-    return `<div class="comp-chip-wrap">${compChips || basics}</div><small class="calc-note">Sinergia = región/país, mismo equipo/org y compos por tags. ${syn.comps.length} compos activas.</small>`;
+    const compChips = syn.comps.slice(0,6).map(c => `<span class="comp-chip ${pointTier(c.points)}"><strong><b class="plus ${pointTier(c.points)}">+${c.points}</b>${esc(c.name)}</strong><small>${esc(c.desc)}</small></span>`).join('');
+    const riskChips = (syn.risks || []).slice(0,6).map(r => `<span class="risk-chip ${r.positiveRisk ? 'is-good' : ''}"><strong><b>${r.points > 0 ? '+' : ''}${r.points}</b>${esc(r.name)}</strong><small>${esc(r.desc)}</small></span>`).join('');
+    const basics = syn.reasons.filter(x => !x.includes('+') && !x.includes('-')).slice(0,5).map(x => `<span class="story-chip">${esc(x)}</span>`).join('');
+    const head = `<div class="synergy-net"><b>${syn.positive || 0}</b><span>positivo</span><b class="bad">-${syn.negative || 0}</b><span>riesgo</span><b>${syn.points}</b><span>neto</span></div>`;
+    return `${head}<div class="comp-chip-wrap">${compChips || basics}${riskChips}</div><small class="calc-note">Ahora también hay anti-sinergias: demasiadas fortalezas iguales pueden crear throws, overforce o falta de macro.</small>`;
   }
   function composePopover(candidate) {
     const base = picked().filter(p => p.role !== candidate.role);

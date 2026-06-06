@@ -243,3 +243,17 @@ Cambios verificables:
 - Builds a full 16-team Swiss field and seeds playoffs from Swiss results.
 - Bracket finalists now have real paths.
 - Rebalances West vs LCK/LPL and adds top runs panel.
+
+
+## V3.0.6 negative DNA
+
+- Adds anti-synergy risks after stacking too many similar positives.
+- Risks subtract net synergy and add controlled volatility to maps.
+- Red risk chips explain why the comp is dangerous.
+
+
+## V3.0.7 tilt chaos field
+
+- Adds mental tags: choker, pechoFrio, tilted, explosive, momentum, ice and antiTilt.
+- Chaos mode can trigger implosion events; winning with risky teams creates momentum.
+- Tournament field now uses fixed regional composition: Picks + 8-10 Asia + 5-7 Europe + filler.
