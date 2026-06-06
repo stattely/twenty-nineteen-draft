@@ -4,7 +4,7 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="theme-color" content="#0a1420" />
-  <title>Five’s Pick · V2.6.3.3</title>
+  <title>Five’s Pick · V2.6.4.3</title>
   <style>
     :root {
       --bg: #eef2f4;
@@ -309,7 +309,7 @@
     @keyframes cardFlash { 0% { transform: scale(.985); box-shadow: 0 0 0 0 rgba(200,170,110,0); } 50% { transform: scale(1.01); box-shadow: 0 0 0 10px rgba(200,170,110,.12); } 100% { transform: scale(1); box-shadow: none; } }
     @keyframes sweepIn { 0% { opacity: .35; transform: translateY(8px); } 100% { opacity: 1; transform: translateY(0); } }
   
-    /* V2.6.3.3 verified role icons: these use the uploaded PNGs directly as background images. */
+    /* V2.6.4.3 verified role icons: these use the uploaded PNGs directly as background images. */
     .version-pill {
       border: 1px solid rgba(240,213,138,.34);
       border-radius: 999px;
@@ -449,7 +449,7 @@
     }
 
   
-    /* V2.6.3.3 HARD ROLE FIX:
+    /* V2.6.4.3 HARD ROLE FIX:
        These are the exact PNGs from IconsPositions.zip, copied raw into /assets/roles-original-v24/.
        The wrapper has no circle/border/background so the uploaded icon is not double-framed or rescaled weirdly. */
     .rolefix-pill {
@@ -511,7 +511,7 @@
     .chrono-card::after { content:''; position:absolute; inset:0; background:linear-gradient(115deg, transparent, rgba(255,255,255,.09), transparent); transform:translateX(-120%); animation:chartSweep 2.8s ease-in-out infinite; pointer-events:none; }
 
 
-    /* V2.6.3.3 */
+    /* V2.6.4.3 */
     .result-overlay.map-win .result-card, .result-overlay.map-loss .result-card {
       min-width: min(640px, calc(100vw - 28px));
       padding: 22px 28px;
@@ -591,7 +591,7 @@
     @media (max-width: 760px) { .objective-grid, .chrono-grid { grid-template-columns: 1fr; } .result-overlay.map-win .result-card, .result-overlay.map-loss .result-card { min-width: calc(100vw - 22px); padding: 18px; } }
 
   
-    /* V2.6.3.3 colorful composition tooltips */
+    /* V2.6.4.3 colorful composition tooltips */
     .icon-only { min-width: 48px; padding-inline: 13px; }
     .compose-popover {
       pointer-events: none;
@@ -617,7 +617,7 @@
       transform: translateY(8px) scale(.98);
       transition: opacity .16s ease, transform .16s ease;
     }
-    .player-card:hover .compose-popover, .market-card:hover .compose-popover { opacity: 1; transform: translateY(0) scale(1); }
+    .player-card:hover .compose-popover, .player-card:focus-within .compose-popover { opacity: 1; transform: translateY(0) scale(1); }
     .compose-popover h4 { margin: 0; color: var(--gold-2); letter-spacing: .12em; text-transform: uppercase; font-size: 11px; }
     .compose-popover p { margin: 0; color: #aeb9c5; font-size: 12px; line-height: 1.35; }
     .comp-line, .comp-chip {
@@ -641,7 +641,7 @@
     @keyframes softPulse { 50% { box-shadow: 0 0 0 5px rgba(16,185,129,.10); } }
 
   
-    /* V2.6.3.3 Teams archive */
+    /* V2.6.4.3 Teams archive */
     .teams-grid {
       display: grid;
       grid-template-columns: repeat(3, minmax(0, 1fr));
@@ -786,7 +786,7 @@
     }
 
   
-    /* V2.6.3 roster alignment, filters and wallet */
+    /* V2.6.4 roster alignment, filters and wallet */
     .global-wallet {
       display: inline-flex;
       align-items: center;
@@ -896,13 +896,89 @@
       .team-player-role.role-chip { width: 26px !important; height: 26px !important; }
     }
 
+  
+    /* V2.6.4 market popover + tag tooltips */
+    .player-card { overflow: visible; }
+    .player-card:hover, .player-card:focus-within { z-index: 9; }
+    .market, .player-grid { overflow: visible; }
+    .market-card { position: relative; overflow: visible; align-items: start; }
+    .market-card > div { min-width: 0; }
+    .market-card:hover, .market-card:focus-within { z-index: 8; }
+    .compose-popover {
+      top: calc(100% + 8px);
+      left: 8px;
+      right: 8px;
+      max-height: 320px;
+      overflow: auto;
+      scrollbar-width: thin;
+    }
+    .player-card:hover .compose-popover,
+    .player-card:focus-within .compose-popover { opacity: 1; transform: translateY(0) scale(1); }
+    .market-card .compose-popover {
+      position: static;
+      display: none;
+      margin-top: 8px;
+      opacity: 1;
+      transform: none;
+      left: auto;
+      right: auto;
+      top: auto;
+      max-height: none;
+      overflow: visible;
+      grid-column: 1 / -1;
+      pointer-events: auto;
+      border-radius: 16px;
+      padding: 10px;
+    }
+    .market-card:hover .compose-popover,
+    .market-card:focus-within .compose-popover { display: grid; }
+    .compose-popover p strong { color: var(--gold-2); }
+    .tag-tip {
+      position: relative;
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      cursor: help;
+    }
+    .tag-hovercard {
+      pointer-events: none;
+      position: absolute;
+      left: 0;
+      top: calc(100% + 6px);
+      z-index: 60;
+      width: min(260px, 78vw);
+      display: grid;
+      gap: 6px;
+      border: 1px solid rgba(240,213,138,.30);
+      border-radius: 14px;
+      padding: 10px;
+      background: #08131d;
+      color: #eef2f4;
+      box-shadow: 0 18px 44px rgba(0,0,0,.42);
+      opacity: 0;
+      transform: translateY(6px) scale(.98);
+      transition: opacity .14s ease, transform .14s ease;
+    }
+    .tag-tip:hover .tag-hovercard,
+    .tag-tip:focus-within .tag-hovercard { opacity: 1; transform: translateY(0) scale(1); }
+    .tag-hovercard strong { color: var(--gold-2); font-size: 11px; text-transform: uppercase; letter-spacing: .08em; }
+    .tag-hovercard span, .tag-hovercard em { color: #b8c3cf; font-size: 11px; line-height: 1.35; font-style: normal; }
+    .tag-hovercard b { color: #eef2f4; }
+    .team-player-tags, .tag-stack { overflow: visible; }
+    .team-player-tags .tag-tip .tag-hovercard { left: -6px; }
+    .tag-stack .tag-tip .tag-hovercard { left: 0; }
+    @media (max-width: 760px) {
+      .compose-popover { left: 0; right: 0; width: auto; }
+      .tag-hovercard { width: min(220px, 70vw); }
+    }
+
   </style>
 </head>
 <body class="dark">
   <div class="app">
     <header class="topbar">
       <a class="brand" href="#" data-action="screen" data-screen="draft" aria-label="inicio"><span class="brand-mark">5V</span><span class="brand-copy">Five’s<br>Pick</span></a>
-      <div class="microline"><strong>Roll</strong><span>·</span><strong>Pick</strong><span>·</span><strong>Break</strong><span id="seedLabel">seed #LOCAL</span><span class="rolefix-pill">V2.6.3.3</span><span class="version-pill">V2.6.3.3</span></div>
+      <div class="microline"><strong>Roll</strong><span>·</span><strong>Pick</strong><span>·</span><strong>Break</strong><span id="seedLabel">seed #LOCAL</span><span class="rolefix-pill">V2.6.4.3</span><span class="version-pill">V2.6.4.3</span></div>
       <nav class="quick-actions"><span class="global-wallet" title="Coins guardadas localmente">🪙 <b id="globalWallet">0</b></span><button type="button" data-action="theme">tema</button><button type="button" data-action="copy">copiar</button><button type="button" data-action="reset">reset</button></nav>
     </header>
     <nav class="tabs" aria-label="pantallas"><button type="button" data-action="screen" data-screen="draft" aria-pressed="true" title="Arma tu roster con tiradas, tienda y picks">Picks</button><button type="button" data-action="screen" data-screen="sim" aria-pressed="false" title="Ve la simulación partido por partido">Simulación</button><button type="button" data-action="screen" data-screen="stats" aria-pressed="false" title="Consulta tus estadísticas acumuladas">Stats</button><button type="button" data-action="screen" data-screen="history" aria-pressed="false" title="Revisa runs anteriores una por una">Historia</button><button type="button" data-action="screen" data-screen="teams" aria-pressed="false" title="Explora equipos, rosters y tags">Equipos</button><button type="button" data-action="screen" data-screen="objectives" aria-pressed="false" title="Objetivos y recompensas">Objetivos</button><button type="button" data-action="screen" data-screen="chrono" aria-pressed="false" title="Modo caótico experimental">Chrono</button></nav>
@@ -986,7 +1062,7 @@
         <section class="panel"><div class="chrono-grid" id="chronoGrid"></div></section>
       </section>
 
-    <footer>Fan-made project not affiliated with Riot Games · V2.6.3.3</footer>
+    <footer>Fan-made project not affiliated with Riot Games · V2.6.4.3</footer>
   </div>
   <div class="result-overlay" id="resultOverlay" aria-live="polite"></div>
   <div class="toast" id="toast"></div>
@@ -1681,12 +1757,12 @@
   function teamCard(r) {
     const prof = teamProfile(r);
     const ordered = ROLES.map(role => r.players.find(p => p.role === role)).filter(Boolean);
-    const back = ordered.map(p => `<article class="team-player-mini"><span class="team-player-flag">${flag(p.country)}</span><div class="team-player-copy"><strong>${esc(p.name)} ${p.prime ? '<em class="prime-badge">prime</em>' : ''}</strong><small>${esc(p.role)} · ${esc(p.short)} ${p.year}</small><div class="team-player-tags">${p.tags.slice(0,4).map(t=>playerTagPill(t)).join('')}</div></div><b class="team-player-rating">${p.rating}</b><span class="team-player-role role-chip">${roleGlyph(p.role)}</span></article>`).join('');
+    const back = ordered.map(p => `<article class="team-player-mini"><span class="team-player-flag">${flag(p.country)}</span><div class="team-player-copy"><strong>${esc(p.name)} ${p.prime ? '<em class="prime-badge">prime</em>' : ''}</strong><small>${esc(p.role)} · ${esc(p.short)} ${p.year}</small><div class="team-player-tags">${p.tags.slice(0,4).map(t=>playerTagPill(p, t)).join('')}</div></div><b class="team-player-rating">${p.rating}</b><span class="team-player-role role-chip">${roleGlyph(p.role)}</span></article>`).join('');
     return `<article class="team-card" data-team-card="${esc(r.id)}"><div class="team-card-inner"><section class="team-face front"><figure class="team-logo-big">${img(r.logo, r.short, badge(r.short,r.region))}</figure><div class="team-title"><h3>${esc(r.name)}</h3><p>${flag(r.country)} ${esc(r.year)} · ${esc(r.tournament)} · ${esc(r.region)}</p></div><div class="team-overall"><div><strong>${r.tier}</strong><span>overall</span></div><div><strong>${Math.round(avg(r.players.map(p=>p.rating)))}</strong><span>players</span></div><div><strong>${prof.net > 0 ? '+' : ''}${prof.net}</strong><span>tag net</span></div></div><div class="team-tags">${teamTagsHtml(r)}</div><button type="button" class="flip-btn" data-action="flipTeam">Ver roster</button></section><section class="team-face back"><div class="team-title"><h3>${esc(r.short)} ${r.year}</h3><p>Top · JG · Mid · Bot · Supp</p></div><div class="team-roster-list">${back}</div><button type="button" class="flip-btn" data-action="flipTeam">Volver</button></section></div></article>`;
   }
-  function playerTagPill(tag) {
-    const tone = ({ carry:'purple', hands:'purple', clutch:'gold', shotcall:'gold', tempo:'blue', control:'blue', engage:'green', creative:'yellow', stable:'gray', late:'blue', flex:'yellow' })[tag] || 'gray';
-    return `<span class="player-tag tag-${tone}">${esc(tag)}</span>`;
+  function playerTagPill(player, tag) {
+    const tone = ({ carry:'purple', hands:'purple', clutch:'gold', shotcall:'gold', tempo:'blue', control:'blue', engage:'green', creative:'yellow', stable:'gray', late:'blue', flex:'yellow', macro:'blue', skirmish:'red', scaling:'blue' })[tag] || 'gray';
+    return `<span class="player-tag tag-${tone} tag-tip" tabindex="0">${esc(tag)}${tagPopover(player, tag)}</span>`;
   }
   function setTeamCols(cols) {
     state.teamCols = cols === 5 ? 5 : 3;
@@ -1705,7 +1781,7 @@
   function renderHeader() { text(els.globalWallet, state.coins); text(els.seedLabel, `seed #${state.seed}`); text(els.summarySeed, `seed #${state.seed}`); text(els.rollMeter, `${state.rolls}/${MAX_ROLLS} tiradas`); els.rollBar.style.width = `${state.rolls / MAX_ROLLS * 100}%`; if (!state.current) { text(els.runMark,'—:—'); text(els.runNote,'tira para abrir roster'); image(els.runLogo,'','?'); return; } text(els.runMark, `${state.current.short}: ${state.current.year}`); text(els.runNote, `${state.current.tournament} · ${state.current.major ? 'campeón internacional' : 'contender'}`); image(els.runLogo, state.current.logo, state.current.short); }
   function renderRoll() { els.rollCard.classList.toggle('is-gold', state.current?.rarity === 'rare'); if (!state.current) { image(els.teamLogo,'','?'); text(els.rollTitle,'Sin tirada'); text(els.rollSub,'Haz una tirada para revelar equipo, año y pool de jugadores.'); els.rollTags.innerHTML=''; return; } const r = state.current; image(els.teamLogo, r.logo, r.short); text(els.rollTitle, `${r.name} ${r.year}`); text(els.rollSub, `${flag(r.country)} ${r.region} · ${r.tournament} · tier ${r.tier}`); els.rollTags.innerHTML = (r.rarity === 'rare' ? `<span class="team-tag tag-gold">+5 carta dorada</span><span>1 de 6</span>` : '') + teamTagsHtml(r); }
   function renderPlayers() { if (!state.current) { els.players.innerHTML = '<div class="empty">Tira el dado para abrir tu primer roster.</div>'; return; } els.players.innerHTML = state.current.players.map((pl, i) => card(pl, i)).join(''); }
-  function card(pl, i) { const locked = issue(pl); const hidden = state.mode === 'blind'; return `<article class="player-card tilt-card ${pl.major ? 'is-gold' : ''} ${locked ? 'is-locked' : ''}" data-player="${i}" tabindex="0" role="button"><div class="portrait-row"><figure class="round-icon role-chip">${roleGlyph(pl.role)}</figure><figure class="round-icon"><span>${esc(roleCode(pl.role))}</span></figure></div><div class="player-main"><h3>${hidden ? '???' : esc(pl.name)}</h3><p>${hidden ? esc(pl.role) : `${flag(pl.country)} ${esc(pl.short)} ${esc(pl.year)} · ${esc(pl.tournament)}`}</p></div><div class="tag-stack">${pl.tags.map(t => `<span class="synergy-tooltip" title="${esc(tagHint(pl, t))}">${esc(t)}</span>`).join('')}</div><span class="role-badge">${esc(pl.role)}</span><strong class="rating">${hidden ? '??' : pl.rating}</strong>${locked ? `<em class="lock-copy">${esc(locked)}</em>` : ''}${composePopover(pl)}</article>`; }
+  function card(pl, i) { const locked = issue(pl); const hidden = state.mode === 'blind'; return `<article class="player-card tilt-card ${pl.major ? 'is-gold' : ''} ${locked ? 'is-locked' : ''}" data-player="${i}" tabindex="0" role="button"><div class="portrait-row"><figure class="round-icon role-chip">${roleGlyph(pl.role)}</figure><figure class="round-icon"><span>${esc(roleCode(pl.role))}</span></figure></div><div class="player-main"><h3>${hidden ? '???' : esc(pl.name)}</h3><p>${hidden ? esc(pl.role) : `${flag(pl.country)} ${esc(pl.short)} ${esc(pl.year)} · ${esc(pl.tournament)}`}</p></div><div class="tag-stack">${pl.tags.map(t => `<span class="tag-tip" tabindex="0">${esc(t)}${tagPopover(pl, t)}</span>`).join('')}</div><span class="role-badge">${esc(pl.role)}</span><strong class="rating">${hidden ? '??' : pl.rating}</strong>${locked ? `<em class="lock-copy">${esc(locked)}</em>` : ''}${composePopover(pl)}</article>`; }
   function renderSide() {
     const ps = picked(), syn = synergy(), meta = metaBonus(), quest = questBonus(), pow = power(), av = ps.length ? Math.round(avg(ps.map(x => x.rating))) : 0;
     text(els.picksCount, `${ps.length}/5`); text(els.avgScore, av); text(els.synScore, syn.points + meta + quest); text(els.cupChance, `${clamp(Math.round((pow - 76) * 2.7),0,96)}%`); text(els.coinCount, state.coins); text(els.coinHint, `${state.owned.size} desbloqueados · ${state.marketUsed ? 'rotación usada' : 'rotar 10c'}`);
@@ -1715,7 +1791,7 @@
     els.metaBox.classList.toggle('is-done', meta > 0); els.questBox.classList.toggle('is-done', quest > 0); els.synergyBox.classList.toggle('is-done', syn.points > 0);
     els.slots.innerHTML = ROLES.map(role => { const pl = state.picks[role]; return `<article class="slot" data-slot="${role}"><span class="slot-role ${pl ? '': 'role-chip'}">${pl ? img(pl.logo, pl.short, ROLE_ICONS[role]) : roleGlyph(role)}</span><div><strong>${pl ? esc(pl.name) : role}</strong><p>${pl ? `${flag(pl.country)} ${esc(pl.short)} ${pl.year} · ${esc(pl.tournament)}` : 'pendiente'}</p></div><span class="slot-score">${pl ? pl.rating : '—'}</span></article>`; }).join('');
   }
-  function renderMarket() { ensureMarket(); const button = document.querySelector('[data-action="market"]'); if (button) { button.textContent = state.marketUsed ? 'usado' : 'rotar 10c'; button.disabled = state.marketUsed; } els.market.innerHTML = state.market.map((id, i) => { const pl = allPlayers.find(x => x.id === id); if (!pl) return ''; const owned = state.owned.has(pl.id); const cost = costOf(pl); const disabled = owned && issue(pl); return `<article class="market-card tilt-card ${pl.major ? 'is-gold' : ''}"><span class="market-logo">${img(pl.logo, pl.short, ROLE_ICONS[pl.role])}</span><div><strong>${esc(pl.name)}</strong><small>${esc(pl.role)} · ${esc(pl.short)} ${pl.year}</small></div><button type="button" data-market="${i}" ${disabled ? 'disabled' : ''}>${owned ? 'firmar' : cost + 'c'}</button>${composePopover(pl)}</article>`; }).join(''); }
+  function renderMarket() { ensureMarket(); const button = document.querySelector('[data-action="market"]'); if (button) { button.textContent = state.marketUsed ? 'usado' : 'rotar 10c'; button.disabled = state.marketUsed; } els.market.innerHTML = state.market.map((id, i) => { const pl = allPlayers.find(x => x.id === id); if (!pl) return ''; const owned = state.owned.has(pl.id); const cost = costOf(pl); const disabled = owned && issue(pl); return `<article class="market-card tilt-card ${pl.major ? 'is-gold' : ''}"><span class="market-logo">${img(pl.logo, pl.short, ROLE_ICONS[pl.role])}</span><div><strong>${esc(pl.name)}</strong><small>${esc(pl.role)} · ${esc(pl.short)} ${pl.year}</small></div><button type="button" data-market="${i}" ${disabled ? 'disabled' : ''} title="${owned ? 'Agregar al pick si pasa validación' : 'Comprar por ' + cost + ' coins'}">${owned ? 'firmar' : cost + 'c'}</button>${composePopover(pl)}</article>`; }).join(''); }
   function renderMini() { if (!state.last) { els.results.innerHTML = '<p class="muted">sin simulación todavía.</p>'; return; } const wins = state.last.matches.filter(m => m.finished && m.win).length, losses = state.last.matches.filter(m => m.finished && !m.win).length; els.results.innerHTML = `<strong>${state.last.complete ? (state.last.won ? 'campeón' : 'eliminado') : 'en vivo'}</strong><p class="muted">${wins}-${losses} · power ${state.last.power}</p>`; }
   function renderSim() {
     if (!state.last) {
@@ -1954,6 +2030,35 @@
     if (same.length) lines.push('Afinidad:', ...same.slice(0,4).map(p => `${p.name} (${p.region}/${p.org})`));
     return lines.join('\n');
   }
+  const TAG_INFO = {
+    carry: 'Jugador orientado a daño y cierre de partidas. Suele escalar como win condition.',
+    hands: 'Mecánica alta. Puede ganar plays por micro y outplay puro.',
+    clutch: 'Rinde en momentos de presión o mapas definitorios.',
+    shotcall: 'Aporta dirección, calls y orden macro al equipo.',
+    tempo: 'Acelera el ritmo del mapa con iniciativa temprana.',
+    control: 'Prioriza setup, visión y control de zonas.',
+    engage: 'Inicia peleas o fuerza el ángulo para entrar.',
+    creative: 'Picks raros, rutas distintas o draft poco predecible.',
+    stable: 'Piso alto y errores bajos. Menos volatilidad.',
+    late: 'Escala bien a juego tardío y teamfights largas.',
+    flex: 'Puede adaptarse a varios estilos o picks.',
+    macro: 'Entiende bien waves, tempo y objetivos.',
+    skirmish: 'Fuerte en peleas cortas y 2v2/3v3.',
+    scaling: 'Mejora mucho con oro, niveles y tiempo.',
+    bot: 'El plan del equipo gira más hacia la botlane.',
+    underdog: 'Roster peligroso por sorpresa y momentum.',
+    upset: 'Capaz de romper pronósticos si entra en racha.'
+  };
+  function tagInfo(tag) { return TAG_INFO[tag] || 'Tag de identidad. Afecta compos, sinergias o estilo de juego.'; }
+  function tagCompLines(player, tag) {
+    const comps = COMP_RULES.filter(c => c.req.some(r => r.tag === tag)).slice(0,4);
+    if (!comps.length) return '<em>Este tag no activa compos destacadas por sí solo.</em>';
+    return comps.map(c => `<span><b>+${c.points}</b> ${esc(c.name)}</span>`).join('');
+  }
+  function tagPopover(player, tag) {
+    return `<span class="tag-hovercard"><strong>${esc(tag)}</strong><span>${esc(tagInfo(tag))}</span><span>${tagCompLines(player, tag)}</span></span>`;
+  }
+  
   function tagHint(player, tag) {
     const comps = COMP_RULES.filter(c => c.req.some(r => r.tag === tag));
     return `${tag}: aparece en ${comps.length} compos. ${comps.slice(0,4).map(c=>c.name).join(', ')}`;

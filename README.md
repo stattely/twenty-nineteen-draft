@@ -114,3 +114,10 @@ Cambios verificables:
 - Adds 3/5 column view toggle.
 - Adds global wallet next to theme button.
 - Patches several western player ratings/countries.
+
+
+## V2.6.4 UI fixes
+
+- Fixes market hover popovers so they expand inline instead of overlapping.
+- Restores visible synergy popovers on player cards.
+- Adds rich hover cards for player tags in draft and team roster views.
