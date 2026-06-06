@@ -155,3 +155,11 @@ Cambios verificables:
 - Removes internal scrollbars from composition popovers.
 - Makes player/market hover panels shorter and clearer.
 - Limits visible active/potential compositions to avoid card overlap.
+
+
+## V2.7.0 simulation recovery
+
+- Adds simulateSafe() wrapper so simulation errors no longer block the app.
+- Lazy-renders Teams only when opening Equipos to avoid heavy hidden DOM during simulation.
+- Fixes leftover setScreen('picks') calls.
+- Keeps no-scroll compact popovers.

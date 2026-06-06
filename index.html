@@ -4,7 +4,7 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="theme-color" content="#0a1420" />
-  <title>Five’s Pick · V2.6.9</title>
+  <title>Five’s Pick · V2.7.0</title>
   <style>
     :root {
       --bg: #eef2f4;
@@ -309,7 +309,7 @@
     @keyframes cardFlash { 0% { transform: scale(.985); box-shadow: 0 0 0 0 rgba(200,170,110,0); } 50% { transform: scale(1.01); box-shadow: 0 0 0 10px rgba(200,170,110,.12); } 100% { transform: scale(1); box-shadow: none; } }
     @keyframes sweepIn { 0% { opacity: .35; transform: translateY(8px); } 100% { opacity: 1; transform: translateY(0); } }
   
-    /* V2.6.9 verified role icons: these use the uploaded PNGs directly as background images. */
+    /* V2.7.0 verified role icons: these use the uploaded PNGs directly as background images. */
     .version-pill {
       border: 1px solid rgba(240,213,138,.34);
       border-radius: 999px;
@@ -449,7 +449,7 @@
     }
 
   
-    /* V2.6.9 HARD ROLE FIX:
+    /* V2.7.0 HARD ROLE FIX:
        These are the exact PNGs from IconsPositions.zip, copied raw into /assets/roles-original-v24/.
        The wrapper has no circle/border/background so the uploaded icon is not double-framed or rescaled weirdly. */
     .rolefix-pill {
@@ -511,7 +511,7 @@
     .chrono-card::after { content:''; position:absolute; inset:0; background:linear-gradient(115deg, transparent, rgba(255,255,255,.09), transparent); transform:translateX(-120%); animation:chartSweep 2.8s ease-in-out infinite; pointer-events:none; }
 
 
-    /* V2.6.9 */
+    /* V2.7.0 */
     .result-overlay.map-win .result-card, .result-overlay.map-loss .result-card {
       min-width: min(640px, calc(100vw - 28px));
       padding: 22px 28px;
@@ -591,7 +591,7 @@
     @media (max-width: 760px) { .objective-grid, .chrono-grid { grid-template-columns: 1fr; } .result-overlay.map-win .result-card, .result-overlay.map-loss .result-card { min-width: calc(100vw - 22px); padding: 18px; } }
 
   
-    /* V2.6.9 colorful composition tooltips */
+    /* V2.7.0 colorful composition tooltips */
     .icon-only { min-width: 48px; padding-inline: 13px; }
     .compose-popover {
       pointer-events: none;
@@ -641,7 +641,7 @@
     @keyframes softPulse { 50% { box-shadow: 0 0 0 5px rgba(16,185,129,.10); } }
 
   
-    /* V2.6.9 Teams archive */
+    /* V2.7.0 Teams archive */
     .teams-grid {
       display: grid;
       grid-template-columns: repeat(3, minmax(0, 1fr));
@@ -786,7 +786,7 @@
     }
 
   
-    /* V2.6.9 roster alignment, filters and wallet */
+    /* V2.7.0 roster alignment, filters and wallet */
     .global-wallet {
       display: inline-flex;
       align-items: center;
@@ -897,7 +897,7 @@
     }
 
   
-    /* V2.6.9 market popover + tag tooltips */
+    /* V2.7.0 market popover + tag tooltips */
     .player-card { overflow: visible; }
     .player-card:hover, .player-card:focus-within { z-index: 9; }
     .market, .player-grid { overflow: visible; }
@@ -973,7 +973,7 @@
     }
 
   
-    /* V2.6.9 compact team cards + drawn flags */
+    /* V2.7.0 compact team cards + drawn flags */
     .teams-grid { gap: 10px; }
     .team-card, .team-card-inner { min-height: 455px; }
     .team-face {
@@ -1099,7 +1099,7 @@
     }
 
   
-    /* V2.6.9 no-scroll compact popovers */
+    /* V2.7.0 no-scroll compact popovers */
     .compose-popover,
     .compose-popover.compact-popover {
       width: min(255px, calc(100vw - 28px)) !important;
@@ -1169,14 +1169,24 @@
       z-index: 25;
     }
 
+  
+    /* V2.7.0 simulation recovery */
+    .error-bubble {
+      color: #fecaca !important;
+      border-color: rgba(248,113,113,.45) !important;
+      background: rgba(127,29,29,.20) !important;
+    }
+    #simScreen[hidden] { display: none !important; }
+    #simScreen:not([hidden]) { display: block; }
+
   </style>
 </head>
 <body class="dark">
-  <!-- BUILD_MARKER_V269_NO_SCROLL_POPOVERS -->
+  <!-- BUILD_MARKER_V270_SIMULATION_RECOVERY -->
   <div class="app">
     <header class="topbar">
       <a class="brand" href="#" data-action="screen" data-screen="draft" aria-label="inicio"><span class="brand-mark">5V</span><span class="brand-copy">Five’s<br>Pick</span></a>
-      <div class="microline"><strong>Roll</strong><span>·</span><strong>Pick</strong><span>·</span><strong>Break</strong><span id="seedLabel">seed #LOCAL</span><span class="rolefix-pill">V2.6.9</span><span class="version-pill">V2.6.9</span></div>
+      <div class="microline"><strong>Roll</strong><span>·</span><strong>Pick</strong><span>·</span><strong>Break</strong><span id="seedLabel">seed #LOCAL</span><span class="rolefix-pill">V2.7.0</span><span class="version-pill">V2.7.0</span></div>
       <nav class="quick-actions"><span class="global-wallet" title="Coins guardadas localmente">🪙 <b id="globalWallet">0</b></span><button type="button" data-action="theme">tema</button><button type="button" data-action="copy">copiar</button><button type="button" data-action="reset">reset</button></nav>
     </header>
     <nav class="tabs" aria-label="pantallas"><button type="button" data-action="screen" data-screen="draft" aria-pressed="true" title="Arma tu roster con tiradas, tienda y picks">Picks</button><button type="button" data-action="screen" data-screen="sim" aria-pressed="false" title="Ve la simulación partido por partido">Simulación</button><button type="button" data-action="screen" data-screen="stats" aria-pressed="false" title="Consulta tus estadísticas acumuladas">Stats</button><button type="button" data-action="screen" data-screen="history" aria-pressed="false" title="Revisa runs anteriores una por una">Historia</button><button type="button" data-action="screen" data-screen="teams" aria-pressed="false" title="Explora equipos, rosters y tags">Equipos</button><button type="button" data-action="screen" data-screen="objectives" aria-pressed="false" title="Objetivos y recompensas">Objetivos</button><button type="button" data-action="screen" data-screen="chrono" aria-pressed="false" title="Modo caótico experimental">Chrono</button></nav>
@@ -1260,7 +1270,7 @@
         <section class="panel"><div class="chrono-grid" id="chronoGrid"></div></section>
       </section>
 
-    <footer>Fan-made project not affiliated with Riot Games · V2.6.9</footer>
+    <footer>Fan-made project not affiliated with Riot Games · V2.7.0</footer>
   </div>
   <div class="result-overlay" id="resultOverlay" aria-live="polite"></div>
   <div class="toast" id="toast"></div>
@@ -1613,7 +1623,7 @@
     if (action === 'reroll') { fx(actionEl, 'roll'); return roll({ reroll: true }); }
     if (action === 'scout') { fx(actionEl, 'pulse'); return roll({ scout: true }); }
     if (action === 'skip') return roll();
-    if (action === 'simulate') { fx(actionEl, 'pulse'); return simulate(); }
+    if (action === 'simulate') { fx(actionEl, 'pulse'); return simulateSafe(); }
     if (action === 'market') return rotateMarketManual();
     if (action === 'clearStats') return clearStats();
     if (action === 'toggleMatch') return toggleMatch(Number(actionEl.dataset.match));
@@ -1684,12 +1694,29 @@
   function mustPick() { if (!state.current || !hasValidCurrent()) return false; return MAX_ROLLS - (state.rolls + 1) < openRoles().length; }
   function hasValidCurrent() { return !!state.current.players.some(p => !issue(p)); }
 
+
+  async function simulateSafe() {
+    try {
+      await simulate();
+    } catch (err) {
+      console.error('[Five’s Pick] Simulation failed:', err);
+      state.simming = false;
+      setScreen('sim');
+      if (!state.last) state.last = { power: power(), complete: false, won: false, eliminated: '', matches: [], activeMatch: -1, activeGame: -1, activeEvent: -1, groups: [0,0], error: true };
+      els.simSubtitle.textContent = 'La simulación se detuvo.';
+      els.liveFocus.classList.add('is-quiet');
+      els.liveFocus.innerHTML = `<div class="sim-bubble error-bubble">Error de simulación · ${esc(err?.message || err || 'desconocido')}</div>`;
+      els.simTimeline.innerHTML = state.last?.matches?.length ? els.simTimeline.innerHTML : '<div class="empty">No se pudo iniciar la run. Reinicia la run o vuelve a intentar.</div>';
+      toast('Error de simulación. Ya no quedó bloqueada.');
+    }
+  }
+
   async function simulate() {
     if (state.simming) return toast('Simulación en curso.');
     if (picked().length < 5) return toast('Faltan roles. No simules incompleto.');
     state.simming = true;
     state.openMatches = new Set();
-    state.last = { power: power(), complete: false, won: false, eliminated: '', matches: [], activeMatch: -1, activeGame: -1, activeEvent: -1, groups: [0,0] };
+    state.last = { power: power(), complete: false, won: false, eliminated: '', matches: [], activeMatch: -1, activeGame: -1, activeEvent: -1, groups: [0,0], startedAt: Date.now() };
     setScreen('sim');
     render();
     await wait(350);
@@ -1990,9 +2017,9 @@
   }
 
 
-  function render() { renderScreens(); renderChoices(); renderHeader(); renderRoll(); renderPlayers(); renderSide(); renderMarket(); renderMini(); renderSim(); renderStats(); renderTeams(); renderObjectives(); renderChrono(); }
+  function render() { renderScreens(); renderChoices(); renderHeader(); renderRoll(); renderPlayers(); renderSide(); renderMarket(); renderMini(); renderSim(); renderStats(); if (state.screen === 'teams') renderTeams(); renderObjectives(); renderChrono(); }
   function renderScreens() { ['draft','sim','stats','history','teams','objectives','chrono'].forEach(name => { const panel = $(`${name}Screen`); if (panel) panel.hidden = state.screen !== name; }); document.querySelectorAll('[data-action="screen"]').forEach(b => b.setAttribute('aria-pressed', String(b.dataset.screen === state.screen))); }
-  function setScreen(screen) { state.screen = screen || 'draft'; render(); }
+  function setScreen(screen) { state.screen = screen || 'draft'; render(); if (state.screen === 'teams') renderTeams(); }
   function renderChoices() { document.querySelectorAll('[data-setting]').forEach(group => group.querySelectorAll('.choice').forEach(b => b.setAttribute('aria-pressed', String(state[group.dataset.setting] === b.dataset.value)))); }
   function renderHeader() { text(els.globalWallet, state.coins); text(els.seedLabel, `seed #${state.seed}`); text(els.summarySeed, `seed #${state.seed}`); text(els.rollMeter, `${state.rolls}/${MAX_ROLLS} tiradas`); els.rollBar.style.width = `${state.rolls / MAX_ROLLS * 100}%`; if (!state.current) { text(els.runMark,'—:—'); text(els.runNote,'tira para abrir roster'); image(els.runLogo,'','?'); return; } text(els.runMark, `${state.current.short}: ${state.current.year}`); text(els.runNote, `${state.current.tournament} · ${state.current.major ? 'campeón internacional' : 'contender'}`); image(els.runLogo, state.current.logo, state.current.short); }
   function renderRoll() { els.rollCard.classList.toggle('is-gold', state.current?.rarity === 'rare'); if (!state.current) { image(els.teamLogo,'','?'); text(els.rollTitle,'Sin tirada'); text(els.rollSub,'Haz una tirada para revelar equipo, año y pool de jugadores.'); els.rollTags.innerHTML=''; return; } const r = state.current; image(els.teamLogo, r.logo, r.short); text(els.rollTitle, `${r.name} ${r.year}`); text(els.rollSub, `${flag(r.country)} ${r.region} · ${r.tournament} · tier ${r.tier}`); els.rollTags.innerHTML = (r.rarity === 'rare' ? `<span class="team-tag tag-gold">+5 carta dorada</span><span>1 de 6</span>` : '') + teamTagsHtml(r); }
@@ -2018,6 +2045,7 @@
       return;
     }
     const r = state.last;
+    if (!Array.isArray(r.matches)) r.matches = [];
     const activeSeries = r.matches[r.activeMatch];
     const activeGame = activeSeries?.games[r.activeGame];
     const ev = activeGame?.events[r.activeEvent];
@@ -2163,7 +2191,7 @@
   function marketAction(i) { const pl = allPlayers.find(x => x.id === state.market[i]); if (!pl) return; if (!state.owned.has(pl.id)) { const c = costOf(pl); if (state.coins < c) return toast(`te faltan ${c - state.coins} coins.`); state.coins -= c; state.owned.add(pl.id); write(STORE.coins, state.coins); write(STORE.owned, JSON.stringify([...state.owned])); toast(`${pl.name} desbloqueado.`); return render(); } const problem = issue(pl); if (problem) return toast(problem); state.picks[pl.role] = pl; render(); toast(`${pl.name} firmado desde tienda.`); }
   function toggleMatch(index) { if (Number.isNaN(index) || !state.last?.matches?.[index]) return; if (state.openMatches.has(index)) state.openMatches.delete(index); else state.openMatches.add(index); renderSim(); }
   function flash(el, klass) { if (!el) return; el.classList.remove(klass); void el.offsetWidth; el.classList.add(klass); setTimeout(() => el.classList.remove(klass), 420); }
-  function resetRun() { state.seed=seed(); state.rng=makeRng(state.seed); state.current=null; state.picks=Object.fromEntries(ROLES.map(r=>[r,null])); state.rolls=0; state.rerollUsed=false; state.scoutUsed=false; state.marketUsed=false; state.meta=null; state.quest=null; state.last=null; state.simming=false; state.openMatches = new Set(); rotateMarket(false); setScreen('picks'); toast('run reiniciada.'); }
+  function resetRun() { state.seed=seed(); state.rng=makeRng(state.seed); state.current=null; state.picks=Object.fromEntries(ROLES.map(r=>[r,null])); state.rolls=0; state.rerollUsed=false; state.scoutUsed=false; state.marketUsed=false; state.meta=null; state.quest=null; state.last=null; state.simming=false; state.openMatches = new Set(); rotateMarket(false); setScreen('draft'); toast('run reiniciada.'); }
   function clearStats() { if (!confirm('¿Borrar estadísticas locales?')) return; state.stats = defaultStats(); write(STORE.stats, JSON.stringify(state.stats)); renderStats(); toast('Stats reiniciadas.'); }
   async function showResult(kind, title, copy) {
     if (!els.resultOverlay) return;
