@@ -4,7 +4,7 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="theme-color" content="#0a1420" />
-  <title>Five’s Pick · V2.6.1</title>
+  <title>Five’s Pick · V2.6.2</title>
   <style>
     :root {
       --bg: #eef2f4;
@@ -309,7 +309,7 @@
     @keyframes cardFlash { 0% { transform: scale(.985); box-shadow: 0 0 0 0 rgba(200,170,110,0); } 50% { transform: scale(1.01); box-shadow: 0 0 0 10px rgba(200,170,110,.12); } 100% { transform: scale(1); box-shadow: none; } }
     @keyframes sweepIn { 0% { opacity: .35; transform: translateY(8px); } 100% { opacity: 1; transform: translateY(0); } }
   
-    /* V2.6.1 verified role icons: these use the uploaded PNGs directly as background images. */
+    /* V2.6.2 verified role icons: these use the uploaded PNGs directly as background images. */
     .version-pill {
       border: 1px solid rgba(240,213,138,.34);
       border-radius: 999px;
@@ -449,7 +449,7 @@
     }
 
   
-    /* V2.6.1 HARD ROLE FIX:
+    /* V2.6.2 HARD ROLE FIX:
        These are the exact PNGs from IconsPositions.zip, copied raw into /assets/roles-original-v24/.
        The wrapper has no circle/border/background so the uploaded icon is not double-framed or rescaled weirdly. */
     .rolefix-pill {
@@ -511,7 +511,7 @@
     .chrono-card::after { content:''; position:absolute; inset:0; background:linear-gradient(115deg, transparent, rgba(255,255,255,.09), transparent); transform:translateX(-120%); animation:chartSweep 2.8s ease-in-out infinite; pointer-events:none; }
 
 
-    /* V2.6.1 */
+    /* V2.6.2 */
     .result-overlay.map-win .result-card, .result-overlay.map-loss .result-card {
       min-width: min(640px, calc(100vw - 28px));
       padding: 22px 28px;
@@ -591,7 +591,7 @@
     @media (max-width: 760px) { .objective-grid, .chrono-grid { grid-template-columns: 1fr; } .result-overlay.map-win .result-card, .result-overlay.map-loss .result-card { min-width: calc(100vw - 22px); padding: 18px; } }
 
   
-    /* V2.6.1 colorful composition tooltips */
+    /* V2.6.2 colorful composition tooltips */
     .icon-only { min-width: 48px; padding-inline: 13px; }
     .compose-popover {
       pointer-events: none;
@@ -641,7 +641,7 @@
     @keyframes softPulse { 50% { box-shadow: 0 0 0 5px rgba(16,185,129,.10); } }
 
   
-    /* V2.6.1 Teams archive */
+    /* V2.6.2 Teams archive */
     .teams-grid {
       display: grid;
       grid-template-columns: repeat(3, minmax(0, 1fr));
@@ -791,7 +791,7 @@
   <div class="app">
     <header class="topbar">
       <a class="brand" href="#" data-action="screen" data-screen="draft" aria-label="inicio"><span class="brand-mark">5V</span><span class="brand-copy">Five’s<br>Pick</span></a>
-      <div class="microline"><strong>Roll</strong><span>·</span><strong>Pick</strong><span>·</span><strong>Break</strong><span id="seedLabel">seed #LOCAL</span><span class="rolefix-pill">V2.6.1</span><span class="version-pill">V2.6.1</span></div>
+      <div class="microline"><strong>Roll</strong><span>·</span><strong>Pick</strong><span>·</span><strong>Break</strong><span id="seedLabel">seed #LOCAL</span><span class="rolefix-pill">V2.6.2</span><span class="version-pill">V2.6.2</span></div>
       <nav class="quick-actions"><button type="button" data-action="theme">tema</button><button type="button" data-action="copy">copiar</button><button type="button" data-action="reset">reset</button></nav>
     </header>
     <nav class="tabs" aria-label="pantallas"><button type="button" data-action="screen" data-screen="draft" aria-pressed="true" title="Arma tu roster con tiradas, tienda y picks">Picks</button><button type="button" data-action="screen" data-screen="sim" aria-pressed="false" title="Ve la simulación partido por partido">Simulación</button><button type="button" data-action="screen" data-screen="stats" aria-pressed="false" title="Consulta tus estadísticas acumuladas">Stats</button><button type="button" data-action="screen" data-screen="history" aria-pressed="false" title="Revisa runs anteriores una por una">Historia</button><button type="button" data-action="screen" data-screen="teams" aria-pressed="false" title="Explora equipos, rosters y tags">Equipos</button><button type="button" data-action="screen" data-screen="objectives" aria-pressed="false" title="Objetivos y recompensas">Objetivos</button><button type="button" data-action="screen" data-screen="chrono" aria-pressed="false" title="Modo caótico experimental">Chrono</button></nav>
@@ -868,7 +868,7 @@
         <section class="panel"><div class="chrono-grid" id="chronoGrid"></div></section>
       </section>
 
-    <footer>Fan-made project not affiliated with Riot Games · V2.6.1</footer>
+    <footer>Fan-made project not affiliated with Riot Games · V2.6.2</footer>
   </div>
   <div class="result-overlay" id="resultOverlay" aria-live="polite"></div>
   <div class="toast" id="toast"></div>
@@ -1119,6 +1119,18 @@
     rolls: 0, rerollUsed: false, scoutUsed: false, marketUsed: false, meta: null, quest: null, market: [], coins: readNumber(STORE.coins, STARTING_COINS), owned: readSet(STORE.owned), objectiveClaims: readSet(STORE.objectives), chrono: readObject(STORE.chrono, { inventory:{}, active:{} }), stats: readStats(), last: null, simming: false, openMatches: new Set()
   };
   state.rng = makeRng(state.seed);
+
+  const TEAM_PROFILES = {
+      'ssw-2014': { good:[{name:'Vision kingdom',points:5},{name:'Macro choke',points:5},{name:'Map suffocation',points:4},{name:'Teamfight',points:4}], bad:[] },
+      'skt-2015': { good:[{name:'Dynasty aura',points:5},{name:'Macro control',points:4},{name:'Clutch',points:4},{name:'Late game',points:4}], bad:[] },
+      't1-2023': { good:[{name:'Clutch dynasty',points:5},{name:'Teamfight',points:4},{name:'Lane pressure',points:4},{name:'Champion pool',points:3}], bad:[] },
+      'g2-2019-msi': { good:[{name:'Flex gods',points:4},{name:'Creative chaos',points:3},{name:'Tempo',points:3}], bad:[{name:'Flipper',points:-1}] },
+      'g2-2020': { good:[{name:'Flex picks',points:3},{name:'Skirmish',points:3},{name:'Caps factor',points:3}], bad:[{name:'Overforce',points:-1}] },
+      'fnc-2015': { good:[{name:'Western peak',points:3},{name:'Lane pressure',points:3},{name:'Macro',points:2}], bad:[{name:'Scaling tax',points:-1}] },
+      'clg-2016-msi': { good:[{name:'MSI miracle',points:3},{name:'Teamfight',points:3},{name:'Bot side',points:2}], bad:[{name:'Low floor',points:-1}] },
+      'tsm-2016': { good:[{name:'NA superteam',points:3},{name:'Lane pressure',points:2},{name:'Bot side',points:2}], bad:[{name:'Worlds curse',points:-1}] },
+      'fly-2024': { good:[{name:'Teamfight',points:3},{name:'Creative top',points:2},{name:'Western hope',points:2}], bad:[{name:'Flipper',points:-1}] }
+    };
 
   try { boot(); } catch (err) { fatal(err); }
 
@@ -1473,17 +1485,6 @@
     if (!out.length) out.push({ name:'Low volatility', points:-1 });
     return out;
   }
-  const TEAM_PROFILES = {
-    'ssw-2014': { good:[{name:'Vision kingdom',points:5},{name:'Macro choke',points:5},{name:'Map suffocation',points:4},{name:'Teamfight',points:4}], bad:[] },
-    'skt-2015': { good:[{name:'Dynasty aura',points:5},{name:'Macro control',points:4},{name:'Clutch',points:4},{name:'Late game',points:4}], bad:[] },
-    't1-2023': { good:[{name:'Clutch dynasty',points:5},{name:'Teamfight',points:4},{name:'Lane pressure',points:4},{name:'Champion pool',points:3}], bad:[] },
-    'g2-2019-msi': { good:[{name:'Flex gods',points:4},{name:'Creative chaos',points:3},{name:'Tempo',points:3}], bad:[{name:'Flipper',points:-1}] },
-    'g2-2020': { good:[{name:'Flex picks',points:3},{name:'Skirmish',points:3},{name:'Caps factor',points:3}], bad:[{name:'Overforce',points:-1}] },
-    'fnc-2015': { good:[{name:'Western peak',points:3},{name:'Lane pressure',points:3},{name:'Macro',points:2}], bad:[{name:'Scaling tax',points:-1}] },
-    'clg-2016-msi': { good:[{name:'MSI miracle',points:3},{name:'Teamfight',points:3},{name:'Bot side',points:2}], bad:[{name:'Low floor',points:-1}] },
-    'tsm-2016': { good:[{name:'NA superteam',points:3},{name:'Lane pressure',points:2},{name:'Bot side',points:2}], bad:[{name:'Worlds curse',points:-1}] },
-    'fly-2024': { good:[{name:'Teamfight',points:3},{name:'Creative top',points:2},{name:'Western hope',points:2}], bad:[{name:'Flipper',points:-1}] }
-  };
   function teamTagPill(t, bad) {
     const points = bad ? -1 : t.points;
     const tone = tagTone(Math.abs(points), bad);

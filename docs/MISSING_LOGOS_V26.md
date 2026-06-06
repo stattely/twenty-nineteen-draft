@@ -18,7 +18,5 @@ Reused:
 - TL 2018/2024 -> MSI TL 2019 logo
 - MSF 2017 alt -> MSF 2017 logo
 
-All previously missing western logos are now included.
-
-Added in V2.6.1:
+Still missing:
 - worlds-og-2015.png

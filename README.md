@@ -100,7 +100,7 @@ Cambios verificables:
 - Fixes screen routing to keep Picks screen stable.
 
 
-## V2.6.1 OG logo
+## V2.6.2 TEAM_PROFILES fix
 
-- Adds normalized Origen 2015 logo.
-- Updates OG logo mapping for team archive and rolls.
+- Moves TEAM_PROFILES before `boot()` so renderTeams cannot access it before initialization.
+- Includes OG logo mapping.
