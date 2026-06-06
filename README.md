@@ -140,3 +140,11 @@ Cambios verificables:
 - Cleans malformed labels like V2.6.5.3.
 - Keeps safe boot at the end of the script.
 - Adds BUILD_MARKER_V267_VERSION_CLEAN for deploy verification.
+
+
+## V2.6.8 compact teams and custom flags
+
+- Makes team cards smaller and cleaner.
+- Moves back-side button upward so it is not clipped.
+- Replaces OS flag emoji rendering with local CSS flags, because Windows often renders flag emojis as KR/CN text.
+- Shortens composition popovers.
