@@ -4,7 +4,7 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="theme-color" content="#0a1420" />
-  <title>Five’s Pick · V2.8.0</title>
+  <title>Five’s Pick · V2.9.0</title>
   <style>
     :root {
       --bg: #eef2f4;
@@ -309,7 +309,7 @@
     @keyframes cardFlash { 0% { transform: scale(.985); box-shadow: 0 0 0 0 rgba(200,170,110,0); } 50% { transform: scale(1.01); box-shadow: 0 0 0 10px rgba(200,170,110,.12); } 100% { transform: scale(1); box-shadow: none; } }
     @keyframes sweepIn { 0% { opacity: .35; transform: translateY(8px); } 100% { opacity: 1; transform: translateY(0); } }
   
-    /* V2.8.0 verified role icons: these use the uploaded PNGs directly as background images. */
+    /* V2.9.0 verified role icons: these use the uploaded PNGs directly as background images. */
     .version-pill {
       border: 1px solid rgba(240,213,138,.34);
       border-radius: 999px;
@@ -449,7 +449,7 @@
     }
 
   
-    /* V2.8.0 HARD ROLE FIX:
+    /* V2.9.0 HARD ROLE FIX:
        These are the exact PNGs from IconsPositions.zip, copied raw into /assets/roles-original-v24/.
        The wrapper has no circle/border/background so the uploaded icon is not double-framed or rescaled weirdly. */
     .rolefix-pill {
@@ -511,7 +511,7 @@
     .chrono-card::after { content:''; position:absolute; inset:0; background:linear-gradient(115deg, transparent, rgba(255,255,255,.09), transparent); transform:translateX(-120%); animation:chartSweep 2.8s ease-in-out infinite; pointer-events:none; }
 
 
-    /* V2.8.0 */
+    /* V2.9.0 */
     .result-overlay.map-win .result-card, .result-overlay.map-loss .result-card {
       min-width: min(640px, calc(100vw - 28px));
       padding: 22px 28px;
@@ -591,7 +591,7 @@
     @media (max-width: 760px) { .objective-grid, .chrono-grid { grid-template-columns: 1fr; } .result-overlay.map-win .result-card, .result-overlay.map-loss .result-card { min-width: calc(100vw - 22px); padding: 18px; } }
 
   
-    /* V2.8.0 colorful composition tooltips */
+    /* V2.9.0 colorful composition tooltips */
     .icon-only { min-width: 48px; padding-inline: 13px; }
     .compose-popover {
       pointer-events: none;
@@ -641,7 +641,7 @@
     @keyframes softPulse { 50% { box-shadow: 0 0 0 5px rgba(16,185,129,.10); } }
 
   
-    /* V2.8.0 Teams archive */
+    /* V2.9.0 Teams archive */
     .teams-grid {
       display: grid;
       grid-template-columns: repeat(3, minmax(0, 1fr));
@@ -786,7 +786,7 @@
     }
 
   
-    /* V2.8.0 roster alignment, filters and wallet */
+    /* V2.9.0 roster alignment, filters and wallet */
     .global-wallet {
       display: inline-flex;
       align-items: center;
@@ -897,7 +897,7 @@
     }
 
   
-    /* V2.8.0 market popover + tag tooltips */
+    /* V2.9.0 market popover + tag tooltips */
     .player-card { overflow: visible; }
     .player-card:hover, .player-card:focus-within { z-index: 9; }
     .market, .player-grid { overflow: visible; }
@@ -973,7 +973,7 @@
     }
 
   
-    /* V2.8.0 compact team cards + drawn flags */
+    /* V2.9.0 compact team cards + drawn flags */
     .teams-grid { gap: 10px; }
     .team-card, .team-card-inner { min-height: 455px; }
     .team-face {
@@ -1099,7 +1099,7 @@
     }
 
   
-    /* V2.8.0 no-scroll compact popovers */
+    /* V2.9.0 no-scroll compact popovers */
     .compose-popover,
     .compose-popover.compact-popover {
       width: min(255px, calc(100vw - 28px)) !important;
@@ -1170,7 +1170,7 @@
     }
 
   
-    /* V2.8.0 simulation recovery */
+    /* V2.9.0 simulation recovery */
     .error-bubble {
       color: #fecaca !important;
       border-color: rgba(248,113,113,.45) !important;
@@ -1180,7 +1180,7 @@
     #simScreen:not([hidden]) { display: block; }
 
   
-    /* V2.8 flags */
+    /* V2.9.0 flags */
     .flag-kr {
       background: #fff;
     }
@@ -1225,7 +1225,7 @@
     }
 
   
-    /* V2.8 final systems */
+    /* V2.9.0 final systems */
     .bracket-panel {
       border: 1px solid var(--line);
       border-radius: 18px;
@@ -1308,18 +1308,164 @@
       .bracket-panel header, .lineup-compare header { grid-template-columns: 1fr; gap: 4px; }
     }
 
+  
+    /* V2.9.0 final polish */
+    body:not(.dark) {
+      --bg: #ece7dc;
+      --panel: rgba(255,250,238,.88);
+      --panel-2: rgba(246,240,226,.92);
+      --ink: #17212b;
+      --muted: #6d7280;
+      --line: rgba(75,62,42,.16);
+      background:
+        radial-gradient(circle at top left, rgba(200,170,110,.16), transparent 35%),
+        linear-gradient(135deg, #f3eee4, #e6dfd1) !important;
+    }
+    .instructions-box {
+      border: 1px solid var(--line);
+      border-radius: 20px;
+      padding: 10px 12px;
+      background: var(--panel);
+      box-shadow: var(--shadow);
+      margin-bottom: 12px;
+    }
+    .instructions-box summary {
+      cursor: pointer;
+      color: var(--gold-2);
+      font-weight: 1000;
+      text-transform: uppercase;
+      letter-spacing: .08em;
+      font-size: 11px;
+    }
+    .instructions-box p { margin: 8px 0 0; color: var(--muted); font-size: 12px; line-height: 1.45; }
+    .flag-img {
+      width: 22px;
+      height: 15px;
+      object-fit: cover;
+      border-radius: 3px;
+      vertical-align: -0.18em;
+      box-shadow: 0 0 0 1px rgba(255,255,255,.25), 0 2px 6px rgba(0,0,0,.22);
+      margin-right: .28em;
+    }
+    .team-player-flag .flag-img {
+      width: 24px;
+      height: 16px;
+      margin: 0;
+    }
+    .score-card {
+      position: relative;
+      transition: transform .18s ease, border-color .18s ease, box-shadow .18s ease;
+    }
+    .score-card:hover {
+      transform: translateY(-4px) scale(1.015);
+      border-color: rgba(200,170,110,.55);
+      box-shadow: 0 20px 45px rgba(0,0,0,.20), 0 0 0 1px rgba(200,170,110,.22);
+    }
+    .score-card .stat-note { display:none !important; }
+    .score-card .stat-tip {
+      pointer-events: none;
+      position: absolute;
+      left: 12px;
+      right: 12px;
+      bottom: calc(100% + 8px);
+      z-index: 20;
+      padding: 9px 10px;
+      border-radius: 14px;
+      border: 1px solid rgba(240,213,138,.28);
+      background: #08131d;
+      color: #dbe4ea;
+      font-size: 11px;
+      line-height: 1.35;
+      opacity: 0;
+      transform: translateY(6px);
+      transition: opacity .14s ease, transform .14s ease;
+      box-shadow: 0 18px 44px rgba(0,0,0,.38);
+    }
+    .score-card:hover .stat-tip { opacity: 1; transform: translateY(0); }
+    .team-face.stats { transform: rotateY(180deg); overflow:auto; }
+    .team-card.is-stats .team-card-inner { transform: rotateY(180deg); }
+    .team-card.is-stats .team-face.back { display:none; }
+    .radar-wrap {
+      display:grid;
+      place-items:center;
+      min-height: 210px;
+    }
+    .radar-wrap svg { width: min(240px, 100%); height: auto; }
+    .radar-poly { fill: rgba(10,200,185,.22); stroke:#0ac8b9; stroke-width:2; }
+    .radar-grid { fill:none; stroke:rgba(240,213,138,.25); stroke-width:1; }
+    .radar-label { font-size:9px; fill: var(--muted); font-weight:800; text-transform:uppercase; }
+    .team-actions { display:flex; justify-content:center; gap:8px; flex-wrap:wrap; }
+    .map-card .event-list { display:none; }
+    .map-card.is-open .event-list { display:grid; }
+    .map-toggle { border:1px solid var(--line); background:var(--panel); color:var(--ink); border-radius:999px; padding:5px 8px; font-size:10px; font-weight:900; }
+    .map-head { gap: 8px; }
+    .player-menu {
+      position:absolute;
+      right:8px;
+      top:8px;
+      display:flex;
+      gap:4px;
+    }
+    .mini-action {
+      border:1px solid var(--line);
+      border-radius:999px;
+      background:rgba(0,0,0,.12);
+      color:var(--ink);
+      min-width:26px;
+      min-height:24px;
+      font-weight:1000;
+    }
+    .bench-pill {
+      display:inline-flex;
+      align-items:center;
+      gap:6px;
+      border:1px solid rgba(200,170,110,.30);
+      border-radius:999px;
+      padding:4px 7px;
+      font-size:10px;
+      font-weight:900;
+      color:var(--gold-2);
+      background:rgba(200,170,110,.08);
+    }
+    .chrono-stage {
+      display:grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap:5px;
+      margin-top:8px;
+    }
+    .chrono-stage button {
+      border:1px solid var(--line);
+      border-radius:999px;
+      padding:6px 5px;
+      background:var(--panel);
+      color:var(--ink);
+      font-size:9px;
+      font-weight:1000;
+    }
+    .chrono-stage button:disabled { opacity:.45; }
+    @media(max-width:760px){
+      .chrono-stage { grid-template-columns: repeat(2, 1fr); }
+      .score-card .stat-tip { bottom:auto; top:calc(100% + 8px); }
+    }
+
   </style>
 </head>
 <body class="dark">
-  <!-- BUILD_MARKER_V280_FINAL_SYSTEMS -->
+  <!-- BUILD_MARKER_V290_FINAL_POLISH -->
   <div class="app">
     <header class="topbar">
       <a class="brand" href="#" data-action="screen" data-screen="draft" aria-label="inicio"><span class="brand-mark">5V</span><span class="brand-copy">Five’s<br>Pick</span></a>
-      <div class="microline"><strong>Roll</strong><span>·</span><strong>Pick</strong><span>·</span><strong>Break</strong><span id="seedLabel">seed #LOCAL</span><span class="rolefix-pill">V2.8.0</span><span class="version-pill">V2.8.0</span></div>
+      <div class="microline"><strong>Roll</strong><span>·</span><strong>Pick</strong><span>·</span><strong>Break</strong><span id="seedLabel">seed #LOCAL</span><span class="rolefix-pill">V2.9.0</span><span class="version-pill">V2.9.0</span></div>
       <nav class="quick-actions"><button type="button" data-action="lang" id="langBtn" title="Cambiar idioma">ES</button><span class="global-wallet" title="Coins guardadas localmente">🪙 <b id="globalWallet">0</b></span><button type="button" data-action="theme">tema</button><button type="button" data-action="copy">copiar</button><button type="button" data-action="reset">reset</button></nav>
     </header>
     <nav class="tabs" aria-label="pantallas"><button type="button" data-action="screen" data-screen="draft" aria-pressed="true" title="Arma tu roster con tiradas, tienda y picks">Picks</button><button type="button" data-action="screen" data-screen="sim" aria-pressed="false" title="Ve la simulación partido por partido">Simulación</button><button type="button" data-action="screen" data-screen="stats" aria-pressed="false" title="Consulta tus estadísticas acumuladas">Stats</button><button type="button" data-action="screen" data-screen="history" aria-pressed="false" title="Revisa runs anteriores una por una">Historia</button><button type="button" data-action="screen" data-screen="teams" aria-pressed="false" title="Explora equipos, rosters y tags">Equipos</button><button type="button" data-action="screen" data-screen="objectives" aria-pressed="false" title="Objetivos y recompensas">Objetivos</button><button type="button" data-action="screen" data-screen="chrono" aria-pressed="false" title="Modo caótico experimental">Chrono</button></nav>
     <main>
+      <details class="instructions-box" id="instructionsBox">
+        <summary>How to play / Cómo jugar</summary>
+        <div>
+          <p><b>Roll</b>: abre un roster. <b>Pick</b>: elige 5 roles. <b>Market</b>: compra suplentes y usa 1 swap por run. <b>Chrono</b>: compra efectos por fase. <b>Simular</b>: juega Swiss, playoffs y final.</p>
+        </div>
+      </details>
       <section id="draftScreen" data-panel="draft">
         <div class="layout">
           <div class="main-col">
@@ -1367,11 +1513,11 @@
         <section class="panel sim-board"><div class="scoreline" id="simScoreline"></div><div class="focus" id="liveFocus"><p class="muted">sin simulación cargada.</p></div><div class="timeline" id="simTimeline"></div></section>
       </section>
       <section id="statsScreen" data-panel="stats" hidden>
-        <div class="screen-head panel"><div><p class="eyebrow">scoreboard</p><h2>Estadísticas</h2><p class="muted">Resumen local con detalle de runs, picks y objetivos.</p></div><div class="screen-actions"><button type="button" class="btn" data-action="screen" data-screen="draft" data-icon="←">Picks</button><button type="button" class="btn" data-action="screen" data-screen="history" data-icon="≣">Historia</button><button type="button" class="btn" data-action="clearStats" data-icon="×">Limpiar stats</button></div></div>
+        <div class="screen-head panel"><div><p class="eyebrow">scoreboard</p><h2>Estadísticas</h2><p class="muted"></p></div><div class="screen-actions"><button type="button" class="btn" data-action="screen" data-screen="draft" data-icon="←">Picks</button><button type="button" class="btn" data-action="screen" data-screen="history" data-icon="≣">Historia</button><button type="button" class="btn" data-action="clearStats" data-icon="×">Limpiar stats</button></div></div>
         <section class="score-layout"><div class="score-grid" id="scoreGrid"></div><article class="panel"><h3>Últimas runs</h3><div class="ledger" id="runLedger"></div></article><article class="panel"><h3>Top picks</h3><div class="ledger" id="pickLedger"></div></article><article class="panel wide"><h3>Historial de simulación</h3><div class="ledger" id="simLedger"></div></article></section>
       </section>
       <section id="historyScreen" data-panel="history" hidden>
-        <div class="screen-head panel"><div><p class="eyebrow">archive</p><h2>Historia</h2><p class="muted">Revisa cada run con picks, marcador y detalle plegable.</p></div><div class="screen-actions"><button type="button" class="btn" data-action="screen" data-screen="draft" data-icon="←">Picks</button><button type="button" class="btn" data-action="screen" data-screen="stats" data-icon="▦">Stats</button></div></div>
+        <div class="screen-head panel"><div><p class="eyebrow">archive</p><h2>Historia</h2><p class="muted"></p></div><div class="screen-actions"><button type="button" class="btn" data-action="screen" data-screen="draft" data-icon="←">Picks</button><button type="button" class="btn" data-action="screen" data-screen="stats" data-icon="▦">Stats</button></div></div>
         <section class="panel"><div class="history-grid" id="historyLedger"></div></section>
       </section>
     </main>
@@ -1379,7 +1525,7 @@
 
 
       <section id="teamsScreen" data-panel="teams" hidden>
-        <div class="screen-head panel"><div><p class="eyebrow">team archive</p><h2>Equipos</h2><p class="muted">Explora rosters históricos, ratings y tags buenos/malos. Da click en “Ver roster” para girar la tarjeta.</p></div><div class="screen-actions"><button type="button" class="btn" data-action="screen" data-screen="draft" data-icon="←">Picks</button><button type="button" class="btn" data-action="screen" data-screen="chrono" data-icon="↯">Chrono</button></div></div>
+        <div class="screen-head panel"><div><p class="eyebrow">team archive</p><h2>Equipos</h2><p class="muted">Rosters, tags y stats.</p></div><div class="screen-actions"><button type="button" class="btn" data-action="screen" data-screen="draft" data-icon="←">Picks</button><button type="button" class="btn" data-action="screen" data-screen="chrono" data-icon="↯">Chrono</button></div></div>
         <section class="panel team-tools">
           <label class="search-box">🔎 <input id="teamSearch" type="search" placeholder="Buscar C9, Cloud9, FNC, tag, jugador..." autocomplete="off"></label>
           <select id="teamRegionFilter" aria-label="Filtrar por región"><option value="all">Todas las regiones</option><option value="LCK">LCK</option><option value="LPL">LPL</option><option value="LEC">LEC</option><option value="LCS">LCS</option><option value="PCS">PCS</option></select>
@@ -1391,15 +1537,15 @@
       </section>
 
       <section id="objectivesScreen" data-panel="objectives" hidden>
-        <div class="screen-head panel"><div><p class="eyebrow">coin board</p><h2>Objetivos</h2><p class="muted">Misiones permanentes para ganar coins. Se calculan con tu historial local.</p></div><div class="screen-actions"><button type="button" class="btn" data-action="screen" data-screen="draft" data-icon="←">Picks</button><button type="button" class="btn" data-action="screen" data-screen="chrono" data-icon="◈">Chrono</button></div></div>
+        <div class="screen-head panel"><div><p class="eyebrow">coin board</p><h2>Objetivos</h2><p class="muted">Misiones por nivel.</p></div><div class="screen-actions"><button type="button" class="btn" data-action="screen" data-screen="draft" data-icon="←">Picks</button><button type="button" class="btn" data-action="screen" data-screen="chrono" data-icon="◈">Chrono</button></div></div>
         <section class="panel"><div class="objective-grid" id="objectiveList"></div></section>
       </section>
       <section id="chronoScreen" data-panel="chrono" hidden>
-        <div class="screen-head panel"><div><p class="eyebrow">experimental mode</p><h2>Chrono Lab</h2><p class="muted">Compra bendiciones caóticas, actívalas antes de simular y se consumirán automáticamente cuando aplique.</p></div><div class="screen-actions"><button type="button" class="btn" data-action="screen" data-screen="draft" data-icon="←">Picks</button><button type="button" class="btn" data-action="screen" data-screen="objectives" data-icon="◎">Objetivos</button></div></div>
+        <div class="screen-head panel"><div><p class="eyebrow">experimental mode</p><h2>Chrono Lab</h2><p class="muted">Efectos por fase.</p></div><div class="screen-actions"><button type="button" class="btn" data-action="screen" data-screen="draft" data-icon="←">Picks</button><button type="button" class="btn" data-action="screen" data-screen="objectives" data-icon="◎">Objetivos</button></div></div>
         <section class="panel"><div class="chrono-grid" id="chronoGrid"></div></section>
       </section>
 
-    <footer>Fan-made project not affiliated with Riot Games · V2.8.0</footer>
+    <footer>Fan-made project not affiliated with Riot Games · V2.9.0</footer>
   </div>
   <div class="result-overlay" id="resultOverlay" aria-live="polite"></div>
   <div class="toast" id="toast"></div>
@@ -1417,7 +1563,7 @@
   const RATING_OFFSET = -3;
   const MARKET_COST = 10;
   const ENEMY_HANDICAP = 0;
-  const STORE = { coins: 'draft_coins_v11', stats: 'draft_stats_v11', theme: 'draft_theme_v11', owned: 'draft_owned_v11', objectives: 'draft_objectives_v25', chrono: 'draft_chrono_v25', lang: 'five_pick_lang_v28' };
+  const STORE = { coins: 'draft_coins_v11', stats: 'draft_stats_v11', theme: 'draft_theme_v11', owned: 'draft_owned_v11', objectives: 'draft_objectives_v25', chrono: 'draft_chrono_v29', lang: 'five_pick_lang_v28' };
 
   const historicalTeamLogos = {
     "og-2015": "/assets/teams-historical/worlds-og-2015.png",
@@ -1735,7 +1881,7 @@
   const allPlayers = ROSTERS.flatMap(r => r.players);
   const state = {
     screen: 'draft', seed: seed(), current: null, picks: Object.fromEntries(ROLES.map(r => [r, null])), difficulty: 'normal', mode: 'classic', filter: 'all',
-    rolls: 0, rerollUsed: false, scoutUsed: false, marketUsed: false, meta: null, quest: null, market: [], coins: readNumber(STORE.coins, STARTING_COINS), owned: readSet(STORE.owned), objectiveClaims: readSet(STORE.objectives), chrono: readObject(STORE.chrono, { inventory:{}, active:{} }), stats: readStats(), last: null, simming: false, openMatches: new Set(), teamCols: 3, lang: read(STORE.lang) || 'es'
+    rolls: 0, rerollUsed: false, scoutUsed: false, marketUsed: false, meta: null, quest: null, market: [], coins: readNumber(STORE.coins, STARTING_COINS), owned: readSet(STORE.owned), objectiveClaims: readSet(STORE.objectives), chrono: readObject(STORE.chrono, { inventory:{}, active:{} }), stats: readStats(), last: null, simming: false, openMatches: new Set(), openMaps: new Set(), teamCols: 3, lang: read(STORE.lang) || 'es', bench: {}, swapUsed: false
   };
   state.rng = makeRng(state.seed);
 
@@ -1808,10 +1954,13 @@
     if (action === 'clearStats') return clearStats();
     if (action === 'toggleMatch') return toggleMatch(Number(actionEl.dataset.match));
     if (action === 'flipTeam') return flipTeam(actionEl);
+    if (action === 'teamStats') return teamStatsFlip(actionEl);
     if (action === 'teamColumns') return setTeamCols(Number(actionEl.dataset.cols));
+    if (action === 'swapBench') return swapBench(actionEl.dataset.role);
+    if (action === 'toggleMap') return toggleMap(actionEl.dataset.mapkey);
     if (action === 'claimObjective') return claimObjective(actionEl.dataset.objective);
-    if (action === 'buyChrono') return buyChrono(actionEl.dataset.chrono);
-    if (action === 'activateChrono') return activateChrono(actionEl.dataset.chrono);
+    if (action === 'buyChrono') return buyChrono(actionEl.dataset.chrono, actionEl.dataset.stage || 'swiss');
+    if (action === 'activateChrono') return activateChrono(actionEl.dataset.chrono, actionEl.dataset.stage || 'swiss');
   }
 
   function handleKeys(e) { const card = e.target.closest('[data-player]'); if (card && (e.key === 'Enter' || e.key === ' ')) { e.preventDefault(); chooseCurrent(Number(card.dataset.player), card); } }
@@ -1975,6 +2124,7 @@
 
     series.finished = true;
     series.win = series.ourWins > series.rivalWins;
+    series.mvp = series.games.map(g=>g.mvp).filter(Boolean).sort((a,b)=>series.games.filter(g=>g.mvp===b).length-series.games.filter(g=>g.mvp===a).length)[0] || '—';
     state.last.activeGame = -1;
     state.last.activeEvent = -1;
     state.openMatches.delete(state.last.activeMatch);
@@ -1986,7 +2136,7 @@
     const enemy = enemyTeam();
     const mod = roundModifier();
     const need = stage.bo === 'Bo5' ? 3 : stage.bo === 'Bo3' ? 2 : 1;
-    return { ...stage, enemy, enemyLineup: enemy.players || [], need, ourWins: 0, rivalWins: 0, win: false, finished: false, games: [], mod };
+    return { ...stage, enemy, enemyLineup: enemy.players || [], need, chronoMap: rand(1, need * 2 - 1), ourWins: 0, rivalWins: 0, win: false, finished: false, games: [], mod };
   }
 
   function makeGame(series, mapNo) {
@@ -1995,21 +2145,22 @@
     const fatigue = series.bo === 'Bo5' && mapNo >= 4 ? rand(-2, 2) : 0;
     const clutch = mapNo === series.need * 2 - 1 ? rand(-3, 4) : 0;
     const chronoEvents = [];
+    const chronoWindow = mapNo === (series.chronoMap || 1);
     let our = Math.round(state.last.power + modBonus + fatigue + clutch + rand(-d.variance, d.variance));
     let rival = Math.round((series.enemy.tier + series.gate) / 2 + d.enemy + (d.handicap || 0) + ENEMY_HANDICAP + rand(-4, 5));
-    if (chronoReady('coach-sub')) { rival -= 5; consumeChrono('coach-sub'); chronoEvents.push(chronoEvent('Coach Sub', 'El rival juega el mapa con suplente improvisado.')); }
-    if (chronoReady('scrim-leak')) { our += 4; consumeChrono('scrim-leak'); chronoEvents.push(chronoEvent('Scrim Leak', 'Tus picks lee el plan rival antes del early game.')); }
-    if (chronoReady('baron-ward')) { our += 2; consumeChrono('baron-ward'); chronoEvents.push(chronoEvent('Baron Ward', 'Control de visión mejorado alrededor de Nashor.')); }
-    if (chronoReady('peineta')) { our += 3; consumeChrono('peineta'); chronoEvents.push(chronoEvent('Una peineta', 'Aura +3: alguien se agranda y juega con swagger.')); }
-    if (chronoReady('pause-diff')) { our += 2; consumeChrono('pause-diff'); chronoEvents.push(chronoEvent('Pause Diff', 'El equipo respira, corta el tilt y vuelve al mapa.')); }
-    if (chronoReady('coach-gap')) { rival -= 3; consumeChrono('coach-gap'); chronoEvents.push(chronoEvent('Coach Gap', 'El rival pierde claridad macro por un mapa.')); }
-    if (chronoReady('visa-trouble')) { rival -= 4; consumeChrono('visa-trouble'); chronoEvents.push(chronoEvent('Visa Trouble', 'El rival improvisa un reemplazo de emergencia.')); }
-    if (chronoReady('mic-check')) { our += 3; consumeChrono('mic-check'); chronoEvents.push(chronoEvent('Mic Check', 'Comunicación limpia: todos escuchan el call correcto.')); }
-    if (chronoReady('legacy-buff') && picked().some(p => p.major)) { our += 2; consumeChrono('legacy-buff'); chronoEvents.push(chronoEvent('Legacy Buff', 'La experiencia internacional pesa en el mapa.')); }
-    if (chronoReady('crowd-buff') && series.label === 'Final') { our += 3; consumeChrono('crowd-buff'); chronoEvents.push(chronoEvent('Crowd Buff', 'La arena empuja tus picks en la Final.')); }
-    if (chronoReady('reverse-sweep') && series.rivalWins >= series.need - 1 && series.ourWins < series.rivalWins) { our += 5; consumeChrono('reverse-sweep'); chronoEvents.push(chronoEvent('Reverse Sweep Script', 'Contra la pared, tus picks encuentran clutch.')); }
-    if (chronoReady('soloq-tilt')) { const highroll = rng() > .5; our += highroll ? 6 : -3; consumeChrono('soloq-tilt'); chronoEvents.push(chronoEvent('SoloQ Tilt', highroll ? 'Highroll mecánico: alguien se prende.' : 'Lowroll mental: alguien se tiltea.')); }
-    if (chronoReady('baron-fiesta') && mapNo >= 2) { our += rand(-2, 6); consumeChrono('baron-fiesta'); chronoEvents.push(chronoEvent('Baron Fiesta', 'Nashor se vuelve fiesta: nadie sabe quién sale vivo.')); }
+    if (chronoWindow && chronoReady('coach-sub', series)) { rival -= 5; consumeChrono('coach-sub', series); chronoEvents.push(chronoEvent('Coach Sub', 'El rival juega el mapa con suplente improvisado.')); }
+    if (chronoWindow && chronoReady('scrim-leak', series)) { our += 4; consumeChrono('scrim-leak', series); chronoEvents.push(chronoEvent('Scrim Leak', 'Tus picks lee el plan rival antes del early game.')); }
+    if (chronoWindow && chronoReady('baron-ward', series)) { our += 2; consumeChrono('baron-ward', series); chronoEvents.push(chronoEvent('Baron Ward', 'Control de visión mejorado alrededor de Nashor.')); }
+    if (chronoWindow && chronoReady('peineta', series)) { our += 3; consumeChrono('peineta', series); chronoEvents.push(chronoEvent('Una peineta', 'Aura +3: alguien se agranda y juega con swagger.')); }
+    if (chronoWindow && chronoReady('pause-diff', series)) { our += 2; consumeChrono('pause-diff', series); chronoEvents.push(chronoEvent('Pause Diff', 'El equipo respira, corta el tilt y vuelve al mapa.')); }
+    if (chronoWindow && chronoReady('coach-gap', series)) { rival -= 3; consumeChrono('coach-gap', series); chronoEvents.push(chronoEvent('Coach Gap', 'El rival pierde claridad macro por un mapa.')); }
+    if (chronoWindow && chronoReady('visa-trouble', series)) { rival -= 4; consumeChrono('visa-trouble', series); chronoEvents.push(chronoEvent('Visa Trouble', 'El rival improvisa un reemplazo de emergencia.')); }
+    if (chronoWindow && chronoReady('mic-check', series)) { our += 3; consumeChrono('mic-check', series); chronoEvents.push(chronoEvent('Mic Check', 'Comunicación limpia: todos escuchan el call correcto.')); }
+    if (chronoWindow && chronoReady('legacy-buff', series) && picked().some(p => p.major)) { our += 2; consumeChrono('legacy-buff', series); chronoEvents.push(chronoEvent('Legacy Buff', 'La experiencia internacional pesa en el mapa.')); }
+    if (chronoWindow && chronoReady('crowd-buff', series) && series.label === 'Final') { our += 3; consumeChrono('crowd-buff', series); chronoEvents.push(chronoEvent('Crowd Buff', 'La arena empuja tus picks en la Final.')); }
+    if (chronoWindow && chronoReady('reverse-sweep', series) && series.rivalWins >= series.need - 1 && series.ourWins < series.rivalWins) { our += 5; consumeChrono('reverse-sweep', series); chronoEvents.push(chronoEvent('Reverse Sweep Script', 'Contra la pared, tus picks encuentran clutch.')); }
+    if (chronoWindow && chronoReady('soloq-tilt', series)) { const highroll = rng() > .5; our += highroll ? 6 : -3; consumeChrono('soloq-tilt', series); chronoEvents.push(chronoEvent('SoloQ Tilt', highroll ? 'Highroll mecánico: alguien se prende.' : 'Lowroll mental: alguien se tiltea.')); }
+    if (chronoWindow && chronoReady('baron-fiesta', series) && mapNo >= 2) { our += rand(-2, 6); consumeChrono('baron-fiesta', series); chronoEvents.push(chronoEvent('Baron Fiesta', 'Nashor se vuelve fiesta: nadie sabe quién sale vivo.')); }
 
     const genericChronos = [
       ['mental-coach',2,0,'Mental Coach','El equipo respira y no se rompe mentalmente.'],
@@ -2033,14 +2184,14 @@
       ['g2-vacation',rng()>.5?4:-2,0,'G2 Vacation Mode','Puede ser genial o terrible.']
     ];
     for (const [id, ourDelta, rivalDelta, label, copy] of genericChronos) {
-      if (chronoReady(id)) {
+      if (chronoWindow && chronoReady(id)) {
         our += ourDelta; rival += rivalDelta; consumeChrono(id);
         chronoEvents.push(chronoEvent(label, copy));
       }
     }
     let chance = clamp(.5 + (our - rival) * .042, .13, .87);
     let win = rng() < chance;
-    if (!win && chronoReady('chrono-reset')) { consumeChrono('chrono-reset'); chronoEvents.push(chronoEvent('Chrono Reset', 'Se repite el mapa perdido y el destino vuelve a tirar dados.')); chance = clamp(chance + .16, .18, .92); win = rng() < chance; our += rand(0,4); }
+    if (!win && chronoReady('chrono-reset', series)) { consumeChrono('chrono-reset', series); chronoEvents.push(chronoEvent('Chrono Reset', 'Se repite el mapa perdido y el destino vuelve a tirar dados.')); chance = clamp(chance + .16, .18, .92); win = rng() < chance; our += rand(0,4); }
     const durationSec = gameDuration(win, our, rival);
     const mvp = selectMvp(win, series.enemy).name;
     return { label: `Mapa ${mapNo}`, our, rival, chance, win, durationSec, duration: fmtDuration(durationSec), mvp, finished: false, events: chronoEvents.concat(matchEvents(win, series.enemy, durationSec, mvp, our, rival)) };
@@ -2171,10 +2322,36 @@
     if (!out.length) out.push({ name:'Low volatility', points:-1 });
     return out;
   }
+
+  const TEAM_TAG_INFO = {
+    'Low volatility':'Pocos picos; gana por orden, no por caos.',
+    'Flipper':'Puede ganar o perder por una mala pelea.',
+    'Draft risk':'Sus picks pueden salir geniales o inútiles.',
+    'Slow early':'Arranca lento y depende de escalar.',
+    'Bot dependent':'Necesita que bot sea condición de victoria.',
+    'Week 2 tax':'Rinde peor cuando la presión sube.',
+    'Baron throw':'Tiende a regalar Nashor o cerrar mal.',
+    'Worlds curse':'Historial internacional pesado.',
+    'Low floor':'Si empieza mal, cae rápido.',
+    'Scaling tax':'Paga early game por late game.',
+    'Overforce':'Fuerza peleas de más.',
+    'Stable core':'Piso sólido y errores bajos.',
+    'Macro control':'Controla waves, visión y tempo.',
+    'Teamfight':'Fuerte en 5v5.',
+    'Clutch':'Mejora en mapas de presión.',
+    'Western hope':'Buff de fe occidental.',
+    'Creative chaos':'Gana con ideas raras.',
+    'Flex picks':'Puede esconder roles y picks.',
+    'Lane pressure':'Gana ventaja desde línea.',
+    'Vision kingdom':'Asfixia el mapa con visión.',
+    'Dynasty aura':'Peso histórico en momentos grandes.'
+  };
+  function teamTagInfo(name) { return TEAM_TAG_INFO[name] || 'Identidad del equipo en una frase.'; }
+
   function teamTagPill(t, bad) {
     const points = bad ? -1 : t.points;
     const tone = tagTone(Math.abs(points), bad);
-    return `<span class="team-tag tag-${tone}" title="${esc(t.name)} · ${points > 0 ? '+' : ''}${points}">${points > 0 ? '+' : ''}${points} ${esc(t.name)}</span>`;
+    return `<span class="team-tag tag-${tone} tag-tip" tabindex="0">${points > 0 ? '+' : ''}${points} ${esc(t.name)}<span class="tag-hovercard"><strong>${esc(t.name)}</strong><span>${esc(teamTagInfo(t.name))}</span></span></span>`;
   }
   function teamTagsHtml(r) {
     const prof = teamProfile(r);
@@ -2205,11 +2382,31 @@
     document.querySelectorAll('[data-action="teamColumns"]').forEach(b => b.setAttribute('aria-pressed', String(Number(b.dataset.cols) === state.teamCols)));
     els.teamsGrid.innerHTML = list.length ? list.map(teamCard).join('') : '<div class="empty">No encontré equipos con esos filtros.</div>';
   }
+
+  function teamStats(r) {
+    const players = r.players || [];
+    const tagString = (r.styles || []).join(' ');
+    const attack = clamp(Math.round(avg(players.filter(p=>['Top','Mid','Bot'].includes(p.role)).map(p=>p.rating)) + (tagString.includes('hands')?2:0)),70,99);
+    const defense = clamp(Math.round(avg(players.filter(p=>['Top','Jungle','Support'].includes(p.role)).map(p=>p.rating)) + (tagString.includes('control')?2:0)),70,99);
+    const objectives = clamp(Math.round((players.find(p=>p.role==='Jungle')?.rating || r.tier) * .55 + (players.find(p=>p.role==='Support')?.rating || r.tier) * .45),70,99);
+    const macro = clamp(r.tier + (tagString.includes('macro')||tagString.includes('control')?3:0),70,99);
+    const clutch = clamp(r.tier + (tagString.includes('clutch')||tagString.includes('legacy')?3:0),70,99);
+    return { attack, defense, objectives, macro, clutch, average: Math.round((attack+defense+objectives+macro+clutch)/5) };
+  }
+  function radar(r) {
+    const s = teamStats(r);
+    const vals = [['Ataque',s.attack],['Defensa',s.defense],['Objetivos',s.objectives],['Macro',s.macro],['Clutch',s.clutch]];
+    const cx=120, cy=120, maxR=82;
+    const pts = vals.map((v,i)=>{ const a=(-90+i*360/vals.length)*Math.PI/180; const rr=maxR*(v[1]/100); return [Math.round(cx+Math.cos(a)*rr),Math.round(cy+Math.sin(a)*rr)]; }).map(p=>p.join(',')).join(' ');
+    const labels = vals.map((v,i)=>{ const a=(-90+i*360/vals.length)*Math.PI/180; return `<text class="radar-label" x="${Math.round(cx+Math.cos(a)*103)}" y="${Math.round(cy+Math.sin(a)*103)}" text-anchor="middle">${esc(v[0])}</text>`; }).join('');
+    return `<div class="radar-wrap"><svg viewBox="0 0 240 240"><polygon class="radar-grid" points="120,38 198,95 168,188 72,188 42,95"/><polygon class="radar-grid" points="120,70 168,105 150,162 90,162 72,105"/><polygon class="radar-poly" points="${pts}"/>${labels}<text x="120" y="124" text-anchor="middle" class="radar-label">AVG ${s.average}</text></svg></div>`;
+  }
+
   function teamCard(r) {
     const prof = teamProfile(r);
     const ordered = ROLES.map(role => r.players.find(p => p.role === role)).filter(Boolean);
     const back = ordered.map(p => `<article class="team-player-mini"><span class="team-player-flag">${flagIcon(p.country)}</span><div class="team-player-copy"><strong>${esc(p.name)} ${p.prime ? '<em class="prime-badge">prime</em>' : ''}</strong><small>${esc(p.role)} · ${esc(p.short)} ${p.year}</small><div class="team-player-tags">${p.tags.slice(0,4).map(t=>playerTagPill(p, t)).join('')}</div></div><b class="team-player-rating">${p.rating}</b><span class="team-player-role role-chip">${roleGlyph(p.role)}</span></article>`).join('');
-    return `<article class="team-card" data-team-card="${esc(r.id)}"><div class="team-card-inner"><section class="team-face front"><figure class="team-logo-big">${img(r.logo, r.short, badge(r.short,r.region))}</figure><div class="team-title"><h3>${esc(r.name)}</h3><p>${flagIcon(r.country)} ${esc(r.year)} · ${esc(r.tournament)} · ${esc(r.region)}</p></div><div class="team-overall"><div><strong>${r.tier}</strong><span>overall</span></div><div><strong>${Math.round(avg(r.players.map(p=>p.rating)))}</strong><span>players</span></div><div><strong>${prof.net > 0 ? '+' : ''}${prof.net}</strong><span>tag net</span></div></div><div class="team-tags">${teamTagsHtml(r)}</div><button type="button" class="flip-btn" data-action="flipTeam">Ver roster</button></section><section class="team-face back"><div class="team-title"><h3>${esc(r.short)} ${r.year}</h3><p>Top · JG · Mid · Bot · Supp</p></div><div class="team-roster-list">${back}</div><button type="button" class="flip-btn" data-action="flipTeam">Volver</button></section></div></article>`;
+    return `<article class="team-card" data-team-card="${esc(r.id)}"><div class="team-card-inner"><section class="team-face front"><figure class="team-logo-big">${img(r.logo, r.short, badge(r.short,r.region))}</figure><div class="team-title"><h3>${esc(r.name)}</h3><p>${flagIcon(r.country)} ${esc(r.year)} · ${esc(r.tournament)} · ${esc(r.region)}</p></div><div class="team-overall"><div><strong>${r.tier}</strong><span>overall</span></div><div><strong>${Math.round(avg(r.players.map(p=>p.rating)))}</strong><span>players</span></div><div><strong>${prof.net > 0 ? '+' : ''}${prof.net}</strong><span>tag net</span></div></div><div class="team-tags">${teamTagsHtml(r)}</div><div class="team-actions"><button type="button" class="flip-btn" data-action="flipTeam">Ver roster</button><button type="button" class="flip-btn" data-action="teamStats">Stats</button></div></section><section class="team-face back"><div class="team-title"><h3>${esc(r.short)} ${r.year}</h3><p>Top · JG · Mid · Bot · Supp</p></div><div class="team-roster-list">${back}</div><button type="button" class="flip-btn" data-action="flipTeam">Volver</button></section><section class="team-face stats"><div class="team-title"><h3>${esc(r.short)} ${r.year}</h3><p>Team radar</p></div>${radar(r)}<div class="team-tags">${teamTagsHtml(r)}</div><button type="button" class="flip-btn" data-action="teamStats">Volver</button></section></div></article>`;
   }
   function playerTagPill(player, tag) {
     const tone = ({ carry:'purple', hands:'purple', clutch:'gold', shotcall:'gold', tempo:'blue', control:'blue', engage:'green', creative:'yellow', stable:'gray', late:'blue', flex:'yellow', macro:'blue', skirmish:'red', scaling:'blue' })[tag] || 'gray';
@@ -2219,9 +2416,10 @@
     state.teamCols = cols === 5 ? 5 : 3;
     renderTeams();
   }
+  function teamStatsFlip(button) { const card = button.closest('.team-card'); if (card) card.classList.toggle('is-stats'); }
   function flipTeam(button) {
     const card = button.closest('.team-card');
-    if (card) card.classList.toggle('is-flipped');
+    if (card) card.classList.remove('is-stats'); card.classList.toggle('is-flipped');
   }
 
 
@@ -2252,7 +2450,7 @@
 
   function renderChoices() { document.querySelectorAll('[data-setting]').forEach(group => group.querySelectorAll('.choice').forEach(b => b.setAttribute('aria-pressed', String(state[group.dataset.setting] === b.dataset.value)))); }
   function renderHeader() { text(els.globalWallet, state.coins); text(els.seedLabel, `seed #${state.seed}`); text(els.summarySeed, `seed #${state.seed}`); text(els.rollMeter, `${state.rolls}/${MAX_ROLLS} ${L('tiradas','rolls')}`); els.rollBar.style.width = `${state.rolls / MAX_ROLLS * 100}%`; if (!state.current) { text(els.runMark,'—:—'); text(els.runNote,L('tira para abrir roster','roll to open roster')); image(els.runLogo,'','?'); return; } text(els.runMark, `${state.current.short}: ${state.current.year}`); text(els.runNote, `${state.current.tournament} · ${state.current.major ? 'campeón internacional' : 'contender'}`); image(els.runLogo, state.current.logo, state.current.short); }
-  function renderRoll() { els.rollCard.classList.toggle('is-gold', state.current?.rarity === 'rare'); if (!state.current) { image(els.teamLogo,'','?'); text(els.rollTitle,L('Sin tirada','No roll yet')); text(els.rollSub,L('Haz una tirada para revelar equipo, año y pool de jugadores.','Roll to reveal team, year and player pool.')); els.rollTags.innerHTML=''; return; } const r = state.current; image(els.teamLogo, r.logo, r.short); text(els.rollTitle, `${r.name} ${r.year}`); text(els.rollSub, `${flag(r.country)} ${r.region} · ${r.tournament} · tier ${r.tier}`); els.rollTags.innerHTML = (r.rarity === 'rare' ? `<span class="team-tag tag-gold">+5 carta dorada</span><span>1 de 6</span>` : '') + teamTagsHtml(r); }
+  function renderRoll() { els.rollCard.classList.toggle('is-gold', state.current?.rarity === 'rare'); if (!state.current) { image(els.teamLogo,'','?'); text(els.rollTitle,L('Sin tirada','No roll yet')); text(els.rollSub,L('Haz una tirada para revelar equipo, año y pool de jugadores.','Roll to reveal team, year and player pool.')); els.rollTags.innerHTML=''; return; } const r = state.current; image(els.teamLogo, r.logo, r.short); text(els.rollTitle, `${r.name} ${r.year}`); text(els.rollSub, `${flagIcon(r.country)} ${r.region} · ${r.tournament} · tier ${r.tier}`); els.rollTags.innerHTML = (r.rarity === 'rare' ? `<span class="team-tag tag-gold">+5 carta dorada</span><span>1 de 6</span>` : '') + teamTagsHtml(r); }
   function renderPlayers() { if (!state.current) { els.players.innerHTML = '<div class="empty">Tira el dado para abrir tu primer roster.</div>'; return; } els.players.innerHTML = state.current.players.map((pl, i) => card(pl, i)).join(''); }
   function card(pl, i) { const locked = issue(pl); const hidden = state.mode === 'blind'; return `<article class="player-card tilt-card ${pl.major ? 'is-gold' : ''} ${locked ? 'is-locked' : ''}" data-player="${i}" tabindex="0" role="button"><div class="portrait-row"><figure class="round-icon role-chip">${roleGlyph(pl.role)}</figure><figure class="round-icon"><span>${esc(roleCode(pl.role))}</span></figure></div><div class="player-main"><h3>${hidden ? '???' : esc(pl.name)}</h3><p>${hidden ? esc(pl.role) : `${flagIcon(pl.country)} ${esc(pl.short)} ${esc(pl.year)} · ${esc(pl.tournament)}`}</p></div><div class="tag-stack">${pl.tags.map(t => `<span class="tag-tip" tabindex="0">${esc(t)}${tagPopover(pl, t)}</span>`).join('')}</div><span class="role-badge">${esc(pl.role)}</span><strong class="rating">${hidden ? '??' : pl.rating}</strong>${locked ? `<em class="lock-copy">${esc(locked)}</em>` : ''}${composePopover(pl)}</article>`; }
   function renderSide() {
@@ -2262,7 +2460,7 @@
     if (els.questText) els.questText.innerHTML = state.quest ? `${esc(state.quest.name)}: ${esc(state.quest.text)}<small class="calc-note">Quest se paga como bonus al completar el 5v. Es distinta de Meta.</small>` : 'Se revela con la primera tirada.';
     if (els.synergyReasons) els.synergyReasons.innerHTML = syn.reasons.length ? synergySummary(syn) : 'Sin picks todavía.';
     els.metaBox.classList.toggle('is-done', meta > 0); els.questBox.classList.toggle('is-done', quest > 0); els.synergyBox.classList.toggle('is-done', syn.points > 0);
-    els.slots.innerHTML = ROLES.map(role => { const pl = state.picks[role]; return `<article class="slot" data-slot="${role}"><span class="slot-role ${pl ? '': 'role-chip'}">${pl ? img(pl.logo, pl.short, ROLE_ICONS[role]) : roleGlyph(role)}</span><div><strong>${pl ? esc(pl.name) : role}</strong><p>${pl ? `${flagIcon(pl.country)} ${esc(pl.short)} ${pl.year} · ${esc(pl.tournament)}` : 'pendiente'}</p></div><span class="slot-score">${pl ? pl.rating : '—'}</span></article>`; }).join('');
+    els.slots.innerHTML = ROLES.map(role => { const p = state.picks[role], b = state.bench?.[role]; return `<div class="slot ${p ? 'filled' : ''}"><span>${esc(roleCode(role))}</span><strong>${p ? esc(p.name) : '—'}</strong>${b ? `<button type="button" class="mini-action" data-action="swapBench" data-role="${esc(role)}" title="Swap con ${esc(b.name)}">⋮</button><em class="bench-pill">bench ${esc(b.name)}</em>` : ''}</div>`; }).join('');
   }
   function renderMarket() { ensureMarket(); const button = document.querySelector('[data-action="market"]'); if (button) { button.textContent = state.marketUsed ? 'usado' : 'rotar 10c'; button.disabled = state.marketUsed; } els.market.innerHTML = state.market.map((id, i) => { const pl = allPlayers.find(x => x.id === id); if (!pl) return ''; const owned = state.owned.has(pl.id); const cost = costOf(pl); const disabled = owned && issue(pl); return `<article class="market-card tilt-card ${pl.major ? 'is-gold' : ''}"><span class="market-logo">${img(pl.logo, pl.short, ROLE_ICONS[pl.role])}</span><div><strong>${esc(pl.name)}</strong><small>${esc(pl.role)} · ${esc(pl.short)} ${pl.year}</small></div><button type="button" data-market="${i}" ${disabled ? 'disabled' : ''} title="${owned ? 'Agregar al pick si pasa validación' : 'Comprar por ' + cost + ' coins'}">${owned ? 'firmar' : cost + 'c'}</button>${composePopover(pl)}</article>`; }).join(''); }
   function renderMini() { if (!state.last) { els.results.innerHTML = '<p class="muted">sin simulación todavía.</p>'; return; } const wins = state.last.matches.filter(m => m.finished && m.win).length, losses = state.last.matches.filter(m => m.finished && !m.win).length; els.results.innerHTML = `<strong>${state.last.complete ? (state.last.won ? 'campeón' : 'eliminado') : 'en vivo'}</strong><p class="muted">${wins}-${losses} · power ${state.last.power}</p>`; }
@@ -2310,10 +2508,12 @@
   function mapCard(game, j, active, activeEvent) {
     const resultClass = game.finished ? (game.win ? 'is-win' : 'is-loss') : '';
     const activeClass = active && !game.finished ? 'is-active' : '';
+    const key = `${state.last?.activeMatch ?? 'x'}-${j}`;
+    const open = state.openMaps.has(key) || (active && !game.finished);
     const secretClass = game.finished ? '' : 'is-secret';
-    const headerResult = game.finished ? `${game.win ? 'WIN' : 'LOSS'} ${game.our}-${game.rival}` : (active ? 'LIVE · resultado oculto' : 'pendiente');
-    const time = game.finished ? game.duration : (active ? 'en vivo' : 'por revelar');
-    return `<article class="map-card ${resultClass} ${activeClass} ${secretClass}"><header class="map-head"><span>${esc(game.label)} · ${time}</span><b class="${game.finished ? (game.win ? 'win' : 'loss') : ''}">${headerResult}</b></header><div class="event-list">${game.events.map((ev,k) => eventLine(ev, active && k === activeEvent)).join('')}</div></article>`;
+    const headerResult = game.finished ? `${game.win ? 'WIN' : 'LOSS'} ${game.our}-${game.rival}` : (active ? 'LIVE' : 'pendiente');
+    const time = game.finished ? `${game.duration} · MVP ${game.mvp}` : (active ? 'en vivo' : 'por revelar');
+    return `<article class="map-card ${resultClass} ${activeClass} ${secretClass} ${open ? 'is-open' : ''}"><header class="map-head"><span>${esc(game.label)} · ${time}</span><b class="${game.finished ? (game.win ? 'win' : 'loss') : ''}">${headerResult}</b><button type="button" class="map-toggle" data-action="toggleMap" data-mapkey="${esc(key)}">${open ? 'ocultar' : 'ver mapa'}</button></header><div class="event-list">${game.events.map((ev,k) => eventLine(ev, active && k === activeEvent)).join('')}</div></article>`;
   }
   function eventLine(ev, current) {
     if (!ev.visible) return `<div class="event-line is-hidden ${current ? 'is-current' : ''}"><span class="event-lock">?</span><div class="event-copy"><strong>Carta cerrada</strong><span>Se revelará cuando ocurra en la partida.</span><span class="event-side">Sin spoiler</span></div><figure class="event-logo"><span>?</span></figure></div>`;
@@ -2346,33 +2546,39 @@
 
   function renderStats() {
     const s = state.stats;
-    const winrate = s.runs ? Math.round(s.wins / s.runs * 100) : 0;
-    const avgPow = s.runs ? Math.round(s.totalPower / s.runs) : 0;
-    const dragonRate = s.games ? Math.round(s.dragons / s.games * 100) : 0;
-    const bloodRate = s.games ? Math.round(s.bloods / s.games * 100) : 0;
+    const wr = s.runs ? Math.round(s.wins / s.runs * 100) : 0;
+    const mapWr = s.games ? Math.round((s.nexus || 0) / s.games * 100) : 0;
+    const kp = s.games ? Math.min(92, Math.round(48 + (s.bloods + s.dragons + s.barons) / s.games * 5)) : 0;
+    const dpm = s.games ? Math.round(520 + ((s.highestPower || 88)-88)*9 + wr*1.6) : 0;
+    const gpm = s.games ? Math.round(360 + ((s.highestPower || 88)-88)*2.2 + wr*.55) : 0;
+    const cspm = s.games ? (7.2 + Math.min(2.6, ((s.highestPower || 88)-82)/14)).toFixed(1) : '0.0';
+    const gd15 = s.games ? Math.round(((s.highestPower || 88)-90)*95 + (s.bloods || 0)*18) : 0;
+    const vspm = s.games ? (1.8 + ((s.barons||0)+(s.dragons||0))/Math.max(1,s.games)*.08).toFixed(2) : '0.00';
+    const objCtrl = s.games ? Math.round(((s.dragons||0)+(s.barons||0)+(s.souls||0)*2)/Math.max(1,s.games*2.8)*100) : 0;
+    const fb = s.games ? Math.round((s.bloods||0)/s.games*100) : 0;
     const cards = [
-      statCard('Runs', s.runs, [bar('runs', s.runs, 'Runs totales jugadas'), bar('wins', s.wins, 'Runs ganadas'), bar('finales', s.finals, 'Finales alcanzadas')], `${s.finals} finales`, 'Volumen general de runs: jugadas, ganadas y finales.'),
-      statCard('Winrate', winrate + '%', [bar('win%', winrate, 'Porcentaje de runs ganadas'), bar('loss%', 100 - winrate, 'Porcentaje de runs perdidas'), bar('streak', Math.min(100, s.bestStreak * 20), 'Mejor racha escalada')], `racha actual ${s.currentStreak}`, 'Win%, loss% y mejor racha como barra visual.'),
-      statCard('Mapas', s.games, [bar('maps', s.games, 'Mapas simulados'), bar('nexus', s.nexus || 0, 'Nexos destruidos por tus picks'), bar('baron', s.barons || 0, 'Barones a favor')], `${s.games ? Math.round(s.games / Math.max(1, s.runs)) : 0} por run`, 'Ya no se decide por objetivos: el nexo es el cierre.'),
-      statCard('Power avg', avgPow, [bar('avg', avgPow, 'Power promedio'), bar('max', s.highestPower || avgPow, 'Power máximo logrado'), bar('floor', Math.max(0, avgPow - 8), 'Referencia baja del rango')], `max ${s.highestPower}`, 'Compara promedio, máximo y piso aproximado de poder.'),
-      statCard('First blood', s.bloods, [bar('for', bloodRate, 'First bloods a favor'), bar('miss', Math.max(0, 100 - bloodRate), 'First bloods no conseguidas'), bar('impact', Math.min(100, bloodRate * .6), 'Impacto visual estimado')], `${bloodRate}% de las partidas`, 'First blood a favor contra first blood rival.'),
-      statCard('Dragones', s.dragons, [bar('for', dragonRate, 'Primer drake a favor'), bar('miss', Math.max(0, 100 - dragonRate), 'Primer drake rival'), bar('soul', s.souls || 0, 'Almas elementales a favor')], `${dragonRate}% de las partidas`, 'Control temprano y escalado de dragones.'),
-      statCard('Clutch', (s.comebacks || 0) + (s.throws || 0), [bar('comeback', s.comebacks || 0, 'Remontadas épicas'), bar('throw', s.throws || 0, 'Throws sufridos'), bar('penta', s.pentas || 0, 'Pentakills a favor')], `${s.comebacks || 0} comeback · ${s.throws || 0} throw`, 'Momentos narrativos que no garantizan ganar o perder.'),
-      statCard('Coins', s.coinsEarned, [bar('gain', Math.min(100, s.coinsEarned / 8), 'Coins ganadas escaladas'), bar('pace', Math.min(100, s.coinsEarned / 14), 'Ritmo de farmeo'), bar('bank', Math.min(100, s.coinsEarned / 20), 'Progreso económico global')], `${state.coins} en wallet`, 'Economía acumulada y ritmo de recompensas.')
+      statCard('Match WR', wr + '%', [bar('WR', wr, 'Run winrate'), bar('Finals', s.runs?Math.round(s.finals/s.runs*100):0, 'Final conversion'), bar('Streak', Math.min(100, s.bestStreak*20), 'Best streak')], '', 'Porcentaje de runs ganadas, finales y racha.'),
+      statCard('Map WR', mapWr + '%', [bar('Map', mapWr, 'Map winrate aproximado'), bar('Games', Math.min(100, s.games*4), 'Mapas jugados'), bar('Nexus', Math.min(100,(s.nexus||0)*7), 'Nexos a favor')], '', 'Tasa de mapas ganados usando nexos a favor como señal.'),
+      statCard('KDA Index', kp, [bar('KP', kp, 'Participación/impacto estimado'), bar('FB', fb, 'First blood rate'), bar('Penta', Math.min(100,(s.pentas||0)*25), 'Pentakill moments')], '', 'Índice arcade de participación en kills, first bloods y peleas.'),
+      statCard('DPM', dpm, [bar('DPM', Math.min(100,dpm/9), 'Damage per minute estimado'), bar('Power', s.highestPower||0, 'Highest power'), bar('WR', wr, 'Winrate')], '', 'Daño por minuto estimado a partir de power, wins y eventos.'),
+      statCard('GPM', gpm, [bar('GPM', Math.min(100,gpm/5), 'Gold per minute estimado'), bar('GD15', clamp((gd15+1500)/30,0,100), 'Gold diff at 15'), bar('Obj', objCtrl, 'Objective control')], '', 'Economía estimada: oro/min, ventaja temprana y control.'),
+      statCard('CSPM', cspm, [bar('CS', Number(cspm)*10, 'CS per minute estimado'), bar('Stable', Math.min(100,(s.runs||0)*8), 'Volumen'), bar('Power', s.highestPower||0, 'Power')], '', 'Farm por minuto estimado: disciplina de líneas.'),
+      statCard('GD@15', gd15, [bar('Early', clamp((gd15+1500)/30,0,100), 'Gold diff @15 estimado'), bar('FB', fb, 'First blood rate'), bar('DPM', Math.min(100,dpm/9), 'DPM')], '', 'Ventaja temprana estimada al minuto 15.'),
+      statCard('VSPM', vspm, [bar('Vision', Math.min(100,Number(vspm)*35), 'Vision score/min estimado'), bar('Baron', Math.min(100,(s.barons||0)*12), 'Barons'), bar('Soul', Math.min(100,(s.souls||0)*20), 'Souls')], '', 'Visión/min estimada por control de mapa y objetivos.'),
+      statCard('Objective %', objCtrl + '%', [bar('Obj', objCtrl, 'Control de objetivos'), bar('Drake', Math.min(100,(s.dragons||0)*6), 'Dragons'), bar('Baron', Math.min(100,(s.barons||0)*12), 'Barons')], '', 'Control de dragones, barones y almas.'),
+      statCard('Avg Time', s.avgTime || '31:40', [bar('Pace', 62, 'Pace'), bar('Late', Math.min(100,(s.souls||0)*18), 'Late-game rate'), bar('Chaos', Math.min(100,(s.throws||0)*25), 'Throws')], '', 'Ritmo promedio de mapas: estimado por eventos largos.')
     ];
     els.scoreGrid.innerHTML = cards.join('');
-    els.runLedger.innerHTML = s.recent.length ? s.recent.map((x,i) => `<article class="ledger-row ${x.result.includes('Campeón') ? 'is-win' : 'is-loss'}" style="animation-delay:${i*35}ms"><div><strong>${esc(x.result)}</strong><div class="ledger-bar"><b style="--w:${Math.min(100, 28 + Number(x.reward || 0))}%"></b></div></div><span>${esc(x.seed)} · ${x.score} · +${x.reward}c</span></article>`).join('') : '<p class="muted">Sin runs.</p>';
-    const top = Object.entries(s.picks).sort((a,b)=>b[1]-a[1]).slice(0,8);
-    const maxPick = top[0]?.[1] || 1;
-    els.pickLedger.innerHTML = top.length ? top.map((x,i) => `<article class="ledger-row" style="animation-delay:${i*35}ms"><strong>${esc(x[0])}</strong><div class="pick-meter"><span>${x[1]} picks</span><div class="ledger-bar"><b style="--w:${Math.max(12, Math.round(x[1] / maxPick * 100))}%"></b></div></div></article>`).join('') : '<p class="muted">Sin picks.</p>';
-    els.simLedger.innerHTML = state.last?.matches?.length ? state.last.matches.map((series, i) => `<details class="ledger-detail"><summary><strong>${series.label} · ${series.win ? 'WIN' : 'LOSS'} ${series.ourWins}-${series.rivalWins}</strong><span>${esc(series.enemy.short)} ${series.enemy.year} · ${series.bo}</span></summary><div class="detail-events">${series.games.flatMap(g => g.events.filter(e => e.visible).map(e => `<span class="${e.ours ? 'is-ours' : 'is-them'}">${esc(g.label)} · ${esc(e.label)} · ${esc(e.copy)}</span>`)).join('') || '<span>Sin eventos revelados.</span>'}</div></details>`).join('') : '<p class="muted">Simula una run.</p>';
+    const topPicks = Object.entries(s.picks).sort((a,b)=>b[1]-a[1]).slice(0,8);
+    els.pickLedger.innerHTML = topPicks.length ? topPicks.map(([name,count]) => `<div class="ledger-row"><span>${esc(name)}</span><b>${count}</b></div>`).join('') : '<p class="muted">Sin picks aún.</p>';
+    els.runLedger.innerHTML = s.recent.length ? s.recent.map(r => `<div class="ledger-row ${r.result.includes('Campeón') ? 'is-ours' : 'is-them'}"><span>${esc(r.result)} · ${esc(r.seed)} · ${esc(r.mvp || 'MVP —')}</span><b>${esc(r.score)}</b></div>`).join('') : '<p class="muted">Sin runs aún.</p>';
+    els.simLedger.innerHTML = `<div class="ledger-row"><span>Chronos usados</span><b>${s.chronosUsed || 0}</b></div><div class="ledger-row"><span>Combacks</span><b>${s.comebacks || 0}</b></div><div class="ledger-row"><span>Throws</span><b>${s.throws || 0}</b></div>`;
     renderHistory();
   }
-
   function renderHistory() {
     const list = state.stats.history || [];
     if (!els.historyLedger) return;
-    els.historyLedger.innerHTML = list.length ? list.map((run, i) => `<details class="history-card" ${i === 0 ? 'open' : ''}><summary class="history-head"><strong>${esc(run.result)}</strong><span>${esc(run.seed)} · ${run.score} · +${run.reward}c</span></summary><div class="history-meta"><span>Power ${run.power}</span><span>Swiss ${run.groups}</span><span>${run.maps} mapas</span></div>${momentumChart(run.momentum || [])}<div class="history-picks">${run.picks.map(p => `<span>${esc(p.role)} · ${esc(p.name)} · ${esc(p.short)} ${p.year}</span>`).join('')}</div><div class="detail-events">${run.matches.map(m => `<span class="${m.win ? 'is-ours' : 'is-them'}">${esc(m.label)} · ${m.win ? 'WIN' : 'LOSS'} ${m.score} · ${esc(m.enemy)} · ${m.maps} mapa${m.maps === 1 ? '' : 's'}</span>`).join('')}</div></details>`).join('') : '<p class="muted">Todavía no hay runs guardadas.</p>';
+    els.historyLedger.innerHTML = list.length ? list.map((run, i) => `<details class="history-card" ${i === 0 ? 'open' : ''}><summary class="history-head"><strong>${esc(run.result)}</strong><span>${esc(run.seed)} · ${run.score} · +${run.reward}c</span></summary><div class="history-meta"><span>Power ${run.power}</span><span>Swiss ${run.groups}</span><span>${run.maps} mapas</span><span>MVP ${esc(run.mvp || '—')}</span></div>${momentumChart(run.momentum || [])}<div class="history-picks">${run.picks.map(p => `<span>${esc(p.role)} · ${esc(p.name)} · ${esc(p.short)} ${p.year}</span>`).join('')}</div><div class="detail-events">${run.matches.map(m => `<span class="${m.win ? 'is-ours' : 'is-them'}">${esc(m.label)} · ${m.win ? 'WIN' : 'LOSS'} ${m.score} · ${esc(m.enemy)} · ${m.maps} mapa${m.maps === 1 ? '' : 's'}</span>`).join('')}</div></details>`).join('') : '<p class="muted">Todavía no hay runs guardadas.</p>';
   }
 
   function momentumChart(points) {
@@ -2391,9 +2597,8 @@
 
   function statCard(label, value, bars, note, help) {
     const safe = bars.map(x => ({ label: x.label, title: x.title, height: clamp(Math.round(Number(x.value) || 0), 8, 100) }));
-    const chart = safe.map(x => `<b style="height:${x.height}%" title="${esc(x.title)} · valor visual ${x.height}/100"></b>`).join('');
-    const labels = safe.map(x => `<span title="${esc(x.title)}">${esc(x.label)}</span>`).join('');
-    return `<article class="score-card" title="${esc(help || note)}"><strong>${esc(value)}</strong><span>${esc(label)}</span><div class="mini-chart">${chart}</div><div class="bar-labels">${labels}</div><em>${esc(note)}</em><p class="stat-help">${esc(help || '')}</p></article>`;
+    const chart = safe.map(x => `<b style="height:${x.height}%" title="${esc(x.title)} · ${x.height}%"></b>`).join('');
+    return `<article class="score-card" title="${esc(help || label)}"><h3>${esc(label)}</h3><strong>${esc(value)}</strong><div class="spark">${chart}</div><span class="stat-tip">${esc(help || '')}</span></article>`;
   }
 
   function objectiveLevel(id) {
@@ -2427,37 +2632,96 @@
     write(STORE.objectives, JSON.stringify([...state.objectiveClaims])); write(STORE.coins, state.coins);
     render(); toast(`Objetivo Lv.${lv} cobrado · +${reward} coins`);
   }
+  function phaseKeyForSeries(series) {
+    if (!series) return 'any';
+    if (series.group) return 'swiss';
+    if (series.label === 'Cuartos') return 'quarters';
+    if (series.label === 'Semis') return 'semis';
+    if (series.label === 'Final') return 'final';
+    return 'any';
+  }
+  const CHRONO_STAGE_COST = { swiss:1, quarters:1.25, semis:1.45, final:1.8 };
+  function chronoKey(id, stage) { return `${id}@${stage}`; }
   function renderChrono() {
     if (!els.chronoGrid) return;
     const unlocked = state.stats.wins >= 3;
+    const stages = [['swiss','Swiss'],['quarters','QF'],['semis','SF'],['final','Final']];
     els.chronoGrid.innerHTML = CHRONO_POWERS.map(power => {
-      const count = Number(state.chrono.inventory?.[power.id] || 0);
-      const active = !!state.chrono.active?.[power.id];
-      return `<article class="chrono-card ${active ? 'is-active' : ''}"><h3>${esc(power.name)}</h3><p>${esc(power.text)}</p><span class="chrono-price">${power.cost}c · owned ${count}</span><div class="chrono-actions"><button type="button" data-action="buyChrono" data-chrono="${esc(power.id)}" ${unlocked && state.coins >= power.cost ? '' : 'disabled'}>${unlocked ? 'comprar' : 'requiere 3 wins'}</button><button type="button" data-action="activateChrono" data-chrono="${esc(power.id)}" ${count > 0 ? '' : 'disabled'}>${active ? 'activo' : 'activar'}</button></div></article>`;
+      const owned = stages.map(([k,label]) => Number(state.chrono.inventory?.[chronoKey(power.id,k)] || 0)).reduce((a,b)=>a+b,0);
+      const stageBtns = stages.map(([k,label]) => {
+        const key = chronoKey(power.id,k);
+        const cost = Math.round(power.cost * (CHRONO_STAGE_COST[k] || 1));
+        const count = Number(state.chrono.inventory?.[key] || 0);
+        const active = !!state.chrono.active?.[key];
+        return `<button type="button" data-action="${count ? 'activateChrono' : 'buyChrono'}" data-chrono="${esc(power.id)}" data-stage="${esc(k)}" ${unlocked && (count || state.coins >= cost) ? '' : 'disabled'}>${label} ${count ? (active ? 'ON' : 'x'+count) : cost+'c'}</button>`;
+      }).join('');
+      return `<article class="chrono-card"><h3>${esc(power.name)}</h3><p>${esc(power.text)}</p><span class="chrono-price">owned ${owned}</span><div class="chrono-stage">${stageBtns}</div></article>`;
     }).join('');
   }
   function saveChrono() { write(STORE.chrono, JSON.stringify(state.chrono)); }
-  function buyChrono(id) {
+  function buyChrono(id, stage='swiss') {
     const power = CHRONO_POWERS.find(p => p.id === id); if (!power) return;
     if (state.stats.wins < 3) return toast('Chrono se desbloquea con 3 wins.');
-    if (state.coins < power.cost) return toast('Te faltan coins.');
-    state.coins -= power.cost; state.chrono.inventory[id] = Number(state.chrono.inventory[id] || 0) + 1;
-    write(STORE.coins, state.coins); saveChrono(); render(); toast(`${power.name} comprado.`);
+    const cost = Math.round(power.cost * (CHRONO_STAGE_COST[stage] || 1));
+    if (state.coins < cost) return toast('Te faltan coins.');
+    const key = chronoKey(id, stage);
+    state.coins -= cost; state.chrono.inventory[key] = Number(state.chrono.inventory[key] || 0) + 1;
+    write(STORE.coins, state.coins); saveChrono(); render(); toast(`${power.name} comprado para ${stage}.`);
   }
-  function activateChrono(id) {
-    if (!Number(state.chrono.inventory?.[id] || 0)) return toast('No tienes cargas de ese Chrono.');
-    state.chrono.active[id] = !state.chrono.active[id]; saveChrono(); renderChrono(); toast(state.chrono.active[id] ? 'Chrono activado para la próxima simulación.' : 'Chrono desactivado.');
+  function activateChrono(id, stage='swiss') {
+    const key = chronoKey(id, stage);
+    if (!Number(state.chrono.inventory?.[key] || 0)) return toast('No tienes cargas de ese Chrono/fase.');
+    state.chrono.active[key] = !state.chrono.active[key]; saveChrono(); renderChrono(); toast(state.chrono.active[key] ? 'Chrono activado para esa fase.' : 'Chrono desactivado.');
   }
-  function chronoReady(id) { return !!state.chrono.active?.[id] && Number(state.chrono.inventory?.[id] || 0) > 0; }
-  function consumeChrono(id) { if (!chronoReady(id)) return false; state.chrono.inventory[id] = Math.max(0, Number(state.chrono.inventory[id] || 0) - 1); state.chrono.active[id] = false; state.stats.chronosUsed = (state.stats.chronosUsed || 0) + 1; write(STORE.stats, JSON.stringify(state.stats)); saveChrono(); return true; }
+  function chronoReady(id, series) {
+    const stage = phaseKeyForSeries(series);
+    return !!state.chrono.active?.[chronoKey(id, stage)] && Number(state.chrono.inventory?.[chronoKey(id, stage)] || 0) > 0;
+  }
+  function consumeChrono(id, series) {
+    const stage = phaseKeyForSeries(series);
+    const key = chronoKey(id, stage);
+    if (!chronoReady(id, series)) return false;
+    state.chrono.inventory[key] = Math.max(0, Number(state.chrono.inventory[key] || 0) - 1);
+    state.chrono.active[key] = false;
+    state.stats.chronosUsed = (state.stats.chronosUsed || 0) + 1;
+    write(STORE.stats, JSON.stringify(state.stats)); saveChrono(); return true;
+  }
   function hasHistoryRun(s, fn) { return (s.history || []).some(fn); }
   function ensureMarket() { if (!state.market.length) rotateMarket(false); }
   function rotateMarketManual() { if (state.marketUsed) return toast('La rotación manual ya se usó.'); if (state.coins < MARKET_COST) return toast('Te faltan coins.'); state.coins -= MARKET_COST; state.marketUsed = true; write(STORE.coins, state.coins); rotateMarket(false); render(); flash(els.market, 'is-refresh'); toast('Tienda rotada.'); }
   function rotateMarket(renderNow) { state.market = shuffle(allPlayers).slice(0, 3).map(p => p.id); if (renderNow !== false) render(); }
-  function marketAction(i) { const pl = allPlayers.find(x => x.id === state.market[i]); if (!pl) return; if (!state.owned.has(pl.id)) { const c = costOf(pl); if (state.coins < c) return toast(`te faltan ${c - state.coins} coins.`); state.coins -= c; state.owned.add(pl.id); write(STORE.coins, state.coins); write(STORE.owned, JSON.stringify([...state.owned])); toast(`${pl.name} desbloqueado.`); return render(); } const problem = issue(pl); if (problem) return toast(problem); state.picks[pl.role] = pl; render(); toast(`${pl.name} firmado desde tienda.`); }
+  function marketAction(i) {
+    const pl = allPlayers.find(x => x.id === state.market[i]); if (!pl) return;
+    if (!state.owned.has(pl.id)) {
+      const c = costOf(pl);
+      if (state.coins < c) return toast(`te faltan ${c - state.coins} coins.`);
+      state.coins -= c; state.owned.add(pl.id);
+      state.bench[pl.role] = pl;
+      write(STORE.coins, state.coins); write(STORE.owned, JSON.stringify([...state.owned]));
+      render(); return toast(`${pl.name} comprado · disponible como suplente ${roleCode(pl.role)}.`);
+    }
+    if (state.picks[pl.role]) {
+      state.bench[pl.role] = pl;
+      render(); return toast(`${pl.role} ocupado. ${pl.name} queda en banca para swap.`);
+    }
+    const problem = issue(pl); if (problem) return toast(problem);
+    state.picks[pl.role] = pl; render(); toast(`${pl.name} firmado desde tienda.`);
+  }
+  function swapBench(role) {
+    const bench = state.bench?.[role];
+    if (!bench) return toast('No hay suplente para ese rol.');
+    if (state.swapUsed) return toast('Solo puedes hacer 1 swap por run.');
+    if (state.simming) return toast('No se puede switchear durante simulación.');
+    const current = state.picks[role];
+    state.picks[role] = bench;
+    state.bench[role] = current;
+    state.swapUsed = true;
+    render(); toast(`Swap ${role}: ${bench.name} entra.`);
+  }
   function toggleMatch(index) { if (Number.isNaN(index) || !state.last?.matches?.[index]) return; if (state.openMatches.has(index)) state.openMatches.delete(index); else state.openMatches.add(index); renderSim(); }
+  function toggleMap(key) { if (!key) return; if (state.openMaps.has(key)) state.openMaps.delete(key); else state.openMaps.add(key); renderSim(); }
   function flash(el, klass) { if (!el) return; el.classList.remove(klass); void el.offsetWidth; el.classList.add(klass); setTimeout(() => el.classList.remove(klass), 420); }
-  function resetRun() { state.seed=seed(); state.rng=makeRng(state.seed); state.current=null; state.picks=Object.fromEntries(ROLES.map(r=>[r,null])); state.rolls=0; state.rerollUsed=false; state.scoutUsed=false; state.marketUsed=false; state.meta=null; state.quest=null; state.last=null; state.simming=false; state.openMatches = new Set(); rotateMarket(false); setScreen('draft'); toast('run reiniciada.'); }
+  function resetRun() { state.seed=seed(); state.rng=makeRng(state.seed); state.current=null; state.picks=Object.fromEntries(ROLES.map(r=>[r,null])); state.bench={}; state.swapUsed=false; state.rolls=0; state.rerollUsed=false; state.scoutUsed=false; state.marketUsed=false; state.meta=null; state.quest=null; state.last=null; state.simming=false; state.openMatches = new Set(); rotateMarket(false); setScreen('draft'); toast('run reiniciada.'); }
   function clearStats() { if (!confirm('¿Borrar estadísticas locales?')) return; state.stats = defaultStats(); write(STORE.stats, JSON.stringify(state.stats)); renderStats(); toast('Stats reiniciadas.'); }
   async function showResult(kind, title, copy) {
     if (!els.resultOverlay) return;
@@ -2616,10 +2880,11 @@
     picked().forEach(p => { s.picks[p.name] = (s.picks[p.name] || 0) + 1; });
     const result = l.won ? 'Campeón' : 'Eliminado ' + l.eliminated;
     const score = l.matches.filter(m=>m.win).length + '-' + l.matches.filter(m=>!m.win).length;
-    s.recent.unshift({ seed: state.seed, result, score, reward });
+    const runMvp = games.map(g=>g.mvp).filter(Boolean).sort((a,b)=>games.filter(g=>g.mvp===b).length-games.filter(g=>g.mvp===a).length)[0] || '—';
+    s.recent.unshift({ seed: state.seed, result, score, reward, mvp: runMvp });
     s.recent = s.recent.slice(0, 12);
     s.history = s.history || [];
-    const momentum = games.reduce((acc,g) => acc.concat((acc.at(-1) || 0) + (g.win ? 1 : -1)), [0]); s.history.unshift({ seed: state.seed, result, score, reward, power: l.power, groups: l.groups[0] + '-' + l.groups[1], maps: games.length, momentum, won: l.won, compCount: synergy().comps.length, picks: picked().map(p => ({ role: p.role, name: p.name, short: p.short, year: p.year, region: p.region, country: p.country, org: p.org, tournament: p.tournament, major: !!p.major, tags: p.tags })), matches: l.matches.map(m => ({ label: m.label, enemy: `${m.enemy.short} ${m.enemy.year}`, score: `${m.ourWins}-${m.rivalWins}`, win: m.win, maps: m.games.length })) });
+    const momentum = games.reduce((acc,g) => acc.concat((acc.at(-1) || 0) + (g.win ? 1 : -1)), [0]); s.history.unshift({ seed: state.seed, result, score, reward, power: l.power, groups: l.groups[0] + '-' + l.groups[1], maps: games.length, mvp: runMvp, momentum, won: l.won, compCount: synergy().comps.length, picks: picked().map(p => ({ role: p.role, name: p.name, short: p.short, year: p.year, region: p.region, country: p.country, org: p.org, tournament: p.tournament, major: !!p.major, tags: p.tags })), matches: l.matches.map(m => ({ label: m.label, enemy: `${m.enemy.short} ${m.enemy.year}`, score: `${m.ourWins}-${m.rivalWins}`, win: m.win, maps: m.games.length, mvp: m.mvp || '—' })) });
     s.history = s.history.slice(0, 24);
     write(STORE.stats, JSON.stringify(s));
   }
@@ -2634,7 +2899,7 @@
   function sameRegion(ps,a,b) { const x=ps.find(p=>p.role===a), y=ps.find(p=>p.role===b); return !!(x&&y&&x.region===y.region); }
   function sameTeam(ps,a,b) { const x=ps.find(p=>p.role===a), y=ps.find(p=>p.role===b); return !!(x&&y&&x.short===y.short&&x.year===y.year&&x.tournament===y.tournament); }
   function flag(c) { return FLAGS[c] || FLAGS.WORLD; }
-  function flagIcon(c) { const key = FLAGS[c] ? String(c).toLowerCase() : 'world'; return `<span class="flag-icon flag-${esc(key)}" aria-label="${esc(c || 'WORLD')}"></span>`; }
+  function flagIcon(c) { const key = FLAGS[c] ? String(c).toLowerCase() : 'world'; return `<img class="flag-img" src="/assets/flags/${esc(key)}.svg" alt="${esc(c || 'WORLD')}" loading="lazy" decoding="async">`; }
   function text(el, value) { if (el) el.textContent = value; }
   function image(el, src, alt) { if (el) el.innerHTML = src ? img(src, alt) : `<span>${esc(alt || '?')}</span>`; }
   function img(src, alt, fallback) { return `<img src="${esc(src)}" alt="${esc(alt || '')}" loading="lazy" decoding="async" data-fallback="${esc(fallback || badge(alt || '?',''))}">`; }

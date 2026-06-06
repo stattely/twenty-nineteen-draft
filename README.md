@@ -179,3 +179,15 @@ Cambios verificables:
 - Adds more Chronos and incremental objectives.
 - Restores western rosters into ROSTERS and cleans QUESTS.
 - Updates difficulty handicap labels.
+
+
+## V2.9.0 final polish
+
+- More realistic stats, hover-only explanations.
+- MVP in simulation/history.
+- Team radar stats flip.
+- Nested map toggles.
+- Market bench/swap validation.
+- Stage-based Chronos.
+- Instructions panel and softer light theme.
+- Image flags to avoid Windows emoji issues.
