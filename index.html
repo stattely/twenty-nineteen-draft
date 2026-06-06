@@ -4,7 +4,7 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="theme-color" content="#0a1420" />
-  <title>Five’s Pick · V2.6.4.3</title>
+  <title>Five’s Pick · V2.6.5.3</title>
   <style>
     :root {
       --bg: #eef2f4;
@@ -309,7 +309,7 @@
     @keyframes cardFlash { 0% { transform: scale(.985); box-shadow: 0 0 0 0 rgba(200,170,110,0); } 50% { transform: scale(1.01); box-shadow: 0 0 0 10px rgba(200,170,110,.12); } 100% { transform: scale(1); box-shadow: none; } }
     @keyframes sweepIn { 0% { opacity: .35; transform: translateY(8px); } 100% { opacity: 1; transform: translateY(0); } }
   
-    /* V2.6.4.3 verified role icons: these use the uploaded PNGs directly as background images. */
+    /* V2.6.5.3 verified role icons: these use the uploaded PNGs directly as background images. */
     .version-pill {
       border: 1px solid rgba(240,213,138,.34);
       border-radius: 999px;
@@ -449,7 +449,7 @@
     }
 
   
-    /* V2.6.4.3 HARD ROLE FIX:
+    /* V2.6.5.3 HARD ROLE FIX:
        These are the exact PNGs from IconsPositions.zip, copied raw into /assets/roles-original-v24/.
        The wrapper has no circle/border/background so the uploaded icon is not double-framed or rescaled weirdly. */
     .rolefix-pill {
@@ -511,7 +511,7 @@
     .chrono-card::after { content:''; position:absolute; inset:0; background:linear-gradient(115deg, transparent, rgba(255,255,255,.09), transparent); transform:translateX(-120%); animation:chartSweep 2.8s ease-in-out infinite; pointer-events:none; }
 
 
-    /* V2.6.4.3 */
+    /* V2.6.5.3 */
     .result-overlay.map-win .result-card, .result-overlay.map-loss .result-card {
       min-width: min(640px, calc(100vw - 28px));
       padding: 22px 28px;
@@ -591,7 +591,7 @@
     @media (max-width: 760px) { .objective-grid, .chrono-grid { grid-template-columns: 1fr; } .result-overlay.map-win .result-card, .result-overlay.map-loss .result-card { min-width: calc(100vw - 22px); padding: 18px; } }
 
   
-    /* V2.6.4.3 colorful composition tooltips */
+    /* V2.6.5.3 colorful composition tooltips */
     .icon-only { min-width: 48px; padding-inline: 13px; }
     .compose-popover {
       pointer-events: none;
@@ -641,7 +641,7 @@
     @keyframes softPulse { 50% { box-shadow: 0 0 0 5px rgba(16,185,129,.10); } }
 
   
-    /* V2.6.4.3 Teams archive */
+    /* V2.6.5.3 Teams archive */
     .teams-grid {
       display: grid;
       grid-template-columns: repeat(3, minmax(0, 1fr));
@@ -786,7 +786,7 @@
     }
 
   
-    /* V2.6.4 roster alignment, filters and wallet */
+    /* V2.6.5 roster alignment, filters and wallet */
     .global-wallet {
       display: inline-flex;
       align-items: center;
@@ -897,7 +897,7 @@
     }
 
   
-    /* V2.6.4 market popover + tag tooltips */
+    /* V2.6.5 market popover + tag tooltips */
     .player-card { overflow: visible; }
     .player-card:hover, .player-card:focus-within { z-index: 9; }
     .market, .player-grid { overflow: visible; }
@@ -978,7 +978,7 @@
   <div class="app">
     <header class="topbar">
       <a class="brand" href="#" data-action="screen" data-screen="draft" aria-label="inicio"><span class="brand-mark">5V</span><span class="brand-copy">Five’s<br>Pick</span></a>
-      <div class="microline"><strong>Roll</strong><span>·</span><strong>Pick</strong><span>·</span><strong>Break</strong><span id="seedLabel">seed #LOCAL</span><span class="rolefix-pill">V2.6.4.3</span><span class="version-pill">V2.6.4.3</span></div>
+      <div class="microline"><strong>Roll</strong><span>·</span><strong>Pick</strong><span>·</span><strong>Break</strong><span id="seedLabel">seed #LOCAL</span><span class="rolefix-pill">V2.6.5.3</span><span class="version-pill">V2.6.5.3</span></div>
       <nav class="quick-actions"><span class="global-wallet" title="Coins guardadas localmente">🪙 <b id="globalWallet">0</b></span><button type="button" data-action="theme">tema</button><button type="button" data-action="copy">copiar</button><button type="button" data-action="reset">reset</button></nav>
     </header>
     <nav class="tabs" aria-label="pantallas"><button type="button" data-action="screen" data-screen="draft" aria-pressed="true" title="Arma tu roster con tiradas, tienda y picks">Picks</button><button type="button" data-action="screen" data-screen="sim" aria-pressed="false" title="Ve la simulación partido por partido">Simulación</button><button type="button" data-action="screen" data-screen="stats" aria-pressed="false" title="Consulta tus estadísticas acumuladas">Stats</button><button type="button" data-action="screen" data-screen="history" aria-pressed="false" title="Revisa runs anteriores una por una">Historia</button><button type="button" data-action="screen" data-screen="teams" aria-pressed="false" title="Explora equipos, rosters y tags">Equipos</button><button type="button" data-action="screen" data-screen="objectives" aria-pressed="false" title="Objetivos y recompensas">Objetivos</button><button type="button" data-action="screen" data-screen="chrono" aria-pressed="false" title="Modo caótico experimental">Chrono</button></nav>
@@ -1062,7 +1062,7 @@
         <section class="panel"><div class="chrono-grid" id="chronoGrid"></div></section>
       </section>
 
-    <footer>Fan-made project not affiliated with Riot Games · V2.6.4.3</footer>
+    <footer>Fan-made project not affiliated with Riot Games · V2.6.5.3</footer>
   </div>
   <div class="result-overlay" id="resultOverlay" aria-live="polite"></div>
   <div class="toast" id="toast"></div>
@@ -1362,6 +1362,26 @@
       'clg-2016-msi': { good:[{name:'MSI miracle',points:3},{name:'Teamfight',points:3},{name:'Bot side',points:2}], bad:[{name:'Low floor',points:-1}] },
       'tsm-2016': { good:[{name:'NA superteam',points:3},{name:'Lane pressure',points:2},{name:'Bot side',points:2}], bad:[{name:'Worlds curse',points:-1}] },
       'fly-2024': { good:[{name:'Teamfight',points:3},{name:'Creative top',points:2},{name:'Western hope',points:2}], bad:[{name:'Flipper',points:-1}] }
+    };
+
+  const TAG_INFO = {
+      carry: 'Jugador orientado a daño y cierre de partidas. Suele escalar como win condition.',
+      hands: 'Mecánica alta. Puede ganar plays por micro y outplay puro.',
+      clutch: 'Rinde en momentos de presión o mapas definitorios.',
+      shotcall: 'Aporta dirección, calls y orden macro al equipo.',
+      tempo: 'Acelera el ritmo del mapa con iniciativa temprana.',
+      control: 'Prioriza setup, visión y control de zonas.',
+      engage: 'Inicia peleas o fuerza el ángulo para entrar.',
+      creative: 'Picks raros, rutas distintas o draft poco predecible.',
+      stable: 'Piso alto y errores bajos. Menos volatilidad.',
+      late: 'Escala bien a juego tardío y teamfights largas.',
+      flex: 'Puede adaptarse a varios estilos o picks.',
+      macro: 'Entiende bien waves, tempo y objetivos.',
+      skirmish: 'Fuerte en peleas cortas y 2v2/3v3.',
+      scaling: 'Mejora mucho con oro, niveles y tiempo.',
+      bot: 'El plan del equipo gira más hacia la botlane.',
+      underdog: 'Roster peligroso por sorpresa y momentum.',
+      upset: 'Capaz de romper pronósticos si entra en racha.'
     };
 
   try { boot(); } catch (err) { fatal(err); }
@@ -1776,7 +1796,7 @@
 
   function render() { renderScreens(); renderChoices(); renderHeader(); renderRoll(); renderPlayers(); renderSide(); renderMarket(); renderMini(); renderSim(); renderStats(); renderTeams(); renderObjectives(); renderChrono(); }
   function renderScreens() { ['draft','sim','stats','history','teams','objectives','chrono'].forEach(name => { const panel = $(`${name}Screen`); if (panel) panel.hidden = state.screen !== name; }); document.querySelectorAll('[data-action="screen"]').forEach(b => b.setAttribute('aria-pressed', String(b.dataset.screen === state.screen))); }
-  function setScreen(screen) { state.screen = screen || 'picks'; render(); }
+  function setScreen(screen) { state.screen = screen || 'draft'; render(); }
   function renderChoices() { document.querySelectorAll('[data-setting]').forEach(group => group.querySelectorAll('.choice').forEach(b => b.setAttribute('aria-pressed', String(state[group.dataset.setting] === b.dataset.value)))); }
   function renderHeader() { text(els.globalWallet, state.coins); text(els.seedLabel, `seed #${state.seed}`); text(els.summarySeed, `seed #${state.seed}`); text(els.rollMeter, `${state.rolls}/${MAX_ROLLS} tiradas`); els.rollBar.style.width = `${state.rolls / MAX_ROLLS * 100}%`; if (!state.current) { text(els.runMark,'—:—'); text(els.runNote,'tira para abrir roster'); image(els.runLogo,'','?'); return; } text(els.runMark, `${state.current.short}: ${state.current.year}`); text(els.runNote, `${state.current.tournament} · ${state.current.major ? 'campeón internacional' : 'contender'}`); image(els.runLogo, state.current.logo, state.current.short); }
   function renderRoll() { els.rollCard.classList.toggle('is-gold', state.current?.rarity === 'rare'); if (!state.current) { image(els.teamLogo,'','?'); text(els.rollTitle,'Sin tirada'); text(els.rollSub,'Haz una tirada para revelar equipo, año y pool de jugadores.'); els.rollTags.innerHTML=''; return; } const r = state.current; image(els.teamLogo, r.logo, r.short); text(els.rollTitle, `${r.name} ${r.year}`); text(els.rollSub, `${flag(r.country)} ${r.region} · ${r.tournament} · tier ${r.tier}`); els.rollTags.innerHTML = (r.rarity === 'rare' ? `<span class="team-tag tag-gold">+5 carta dorada</span><span>1 de 6</span>` : '') + teamTagsHtml(r); }
@@ -2030,25 +2050,6 @@
     if (same.length) lines.push('Afinidad:', ...same.slice(0,4).map(p => `${p.name} (${p.region}/${p.org})`));
     return lines.join('\n');
   }
-  const TAG_INFO = {
-    carry: 'Jugador orientado a daño y cierre de partidas. Suele escalar como win condition.',
-    hands: 'Mecánica alta. Puede ganar plays por micro y outplay puro.',
-    clutch: 'Rinde en momentos de presión o mapas definitorios.',
-    shotcall: 'Aporta dirección, calls y orden macro al equipo.',
-    tempo: 'Acelera el ritmo del mapa con iniciativa temprana.',
-    control: 'Prioriza setup, visión y control de zonas.',
-    engage: 'Inicia peleas o fuerza el ángulo para entrar.',
-    creative: 'Picks raros, rutas distintas o draft poco predecible.',
-    stable: 'Piso alto y errores bajos. Menos volatilidad.',
-    late: 'Escala bien a juego tardío y teamfights largas.',
-    flex: 'Puede adaptarse a varios estilos o picks.',
-    macro: 'Entiende bien waves, tempo y objetivos.',
-    skirmish: 'Fuerte en peleas cortas y 2v2/3v3.',
-    scaling: 'Mejora mucho con oro, niveles y tiempo.',
-    bot: 'El plan del equipo gira más hacia la botlane.',
-    underdog: 'Roster peligroso por sorpresa y momentum.',
-    upset: 'Capaz de romper pronósticos si entra en racha.'
-  };
   function tagInfo(tag) { return TAG_INFO[tag] || 'Tag de identidad. Afecta compos, sinergias o estilo de juego.'; }
   function tagCompLines(player, tag) {
     const comps = COMP_RULES.filter(c => c.req.some(r => r.tag === tag)).slice(0,4);

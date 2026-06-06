@@ -121,3 +121,9 @@ Cambios verificables:
 - Fixes market hover popovers so they expand inline instead of overlapping.
 - Restores visible synergy popovers on player cards.
 - Adds rich hover cards for player tags in draft and team roster views.
+
+
+## V2.6.5 TAG_INFO fix
+
+- Moves TAG_INFO before boot() so tag popovers can render during initial load.
+- Fixes default screen fallback from picks to draft.
