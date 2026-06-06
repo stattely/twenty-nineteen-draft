@@ -127,3 +127,9 @@ Cambios verificables:
 
 - Moves TAG_INFO before boot() so tag popovers can render during initial load.
 - Fixes default screen fallback from picks to draft.
+
+
+## V2.6.6 safe boot
+
+- Moves `boot()` to the end of the script so no `const` data table can be accessed before initialization.
+- Keeps V2.6.5 TAG_INFO fix, market popovers and roster filters.
