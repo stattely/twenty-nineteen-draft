@@ -236,3 +236,10 @@ Cambios verificables:
 - Bracket uses power-based matchups and shows paths for all teams.
 - LCK/LPL now act like real endbosses; western-only drafts are weaker without Chronos/star picks.
 - Tags use clean native tooltips to avoid visual bleed behind cards.
+
+
+## V3.0.5 swiss power field
+
+- Builds a full 16-team Swiss field and seeds playoffs from Swiss results.
+- Bracket finalists now have real paths.
+- Rebalances West vs LCK/LPL and adds top runs panel.

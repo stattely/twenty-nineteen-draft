@@ -4,7 +4,7 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="theme-color" content="#0a1420" />
-  <title>Five’s Pick · V3.0.4</title>
+  <title>Five’s Pick · V3.0.5</title>
   <style>
     :root {
       --bg: #eef2f4;
@@ -309,7 +309,7 @@
     @keyframes cardFlash { 0% { transform: scale(.985); box-shadow: 0 0 0 0 rgba(200,170,110,0); } 50% { transform: scale(1.01); box-shadow: 0 0 0 10px rgba(200,170,110,.12); } 100% { transform: scale(1); box-shadow: none; } }
     @keyframes sweepIn { 0% { opacity: .35; transform: translateY(8px); } 100% { opacity: 1; transform: translateY(0); } }
   
-    /* V3.0.4 verified role icons: these use the uploaded PNGs directly as background images. */
+    /* V3.0.5 verified role icons: these use the uploaded PNGs directly as background images. */
     .version-pill {
       border: 1px solid rgba(240,213,138,.34);
       border-radius: 999px;
@@ -449,7 +449,7 @@
     }
 
   
-    /* V3.0.4 HARD ROLE FIX:
+    /* V3.0.5 HARD ROLE FIX:
        These are the exact PNGs from IconsPositions.zip, copied raw into /assets/roles-original-v24/.
        The wrapper has no circle/border/background so the uploaded icon is not double-framed or rescaled weirdly. */
     .rolefix-pill {
@@ -511,7 +511,7 @@
     .chrono-card::after { content:''; position:absolute; inset:0; background:linear-gradient(115deg, transparent, rgba(255,255,255,.09), transparent); transform:translateX(-120%); animation:chartSweep 2.8s ease-in-out infinite; pointer-events:none; }
 
 
-    /* V3.0.4 */
+    /* V3.0.5 */
     .result-overlay.map-win .result-card, .result-overlay.map-loss .result-card {
       min-width: min(640px, calc(100vw - 28px));
       padding: 22px 28px;
@@ -591,7 +591,7 @@
     @media (max-width: 760px) { .objective-grid, .chrono-grid { grid-template-columns: 1fr; } .result-overlay.map-win .result-card, .result-overlay.map-loss .result-card { min-width: calc(100vw - 22px); padding: 18px; } }
 
   
-    /* V3.0.4 colorful composition tooltips */
+    /* V3.0.5 colorful composition tooltips */
     .icon-only { min-width: 48px; padding-inline: 13px; }
     .compose-popover {
       pointer-events: none;
@@ -641,7 +641,7 @@
     @keyframes softPulse { 50% { box-shadow: 0 0 0 5px rgba(16,185,129,.10); } }
 
   
-    /* V3.0.4 Teams archive */
+    /* V3.0.5 Teams archive */
     .teams-grid {
       display: grid;
       grid-template-columns: repeat(3, minmax(0, 1fr));
@@ -786,7 +786,7 @@
     }
 
   
-    /* V3.0.4 roster alignment, filters and wallet */
+    /* V3.0.5 roster alignment, filters and wallet */
     .global-wallet {
       display: inline-flex;
       align-items: center;
@@ -897,7 +897,7 @@
     }
 
   
-    /* V3.0.4 market popover + tag tooltips */
+    /* V3.0.5 market popover + tag tooltips */
     .player-card { overflow: visible; }
     .player-card:hover, .player-card:focus-within { z-index: 9; }
     .market, .player-grid { overflow: visible; }
@@ -973,7 +973,7 @@
     }
 
   
-    /* V3.0.4 compact team cards + drawn flags */
+    /* V3.0.5 compact team cards + drawn flags */
     .teams-grid { gap: 10px; }
     .team-card, .team-card-inner { min-height: 455px; }
     .team-face {
@@ -1099,7 +1099,7 @@
     }
 
   
-    /* V3.0.4 no-scroll compact popovers */
+    /* V3.0.5 no-scroll compact popovers */
     .compose-popover,
     .compose-popover.compact-popover {
       width: min(255px, calc(100vw - 28px)) !important;
@@ -1170,7 +1170,7 @@
     }
 
   
-    /* V3.0.4 simulation recovery */
+    /* V3.0.5 simulation recovery */
     .error-bubble {
       color: #fecaca !important;
       border-color: rgba(248,113,113,.45) !important;
@@ -1180,7 +1180,7 @@
     #simScreen:not([hidden]) { display: block; }
 
   
-    /* V3.0.4 flags */
+    /* V3.0.5 flags */
     .flag-kr {
       background: #fff;
     }
@@ -1225,7 +1225,7 @@
     }
 
   
-    /* V3.0.4 final systems */
+    /* V3.0.5 final systems */
     .bracket-panel {
       border: 1px solid var(--line);
       border-radius: 18px;
@@ -1309,7 +1309,7 @@
     }
 
   
-    /* V3.0.4 final polish */
+    /* V3.0.5 final polish */
     body:not(.dark) {
       --bg: #ece7dc;
       --panel: rgba(255,250,238,.88);
@@ -1449,7 +1449,7 @@
     }
 
   
-    /* V3.0.4 targeted fixes */
+    /* V3.0.5 targeted fixes */
     .player-card > .compose-popover { display: none !important; }
     .tag-stack { overflow: visible !important; max-height: none !important; }
     .tag-stack .player-tag {
@@ -1515,7 +1515,7 @@
     .bracket-other span { display:block; color:var(--muted); font-size:11px; padding:3px 0; }
 
   
-    /* V3.0.4b visual cleanup */
+    /* V3.0.5b visual cleanup */
     .player-card .compose-popover { display:none !important; }
     .tag-stack {
       overflow: visible !important;
@@ -1563,7 +1563,7 @@
     }
 
   
-    /* V3.0.4 Guided Arcade UX */
+    /* V3.0.5 Guided Arcade UX */
     .screen-head .muted,
     .panel > .muted,
     .calc-note {
@@ -1739,7 +1739,7 @@
     }
 
   
-    /* V3.0.4 hotfix: clean cards, tag tooltips, bracket visibility */
+    /* V3.0.5 hotfix: clean cards, tag tooltips, bracket visibility */
     .player-card { overflow: hidden !important; }
     .player-card .compose-popover { display: none !important; }
     .player-card .tag-hovercard { display: none !important; }
@@ -1808,7 +1808,7 @@
     }
 
   
-    /* V3.0.4 compact layout + title-case polish */
+    /* V3.0.5 compact layout + title-case polish */
     .screen-head.panel {
       padding: 12px 14px !important;
       margin-bottom: 10px !important;
@@ -2001,7 +2001,7 @@
     }
 
   
-    /* V3.0.4 real bracket + i18n + compact polish */
+    /* V3.0.5 real bracket + i18n + compact polish */
     .screen-head.panel { padding: 9px 12px !important; margin-bottom: 8px !important; min-height: 0 !important; }
     .screen-head h2 { font-size: clamp(24px, 3.4vw, 44px) !important; line-height: .94 !important; margin: 0 !important; }
     .screen-head .eyebrow { font-size: 9px !important; margin: 0 0 3px !important; text-transform: none !important; }
@@ -2116,7 +2116,7 @@
     }
 
   
-    /* V3.0.4 endboss bracket + clean native tag tooltips */
+    /* V3.0.5 endboss bracket + clean native tag tooltips */
     .player-card { overflow: hidden !important; isolation: isolate; }
     .player-card .compose-popover,
     .player-card .tag-hovercard,
@@ -2201,14 +2201,55 @@
     .tag-gray { color:#d1d5db !important; border-color:rgba(156,163,175,.32) !important; background:rgba(156,163,175,.10) !important; }
     @media (max-width: 900px) { .bracket-stage-grid { grid-template-columns: 1fr; } }
 
+  
+    /* V3.0.5 Swiss field + power bracket */
+    .player-card .compose-popover,
+    .player-card .tag-hovercard,
+    .player-card .mini-tag-tip,
+    .team-tag .tag-hovercard,
+    .player-tag .mini-tag-tip { display:none !important; }
+    .player-card { overflow:hidden !important; isolation:isolate; }
+    .tag-stack { max-height:50px !important; overflow:hidden !important; margin-bottom:22px !important; }
+    .tag-stack .player-tag,
+    .team-tag {
+      display:inline-flex !important;
+      align-items:center;
+      min-height:20px !important;
+      border:1px solid var(--line);
+      border-radius:999px;
+      padding:3px 7px !important;
+      font-size:9px !important;
+      font-weight:1000;
+      text-transform:uppercase;
+      white-space:nowrap;
+      cursor:help;
+    }
+    .swiss-field { border:1px solid var(--line); border-radius:14px; padding:8px; background:rgba(255,255,255,.025); }
+    .swiss-field summary { cursor:pointer; font-size:11px; font-weight:1000; color:var(--gold-2); text-transform:uppercase; }
+    .swiss-field div { display:flex; gap:5px; flex-wrap:wrap; margin-top:7px; }
+    .swiss-field span { border:1px solid var(--line); border-radius:999px; padding:4px 7px; font-size:10px; color:var(--muted); }
+    .swiss-field span.is-ours { border-color:rgba(200,170,110,.55); color:var(--gold-2); }
+    .clutch-mark { color:#93c5fd; font-size:11px; margin-left:4px; filter:drop-shadow(0 0 5px rgba(147,197,253,.45)); }
+    .best-runs-list { display:grid; gap:6px; }
+    .best-run-card { border:1px solid var(--line); border-radius:14px; padding:8px; background:var(--panel-2); }
+    .best-run-card summary { cursor:pointer; font-size:11px; font-weight:1000; color:var(--gold-2); display:flex; justify-content:space-between; gap:8px; }
+    .best-run-card p { margin:5px 0 0; font-size:10px; color:var(--muted); line-height:1.35; }
+    .tag-purple { color:#e9d5ff !important; border-color:rgba(168,85,247,.55) !important; background:rgba(168,85,247,.13) !important; }
+    .tag-gold { color:#ffe49a !important; border-color:rgba(255,212,96,.55) !important; background:rgba(255,212,96,.13) !important; }
+    .tag-blue { color:#bfdbfe !important; border-color:rgba(59,130,246,.48) !important; background:rgba(59,130,246,.12) !important; }
+    .tag-green { color:#bbf7d0 !important; border-color:rgba(34,197,94,.48) !important; background:rgba(34,197,94,.12) !important; }
+    .tag-yellow { color:#fff4bf !important; border-color:rgba(255,238,170,.48) !important; background:rgba(255,238,170,.10) !important; }
+    .tag-red { color:#fecaca !important; border-color:rgba(248,113,113,.52) !important; background:rgba(248,113,113,.12) !important; }
+    .tag-gray { color:#d1d5db !important; border-color:rgba(156,163,175,.32) !important; background:rgba(156,163,175,.10) !important; }
+
   </style>
 </head>
 <body class="dark">
-  <!-- BUILD_MARKER_V304_ENDBOSS_BRACKET -->
+  <!-- BUILD_MARKER_V305_SWISS_POWER_FIELD -->
   <div class="app">
     <header class="topbar">
       <a class="brand" href="#" data-action="screen" data-screen="draft" aria-label="inicio"><span class="brand-mark">5V</span><span class="brand-copy">Five’s<br>Pick</span></a>
-      <div class="microline"><strong>Roll</strong><span>·</span><strong>Pick</strong><span>·</span><strong>Break</strong><span id="seedLabel">seed #LOCAL</span><span class="rolefix-pill">V3.0.4</span><span class="version-pill">V3.0.4</span></div>
+      <div class="microline"><strong>Roll</strong><span>·</span><strong>Pick</strong><span>·</span><strong>Break</strong><span id="seedLabel">seed #LOCAL</span><span class="rolefix-pill">V3.0.5</span><span class="version-pill">V3.0.5</span></div>
       <nav class="quick-actions"><button type="button" data-action="lang" id="langBtn" title="Cambiar idioma">ES</button><span class="global-wallet" title="Coins guardadas localmente">🪙 <b id="globalWallet">0</b></span><button type="button" data-action="theme">Tema</button><button type="button" data-action="copy">copiar</button><button type="button" data-action="reset">reset</button></nav>
     </header>
     <nav class="tabs" aria-label="pantallas"><button type="button" data-action="screen" data-screen="draft" aria-pressed="true" title="Arma tu roster con tiradas, tienda y picks">Picks</button><button type="button" data-action="screen" data-screen="sim" aria-pressed="false" title="Ve la simulación partido por partido">Simulación</button><button type="button" data-action="screen" data-screen="stats" aria-pressed="false" title="Consulta tus estadísticas acumuladas">Stats</button><button type="button" data-action="screen" data-screen="history" aria-pressed="false" title="Revisa runs anteriores una por una">Historia</button><button type="button" data-action="screen" data-screen="teams" aria-pressed="false" title="Explora equipos, rosters y tags">Equipos</button><button type="button" data-action="screen" data-screen="objectives" aria-pressed="false" title="Objetivos y recompensas">Objetivos</button><button type="button" data-action="screen" data-screen="chrono" aria-pressed="false" title="Modo caótico experimental">Chrono</button></nav>
@@ -2266,6 +2307,7 @@
             <div class="stats-row"><div class="stat"><strong id="avgScore">0</strong><span>overall</span></div><div class="stat"><strong id="synScore">0</strong><span>sinergia</span></div><div class="stat"><strong id="cupChance">0%</strong><span>chance</span></div></div>
             <div class="wallet"><div><span>coins</span><strong id="coinCount">0</strong></div><p class="muted" id="coinHint">se guardan localmente</p></div>
             <div class="slots" id="slots"></div>
+            <section class="side-section best-runs"><div class="section-title"><h3>Top Runs</h3><button type="button" class="small-btn" data-action="screen" data-screen="stats">Ver</button></div><div id="bestRuns" class="best-runs-list"></div></section>
             <section class="side-section"><div class="section-title"><h3>Tienda</h3><button type="button" class="small-btn" data-action="market">Rotar</button></div><p class="muted">Cambia con cada tirada. Rotación manual: 1 vez por run y 10 coins.</p><div class="market" id="market"></div></section>
             <section class="side-section challenge" id="metaBox"><h3>Meta</h3><p id="metaText">Primera tirada.</p></section>
             <section class="challenge" id="questBox"><h3>Quest</h3><p id="questText">Primera tirada.</p></section>
@@ -2312,7 +2354,7 @@
         <section class="panel"><div class="chrono-grid" id="chronoGrid"></div></section>
       </section>
 
-    <footer>Fan-made project not affiliated with Riot Games · V3.0.4</footer>
+    <footer>Fan-made project not affiliated with Riot Games · V3.0.5</footer>
   </div>
   <div class="result-overlay" id="resultOverlay" aria-live="polite"></div>
   <div class="toast" id="toast"></div>
@@ -2607,7 +2649,7 @@
 
   const $ = id => document.getElementById(id);
   const els = {};
-  ['seedLabel','draftScreen','simScreen','statsScreen','historyScreen','teamsScreen','objectivesScreen','chronoScreen','rollMeter','rollBar','runLogo','runMark','runNote','rollCard','teamLogo','rollTitle','rollSub','rollTags','players','summarySeed','picksCount','avgScore','synScore','cupChance','coinCount','coinHint','slots','market','metaBox','questBox','synergyBox','metaText','questText','synergyReasons','results','resultOverlay','toast','simSubtitle','simScoreline','liveFocus','simTimeline','bracketBoard','scoreGrid','runLedger','pickLedger','simLedger','historyLedger','teamsGrid','teamSearch','teamRegionFilter','teamRatingFilter','teamTagFilter','globalWallet','langBtn','actionCoach','coachSteps','coachTitle','coachHint','coachCta','objectiveList','chronoGrid'].forEach(id => els[id] = $(id));
+  ['seedLabel','draftScreen','simScreen','statsScreen','historyScreen','teamsScreen','objectivesScreen','chronoScreen','rollMeter','rollBar','runLogo','runMark','runNote','rollCard','teamLogo','rollTitle','rollSub','rollTags','players','summarySeed','picksCount','avgScore','synScore','cupChance','coinCount','coinHint','slots','market','metaBox','questBox','synergyBox','metaText','questText','synergyReasons','results','resultOverlay','toast','simSubtitle','simScoreline','liveFocus','simTimeline','bracketBoard','scoreGrid','runLedger','pickLedger','simLedger','historyLedger','teamsGrid','teamSearch','teamRegionFilter','teamRatingFilter','teamTagFilter','globalWallet','langBtn','bestRuns','actionCoach','coachSteps','coachTitle','coachHint','coachCta','objectiveList','chronoGrid'].forEach(id => els[id] = $(id));
 
   const PLAYER_PATCHES = {
     'g2-2018-Jankos-Jungle': { rating: 91, country: 'EU' },
@@ -2645,6 +2687,16 @@
     if (!patch) return;
     Object.assign(p, patch);
   }));
+
+
+  ROSTERS.forEach(r => {
+    const regionNerf = ['LEC','LCS'].includes(r.region) ? 5 : ['LCK','LPL'].includes(r.region) ? 1 : 2;
+    r.tier = Math.max(70, Math.min(99, r.tier - regionNerf));
+    r.players.forEach(p => {
+      const playerNerf = ['LEC','LCS'].includes(p.region) ? (['KR','CN'].includes(p.country) ? 3 : 5) : ['LCK','LPL'].includes(p.region) ? 1 : 2;
+      p.rating = Math.max(68, Math.min(99, p.rating - playerNerf));
+    });
+  });
 
   const allPlayers = ROSTERS.flatMap(r => r.players);
   const state = {
@@ -2822,7 +2874,8 @@
     if (picked().length < 5) return toast('Faltan roles. No simules incompleto.');
     state.simming = true;
     state.openMatches = new Set();
-    state.last = { power: power(), complete: false, won: false, eliminated: '', matches: [], activeMatch: -1, activeGame: -1, activeEvent: -1, groups: [0,0], startedAt: Date.now(), bracketTeams: bracketField(), bracketFinal: null };
+    state.last = { power: power(), complete: false, won: false, eliminated: '', matches: [], activeMatch: -1, activeGame: -1, activeEvent: -1, groups: [0,0], startedAt: Date.now(), tournament:null, bracketFinal: null, momentum:0 };
+    state.last.tournament = { field: buildTournamentField(), swiss: [], bracket:null };
     setScreen('sim');
     render();
     await wait(350);
@@ -2831,28 +2884,33 @@
     while (state.last.groups[0] < 3 && state.last.groups[1] < 3 && round <= 5) {
       const record = `${state.last.groups[0]}-${state.last.groups[1]}`;
       const isQualOrElim = state.last.groups[0] === 2 || state.last.groups[1] === 2;
-      const stage = { label: `Swiss ${round}`, gate: 88 + round, bo: isQualOrElim ? 'Bo3' : 'Bo1', group: true, record };
+      const stage = { label: `Swiss ${round}`, gate: 88 + round, bo: isQualOrElim ? 'Bo3' : 'Bo1', group: true, record, enemy: swissEnemy(round) };
       const series = makeSeries(stage);
       await playSeries(series);
       if (series.win) state.last.groups[0]++; else state.last.groups[1]++;
+      recordSwissResult(series);
+      simulateOtherSwissRound();
       round++;
     }
 
     let alive = state.last.groups[0] >= 3;
-    if (!alive) state.last.eliminated = 'Swiss';
+    if (!alive) { state.last.eliminated = 'Swiss'; seedPlayoffs(false); completeTournamentBracket(); }
 
     // Formato arcade: cuartos/semis Bo3 para ritmo; final Bo5 para permitir 3-0, 3-2 y remontadas.
+    if (alive) seedPlayoffs(true);
     for (const stage of [{label:'Cuartos', gate:94, bo:'Bo3'}, {label:'Semis', gate:96, bo:'Bo3'}, {label:'Final', gate:99, bo:'Bo5'}]) {
       if (!alive) break;
+      stage.enemy = playoffOpponent(stage.label);
       const series = makeSeries(stage);
       await playSeries(series);
+      recordPlayoffSeries(series);
       alive = series.win;
       if (!alive) state.last.eliminated = stage.label;
     }
 
     state.last.won = alive && state.last.matches.some(m => m.label === 'Final' && m.win);
     state.last.complete = true;
-    state.last.bracketFinal = resolveBracket(state.last);
+    completeTournamentBracket();
     state.last.activeMatch = -1;
     state.last.activeGame = -1;
     state.last.activeEvent = -1;
@@ -2903,6 +2961,9 @@
     series.finished = true;
     series.win = series.ourWins > series.rivalWins;
     series.mvp = series.games.map(g=>g.mvp).filter(Boolean).sort((a,b)=>series.games.filter(g=>g.mvp===b).length-series.games.filter(g=>g.mvp===a).length)[0] || '—';
+    const westUpset = series.win && ['LCK','LPL'].includes(series.enemy.region) && picked().filter(p=>['LEC','LCS'].includes(p.region)).length >= 3;
+    if (westUpset) state.last.momentum = Math.min(7, (state.last.momentum || 0) + 3);
+    else state.last.momentum = Math.max(0, Math.round((state.last.momentum || 0) * .55));
     state.last.activeGame = -1;
     state.last.activeEvent = -1;
     state.openMatches.delete(state.last.activeMatch);
@@ -2911,7 +2972,7 @@
   }
 
   function makeSeries(stage) {
-    const enemy = enemyTeam(stage);
+    const enemy = stage.enemy || enemyTeam(stage);
     const mod = roundModifier();
     const need = stage.bo === 'Bo5' ? 3 : stage.bo === 'Bo3' ? 2 : 1;
     return { ...stage, enemy, enemyLineup: enemy.players || [], need, chronoMap: rand(1, need * 2 - 1), ourWins: 0, rivalWins: 0, win: false, finished: false, games: [], mod };
@@ -2924,11 +2985,12 @@
     const clutch = mapNo === series.need * 2 - 1 ? rand(-3, 4) : 0;
     const chronoEvents = [];
     const chronoWindow = mapNo === (series.chronoMap || 1);
-    let our = Math.round(state.last.power + modBonus + fatigue + clutch + rand(-d.variance, d.variance));
+    const momentumBonus = Math.min(5, state.last.momentum || 0);
+    let our = Math.round(state.last.power + modBonus + fatigue + clutch + momentumBonus + rand(-d.variance, d.variance));
     const enemyP = teamPower(series.enemy);
     const endboss = ['LCK','LPL'].includes(series.enemy.region) ? 2 : 0;
     const stageWeight = series.label === 'Final' ? 2 : series.label === 'Semis' ? 1 : 0;
-    let rival = Math.round(enemyP * .78 + series.gate * .22 + d.enemy + endboss + stageWeight + ENEMY_HANDICAP + rand(-d.variance, d.variance));
+    let rival = Math.round(enemyP * .86 + series.gate * .14 + d.enemy + endboss + stageWeight + ENEMY_HANDICAP + rand(-d.variance, d.variance));
     if (chronoWindow && chronoReady('star-heist', series)) { our += 5; rival -= 3; consumeChrono('star-heist', series); chronoEvents.push(chronoEvent('Robo De Estrella', 'Tu staff apaga la win condition rival por un mapa.')); }
     if (chronoWindow && chronoReady('coach-sub', series)) { rival -= 5; consumeChrono('coach-sub', series); chronoEvents.push(chronoEvent('Coach Sub', 'El rival juega el mapa con suplente improvisado.')); }
     if (chronoWindow && chronoReady('scrim-leak', series)) { our += 4; consumeChrono('scrim-leak', series); chronoEvents.push(chronoEvent('Scrim Leak', 'Tus picks lee el plan rival antes del early game.')); }
@@ -3300,7 +3362,18 @@
     return resetRun();
   }
 
-  function render() { applyLanguage(); renderCoach(); renderScreens(); renderChoices(); renderDifficultyTags(); renderHeader(); renderRoll(); renderPlayers(); renderSide(); renderMarket(); renderMini(); renderSim(); renderStats(); if (state.screen === 'teams') renderTeams(); renderObjectives(); renderChrono(); localizeDom(); }
+
+  function renderBestRuns() {
+    if (!els.bestRuns) return;
+    const runs = (state.stats.history || []).slice().sort((a,b) => ((b.won?1000:0)+(b.power||0)*5+(b.compCount||0)*20+(b.maps||0)) - ((a.won?1000:0)+(a.power||0)*5+(a.compCount||0)*20+(a.maps||0))).slice(0, 10);
+    els.bestRuns.innerHTML = runs.length ? runs.map((r, i) => {
+      const picks = (r.picks || []).map(p => `${roleCode(p.role)} ${p.name} (${p.short} ${p.year})`).join(' · ');
+      const matches = (r.matches || []).map(m => `${m.label} ${m.win ? 'W' : 'L'} ${m.score}`).join(' · ');
+      return `<details class="best-run-card"><summary><span>#${i+1} ${esc(r.result)}</span><b>${esc(r.score)} · ${Math.round(r.power || 0)}</b></summary><p>${esc(picks || 'Sin composición guardada')}</p><p>Comps ${esc(r.compCount || 0)} · Swiss ${esc(r.groups || '—')}</p><p>${esc(matches || '')}</p></details>`;
+    }).join('') : '<p class="muted">Sin runs.</p>';
+  }
+
+  function render() { applyLanguage(); renderCoach(); renderScreens(); renderChoices(); renderDifficultyTags(); renderHeader(); renderRoll(); renderPlayers(); renderSide(); renderMarket(); renderMini(); renderSim(); renderStats(); if (state.screen === 'teams') renderTeams(); renderObjectives(); renderChrono(); renderBestRuns(); localizeDom(); }
   function renderScreens() { ['draft','sim','stats','history','teams','objectives','chrono'].forEach(name => { const panel = $(`${name}Screen`); if (panel) panel.hidden = state.screen !== name; }); document.querySelectorAll('[data-action="screen"]').forEach(b => b.setAttribute('aria-pressed', String(b.dataset.screen === state.screen))); }
   function setScreen(screen) { state.screen = screen || 'draft'; render(); if (state.screen === 'teams') renderTeams(); }
 
@@ -3426,98 +3499,192 @@
   function lineupBoard(series) {
     const mine = Object.fromEntries(picked().map(p => [p.role, p]));
     const rival = Object.fromEntries((series.enemyLineup || []).map(p => [p.role, p]));
-    const mvpMap = {};
-    (series.games || []).forEach((g, idx) => { if (g.mvp) mvpMap[g.mvp] = (mvpMap[g.mvp] || []).concat(idx + 1); });
-    const star = p => p && mvpMap[p.name] ? `<span class="recent-mvp-star" title="MVP mapa ${mvpMap[p.name].join(', ')}">★${mvpMap[p.name].join(',')}</span>` : '';
+    const mvpName = series.mvp || '';
+    const clutchMap = {};
+    (series.games || []).forEach((g, idx) => {
+      if (!g.mvp || g.mvp === mvpName) return;
+      clutchMap[g.mvp] = (clutchMap[g.mvp] || []).concat(idx + 1);
+    });
+    const mark = p => {
+      if (!p) return '';
+      if (p.name === mvpName) return `<span class="recent-mvp-star" title="MVP de la serie">★</span>`;
+      if (clutchMap[p.name]) return `<span class="clutch-mark" title="Clutch mapa ${clutchMap[p.name].join(', ')}">✦${clutchMap[p.name].join(',')}</span>`;
+      return '';
+    };
     const rows = ROLES.map(role => {
       const a = mine[role], b = rival[role];
-      return `<div class="lineup-row"><b>${esc(roleCode(role))}</b><span>${a ? esc(a.name) : '—'}${star(a)} <em>${roleAvg(a)}</em></span><span>${b ? esc(b.name) : '—'}${star(b)} <em>${roleAvg(b)}</em></span></div>`;
+      return `<div class="lineup-row"><b>${esc(roleCode(role))}</b><span>${a ? esc(a.name) : '—'}${mark(a)} <em>${roleAvg(a)}</em></span><span>${b ? esc(b.name) : '—'}${mark(b)} <em>${roleAvg(b)}</em></span></div>`;
     }).join('');
     return `<section class="lineup-compare"><header><strong>Tus picks</strong><small>vs ${esc(series.enemy.short)} ${series.enemy.year}</small><strong>Rival</strong></header>${rows}</section>`;
   }
-  function bracketField() {
-    const blocked = usedOrgs();
-    return shuffle(ROSTERS.filter(r => !blocked.has(r.org))).slice(0, 12).map((r, i) => ({
-      short:r.short, year:r.year, region:r.region, logo:r.logo, record: i < 4 ? '3-0' : i < 8 ? '3-1' : '2-3', seed:i+1
-    }));
+  function teamEntry(r) {
+    return { id:r.id, short:r.short, year:r.year, name:`${r.short} ${r.year}`, logo:r.logo, region:r.region, power:teamPower(r), wins:0, losses:0, user:false, played:[], seed:0 };
   }
-
-  function resolveBracket(r) {
-    const user = { short:'Picks', year:'', name:'Picks', logo:'', power:r.power || power(), user:true, region:'MIX' };
-    const rosterOf = t => ROSTERS.find(x => x.short === t.short && x.year === t.year) || ROSTERS.find(x => x.short === t.short);
-    const byLabel = label => (r.matches || []).find(m => m.label === label && m.finished);
-    const actual = label => {
-      const m = byLabel(label);
-      if (!m) return null;
-      const enemy = { short:m.enemy.short, year:m.enemy.year, name:`${m.enemy.short} ${m.enemy.year}`, logo:m.enemy.logo, power:teamPower(m.enemy), user:false, region:m.enemy.region };
-      return { label, a:user, b:enemy, winner:m.win ? user : enemy, loser:m.win ? enemy : user, score:`${m.ourWins}-${m.rivalWins}`, actual:true, ours:true };
-    };
-    const actualQ = actual('Cuartos');
-    const actualS = actual('Semis');
-    const actualF = actual('Final');
-    const used = new Set([actualQ, actualS, actualF].filter(Boolean).map(m => `${m.b.short}-${m.b.year}`));
-    let teams = (r.bracketTeams || [])
-      .map(t => {
-        const rr = rosterOf(t);
-        return { ...t, name:`${t.short} ${t.year}`, power:(rr ? teamPower(rr) : (t.power || 86)), user:false, region:rr?.region || t.region || 'WORLD' };
-      })
-      .filter(t => !used.has(`${t.short}-${t.year}`));
-    if (teams.length < 7) {
-      const extra = ROSTERS
-        .filter(rr => !used.has(`${rr.short}-${rr.year}`))
-        .map(rr => ({ short:rr.short, year:rr.year, logo:rr.logo, name:`${rr.short} ${rr.year}`, power:teamPower(rr), user:false, region:rr.region }))
-        .sort((a,b)=>b.power-a.power);
-      for (const t of extra) {
-        if (teams.length >= 7) break;
-        if (!teams.some(x => x.short===t.short && x.year===t.year)) teams.push(t);
+  function userEntry() {
+    return { id:'picks', short:'Picks', year:'', name:'Picks', logo:'', region:'MIX', power:state.last?.power || power(), wins:0, losses:0, user:true, played:[], seed:0 };
+  }
+  function buildTournamentField() {
+    const blocked = usedOrgs();
+    const pool = ROSTERS.filter(r => !blocked.has(r.org)).map(teamEntry).sort((a,b) => b.power - a.power);
+    const bosses = pool.filter(t => ['LCK','LPL'].includes(t.region)).slice(0, 9);
+    const wildcards = shuffle(pool.filter(t => !bosses.some(b => b.id === t.id))).slice(0, 6);
+    const field = [userEntry(), ...bosses, ...wildcards].slice(0, 16);
+    field.forEach((t,i) => t.seed = i + 1);
+    return field;
+  }
+  function tournament() {
+    if (!state.last.tournament) state.last.tournament = { field: buildTournamentField(), swiss: [], bracket:null };
+    return state.last.tournament;
+  }
+  function teamKey(t) { return t?.user ? 'picks' : `${t?.short}-${t?.year}`; }
+  function teamLabel(t) { return t?.user ? 'Picks' : `${t?.short} ${t?.year}`; }
+  function rosterFromEntry(t) { return t?.user ? null : (ROSTERS.find(r => r.short === t.short && r.year === t.year) || ROSTERS.find(r => r.short === t.short)); }
+  function swissEnemy(round) { return rosterFromEntry(swissOpponent(round)); }
+  function matchProbability(a, b, label='') {
+    const diff = (a.power || 85) - (b.power || 85);
+    const stagePressure = label === 'Final' ? .015 : label === 'Semis' ? .01 : 0;
+    return clamp(.50 + diff * .047 - (a.user ? stagePressure : 0), .06, .94);
+  }
+  function boScore(label, aWon) {
+    if (label === 'Final') return aWon ? (rng() < .68 ? '3-1' : '3-2') : (rng() < .68 ? '1-3' : '2-3');
+    if (label === 'Swiss') return aWon ? '1-0' : '0-1';
+    return aWon ? (rng() < .72 ? '2-0' : '2-1') : (rng() < .72 ? '0-2' : '1-2');
+  }
+  function simTeamMatch(label, a, b) {
+    const pA = matchProbability(a, b, label);
+    const aWon = rng() < pA;
+    const winner = aWon ? a : b;
+    const loser = aWon ? b : a;
+    const score = boScore(label, aWon);
+    return { label, a, b, winner, loser, score, actual:false, upset: Math.abs((a.power||0)-(b.power||0)) >= 8 && ((a.power > b.power && !aWon) || (a.power < b.power && aWon)) };
+  }
+  function addSwissResult(team, won, opponent, score) {
+    if (!team) return;
+    if (won) team.wins++; else team.losses++;
+    team.played = team.played || [];
+    team.played.push(teamKey(opponent));
+    team.swissLog = team.swissLog || [];
+    team.swissLog.push({ opponent:teamLabel(opponent), result:won?'W':'L', score });
+  }
+  function swissOpponent(round) {
+    const t = tournament();
+    const user = t.field.find(x => x.user);
+    const candidates = t.field.filter(x => !x.user && x.wins < 3 && x.losses < 3 && !(user.played||[]).includes(teamKey(x)))
+      .sort((a,b) => Math.abs((a.wins-a.losses)-(user.wins-user.losses)) - Math.abs((b.wins-b.losses)-(user.wins-user.losses)) || b.power - a.power);
+    return candidates[0] || t.field.filter(x => !x.user).sort((a,b)=>b.power-a.power)[0];
+  }
+  function simulateOtherSwissRound() {
+    const t = tournament();
+    const active = t.field.filter(x => !x.user && x.wins < 3 && x.losses < 3);
+    active.sort((a,b) => (b.wins-a.wins) || (a.losses-b.losses) || (b.power-a.power));
+    const used = new Set();
+    const roundMatches = [];
+    for (const a of active) {
+      if (used.has(teamKey(a))) continue;
+      const b = active.find(x => !used.has(teamKey(x)) && teamKey(x) !== teamKey(a) && !(a.played||[]).includes(teamKey(x))) || active.find(x => !used.has(teamKey(x)) && teamKey(x) !== teamKey(a));
+      if (!b) continue;
+      used.add(teamKey(a)); used.add(teamKey(b));
+      const m = simTeamMatch('Swiss', a, b);
+      addSwissResult(m.winner, true, m.loser, m.score);
+      addSwissResult(m.loser, false, m.winner, m.score);
+      roundMatches.push(m);
+    }
+    t.swiss.push(roundMatches);
+  }
+  function recordSwissResult(series) {
+    const t = tournament();
+    const user = t.field.find(x => x.user);
+    const enemy = t.field.find(x => !x.user && x.short === series.enemy.short && x.year === series.enemy.year) || swissOpponent();
+    const score = `${series.ourWins}-${series.rivalWins}`;
+    addSwissResult(user, series.win, enemy, score);
+    addSwissResult(enemy, !series.win, user, score);
+  }
+  function seedPlayoffs(includeUser) {
+    const t = tournament();
+    const user = t.field.find(x => x.user);
+    let qualified = t.field.filter(x => !x.user && x.wins >= 3).sort((a,b) => (b.wins-a.wins) || (a.losses-b.losses) || (b.power-a.power));
+    if (includeUser) qualified.unshift(user);
+    const fallback = t.field.filter(x => !qualified.some(q => teamKey(q) === teamKey(x)) && !x.user).sort((a,b) => (b.wins-a.wins) || (a.losses-b.losses) || (b.power-a.power));
+    while (qualified.length < 8 && fallback.length) qualified.push(fallback.shift());
+    qualified = qualified.slice(0, 8);
+    qualified.forEach((x,i) => x.seed = i + 1);
+    const slots = [qualified[0], qualified[7], qualified[3], qualified[4], qualified[1], qualified[6], qualified[2], qualified[5]];
+    const qf = [];
+    for (let i=0;i<slots.length;i+=2) qf.push({ label:'Cuartos', a:slots[i], b:slots[i+1], winner:null, loser:null, score:'', actual:false });
+    t.bracket = { stages:[{label:'Cuartos', matches:qf},{label:'Semis', matches:[]},{label:'Final', matches:[]}], champion:null };
+    return t.bracket;
+  }
+  function resolveMatchObject(match) {
+    if (!match || match.winner) return match;
+    const m = simTeamMatch(match.label, match.a, match.b);
+    Object.assign(match, m);
+    match.winner.power = (match.winner.power || 85) + rand(0,2);
+    return match;
+  }
+  function ensureStage(label) {
+    const b = tournament().bracket || seedPlayoffs(false);
+    const qf = b.stages[0].matches;
+    const sf = b.stages[1].matches;
+    const fin = b.stages[2].matches;
+    if (label === 'Semis' || label === 'Final') {
+      qf.forEach(resolveMatchObject);
+      if (!sf.length) {
+        sf.push({ label:'Semis', a:qf[0].winner, b:qf[1].winner, winner:null, loser:null, score:'', actual:false });
+        sf.push({ label:'Semis', a:qf[2].winner, b:qf[3].winner, winner:null, loser:null, score:'', actual:false });
       }
     }
-    teams = teams.sort((a,b)=>b.power-a.power).slice(0,7);
-    const seed = [teams[0], teams[6], teams[3], teams[4], teams[1], teams[5], teams[2]].filter(Boolean);
-    const simScore = (label, winnerIsA) => {
-      if (label === 'Final') return winnerIsA ? (rng() < .62 ? '3-1' : '3-2') : (rng() < .62 ? '1-3' : '2-3');
-      return winnerIsA ? (rng() < .70 ? '2-0' : '2-1') : (rng() < .70 ? '0-2' : '1-2');
-    };
-    const simMatch = (label, a, b) => {
-      const diff = (a.power || 85) - (b.power || 85);
-      const pA = clamp(.50 + diff * .055, .08, .92);
-      const awin = rng() < pA;
-      const winner = awin ? a : b, loser = awin ? b : a;
-      return { label, a, b, winner:{...winner, power:(winner.power||85)+rand(0,2)}, loser, score:simScore(label, awin), actual:false, upset: Math.abs(diff) >= 8 && ((diff > 0 && !awin) || (diff < 0 && awin)) };
-    };
-
-    const qf = [];
-    if (actualQ) qf.push(actualQ);
-    qf.push(simMatch('Cuartos', seed[0], seed[1] || seed[0]));
-    qf.push(simMatch('Cuartos', seed[2] || seed[0], seed[3] || seed[1] || seed[0]));
-    qf.push(simMatch('Cuartos', seed[4] || seed[0], seed[5] || seed[1] || seed[0]));
-    while (qf.length < 4) qf.push(simMatch('Cuartos', seed[qf.length] || seed[0], seed[qf.length+1] || seed[1] || seed[0]));
-
-    const sf = [];
-    if (actualS) {
-      sf.push(actualS);
-      const otherWinners = qf.map(m=>m.winner).filter(t => !t.user && `${t.short}-${t.year}` !== `${actualS.b.short}-${actualS.b.year}`);
-      sf.push(simMatch('Semis', otherWinners[0] || seed[0], otherWinners[1] || seed[1] || seed[0]));
-    } else {
-      sf.push(simMatch('Semis', qf[0].winner, qf[1].winner));
-      sf.push(simMatch('Semis', qf[2].winner, qf[3].winner));
+    if (label === 'Final') {
+      sf.forEach(resolveMatchObject);
+      if (!fin.length) fin.push({ label:'Final', a:sf[0].winner, b:sf[1].winner, winner:null, loser:null, score:'', actual:false });
     }
-
-    const fin = [];
-    if (actualF) fin.push(actualF);
-    else fin.push(simMatch('Final', sf[0].winner, sf[1].winner));
-
-    return { stages:[{label:'Cuartos', matches:qf},{label:'Semis', matches:sf},{label:'Final', matches:fin}], champion:fin[0].winner };
+    return b;
   }
-
+  function playoffOpponent(label) {
+    const b = ensureStage(label);
+    const stage = b.stages.find(s => s.label === label);
+    const match = stage.matches.find(m => m.a?.user || m.b?.user);
+    if (!match) return null;
+    const opp = match.a.user ? match.b : match.a;
+    return ROSTERS.find(r => r.short === opp.short && r.year === opp.year) || enemyTeam({gate: label==='Final'?99:label==='Semis'?96:94});
+  }
+  function recordPlayoffSeries(series) {
+    const b = ensureStage(series.label);
+    const stage = b.stages.find(s => s.label === series.label);
+    const match = stage?.matches.find(m => m.a?.user || m.b?.user);
+    if (!match) return;
+    const user = match.a.user ? match.a : match.b;
+    const enemy = match.a.user ? match.b : match.a;
+    match.actual = true;
+    match.ours = true;
+    match.score = `${series.ourWins}-${series.rivalWins}`;
+    match.winner = series.win ? user : enemy;
+    match.loser = series.win ? enemy : user;
+  }
+  function completeTournamentBracket() {
+    const b = tournament().bracket || seedPlayoffs(false);
+    b.stages[0].matches.forEach(resolveMatchObject);
+    ensureStage('Semis');
+    b.stages[1].matches.forEach(resolveMatchObject);
+    ensureStage('Final');
+    b.stages[2].matches.forEach(resolveMatchObject);
+    b.champion = b.stages[2].matches[0]?.winner || null;
+    state.last.bracketFinal = b;
+    return b;
+  }
+  function resolveBracket(r) {
+    if (r.tournament?.bracket) return completeTournamentBracket();
+    return { stages:[], champion:null };
+  }
   function bracketBoard(r) {
     if (!r) return '';
-    if (!r.bracketFinal && r.complete) r.bracketFinal = resolveBracket(r);
+    if (r.complete) completeTournamentBracket();
+    const b = r.bracketFinal || r.tournament?.bracket;
     const path = (r.matches || []).map(m => `<span class="${m.finished ? (m.win ? 'win' : 'loss') : ''}">${esc(m.label)} ${m.finished ? (m.win ? 'W' : 'L') : '·'} ${m.ourWins}-${m.rivalWins}</span>`).join('');
-    const stages = r.complete ? (r.bracketFinal?.stages || []) : [];
-    const columns = stages.map(stage => `<section class="bracket-col"><h4>${esc(stage.label)}</h4>${stage.matches.map(m => `<article class="bracket-match ${m.actual ? 'is-actual' : ''} ${m.winner?.user ? 'is-ours' : ''} ${m.upset ? 'is-upset' : ''}"><div class="${m.winner === m.a ? 'winner' : ''}"><span>${m.a.user ? 'Picks' : esc(m.a.name)}</span><small>${m.a.user ? Math.round(r.power || power()) : Math.round(m.a.power || 0)}</small></div><div class="${m.winner === m.b ? 'winner' : ''}"><span>${m.b.user ? 'Picks' : esc(m.b.name)}</span><small>${m.b.user ? Math.round(r.power || power()) : Math.round(m.b.power || 0)}</small></div><b>${esc(m.score)}</b>${m.actual ? '<em>Tu Serie</em>' : ''}${m.upset ? '<em>Upset</em>' : ''}</article>`).join('')}</section>`).join('');
-    const champ = r.bracketFinal?.champion ? `<b class="bracket-champion">${L('Campeón','Champion')}: ${r.bracketFinal.champion.user ? 'Picks' : esc(r.bracketFinal.champion.name)}</b>` : '';
-    return `<section class="bracket-panel real-bracket"><header><strong>Bracket</strong><small>${esc(r.groups ? r.groups.join('-') : '0-0')} Swiss</small></header><div class="bracket-path">${path || '<span>Sin Series</span>'}</div><div class="bracket-stage-grid">${columns || '<small class="muted">El Bracket Aparece Al Terminar La Run.</small>'}</div>${champ}</section>`;
+    const stages = b?.stages || [];
+    const columns = stages.map(stage => `<section class="bracket-col"><h4>${esc(stage.label)}</h4>${stage.matches.map(m => `<article class="bracket-match ${m.actual ? 'is-actual' : ''} ${m.winner?.user ? 'is-ours' : ''} ${m.upset ? 'is-upset' : ''}"><div class="${m.winner === m.a ? 'winner' : ''}"><span>${m.a?.user ? 'Picks' : esc(teamLabel(m.a))}</span><small>${Math.round(m.a?.power || 0)}</small></div><div class="${m.winner === m.b ? 'winner' : ''}"><span>${m.b?.user ? 'Picks' : esc(teamLabel(m.b))}</span><small>${Math.round(m.b?.power || 0)}</small></div><b>${esc(m.score || '—')}</b>${m.actual ? '<em>Tu Serie</em>' : ''}${m.upset ? '<em>Upset</em>' : ''}</article>`).join('')}</section>`).join('');
+    const standings = (r.tournament?.field || []).slice().sort((a,b)=>(b.wins-a.wins)||(a.losses-b.losses)||(b.power-a.power)).map(t=>`<span class="${t.user?'is-ours':''}">${t.user?'Picks':esc(teamLabel(t))} <b>${t.wins}-${t.losses}</b></span>`).join('');
+    const champ = b?.champion ? `<b class="bracket-champion">${L('Campeón','Champion')}: ${b.champion.user ? 'Picks' : esc(teamLabel(b.champion))}</b>` : '';
+    return `<section class="bracket-panel real-bracket"><header><strong>Swiss + Bracket</strong><small>${esc(r.groups ? r.groups.join('-') : '0-0')} Swiss</small></header><div class="bracket-path">${path || '<span>Sin Series</span>'}</div><details class="swiss-field" open><summary>Tabla Swiss</summary><div>${standings}</div></details><div class="bracket-stage-grid">${columns || '<small class="muted">El Bracket Aparece Al Terminar La Run.</small>'}</div>${champ}</section>`;
   }
   function renderStats() {
     const s = state.stats;
@@ -3759,17 +3926,27 @@
     const east = ps.filter(p => ['LCK','LPL'].includes(p.region)).length;
     const west = ps.filter(p => ['LEC','LCS'].includes(p.region)).length;
     const kr = ps.filter(p => p.country === 'KR').length;
-    const stars = ps.filter(p => (p.rating || 0) >= 95).length;
+    const cn = ps.filter(p => p.country === 'CN').length;
+    const stars = ps.filter(p => (p.rating || 0) >= 94).length;
     let penalty = 0;
-    if (west >= 4 && east <= 1) penalty -= 6;
-    else if (west >= 3 && east === 0) penalty -= 5;
-    if (east === 0) penalty -= 3;
+    if (west >= 4 && east <= 1) penalty -= 14;
+    else if (west >= 3 && east === 0) penalty -= 10;
+    if (east === 0) penalty -= 5;
     if (kr >= 2) penalty += 2;
+    if (cn >= 2) penalty += 2;
     if (stars >= 2) penalty += 2;
     return penalty;
   }
 
-  function power() { const ps = picked(); if (!ps.length) return 0; return Math.round(avg(ps.map(x=>x.rating)) + synergy().points + metaBonus() + questBonus() + draftPowerPenalty(ps)); }
+  function power() {
+    const ps = picked(); if (!ps.length) return 0;
+    let raw = avg(ps.map(x=>x.rating)) + synergy().points + metaBonus() + questBonus() + draftPowerPenalty(ps);
+    const east = ps.filter(p => ['LCK','LPL'].includes(p.region)).length;
+    const west = ps.filter(p => ['LEC','LCS'].includes(p.region)).length;
+    if (west >= 4 && east === 0) raw = Math.min(raw, 94);
+    if (west >= 4 && east <= 1) raw = Math.min(raw, 98);
+    return Math.round(raw);
+  }
   function synergy() {
     const ps = picked();
     let points = 0; const reasons = [];
@@ -3778,7 +3955,12 @@
     if (regionMax >= 3) { points += 2; reasons.push('núcleo regional 3+'); }
     if (countryMax >= 3) { points += 1; reasons.push('núcleo país 3+'); }
     if (regionMax === 5) { points += 2; reasons.push('región completa'); }
+    if (countries.KR === 5) { points += 5; reasons.push('Aura Corea +5'); }
+    if (countries.CN === 5) { points += 4; reasons.push('Aura China +4'); }
+    if (countries.NA === 5) { points += 2; reasons.push('Aura NA +2'); }
+    if (countries.EU === 5) { points += 2; reasons.push('Aura EU +2'); }
     if (orgMax >= 2) { points += Math.min(3, orgMax - 1); reasons.push('misma organización ' + orgMax); }
+    if (orgMax >= 3) { points += 2; reasons.push('legado de compañeros +2'); }
     if (sameRegion(ps,'Jungle','Mid')) { points += 2; reasons.push('Jungle/Mid región'); }
     if (sameTeam(ps,'Bot','Support')) { points += 4; reasons.push('duo bot real'); }
     const matched = matchedComps(ps);
