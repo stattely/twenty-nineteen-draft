@@ -222,3 +222,10 @@ Cambios verificables:
 ## V3.0.2 compact camelcase
 
 - Fixes bracket visibility, tag descriptions, compact screen spacing, Title Case labels and generic search placeholders.
+
+
+## V3.0.3 real bracket + i18n
+
+- Real bracket now uses your actual playoff path and score.
+- Fixes contradictory parallel champion/final.
+- Adds broader ES/EN label localization and compact layout.
