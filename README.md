@@ -170,3 +170,12 @@ Cambios verificables:
 - Fixes simulation crash caused by roster objects duplicated inside QUESTS.
 - Filters QUESTS to valid quest objects only.
 - Adds runtime simulation test during generation.
+
+
+## V2.8.0 final systems
+
+- Adds ES/EN toggle.
+- Adds bracket and line-by-line matchup in simulation.
+- Adds more Chronos and incremental objectives.
+- Restores western rosters into ROSTERS and cleans QUESTS.
+- Updates difficulty handicap labels.

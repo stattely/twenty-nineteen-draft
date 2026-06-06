@@ -4,7 +4,7 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="theme-color" content="#0a1420" />
-  <title>Five’s Pick · V2.7.1</title>
+  <title>Five’s Pick · V2.8.0</title>
   <style>
     :root {
       --bg: #eef2f4;
@@ -309,7 +309,7 @@
     @keyframes cardFlash { 0% { transform: scale(.985); box-shadow: 0 0 0 0 rgba(200,170,110,0); } 50% { transform: scale(1.01); box-shadow: 0 0 0 10px rgba(200,170,110,.12); } 100% { transform: scale(1); box-shadow: none; } }
     @keyframes sweepIn { 0% { opacity: .35; transform: translateY(8px); } 100% { opacity: 1; transform: translateY(0); } }
   
-    /* V2.7.1 verified role icons: these use the uploaded PNGs directly as background images. */
+    /* V2.8.0 verified role icons: these use the uploaded PNGs directly as background images. */
     .version-pill {
       border: 1px solid rgba(240,213,138,.34);
       border-radius: 999px;
@@ -449,7 +449,7 @@
     }
 
   
-    /* V2.7.1 HARD ROLE FIX:
+    /* V2.8.0 HARD ROLE FIX:
        These are the exact PNGs from IconsPositions.zip, copied raw into /assets/roles-original-v24/.
        The wrapper has no circle/border/background so the uploaded icon is not double-framed or rescaled weirdly. */
     .rolefix-pill {
@@ -511,7 +511,7 @@
     .chrono-card::after { content:''; position:absolute; inset:0; background:linear-gradient(115deg, transparent, rgba(255,255,255,.09), transparent); transform:translateX(-120%); animation:chartSweep 2.8s ease-in-out infinite; pointer-events:none; }
 
 
-    /* V2.7.1 */
+    /* V2.8.0 */
     .result-overlay.map-win .result-card, .result-overlay.map-loss .result-card {
       min-width: min(640px, calc(100vw - 28px));
       padding: 22px 28px;
@@ -591,7 +591,7 @@
     @media (max-width: 760px) { .objective-grid, .chrono-grid { grid-template-columns: 1fr; } .result-overlay.map-win .result-card, .result-overlay.map-loss .result-card { min-width: calc(100vw - 22px); padding: 18px; } }
 
   
-    /* V2.7.1 colorful composition tooltips */
+    /* V2.8.0 colorful composition tooltips */
     .icon-only { min-width: 48px; padding-inline: 13px; }
     .compose-popover {
       pointer-events: none;
@@ -641,7 +641,7 @@
     @keyframes softPulse { 50% { box-shadow: 0 0 0 5px rgba(16,185,129,.10); } }
 
   
-    /* V2.7.1 Teams archive */
+    /* V2.8.0 Teams archive */
     .teams-grid {
       display: grid;
       grid-template-columns: repeat(3, minmax(0, 1fr));
@@ -786,7 +786,7 @@
     }
 
   
-    /* V2.7.1 roster alignment, filters and wallet */
+    /* V2.8.0 roster alignment, filters and wallet */
     .global-wallet {
       display: inline-flex;
       align-items: center;
@@ -897,7 +897,7 @@
     }
 
   
-    /* V2.7.1 market popover + tag tooltips */
+    /* V2.8.0 market popover + tag tooltips */
     .player-card { overflow: visible; }
     .player-card:hover, .player-card:focus-within { z-index: 9; }
     .market, .player-grid { overflow: visible; }
@@ -973,7 +973,7 @@
     }
 
   
-    /* V2.7.1 compact team cards + drawn flags */
+    /* V2.8.0 compact team cards + drawn flags */
     .teams-grid { gap: 10px; }
     .team-card, .team-card-inner { min-height: 455px; }
     .team-face {
@@ -1099,7 +1099,7 @@
     }
 
   
-    /* V2.7.1 no-scroll compact popovers */
+    /* V2.8.0 no-scroll compact popovers */
     .compose-popover,
     .compose-popover.compact-popover {
       width: min(255px, calc(100vw - 28px)) !important;
@@ -1170,7 +1170,7 @@
     }
 
   
-    /* V2.7.1 simulation recovery */
+    /* V2.8.0 simulation recovery */
     .error-bubble {
       color: #fecaca !important;
       border-color: rgba(248,113,113,.45) !important;
@@ -1179,15 +1179,144 @@
     #simScreen[hidden] { display: none !important; }
     #simScreen:not([hidden]) { display: block; }
 
+  
+    /* V2.8 flags */
+    .flag-kr {
+      background: #fff;
+    }
+    .flag-kr::before {
+      content: '';
+      position: absolute;
+      width: 48%;
+      height: 58%;
+      border-radius: 50%;
+      background: linear-gradient(180deg, #cd2e3a 0 50%, #0047a0 50% 100%);
+      transform: rotate(28deg);
+      left: 26%;
+      top: 21%;
+    }
+    .flag-kr::after {
+      content: '';
+      position: absolute;
+      inset: 14% 9%;
+      background:
+        linear-gradient(#111 0 0) 8% 12%/18% 5% no-repeat,
+        linear-gradient(#111 0 0) 8% 24%/18% 5% no-repeat,
+        linear-gradient(#111 0 0) 8% 36%/18% 5% no-repeat,
+        linear-gradient(#111 0 0) 74% 60%/18% 5% no-repeat,
+        linear-gradient(#111 0 0) 74% 72%/18% 5% no-repeat,
+        linear-gradient(#111 0 0) 74% 84%/18% 5% no-repeat;
+      opacity: .82;
+    }
+    .flag-eu {
+      background: #003399;
+    }
+    .flag-eu::before {
+      content:'';
+      width: 5px;
+      height: 5px;
+      border-radius: 50%;
+      background: #ffcc00;
+      box-shadow:
+        10px 0 #ffcc00, -10px 0 #ffcc00,
+        0 8px #ffcc00, 0 -8px #ffcc00,
+        7px 6px #ffcc00, -7px 6px #ffcc00,
+        7px -6px #ffcc00, -7px -6px #ffcc00;
+    }
+
+  
+    /* V2.8 final systems */
+    .bracket-panel {
+      border: 1px solid var(--line);
+      border-radius: 18px;
+      padding: 12px;
+      background: var(--panel-2);
+      margin: 12px 0;
+      display: grid;
+      gap: 10px;
+    }
+    .bracket-panel header, .lineup-compare header {
+      display: grid;
+      grid-template-columns: 1fr auto 1fr;
+      gap: 10px;
+      align-items: center;
+      color: var(--muted);
+      font-size: 11px;
+      text-transform: uppercase;
+      font-weight: 1000;
+    }
+    .bracket-panel header strong:last-child, .lineup-compare header strong:last-child { text-align: right; }
+    .bracket-teams, .bracket-path { display: flex; gap: 7px; flex-wrap: wrap; }
+    .bracket-teams span, .bracket-path span {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      padding: 5px 8px;
+      background: color-mix(in srgb, var(--panel) 78%, transparent);
+      font-size: 11px;
+      font-weight: 900;
+    }
+    .bracket-teams img { width: 18px; height: 18px; border-radius: 50%; object-fit: contain; }
+    .bracket-path .win { border-color: rgba(36,180,126,.42); color: #bbf7d0; }
+    .bracket-path .loss { border-color: rgba(248,113,113,.44); color: #fecaca; }
+    .lineup-compare {
+      border: 1px dashed rgba(240,213,138,.24);
+      border-radius: 16px;
+      padding: 10px;
+      display: grid;
+      gap: 6px;
+      background: rgba(255,255,255,.03);
+      margin: 8px 0;
+    }
+    .lineup-row {
+      display: grid;
+      grid-template-columns: 34px 1fr 1fr;
+      gap: 8px;
+      align-items: center;
+      font-size: 11px;
+    }
+    .lineup-row b {
+      color: var(--gold-2);
+      text-align: center;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      padding: 3px 5px;
+    }
+    .lineup-row span {
+      display: flex;
+      justify-content: space-between;
+      gap: 6px;
+      min-width: 0;
+      border-bottom: 1px solid rgba(255,255,255,.06);
+      padding-bottom: 4px;
+    }
+    .lineup-row em { color: var(--gold-2); font-style: normal; font-weight: 1000; }
+    .sim-bubble strong, .sim-bubble small { display:block; }
+    .sim-bubble small { color: var(--muted); margin-top: 3px; }
+    .difficulty-help {
+      display: inline-flex;
+      margin-left: 6px;
+      color: var(--muted);
+      font-size: 10px;
+      font-weight: 900;
+    }
+    @media (max-width: 760px) {
+      .lineup-row { grid-template-columns: 28px 1fr; }
+      .lineup-row span:last-child { grid-column: 2; }
+      .bracket-panel header, .lineup-compare header { grid-template-columns: 1fr; gap: 4px; }
+    }
+
   </style>
 </head>
 <body class="dark">
-  <!-- BUILD_MARKER_V271_SIMULATION_RESTORED -->
+  <!-- BUILD_MARKER_V280_FINAL_SYSTEMS -->
   <div class="app">
     <header class="topbar">
       <a class="brand" href="#" data-action="screen" data-screen="draft" aria-label="inicio"><span class="brand-mark">5V</span><span class="brand-copy">Five’s<br>Pick</span></a>
-      <div class="microline"><strong>Roll</strong><span>·</span><strong>Pick</strong><span>·</span><strong>Break</strong><span id="seedLabel">seed #LOCAL</span><span class="rolefix-pill">V2.7.1</span><span class="version-pill">V2.7.1</span></div>
-      <nav class="quick-actions"><span class="global-wallet" title="Coins guardadas localmente">🪙 <b id="globalWallet">0</b></span><button type="button" data-action="theme">tema</button><button type="button" data-action="copy">copiar</button><button type="button" data-action="reset">reset</button></nav>
+      <div class="microline"><strong>Roll</strong><span>·</span><strong>Pick</strong><span>·</span><strong>Break</strong><span id="seedLabel">seed #LOCAL</span><span class="rolefix-pill">V2.8.0</span><span class="version-pill">V2.8.0</span></div>
+      <nav class="quick-actions"><button type="button" data-action="lang" id="langBtn" title="Cambiar idioma">ES</button><span class="global-wallet" title="Coins guardadas localmente">🪙 <b id="globalWallet">0</b></span><button type="button" data-action="theme">tema</button><button type="button" data-action="copy">copiar</button><button type="button" data-action="reset">reset</button></nav>
     </header>
     <nav class="tabs" aria-label="pantallas"><button type="button" data-action="screen" data-screen="draft" aria-pressed="true" title="Arma tu roster con tiradas, tienda y picks">Picks</button><button type="button" data-action="screen" data-screen="sim" aria-pressed="false" title="Ve la simulación partido por partido">Simulación</button><button type="button" data-action="screen" data-screen="stats" aria-pressed="false" title="Consulta tus estadísticas acumuladas">Stats</button><button type="button" data-action="screen" data-screen="history" aria-pressed="false" title="Revisa runs anteriores una por una">Historia</button><button type="button" data-action="screen" data-screen="teams" aria-pressed="false" title="Explora equipos, rosters y tags">Equipos</button><button type="button" data-action="screen" data-screen="objectives" aria-pressed="false" title="Objetivos y recompensas">Objetivos</button><button type="button" data-action="screen" data-screen="chrono" aria-pressed="false" title="Modo caótico experimental">Chrono</button></nav>
     <main>
@@ -1270,7 +1399,7 @@
         <section class="panel"><div class="chrono-grid" id="chronoGrid"></div></section>
       </section>
 
-    <footer>Fan-made project not affiliated with Riot Games · V2.7.1</footer>
+    <footer>Fan-made project not affiliated with Riot Games · V2.8.0</footer>
   </div>
   <div class="result-overlay" id="resultOverlay" aria-live="polite"></div>
   <div class="toast" id="toast"></div>
@@ -1287,8 +1416,8 @@
   const STARTING_COINS = 180;
   const RATING_OFFSET = -3;
   const MARKET_COST = 10;
-  const ENEMY_HANDICAP = 1.5;
-  const STORE = { coins: 'draft_coins_v11', stats: 'draft_stats_v11', theme: 'draft_theme_v11', owned: 'draft_owned_v11', objectives: 'draft_objectives_v25', chrono: 'draft_chrono_v25' };
+  const ENEMY_HANDICAP = 0;
+  const STORE = { coins: 'draft_coins_v11', stats: 'draft_stats_v11', theme: 'draft_theme_v11', owned: 'draft_owned_v11', objectives: 'draft_objectives_v25', chrono: 'draft_chrono_v25', lang: 'five_pick_lang_v28' };
 
   const historicalTeamLogos = {
     "og-2015": "/assets/teams-historical/worlds-og-2015.png",
@@ -1444,7 +1573,32 @@
     r('kt-2018', 'KT Rolster', 'KT', 2018, 'LCK', 'KR', false, 94, ['teamfight'], [p('Smeb','Top',95,['carry']),p('Score','Jungle',95,['shotcall']),p('Ucal','Mid',92,['hands']),p('Deft','Bot',96,['carry']),p('Mata','Support',96,['shotcall'])]),
     r('tes-2020', 'Top Esports', 'TES', 2020, 'LPL', 'CN', false, 93, ['hands'], [p('369','Top',93,['stable']),p('Karsa','Jungle',94,['tempo']),p('knight','Mid',98,['hands','control']),p('JackeyLove','Bot',95,['carry']),p('yuyanjia','Support',88,['engage'])]),
     r('mad-2021', 'MAD Lions', 'MAD', 2021, 'LEC', 'EU', false, 88, ['teamfight'], [p('Armut','Top',88,['carry']),p('Elyoya','Jungle',91,['tempo']),p('Humanoid','Mid',92,['control']),p('Carzzy','Bot',88,['carry']),p('Kaiser','Support',91,['engage'])]),
-    r('msf-2017', 'Misfits Gaming', 'MSF', 2017, 'LEC', 'EU', false, 86, ['upset'], [p('Alphari','Top',89,['stable']),p('Maxlore','Jungle',88,['tempo']),p('PowerOfEvil','Mid',90,['control']),p('Hans Sama','Bot',90,['carry']),p('IgNar','Support',91,['creative'])])
+    r('msf-2017', 'Misfits Gaming', 'MSF', 2017, 'LEC', 'EU', false, 86, ['upset'], [p('Alphari','Top',89,['stable']),p('Maxlore','Jungle',88,['tempo']),p('PowerOfEvil','Mid',90,['control']),p('Hans Sama','Bot',90,['carry']),p('IgNar','Support',91,['creative'])]),
+
+    r('g2-2018', 'G2 Esports', 'G2', 2018, 'LEC', 'EU', false, 88, ['upset','creative'], [p('Wunder','Top',91,['carry','flex']),p('Jankos','Jungle',91,['tempo']),p('Perkz','Mid',94,['clutch','hands']),p('Hjarnan','Bot',86,['stable']),p('Wadid','Support',86,['engage'])]),
+    r('g2-2020', 'G2 Esports', 'G2', 2020, 'LEC', 'EU', false, 91, ['flex','skirmish'], [p('Wunder','Top',91,['carry','flex']),p('Jankos','Jungle',92,['tempo','shotcall']),p('Caps','Mid',97,['hands','clutch']),p('Perkz','Bot',92,['creative','clutch']),p('Mikyx','Support',93,['engage','creative'])]),
+    r('g2-2022', 'G2 Esports', 'G2', 2022, 'LEC', 'EU', false, 87, ['tempo','western'], [p('BrokenBlade','Top',89,['carry','stable']),p('Jankos','Jungle',90,['tempo','shotcall']),p('Caps','Mid',94,['hands','clutch']),p('Flakked','Bot',86,['stable']),p('Targamas','Support',86,['engage','creative'])]),
+    r('g2-2023', 'G2 Esports', 'G2', 2023, 'LEC', 'EU', false, 89, ['skirmish','creative'], [p('BrokenBlade','Top',90,['carry','stable']),p('Yike','Jungle',90,['tempo']),p('Caps','Mid',96,['hands','clutch']),p('Hans sama','Bot',91,['carry']),p('Mikyx','Support',93,['engage','creative'])]),
+    r('fnc-2015', 'Fnatic', 'FNC', 2015, 'LEC', 'EU', false, 90, ['macro','western'], [p('Huni','Top',93,['carry','hands']),p('Reignover','Jungle',92,['tempo']),p('Febiven','Mid',92,['hands']),p('Rekkles','Bot',94,['late','carry']),p('YellOwStaR','Support',94,['shotcall'])]),
+    r('fnc-2019', 'Fnatic', 'FNC', 2019, 'LEC', 'EU', false, 88, ['teamfight','western'], [p('Bwipo','Top',90,['carry']),p('Broxah','Jungle',90,['tempo']),p('Nemesis','Mid',89,['control']),p('Rekkles','Bot',94,['late','carry']),p('Hylissang','Support',92,['engage','creative'])]),
+    r('fnc-2020', 'Fnatic', 'FNC', 2020, 'LEC', 'EU', false, 89, ['bot','teamfight'], [p('Bwipo','Top',90,['carry']),p('Selfmade','Jungle',93,['carry','tempo']),p('Nemesis','Mid',89,['control']),p('Rekkles','Bot',94,['late','carry']),p('Hylissang','Support',92,['engage','creative'])]),
+    r('og-2015', 'Origen', 'OG', 2015, 'LEC', 'EU', false, 88, ['legacy','control'], [p('sOAZ','Top',91,['stable','carry']),p('Amazing','Jungle',89,['tempo']),p('xPeke','Mid',92,['clutch','shotcall']),p('Niels','Bot',91,['carry']),p('Mithy','Support',92,['shotcall','engage'])]),
+    r('h2k-2016', 'H2K', 'H2K', 2016, 'LEC', 'EU', false, 87, ['macro','underdog'], [p('Odoamne','Top',90,['stable']),p('Jankos','Jungle',91,['tempo']),p('Ryu','Mid',89,['control']),p('FORG1VEN','Bot',92,['carry']),p('Vander','Support',88,['engage'])]),
+    r('spy-2019', 'Splyce', 'SPY', 2019, 'LEC', 'EU', false, 86, ['scaling','late'], [p('Vizicsacsi','Top',87,['stable']),p('Xerxe','Jungle',88,['tempo','creative']),p('Humanoid','Mid',90,['control','hands']),p('Kobbe','Bot',90,['late','carry']),p('Norskeren','Support',86,['engage'])]),
+    r('rge-2022', 'Rogue', 'RGE', 2022, 'LEC', 'EU', false, 88, ['control','western'], [p('Odoamne','Top',90,['stable']),p('Malrang','Jungle',90,['tempo','creative']),p('Larssen','Mid',91,['control']),p('Comp','Bot',91,['carry']),p('Trymbi','Support',90,['engage','creative'])]),
+    r('mad-2020', 'MAD Lions', 'MAD', 2020, 'LEC', 'EU', false, 83, ['rookie','creative'], [p('Orome','Top',82,['stable']),p('Shad0w','Jungle',85,['tempo']),p('Humanoid','Mid',89,['control','hands']),p('Carzzy','Bot',86,['carry']),p('Kaiser','Support',88,['engage'])]),
+    r('mad-2023', 'MAD Lions', 'MAD', 2023, 'LEC', 'EU', false, 85, ['teamfight','western'], [p('Chasy','Top',86,['carry']),p('Elyoya','Jungle',90,['tempo','shotcall']),p('Nisqy','Mid',87,['control']),p('Carzzy','Bot',88,['carry']),p('Hylissang','Support',88,['engage','creative'])]),
+    r('bds-2023', 'Team BDS', 'BDS', 2023, 'LEC', 'EU', false, 84, ['underdog','western'], [p('Adam','Top',89,['carry','creative']),p('Sheo','Jungle',85,['tempo']),p('nuc','Mid',86,['control']),p('Crownie','Bot',87,['late']),p('Labrov','Support',86,['engage'])]),
+    r('c9-2016', 'Cloud9', 'C9', 2016, 'LCS', 'NA', false, 85, ['underdog','western'], [p('Impact','Top',89,['stable']),p('Meteos','Jungle',86,['tempo']),p('Jensen','Mid',90,['control','hands']),p('Sneaky','Bot',89,['late']),p('Smoothie','Support',86,['engage'])]),
+    r('c9-2021', 'Cloud9', 'C9', 2021, 'LCS', 'NA', false, 86, ['upset','skirmish'], [p('Fudge','Top',88,['stable']),p('Blaber','Jungle',91,['tempo','carry']),p('Perkz','Mid',91,['clutch']),p('Zven','Bot',88,['late']),p('Vulcan','Support',89,['engage'])]),
+    r('clg-2016-msi', 'Counter Logic Gaming', 'CLG', 2016, 'LCS', 'NA', false, 87, ['upset','teamfight'], [p('Darshan','Top',87,['carry']),p('Xmithie','Jungle',88,['tempo']),p('Huhi','Mid',87,['control']),p('Stixxay','Bot',90,['carry','clutch']),p('aphromoo','Support',91,['shotcall','engage'])], { tournament: 'MSI' }),
+    r('tsm-2014', 'Team SoloMid', 'TSM', 2014, 'LCS', 'NA', false, 84, ['legacy','western'], [p('Dyrus','Top',86,['stable']),p('Amazing','Jungle',85,['tempo']),p('Bjergsen','Mid',91,['hands','clutch']),p('WildTurtle','Bot',86,['carry']),p('Lustboy','Support',86,['engage'])]),
+    r('tsm-2016', 'Team SoloMid', 'TSM', 2016, 'LCS', 'NA', false, 88, ['teamfight','western'], [p('Hauntzer','Top',89,['carry','stable']),p('Svenskeren','Jungle',89,['tempo']),p('Bjergsen','Mid',93,['control','clutch']),p('Doublelift','Bot',92,['carry']),p('Biofrost','Support',88,['engage'])]),
+    r('tl-2018', 'Team Liquid', 'TL', 2018, 'LCS', 'NA', false, 84, ['bot','western'], [p('Impact','Top',88,['stable']),p('Xmithie','Jungle',87,['tempo']),p('Pobelter','Mid',85,['control']),p('Doublelift','Bot',92,['carry']),p('Olleh','Support',84,['engage'])]),
+    r('tl-2024', 'Team Liquid', 'TL', 2024, 'LCS', 'NA', false, 86, ['macro','western'], [p('Impact','Top',89,['stable']),p('UmTi','Jungle',86,['shotcall','tempo']),p('APA','Mid',86,['creative']),p('Yeon','Bot',88,['carry']),p('CoreJJ','Support',91,['shotcall','engage'])]),
+    r('fly-2024', 'FlyQuest', 'FLY', 2024, 'LCS', 'NA', false, 87, ['teamfight','western'], [p('Bwipo','Top',89,['carry','creative']),p('Inspired','Jungle',91,['tempo','shotcall']),p('Quad','Mid',87,['control']),p('Massu','Bot',88,['carry']),p('Busio','Support',87,['engage','creative'])]),
+    r('eg-2022', 'Evil Geniuses', 'EG', 2022, 'LCS', 'NA', false, 86, ['upset','skirmish'], [p('Impact','Top',89,['stable']),p('Inspired','Jungle',91,['tempo']),p('Jojopyun','Mid',88,['hands','creative']),p('Danny','Bot',90,['carry','clutch']),p('Vulcan','Support',89,['engage'])])
+
   ];
 
   const METAS = [
@@ -1460,30 +1614,10 @@
     { name: 'duo bot real', text: '+3 si Bot y Support son del mismo equipo/año.', bonus: 3, ok: ps => sameTeam(ps,'Bot','Support') },
     { name: 'pasado y presente', text: '+2 si mezclas antes de 2018 y después de 2021.', bonus: 2, ok: ps => ps.some(x => x.year < 2018) && ps.some(x => x.year > 2021) },
     { name: 'oeste unido', text: '+2 si armas 3+ jugadores LEC/LCS.', bonus: 2, ok: ps => ps.filter(x => ['LEC','LCS'].includes(x.region)).length >= 3 },
-
-    r('g2-2018', 'G2 Esports', 'G2', 2018, 'LEC', 'EU', false, 88, ['upset','creative'], [p('Wunder','Top',91,['carry','flex']),p('Jankos','Jungle',91,['tempo']),p('Perkz','Mid',94,['clutch','hands']),p('Hjarnan','Bot',86,['stable']),p('Wadid','Support',86,['engage'])]),
-    r('g2-2020', 'G2 Esports', 'G2', 2020, 'LEC', 'EU', false, 91, ['flex','skirmish'], [p('Wunder','Top',91,['carry','flex']),p('Jankos','Jungle',92,['tempo','shotcall']),p('Caps','Mid',97,['hands','clutch']),p('Perkz','Bot',92,['creative','clutch']),p('Mikyx','Support',93,['engage','creative'])]),
-    r('fnc-2015', 'Fnatic', 'FNC', 2015, 'LEC', 'EU', false, 90, ['macro','western'], [p('Huni','Top',93,['carry','hands']),p('Reignover','Jungle',92,['tempo']),p('Febiven','Mid',92,['hands']),p('Rekkles','Bot',94,['late','carry']),p('YellOwStaR','Support',94,['shotcall'])]),
-    r('fnc-2019', 'Fnatic', 'FNC', 2019, 'LEC', 'EU', false, 88, ['teamfight','western'], [p('Bwipo','Top',90,['carry']),p('Broxah','Jungle',90,['tempo']),p('Nemesis','Mid',89,['control']),p('Rekkles','Bot',94,['late','carry']),p('Hylissang','Support',92,['engage','creative'])]),
-    r('fnc-2020', 'Fnatic', 'FNC', 2020, 'LEC', 'EU', false, 89, ['bot','teamfight'], [p('Bwipo','Top',90,['carry']),p('Selfmade','Jungle',93,['carry','tempo']),p('Nemesis','Mid',89,['control']),p('Rekkles','Bot',94,['late','carry']),p('Hylissang','Support',92,['engage','creative'])]),
-    r('og-2015', 'Origen', 'OG', 2015, 'LEC', 'EU', false, 88, ['legacy','control'], [p('sOAZ','Top',91,['stable','carry']),p('Amazing','Jungle',89,['tempo']),p('xPeke','Mid',92,['clutch','shotcall']),p('Niels','Bot',91,['carry']),p('Mithy','Support',92,['shotcall','engage'])]),
-    r('h2k-2016', 'H2K', 'H2K', 2016, 'LEC', 'EU', false, 87, ['macro','underdog'], [p('Odoamne','Top',90,['stable']),p('Jankos','Jungle',91,['tempo']),p('Ryu','Mid',89,['control']),p('FORG1VEN','Bot',92,['carry']),p('Vander','Support',88,['engage'])]),
-    r('msf-2017-alt', 'Misfits Gaming', 'MSF', 2017, 'LEC', 'EU', false, 87, ['upset','creative'], [p('Alphari','Top',90,['stable']),p('Maxlore','Jungle',88,['tempo']),p('PowerOfEvil','Mid',91,['control']),p('Hans sama','Bot',90,['carry']),p('IgNar','Support',91,['engage','creative'])]),
-    r('spy-2019', 'Splyce', 'SPY', 2019, 'LEC', 'EU', false, 86, ['scaling','late'], [p('Vizicsacsi','Top',87,['stable']),p('Xerxe','Jungle',88,['tempo','creative']),p('Humanoid','Mid',90,['control','hands']),p('Kobbe','Bot',90,['late','carry']),p('Norskeren','Support',86,['engage'])]),
-    r('rge-2022', 'Rogue', 'RGE', 2022, 'LEC', 'EU', false, 88, ['control','western'], [p('Odoamne','Top',90,['stable']),p('Malrang','Jungle',90,['tempo','creative']),p('Larssen','Mid',91,['control']),p('Comp','Bot',91,['carry']),p('Trymbi','Support',90,['engage','creative'])]),
-    r('g2-2023', 'G2 Esports', 'G2', 2023, 'LEC', 'EU', false, 89, ['skirmish','creative'], [p('BrokenBlade','Top',90,['carry','stable']),p('Yike','Jungle',90,['tempo']),p('Caps','Mid',96,['hands','clutch']),p('Hans sama','Bot',91,['carry']),p('Mikyx','Support',93,['engage','creative'])]),
-    r('bds-2023', 'Team BDS', 'BDS', 2023, 'LEC', 'EU', false, 84, ['underdog','western'], [p('Adam','Top',89,['carry','creative']),p('Sheo','Jungle',85,['tempo']),p('nuc','Mid',86,['control']),p('Crownie','Bot',87,['late']),p('Labrov','Support',86,['engage'])]),
-    r('c9-2016', 'Cloud9', 'C9', 2016, 'LCS', 'NA', false, 85, ['underdog','western'], [p('Impact','Top',89,['stable']),p('Meteos','Jungle',86,['tempo']),p('Jensen','Mid',90,['control','hands']),p('Sneaky','Bot',89,['late']),p('Smoothie','Support',86,['engage'])]),
-    r('c9-2021', 'Cloud9', 'C9', 2021, 'LCS', 'NA', false, 86, ['upset','skirmish'], [p('Fudge','Top',88,['stable']),p('Blaber','Jungle',91,['tempo','carry']),p('Perkz','Mid',91,['clutch']),p('Zven','Bot',88,['late']),p('Vulcan','Support',89,['engage'])]),
-    r('clg-2016-msi', 'Counter Logic Gaming', 'CLG', 2016, 'LCS', 'NA', false, 87, ['upset','teamfight'], [p('Darshan','Top',87,['carry']),p('Xmithie','Jungle',88,['tempo']),p('Huhi','Mid',87,['control']),p('Stixxay','Bot',90,['carry','clutch']),p('aphromoo','Support',91,['shotcall','engage'])], { tournament: 'MSI' }),
-    r('tsm-2014', 'Team SoloMid', 'TSM', 2014, 'LCS', 'NA', false, 84, ['legacy','western'], [p('Dyrus','Top',86,['stable']),p('Amazing','Jungle',85,['tempo']),p('Bjergsen','Mid',91,['hands','clutch']),p('WildTurtle','Bot',86,['carry']),p('Lustboy','Support',86,['engage'])]),
-    r('tsm-2016', 'Team SoloMid', 'TSM', 2016, 'LCS', 'NA', false, 88, ['teamfight','western'], [p('Hauntzer','Top',89,['carry','stable']),p('Svenskeren','Jungle',89,['tempo']),p('Bjergsen','Mid',93,['control','clutch']),p('Doublelift','Bot',92,['carry']),p('Biofrost','Support',88,['engage'])]),
-    r('tl-2018', 'Team Liquid', 'TL', 2018, 'LCS', 'NA', false, 84, ['bot','western'], [p('Impact','Top',88,['stable']),p('Xmithie','Jungle',87,['tempo']),p('Pobelter','Mid',85,['control']),p('Doublelift','Bot',92,['carry']),p('Olleh','Support',84,['engage'])]),
-    r('tl-2024', 'Team Liquid', 'TL', 2024, 'LCS', 'NA', false, 86, ['macro','western'], [p('Impact','Top',89,['stable']),p('UmTi','Jungle',86,['shotcall','tempo']),p('APA','Mid',86,['creative']),p('Yeon','Bot',88,['carry']),p('CoreJJ','Support',91,['shotcall','engage'])]),
-    r('fly-2024', 'FlyQuest', 'FLY', 2024, 'LCS', 'NA', false, 87, ['teamfight','western'], [p('Bwipo','Top',89,['carry','creative']),p('Inspired','Jungle',91,['tempo','shotcall']),p('Quad','Mid',87,['control']),p('Massu','Bot',88,['carry']),p('Busio','Support',87,['engage','creative'])]),
-    r('eg-2022', 'Evil Geniuses', 'EG', 2022, 'LCS', 'NA', false, 86, ['upset','skirmish'], [p('Impact','Top',89,['stable']),p('Inspired','Jungle',91,['tempo']),p('Jojopyun','Mid',88,['hands','creative']),p('Danny','Bot',90,['carry','clutch']),p('Vulcan','Support',89,['engage'])])
-
-  ].filter(q => q && typeof q.ok === 'function');
+    { name: 'solo campeones', text: '+3 si tus 5 picks vienen de cartas major champion.', bonus: 3, ok: ps => ps.length===5 && ps.every(x=>x.major) },
+    { name: 'anti-meta', text: '+2 si tu average es menor a 90 pero completas el 5v.', bonus: 2, ok: ps => ps.length===5 && avg(ps.map(x=>x.rating)) < 90 },
+    { name: 'mid kingdom', text: '+2 si Mid tiene 95+ y Jungle comparte región.', bonus: 2, ok: ps => { const m=ps.find(x=>x.role==='Mid'), j=ps.find(x=>x.role==='Jungle'); return m&&j&&m.rating>=95&&m.region===j.region; } }
+  ];
   const COMP_RULES = [{"name":"Mid/Jungle Tempo","points":2,"desc":"Jungla de tempo habilita mid de control o manos","req":[{"role":"Jungle","tag":"tempo"},{"role":"Mid","tag":"control"}]},{"name":"Mid/Jungle Hands","points":2,"desc":"Jungla agresivo habilita mid mecánico","req":[{"role":"Jungle","tag":"tempo"},{"role":"Mid","tag":"hands"}]},{"name":"Shotcall Engage","points":1,"desc":"Shotcaller coordina engage primario","req":[{"role":"Jungle","tag":"shotcall"},{"role":"Support","tag":"engage"}]},{"name":"Support Engage + Bot Carry","points":2,"desc":"Engage abre ventana al carry de bot","req":[{"role":"Support","tag":"engage"},{"role":"Bot","tag":"carry"}]},{"name":"Late Game Insurance","points":2,"desc":"Bot late con soporte shotcaller escala mejor","req":[{"role":"Bot","tag":"late"},{"role":"Support","tag":"shotcall"}]},{"name":"Weakside Top + Bot Carry","points":2,"desc":"Top absorbe presión para jugar bot side","req":[{"role":"Top","tag":"weakside"},{"role":"Bot","tag":"carry"}]},{"name":"Carry Top + Tempo Jungle","points":2,"desc":"Jungla acelera carry de top","req":[{"role":"Top","tag":"carry"},{"role":"Jungle","tag":"tempo"}]},{"name":"Roam Mid + Engage Support","points":2,"desc":"Roams conectan con engage de support","req":[{"role":"Mid","tag":"roam"},{"role":"Support","tag":"engage"}]},{"name":"Control Mid + Vision Support","points":2,"desc":"Control de mid y visión estabilizan mapa","req":[{"role":"Mid","tag":"control"},{"role":"Support","tag":"vision"}]},{"name":"Clutch Core","points":3,"desc":"Dos jugadores clutch elevan cierre de mapas","req":[{"role":null,"tag":"clutch"},{"role":null,"tag":"clutch"}]},{"name":"Hands Trio","points":3,"desc":"Tres perfiles hands/carry elevan peleas","req":[{"role":null,"tag":"hands"},{"role":null,"tag":"carry"},{"role":null,"tag":"carry"}]},{"name":"Macro Spine","points":3,"desc":"Shotcall + control + stable sostienen macro","req":[{"role":"Jungle","tag":"shotcall"},{"role":"Mid","tag":"control"},{"role":"Top","tag":"stable"}]},{"name":"Teamfight Front-to-Back","points":3,"desc":"Top estable, bot carry y supp engage","req":[{"role":"Top","tag":"stable"},{"role":"Bot","tag":"carry"},{"role":"Support","tag":"engage"}]},{"name":"Skirmish Chaos","points":3,"desc":"Tempo, hands y creative buscan peleas raras","req":[{"role":"Jungle","tag":"tempo"},{"role":"Mid","tag":"hands"},{"role":"Support","tag":"creative"}]},{"name":"Bot Kingdom","points":3,"desc":"Bot carry + supp engage/shotcall dominan 2v2","req":[{"role":"Bot","tag":"carry"},{"role":"Support","tag":"engage"},{"role":"Support","tag":"shotcall"}]},{"name":"Top Island","points":1,"desc":"Top estable y jungla tempo evitan snowball rival","req":[{"role":"Top","tag":"stable"},{"role":"Jungle","tag":"tempo"}]},{"name":"Vision Trap","points":2,"desc":"Shotcall con visión crea picks de Nashor","req":[{"role":"Support","tag":"shotcall"},{"role":"Jungle","tag":"tempo"}]},{"name":"Creative Map","points":2,"desc":"Soporte creativo habilita mid roam","req":[{"role":"Support","tag":"creative"},{"role":"Mid","tag":"roam"}]},{"name":"Control Scaling","points":2,"desc":"Mid control y bot late juegan a escalar","req":[{"role":"Mid","tag":"control"},{"role":"Bot","tag":"late"}]},{"name":"Carry Triangle","points":3,"desc":"Top/Mid/Bot con carry/hands presionan 3 lanes","req":[{"role":"Top","tag":"carry"},{"role":"Mid","tag":"hands"},{"role":"Bot","tag":"carry"}]},{"name":"Clutch ADC","points":2,"desc":"Bot clutch convierte finales cerrados","req":[{"role":"Bot","tag":"clutch"},{"role":"Support","tag":"engage"}]},{"name":"Jungle Carry","points":2,"desc":"Jungla carry con mid control invade mejor","req":[{"role":"Jungle","tag":"carry"},{"role":"Mid","tag":"control"}]},{"name":"Roam Snowball","points":2,"desc":"Mid roam y jungla tempo aceleran side lanes","req":[{"role":"Mid","tag":"roam"},{"role":"Jungle","tag":"tempo"}]},{"name":"Weakside Discipline","points":2,"desc":"Top weakside + support shotcall reducen throws","req":[{"role":"Top","tag":"weakside"},{"role":"Support","tag":"shotcall"}]},{"name":"Late Engage","points":2,"desc":"Engage protege condiciones de late game","req":[{"role":"Bot","tag":"late"},{"role":"Support","tag":"engage"}]},{"name":"Macro Control","points":2,"desc":"Macro y control convierten objetivos","req":[{"role":"Mid","tag":"control"},{"role":null,"tag":"macro"}]},{"name":"Underdog Spark","points":1,"desc":"Underdog con clutch encuentra upset","req":[{"role":null,"tag":"underdog"},{"role":null,"tag":"clutch"}]},{"name":"Flex Pressure","points":1,"desc":"Flex con creative complica pick phase rival","req":[{"role":null,"tag":"flex"},{"role":"Support","tag":"creative"}]},{"name":"Bot Side Identity","points":2,"desc":"Tags bot + carry refuerzan win condition","req":[{"role":null,"tag":"bot"},{"role":"Bot","tag":"carry"}]},{"name":"Engage Chain","points":2,"desc":"Engage múltiple fuerza teamfights","req":[{"role":null,"tag":"engage"},{"role":null,"tag":"engage"}]},{"name":"Stable Carry Cover","points":2,"desc":"Top estable cubre carry vulnerable","req":[{"role":"Top","tag":"stable"},{"role":"Bot","tag":"carry"}]},{"name":"Mid Clutch","points":2,"desc":"Mid clutch y jungle tempo cierran fights","req":[{"role":"Mid","tag":"clutch"},{"role":"Jungle","tag":"tempo"}]},{"name":"Top Clutch","points":2,"desc":"Top clutch y support engage abren picks","req":[{"role":"Top","tag":"clutch"},{"role":"Support","tag":"engage"}]},{"name":"Support Brain","points":2,"desc":"Support shotcall + jungla tempo controla mapa","req":[{"role":"Support","tag":"shotcall"},{"role":"Jungle","tag":"tempo"}]},{"name":"Control Engage","points":2,"desc":"Mid control setupea engage limpio","req":[{"role":"Mid","tag":"control"},{"role":"Support","tag":"engage"}]},{"name":"Creative Bot","points":1,"desc":"Bot creative con support engage genera picks","req":[{"role":"Bot","tag":"creative"},{"role":"Support","tag":"engage"}]},{"name":"Late Shotcall","points":2,"desc":"Shotcall protege escalado late","req":[{"role":null,"tag":"late"},{"role":null,"tag":"shotcall"}]},{"name":"Hands Check Duo","points":2,"desc":"Dos manos fuertes ganan skirmishes","req":[{"role":null,"tag":"hands"},{"role":null,"tag":"hands"}]},{"name":"Carry Jungle Bot","points":2,"desc":"Jungle carry y bot carry reparten recursos","req":[{"role":"Jungle","tag":"carry"},{"role":"Bot","tag":"carry"}]},{"name":"Roam Support","points":2,"desc":"Support creativo y mid roam mueven mapa","req":[{"role":"Support","tag":"creative"},{"role":"Mid","tag":"roam"}]},{"name":"Teamfight Call","points":2,"desc":"Teamfight + shotcall mejora 5v5","req":[{"role":null,"tag":"teamfight"},{"role":null,"tag":"shotcall"}]},{"name":"Skirmish Tempo","points":2,"desc":"Skirmish con tempo acelera early","req":[{"role":null,"tag":"skirmish"},{"role":"Jungle","tag":"tempo"}]},{"name":"Vision Macro","points":2,"desc":"Vision y macro traducen ventajas","req":[{"role":null,"tag":"vision"},{"role":null,"tag":"macro"}]},{"name":"Upset Angle","points":1,"desc":"Upset con engage encuentra sorpresa","req":[{"role":null,"tag":"upset"},{"role":null,"tag":"engage"}]},{"name":"Top Hands Jungle Tempo","points":3,"desc":"Top mecánico con jungla tempo amenaza dive","req":[{"role":"Top","tag":"hands"},{"role":"Jungle","tag":"tempo"}]},{"name":"Mid Hands Support Engage","points":3,"desc":"Mid mecánico capitaliza engage del support","req":[{"role":"Mid","tag":"hands"},{"role":"Support","tag":"engage"}]},{"name":"Bot Carry Jungle Tempo","points":3,"desc":"Jungle tempo juega alrededor del carry bot","req":[{"role":"Bot","tag":"carry"},{"role":"Jungle","tag":"tempo"}]},{"name":"Control Shotcall Engage","points":3,"desc":"Control, shotcall y engage ejecutan limpio","req":[{"role":"Mid","tag":"control"},{"role":null,"tag":"shotcall"},{"role":"Support","tag":"engage"}]},{"name":"Triple Clutch","points":3,"desc":"Tres clutch suben finales y game 5","req":[{"role":null,"tag":"clutch"},{"role":null,"tag":"clutch"},{"role":null,"tag":"clutch"}]},{"name":"Triple Carry","points":3,"desc":"Tres carries aumentan techo mecánico","req":[{"role":null,"tag":"carry"},{"role":null,"tag":"carry"},{"role":null,"tag":"carry"}]},{"name":"Stable Macro Late","points":3,"desc":"Estabilidad, macro y late juegan al scaling","req":[{"role":null,"tag":"stable"},{"role":null,"tag":"macro"},{"role":null,"tag":"late"}]},{"name":"Tempo Roam Engage","points":3,"desc":"Tempo + roam + engage crean picks","req":[{"role":"Jungle","tag":"tempo"},{"role":"Mid","tag":"roam"},{"role":"Support","tag":"engage"}]},{"name":"Vision Baron Setup","points":2,"desc":"Vision + jungle tempo mejora Nashor","req":[{"role":null,"tag":"vision"},{"role":"Jungle","tag":"tempo"}]},{"name":"Bot Late Peel","points":2,"desc":"Late carry con shotcall evita throw","req":[{"role":"Bot","tag":"late"},{"role":"Support","tag":"shotcall"}]},{"name":"Creative Chaos","points":2,"desc":"Creative + skirmish generan partidas raras","req":[{"role":null,"tag":"creative"},{"role":null,"tag":"skirmish"}]},{"name":"Weakside Macro","points":2,"desc":"Weakside + macro libera recursos","req":[{"role":null,"tag":"weakside"},{"role":null,"tag":"macro"}]},{"name":"Hands Carry Control","points":3,"desc":"Hands, carry y control combinan daño y orden","req":[{"role":null,"tag":"hands"},{"role":null,"tag":"carry"},{"role":null,"tag":"control"}]},{"name":"Support Engage Jungle Carry","points":2,"desc":"Engage habilita jungla carry","req":[{"role":"Support","tag":"engage"},{"role":"Jungle","tag":"carry"}]},{"name":"Mid Control Bot Late","points":2,"desc":"Control mid compra tiempo al bot late","req":[{"role":"Mid","tag":"control"},{"role":"Bot","tag":"late"}]},{"name":"Top Carry Support Shotcall","points":2,"desc":"Shotcall organiza recursos para top carry","req":[{"role":"Top","tag":"carry"},{"role":"Support","tag":"shotcall"}]},{"name":"Roam Bot Side","points":2,"desc":"Mid roam habilita bot side","req":[{"role":null,"tag":"bot"},{"role":"Mid","tag":"roam"}]},{"name":"Frontline Stable","points":1,"desc":"Stable + engage da frontline","req":[{"role":null,"tag":"stable"},{"role":null,"tag":"engage"}]},{"name":"Ace Threat","points":2,"desc":"Carry + clutch amenaza ace tardío","req":[{"role":null,"tag":"carry"},{"role":null,"tag":"clutch"}]},{"name":"Objective Control","points":2,"desc":"Tempo + vision/control gana objetivos","req":[{"role":"Jungle","tag":"tempo"},{"role":null,"tag":"vision"},{"role":null,"tag":"control"}]},{"name":"Dive Comp","points":3,"desc":"Top carry, jungle tempo y support engage divean","req":[{"role":"Top","tag":"carry"},{"role":"Jungle","tag":"tempo"},{"role":"Support","tag":"engage"}]},{"name":"Pick Comp","points":3,"desc":"Vision, roam y engage castigan errores","req":[{"role":null,"tag":"vision"},{"role":"Mid","tag":"roam"},{"role":"Support","tag":"engage"}]},{"name":"Scaling Comp","points":3,"desc":"Late, control y shotcall escalan ordenado","req":[{"role":null,"tag":"late"},{"role":"Mid","tag":"control"},{"role":null,"tag":"shotcall"}]},{"name":"Brawl Comp","points":3,"desc":"Skirmish, hands y carry fuerzan peleas","req":[{"role":null,"tag":"skirmish"},{"role":null,"tag":"hands"},{"role":null,"tag":"carry"}]},{"name":"Classic LCK Spine","points":3,"desc":"Stable top, control mid y shotcall support","req":[{"role":"Top","tag":"stable"},{"role":"Mid","tag":"control"},{"role":"Support","tag":"shotcall"}]},{"name":"Classic LPL Fight","points":3,"desc":"Carry top, tempo jungle y bot carry","req":[{"role":"Top","tag":"carry"},{"role":"Jungle","tag":"tempo"},{"role":"Bot","tag":"carry"}]},{"name":"Western Upset","points":2,"desc":"Creative y upset abren ventanas raras","req":[{"role":null,"tag":"creative"},{"role":null,"tag":"upset"}]},{"name":"Calm Finish","points":2,"desc":"Clutch y shotcall reducen throws","req":[{"role":null,"tag":"clutch"},{"role":null,"tag":"shotcall"}]}];
   const OBJECTIVES = [
     { id:'first-run', name:'Primera run', text:'Completa cualquier run.', reward:20, goal:1, progress:s=>s.runs },
@@ -1501,20 +1635,65 @@
     { id:'comeback', name:'Comeback script', text:'Gana una partida marcada como comeback.', reward:60, goal:1, progress:s=>s.comebacks||0 },
     { id:'market-five', name:'Scouter', text:'Desbloquea 5 jugadores en mercado.', reward:50, goal:5, progress:()=>state.owned.size },
     { id:'chrono-buyer', name:'Chrono shopper', text:'Compra cualquier poder Chrono.', reward:30, goal:1, progress:()=>Object.values(state.chrono.inventory||{}).reduce((a,b)=>a+Number(b||0),0) },
-    { id:'seventy-synergy', name:'Teórico de picks', text:'Activa 8+ sinergias de composición en una run.', reward:75, goal:1, progress:s=>hasHistoryRun(s,h=>(h.compCount||0)>=8)?1:0 }
+    { id:'seventy-synergy', name:'Teórico de picks', text:'Activa 8+ sinergias de composición en una run.', reward:75, goal:1, progress:s=>hasHistoryRun(s,h=>(h.compCount||0)>=8)?1:0 },
+    { id:'run-grinder', name:'Grinder', text:'Completa runs acumuladas.', reward:28, goal:3, progress:s=>s.runs||0 },
+    { id:'map-grinder', name:'Map pool', text:'Juega mapas acumulados.', reward:24, goal:15, progress:s=>s.games||0 },
+    { id:'win-streak', name:'Racha', text:'Consigue racha de wins.', reward:45, goal:2, progress:s=>s.bestStreak||0 },
+    { id:'finalist', name:'Finalista', text:'Llega a finales acumuladas.', reward:40, goal:2, progress:s=>s.finals||0 },
+    { id:'nexus-master', name:'Nexus master', text:'Destruye nexos acumulados.', reward:34, goal:8, progress:s=>s.nexus||0 },
+    { id:'blood-collector', name:'Blood collector', text:'First bloods a favor.', reward:26, goal:8, progress:s=>s.bloods||0 },
+    { id:'dragon-stack', name:'Dragon stack', text:'Dragones a favor.', reward:28, goal:12, progress:s=>s.dragons||0 },
+    { id:'soul-reader', name:'Soul reader', text:'Almas elementales a favor.', reward:36, goal:4, progress:s=>s.souls||0 },
+    { id:'comeback-kid', name:'Comeback kid', text:'Remontadas épicas.', reward:50, goal:2, progress:s=>s.comebacks||0 },
+    { id:'throw-survivor', name:'Throw survivor', text:'Sobrevive/recibe throws rivales.', reward:30, goal:2, progress:s=>s.throws||0 },
+    { id:'power-95', name:'Power 95', text:'Alcanza power máximo alto.', reward:45, goal:95, progress:s=>s.highestPower||0 },
+    { id:'coin-farmer', name:'Coin farmer', text:'Coins ganadas acumuladas.', reward:35, goal:250, progress:s=>s.coinsEarned||0 },
+    { id:'chrono-user', name:'Chrono user', text:'Compra/usa Chronos acumulados.', reward:30, goal:3, progress:s=>s.chronosUsed||0 },
+    { id:'west-wins', name:'Western wins', text:'Gana runs con 3+ LEC/LCS.', reward:55, goal:1, progress:s=>(s.history||[]).filter(h=>h.won&&(h.picks||[]).filter(p=>['LEC','LCS'].includes(p.region)).length>=3).length },
+    { id:'east-wins', name:'Eastern wins', text:'Gana runs con 3+ LCK/LPL.', reward:55, goal:1, progress:s=>(s.history||[]).filter(h=>h.won&&(h.picks||[]).filter(p=>['LCK','LPL'].includes(p.region)).length>=3).length }
+
   ];
   const CHRONO_POWERS = [
     { id:'chrono-reset', name:'Chrono Reset', cost:60, text:'Repite automáticamente el primer mapa perdido y tira un nuevo resultado.' },
     { id:'coach-sub', name:'Coach Sub', cost:45, text:'El rival juega un mapa con suplente improvisado: -5 power rival.' },
-    { id:'scrim-leak', name:'Scrim Leak', cost:35, text:'Tus picks lee el plan rival: +4 power en el próximo mapa.' },
-    { id:'baron-ward', name:'Baron Ward', cost:40, text:'Mejora tus peleas alrededor de Nashor y reduce throws.' }
+    { id:'scrim-leak', name:'Scrim Leak', cost:35, text:'Tus picks leen el plan rival: +4 power en el próximo mapa.' },
+    { id:'baron-ward', name:'Baron Ward', cost:40, text:'Mejora peleas alrededor de Nashor y reduce throws.' },
+    { id:'peineta', name:'Una peineta', cost:30, text:'Aura +3 para el mapa. Si pierdes, al menos queda meme.' },
+    { id:'pause-diff', name:'Pause Diff', cost:35, text:'Corta tilt: +2 power.' },
+    { id:'coach-gap', name:'Coach Gap', cost:40, text:'El rival pierde claridad macro: -3 power rival.' },
+    { id:'baron-fiesta', name:'Baron Fiesta', cost:45, text:'Nashor se vuelve fiesta: swing aleatorio.' },
+    { id:'visa-trouble', name:'Visa Trouble', cost:50, text:'El rival improvisa reemplazo: -4 power rival.' },
+    { id:'mic-check', name:'Mic Check', cost:38, text:'Comunicación limpia: +3 power.' },
+    { id:'reverse-sweep', name:'Reverse Sweep Script', cost:70, text:'Contra la pared en serie: +5 clutch.' },
+    { id:'soloq-tilt', name:'SoloQ Tilt', cost:25, text:'50/50: +6 highroll o -3 tilt.' },
+    { id:'legacy-buff', name:'Legacy Buff', cost:42, text:'Si tienes campeón internacional: +2 aura.' },
+    { id:'crowd-buff', name:'Crowd Buff', cost:45, text:'En Final: +3 power.' },
+    { id:'mental-coach', name:'Mental Coach', cost:34, text:'Mental health +2. Menos tilt en el mapa.' },
+    { id:'draft-leak', name:'Draft Leak', cost:44, text:'Lectura del draft rival: +3 power.' },
+    { id:'pocket-pick', name:'Pocket Pick', cost:48, text:'Mapa 1: pick sorpresa +4.' },
+    { id:'smite-hands', name:'Smite Hands', cost:36, text:'Mejores flips de objetivos: +2.' },
+    { id:'elder-flip', name:'Elder Flip', cost:52, text:'Mapas largos: +3 para cierre.' },
+    { id:'no-tilt', name:'No Tilt Comms', cost:32, text:'Evita bajón mental: +2.' },
+    { id:'stage-buff', name:'Stage Buff', cost:40, text:'Playoffs: +2 por presencia escénica.' },
+    { id:'scrim-cursed', name:'Scrim Cursed', cost:20, text:'Alto riesgo: +5 o -3.' },
+    { id:'western-hopium', name:'Western Hopium', cost:28, text:'Si llevas LEC/LCS: +3.' },
+    { id:'korean-bootcamp', name:'Korean Bootcamp', cost:38, text:'Disciplina extra: +2.' },
+    { id:'headset-bug', name:'Headset Bug', cost:26, text:'Rival pierde coordinación: -2.' },
+    { id:'crowd-silence', name:'Crowd Silence', cost:32, text:'Baja momentum rival: -2.' },
+    { id:'spicy-ban', name:'Spicy Ban', cost:34, text:'Baneo clave imaginario: +2.' },
+    { id:'coach-clipboard', name:'Coach Clipboard', cost:42, text:'Plan de mapa más limpio: +3.' },
+    { id:'water-break', name:'Water Break', cost:18, text:'Reset mínimo: +1.' },
+    { id:'airport-speedrun', name:'Airport Speedrun', cost:22, text:'Si vas perdiendo, intento desesperado: +3.' },
+    { id:'faker-pause', name:'Faker Pause', cost:55, text:'Pausa legendaria: +3 y control mental.' },
+    { id:'na-week-two', name:'NA Week 2', cost:30, text:'En Swiss avanzado: +3 o drama.' },
+    { id:'g2-vacation', name:'G2 Vacation Mode', cost:24, text:'Caos europeo: +4 o -2.' }
   ];
   const DIFF = { normal: { enemy: 2, variance: 8 }, hard: { enemy: 6, variance: 7 }, chaos: { enemy: 4, variance: 15 } };
   const FILTERS = { all: () => true, winner: r => r.major, east: r => ['LCK','LPL'].includes(r.region), west: r => ['LEC','LCS'].includes(r.region) };
 
   const $ = id => document.getElementById(id);
   const els = {};
-  ['seedLabel','draftScreen','simScreen','statsScreen','historyScreen','teamsScreen','objectivesScreen','chronoScreen','rollMeter','rollBar','runLogo','runMark','runNote','rollCard','teamLogo','rollTitle','rollSub','rollTags','players','summarySeed','picksCount','avgScore','synScore','cupChance','coinCount','coinHint','slots','market','metaBox','questBox','synergyBox','metaText','questText','synergyReasons','results','resultOverlay','toast','simSubtitle','simScoreline','liveFocus','simTimeline','scoreGrid','runLedger','pickLedger','simLedger','historyLedger','teamsGrid','teamSearch','teamRegionFilter','teamRatingFilter','teamTagFilter','globalWallet','objectiveList','chronoGrid'].forEach(id => els[id] = $(id));
+  ['seedLabel','draftScreen','simScreen','statsScreen','historyScreen','teamsScreen','objectivesScreen','chronoScreen','rollMeter','rollBar','runLogo','runMark','runNote','rollCard','teamLogo','rollTitle','rollSub','rollTags','players','summarySeed','picksCount','avgScore','synScore','cupChance','coinCount','coinHint','slots','market','metaBox','questBox','synergyBox','metaText','questText','synergyReasons','results','resultOverlay','toast','simSubtitle','simScoreline','liveFocus','simTimeline','bracketBoard','scoreGrid','runLedger','pickLedger','simLedger','historyLedger','teamsGrid','teamSearch','teamRegionFilter','teamRatingFilter','teamTagFilter','globalWallet','langBtn','objectiveList','chronoGrid'].forEach(id => els[id] = $(id));
 
   const PLAYER_PATCHES = {
     'g2-2018-Jankos-Jungle': { rating: 91, country: 'EU' },
@@ -1556,7 +1735,7 @@
   const allPlayers = ROSTERS.flatMap(r => r.players);
   const state = {
     screen: 'draft', seed: seed(), current: null, picks: Object.fromEntries(ROLES.map(r => [r, null])), difficulty: 'normal', mode: 'classic', filter: 'all',
-    rolls: 0, rerollUsed: false, scoutUsed: false, marketUsed: false, meta: null, quest: null, market: [], coins: readNumber(STORE.coins, STARTING_COINS), owned: readSet(STORE.owned), objectiveClaims: readSet(STORE.objectives), chrono: readObject(STORE.chrono, { inventory:{}, active:{} }), stats: readStats(), last: null, simming: false, openMatches: new Set(), teamCols: 3
+    rolls: 0, rerollUsed: false, scoutUsed: false, marketUsed: false, meta: null, quest: null, market: [], coins: readNumber(STORE.coins, STARTING_COINS), owned: readSet(STORE.owned), objectiveClaims: readSet(STORE.objectives), chrono: readObject(STORE.chrono, { inventory:{}, active:{} }), stats: readStats(), last: null, simming: false, openMatches: new Set(), teamCols: 3, lang: read(STORE.lang) || 'es'
   };
   state.rng = makeRng(state.seed);
 
@@ -1617,6 +1796,7 @@
     const action = actionEl.dataset.action;
     if (action === 'screen') return setScreen(actionEl.dataset.screen);
     if (action === 'theme') return toggleTheme();
+    if (action === 'lang') return toggleLang();
     if (action === 'copy') return copySummary();
     if (action === 'reset') return resetRun();
     if (action === 'roll') { fx(actionEl, 'roll'); return roll(); }
@@ -1716,7 +1896,7 @@
     if (picked().length < 5) return toast('Faltan roles. No simules incompleto.');
     state.simming = true;
     state.openMatches = new Set();
-    state.last = { power: power(), complete: false, won: false, eliminated: '', matches: [], activeMatch: -1, activeGame: -1, activeEvent: -1, groups: [0,0], startedAt: Date.now() };
+    state.last = { power: power(), complete: false, won: false, eliminated: '', matches: [], activeMatch: -1, activeGame: -1, activeEvent: -1, groups: [0,0], startedAt: Date.now(), bracketTeams: bracketField() };
     setScreen('sim');
     render();
     await wait(350);
@@ -1806,7 +1986,7 @@
     const enemy = enemyTeam();
     const mod = roundModifier();
     const need = stage.bo === 'Bo5' ? 3 : stage.bo === 'Bo3' ? 2 : 1;
-    return { ...stage, enemy, need, ourWins: 0, rivalWins: 0, win: false, finished: false, games: [], mod };
+    return { ...stage, enemy, enemyLineup: enemy.players || [], need, ourWins: 0, rivalWins: 0, win: false, finished: false, games: [], mod };
   }
 
   function makeGame(series, mapNo) {
@@ -1816,7 +1996,7 @@
     const clutch = mapNo === series.need * 2 - 1 ? rand(-3, 4) : 0;
     const chronoEvents = [];
     let our = Math.round(state.last.power + modBonus + fatigue + clutch + rand(-d.variance, d.variance));
-    let rival = Math.round((series.enemy.tier + series.gate) / 2 + d.enemy + ENEMY_HANDICAP + rand(-4, 5));
+    let rival = Math.round((series.enemy.tier + series.gate) / 2 + d.enemy + (d.handicap || 0) + ENEMY_HANDICAP + rand(-4, 5));
     if (chronoReady('coach-sub')) { rival -= 5; consumeChrono('coach-sub'); chronoEvents.push(chronoEvent('Coach Sub', 'El rival juega el mapa con suplente improvisado.')); }
     if (chronoReady('scrim-leak')) { our += 4; consumeChrono('scrim-leak'); chronoEvents.push(chronoEvent('Scrim Leak', 'Tus picks lee el plan rival antes del early game.')); }
     if (chronoReady('baron-ward')) { our += 2; consumeChrono('baron-ward'); chronoEvents.push(chronoEvent('Baron Ward', 'Control de visión mejorado alrededor de Nashor.')); }
@@ -1830,6 +2010,34 @@
     if (chronoReady('reverse-sweep') && series.rivalWins >= series.need - 1 && series.ourWins < series.rivalWins) { our += 5; consumeChrono('reverse-sweep'); chronoEvents.push(chronoEvent('Reverse Sweep Script', 'Contra la pared, tus picks encuentran clutch.')); }
     if (chronoReady('soloq-tilt')) { const highroll = rng() > .5; our += highroll ? 6 : -3; consumeChrono('soloq-tilt'); chronoEvents.push(chronoEvent('SoloQ Tilt', highroll ? 'Highroll mecánico: alguien se prende.' : 'Lowroll mental: alguien se tiltea.')); }
     if (chronoReady('baron-fiesta') && mapNo >= 2) { our += rand(-2, 6); consumeChrono('baron-fiesta'); chronoEvents.push(chronoEvent('Baron Fiesta', 'Nashor se vuelve fiesta: nadie sabe quién sale vivo.')); }
+
+    const genericChronos = [
+      ['mental-coach',2,0,'Mental Coach','El equipo respira y no se rompe mentalmente.'],
+      ['draft-leak',3,0,'Draft Leak','Lectura temprana del plan rival.'],
+      ['pocket-pick',mapNo===1?4:0,0,'Pocket Pick','Pick sorpresa en mapa inicial.'],
+      ['smite-hands',2,0,'Smite Hands','Mayor seguridad en objetivos neutrales.'],
+      ['elder-flip',mapNo>=2?3:0,0,'Elder Flip','El cierre tardío se vuelve jugable.'],
+      ['no-tilt',2,0,'No Tilt Comms','Comms limpias después de errores.'],
+      ['stage-buff',series.group?0:2,0,'Stage Buff','La presión de playoffs activa presencia escénica.'],
+      ['scrim-cursed',rng()>.5?5:-3,0,'Scrim Cursed','La scrim tech sale... o explota.'],
+      ['western-hopium',picked().some(p=>['LEC','LCS'].includes(p.region))?3:0,0,'Western Hopium','El oeste cree. A veces basta.'],
+      ['korean-bootcamp',2,0,'Korean Bootcamp','Más disciplina en waves y objetivos.'],
+      ['headset-bug',0,-2,'Headset Bug','El rival pierde coordinación.'],
+      ['crowd-silence',0,-2,'Crowd Silence','El rival pierde momentum.'],
+      ['spicy-ban',2,0,'Spicy Ban','Un ban imaginario abre el mapa.'],
+      ['coach-clipboard',3,0,'Coach Clipboard','Plan simple, ejecución limpia.'],
+      ['water-break',1,0,'Water Break','Reset mínimo entre mapas.'],
+      ['airport-speedrun',series.rivalWins>series.ourWins?3:0,0,'Airport Speedrun','Último intento antes del vuelo.'],
+      ['faker-pause',3,0,'Faker Pause','Pausa legendaria. Todo se ordena.'],
+      ['na-week-two',series.group && mapNo>=2 ? (rng()>.45?3:-1) : 0,0,'NA Week 2','Drama de Swiss.'],
+      ['g2-vacation',rng()>.5?4:-2,0,'G2 Vacation Mode','Puede ser genial o terrible.']
+    ];
+    for (const [id, ourDelta, rivalDelta, label, copy] of genericChronos) {
+      if (chronoReady(id)) {
+        our += ourDelta; rival += rivalDelta; consumeChrono(id);
+        chronoEvents.push(chronoEvent(label, copy));
+      }
+    }
     let chance = clamp(.5 + (our - rival) * .042, .13, .87);
     let win = rng() < chance;
     if (!win && chronoReady('chrono-reset')) { consumeChrono('chrono-reset'); chronoEvents.push(chronoEvent('Chrono Reset', 'Se repite el mapa perdido y el destino vuelve a tirar dados.')); chance = clamp(chance + .16, .18, .92); win = rng() < chance; our += rand(0,4); }
@@ -2017,12 +2225,34 @@
   }
 
 
-  function render() { renderScreens(); renderChoices(); renderHeader(); renderRoll(); renderPlayers(); renderSide(); renderMarket(); renderMini(); renderSim(); renderStats(); if (state.screen === 'teams') renderTeams(); renderObjectives(); renderChrono(); }
+
+  function L(es, en) { return state.lang === 'en' ? en : es; }
+  function toggleLang() { state.lang = state.lang === 'en' ? 'es' : 'en'; write(STORE.lang, state.lang); render(); }
+  function applyLanguage() {
+    if (els.langBtn) els.langBtn.textContent = state.lang === 'en' ? 'EN' : 'ES';
+    document.documentElement.lang = state.lang === 'en' ? 'en' : 'es';
+    const nav = { draft:['Picks','Picks'], sim:['Simulación','Simulation'], stats:['Estadísticas','Stats'], history:['Historia','History'], teams:['Equipos','Teams'], objectives:['Objetivos','Objectives'], chrono:['Chrono','Chrono'] };
+    document.querySelectorAll('[data-action="screen"]').forEach(b => {
+      const key = b.dataset.screen; if (nav[key]) b.textContent = L(nav[key][0], nav[key][1]);
+    });
+    document.querySelectorAll('[data-action="theme"]').forEach(b => b.textContent = L('tema','theme'));
+  }
+
+  function render() { applyLanguage(); renderScreens(); renderChoices(); renderDifficultyTags(); renderHeader(); renderRoll(); renderPlayers(); renderSide(); renderMarket(); renderMini(); renderSim(); renderStats(); if (state.screen === 'teams') renderTeams(); renderObjectives(); renderChrono(); }
   function renderScreens() { ['draft','sim','stats','history','teams','objectives','chrono'].forEach(name => { const panel = $(`${name}Screen`); if (panel) panel.hidden = state.screen !== name; }); document.querySelectorAll('[data-action="screen"]').forEach(b => b.setAttribute('aria-pressed', String(b.dataset.screen === state.screen))); }
   function setScreen(screen) { state.screen = screen || 'draft'; render(); if (state.screen === 'teams') renderTeams(); }
+
+  function renderDifficultyTags() {
+    document.querySelectorAll('[data-setting="difficulty"] .choice').forEach(b => {
+      const d = DIFF[b.dataset.value]; if (!d) return;
+      b.title = d.tag || '';
+      if (!b.querySelector('small')) b.insertAdjacentHTML('beforeend', `<small class="difficulty-help">${esc(d.tag || '')}</small>`);
+    });
+  }
+
   function renderChoices() { document.querySelectorAll('[data-setting]').forEach(group => group.querySelectorAll('.choice').forEach(b => b.setAttribute('aria-pressed', String(state[group.dataset.setting] === b.dataset.value)))); }
-  function renderHeader() { text(els.globalWallet, state.coins); text(els.seedLabel, `seed #${state.seed}`); text(els.summarySeed, `seed #${state.seed}`); text(els.rollMeter, `${state.rolls}/${MAX_ROLLS} tiradas`); els.rollBar.style.width = `${state.rolls / MAX_ROLLS * 100}%`; if (!state.current) { text(els.runMark,'—:—'); text(els.runNote,'tira para abrir roster'); image(els.runLogo,'','?'); return; } text(els.runMark, `${state.current.short}: ${state.current.year}`); text(els.runNote, `${state.current.tournament} · ${state.current.major ? 'campeón internacional' : 'contender'}`); image(els.runLogo, state.current.logo, state.current.short); }
-  function renderRoll() { els.rollCard.classList.toggle('is-gold', state.current?.rarity === 'rare'); if (!state.current) { image(els.teamLogo,'','?'); text(els.rollTitle,'Sin tirada'); text(els.rollSub,'Haz una tirada para revelar equipo, año y pool de jugadores.'); els.rollTags.innerHTML=''; return; } const r = state.current; image(els.teamLogo, r.logo, r.short); text(els.rollTitle, `${r.name} ${r.year}`); text(els.rollSub, `${flag(r.country)} ${r.region} · ${r.tournament} · tier ${r.tier}`); els.rollTags.innerHTML = (r.rarity === 'rare' ? `<span class="team-tag tag-gold">+5 carta dorada</span><span>1 de 6</span>` : '') + teamTagsHtml(r); }
+  function renderHeader() { text(els.globalWallet, state.coins); text(els.seedLabel, `seed #${state.seed}`); text(els.summarySeed, `seed #${state.seed}`); text(els.rollMeter, `${state.rolls}/${MAX_ROLLS} ${L('tiradas','rolls')}`); els.rollBar.style.width = `${state.rolls / MAX_ROLLS * 100}%`; if (!state.current) { text(els.runMark,'—:—'); text(els.runNote,L('tira para abrir roster','roll to open roster')); image(els.runLogo,'','?'); return; } text(els.runMark, `${state.current.short}: ${state.current.year}`); text(els.runNote, `${state.current.tournament} · ${state.current.major ? 'campeón internacional' : 'contender'}`); image(els.runLogo, state.current.logo, state.current.short); }
+  function renderRoll() { els.rollCard.classList.toggle('is-gold', state.current?.rarity === 'rare'); if (!state.current) { image(els.teamLogo,'','?'); text(els.rollTitle,L('Sin tirada','No roll yet')); text(els.rollSub,L('Haz una tirada para revelar equipo, año y pool de jugadores.','Roll to reveal team, year and player pool.')); els.rollTags.innerHTML=''; return; } const r = state.current; image(els.teamLogo, r.logo, r.short); text(els.rollTitle, `${r.name} ${r.year}`); text(els.rollSub, `${flag(r.country)} ${r.region} · ${r.tournament} · tier ${r.tier}`); els.rollTags.innerHTML = (r.rarity === 'rare' ? `<span class="team-tag tag-gold">+5 carta dorada</span><span>1 de 6</span>` : '') + teamTagsHtml(r); }
   function renderPlayers() { if (!state.current) { els.players.innerHTML = '<div class="empty">Tira el dado para abrir tu primer roster.</div>'; return; } els.players.innerHTML = state.current.players.map((pl, i) => card(pl, i)).join(''); }
   function card(pl, i) { const locked = issue(pl); const hidden = state.mode === 'blind'; return `<article class="player-card tilt-card ${pl.major ? 'is-gold' : ''} ${locked ? 'is-locked' : ''}" data-player="${i}" tabindex="0" role="button"><div class="portrait-row"><figure class="round-icon role-chip">${roleGlyph(pl.role)}</figure><figure class="round-icon"><span>${esc(roleCode(pl.role))}</span></figure></div><div class="player-main"><h3>${hidden ? '???' : esc(pl.name)}</h3><p>${hidden ? esc(pl.role) : `${flagIcon(pl.country)} ${esc(pl.short)} ${esc(pl.year)} · ${esc(pl.tournament)}`}</p></div><div class="tag-stack">${pl.tags.map(t => `<span class="tag-tip" tabindex="0">${esc(t)}${tagPopover(pl, t)}</span>`).join('')}</div><span class="role-badge">${esc(pl.role)}</span><strong class="rating">${hidden ? '??' : pl.rating}</strong>${locked ? `<em class="lock-copy">${esc(locked)}</em>` : ''}${composePopover(pl)}</article>`; }
   function renderSide() {
@@ -2038,7 +2268,7 @@
   function renderMini() { if (!state.last) { els.results.innerHTML = '<p class="muted">sin simulación todavía.</p>'; return; } const wins = state.last.matches.filter(m => m.finished && m.win).length, losses = state.last.matches.filter(m => m.finished && !m.win).length; els.results.innerHTML = `<strong>${state.last.complete ? (state.last.won ? 'campeón' : 'eliminado') : 'en vivo'}</strong><p class="muted">${wins}-${losses} · power ${state.last.power}</p>`; }
   function renderSim() {
     if (!state.last) {
-      els.simSubtitle.textContent='Completa tu 5v para correr la run.';
+      els.simSubtitle.textContent=L('Completa tu 5v para correr la run.','Complete your 5v to run the simulation.');
       els.simScoreline.innerHTML='';
       els.liveFocus.classList.add('is-quiet'); els.liveFocus.innerHTML='<div class="sim-bubble">Sin simulación cargada.</div>';
       els.simTimeline.innerHTML='';
@@ -2054,12 +2284,12 @@
     const maps = r.matches.flatMap(m => m.games || []);
     const mapWins = maps.filter(g => g.finished && g.win).length;
     const mapLosses = maps.filter(g => g.finished && !g.win).length;
-    text(els.simSubtitle, `${r.complete ? (r.won ? 'Campeón' : 'Eliminado en ' + r.eliminated) : 'Simulación en vivo'} · power ${r.power} · seed #${state.seed}`);
+    text(els.simSubtitle, `${r.complete ? (r.won ? 'Campeón' : 'Eliminado en ' + r.eliminated) : L('Simulación en vivo','Live simulation')} · power ${r.power} · seed #${state.seed}`);
     els.simScoreline.innerHTML = `<div><strong>${seriesWins}-${seriesLosses}</strong><span>series</span></div><div><strong>${mapWins}-${mapLosses}</strong><span>mapas</span></div><div><strong>${r.groups[0]}-${r.groups[1]}</strong><span>Swiss</span></div><div><strong>${maps.length}</strong><span>partidas</span></div>`;
     els.liveFocus.classList.toggle('is-quiet', !ev);
     els.liveFocus.classList.toggle('is-quiet', !ev);
-    els.liveFocus.innerHTML = ev ? focus(ev, activeSeries, activeGame) : `<div class="sim-bubble">${r.complete ? 'Run terminada · abre una serie para ver detalle.' : 'Siguiente mapa cargando...'}</div>`;
-    els.simTimeline.innerHTML = r.matches.map((m, i) => seriesCard(m, i, i === r.activeMatch, r.activeGame, r.activeEvent)).join('');
+    els.liveFocus.innerHTML = ev ? focus(ev, activeSeries, activeGame) : `<div class="sim-bubble"><strong>${r.complete ? 'Run terminada' : 'Siguiente mapa'}</strong><small>${r.complete ? 'Abre una serie para ver detalle.' : 'Cargando...'}</small></div>`;
+    if (els.bracketBoard) els.bracketBoard.innerHTML = bracketBoard(r); els.simTimeline.innerHTML = r.matches.map((m, i) => seriesCard(m, i, i === r.activeMatch, r.activeGame, r.activeEvent)).join('');
   }
   function focus(ev, series, game) { return `<article class="focus-event ${ev.ours ? 'is-good' : 'is-bad'}"><img src="${ev.icon}" alt=""><div><span>${esc(series.label)} · ${esc(game.label)} vs ${esc(series.enemy.short)} ${series.enemy.year}</span><strong>${esc(ev.label)}</strong><p>${esc(ev.copy)}</p></div><figure class="event-logo">${img(ev.logo, ev.who, badge(ev.who,'team'))}</figure></article>`; }
   function seriesCard(series, i, active, activeGame, activeEvent) {
@@ -2072,7 +2302,7 @@
     const maps = series.games || [];
     const totalEvents = maps.flatMap(g => g.events.filter(e => e.visible));
     const ourEvents = totalEvents.filter(e => e.ours).length;
-    const details = `<div class="round-mod ${series.mod.ok ? 'is-done' : ''}">${esc(series.mod.kind)} · ${esc(series.mod.name)} · ${series.mod.ok ? 'cumplido' : 'no cumplido'}</div><div class="map-list">${maps.map((game,j) => mapCard(game, j, active && j === activeGame, activeEvent)).join('')}</div>`;
+    const details = `<div class="round-mod ${series.mod.ok ? 'is-done' : ''}">${esc(series.mod.kind)} · ${esc(series.mod.name)} · ${series.mod.ok ? 'cumplido' : 'no cumplido'}</div>${lineupBoard(series)}<div class="map-list">${maps.map((game,j) => mapCard(game, j, active && j === activeGame, activeEvent)).join('')}</div>`;
     const summary = series.finished ? `<div class="match-summary"><span>${series.win ? 'Victoria' : 'Derrota'}</span><span>${ourEvents}/${totalEvents.length} eventos a favor</span><span>${maps.map(g => g.duration).join(' · ')}</span></div>` : `<div class="match-summary"><span>En curso</span><span>${maps.filter(g => g.finished).length}/${series.need * 2 - 1} mapas posibles</span><span>Sin spoiler del cierre</span></div>`;
     return `<article class="match-card ${currentClass} ${doneClass} ${collapsedClass} ${series.finished ? '' : 'is-secret'}"><header class="match-head"><span>${esc(series.label)} · ${series.bo}</span><strong>${flag(series.enemy.country)} ${esc(series.enemy.short)} ${series.enemy.year}</strong>${result}<button type="button" class="match-toggle" data-action="toggleMatch" data-match="${i}">${buttonText}</button></header><div class="series-meta"><span class="story-chip">vs ${esc(series.enemy.name)}</span><span class="story-chip">score ${series.ourWins}-${series.rivalWins}</span><span class="story-chip">${maps.length} mapa${maps.length === 1 ? '' : 's'}</span></div>${open ? details : summary}</article>`;
   }
@@ -2090,6 +2320,30 @@
     const side = ev.ours ? 'A favor' : 'Rival';
     return `<div class="event-line is-visible ${ev.ours ? 'is-ours' : 'is-them'} ${current ? 'is-current' : ''}"><img class="event-icon" src="${ev.icon}" alt=""><div class="event-copy"><strong>${esc(ev.label)}</strong><span>${esc(ev.copy)}</span><span class="event-side">${side} · ${esc(ev.who)}</span></div><figure class="event-logo">${img(ev.logo, ev.who, badge(ev.who,'team'))}</figure></div>`;
   }
+
+  function roleAvg(player) { return player ? player.rating : '—'; }
+  function lineupBoard(series) {
+    const mine = Object.fromEntries(picked().map(p => [p.role, p]));
+    const rival = Object.fromEntries((series.enemyLineup || []).map(p => [p.role, p]));
+    const rows = ROLES.map(role => {
+      const a = mine[role], b = rival[role];
+      return `<div class="lineup-row"><b>${esc(roleCode(role))}</b><span>${a ? esc(a.name) : '—'} <em>${roleAvg(a)}</em></span><span>${b ? esc(b.name) : '—'} <em>${roleAvg(b)}</em></span></div>`;
+    }).join('');
+    return `<section class="lineup-compare"><header><strong>Tus picks</strong><small>vs ${esc(series.enemy.short)} ${series.enemy.year}</small><strong>Rival</strong></header>${rows}</section>`;
+  }
+  function bracketField() {
+    const blocked = usedOrgs();
+    return shuffle(ROSTERS.filter(r => !blocked.has(r.org))).slice(0, 12).map((r, i) => ({
+      short:r.short, year:r.year, region:r.region, logo:r.logo, record: i < 4 ? '3-0' : i < 8 ? '3-1' : '2-3', seed:i+1
+    }));
+  }
+  function bracketBoard(r) {
+    if (!r) return '';
+    const rows = (r.bracketTeams || []).slice(0,8).map(t => `<span>${img(t.logo,t.short,badge(t.short,t.region))}<b>${esc(t.short)} ${t.year}</b><small>${esc(t.record)}</small></span>`).join('');
+    const path = (r.matches || []).map(m => `<span class="${m.finished ? (m.win ? 'win' : 'loss') : ''}">${esc(m.label)} ${m.finished ? (m.win ? 'W' : 'L') : '·'} ${m.ourWins}-${m.rivalWins}</span>`).join('');
+    return `<section class="bracket-panel"><header><strong>Bracket / Camino</strong><small>${esc(r.groups ? r.groups.join('-') : '0-0')} Swiss</small></header><div class="bracket-teams">${rows}</div><div class="bracket-path">${path || '<span>Sin series todavía</span>'}</div></section>`;
+  }
+
   function renderStats() {
     const s = state.stats;
     const winrate = s.runs ? Math.round(s.wins / s.runs * 100) : 0;
@@ -2142,24 +2396,36 @@
     return `<article class="score-card" title="${esc(help || note)}"><strong>${esc(value)}</strong><span>${esc(label)}</span><div class="mini-chart">${chart}</div><div class="bar-labels">${labels}</div><em>${esc(note)}</em><p class="stat-help">${esc(help || '')}</p></article>`;
   }
 
+  function objectiveLevel(id) {
+    const levels = [...state.objectiveClaims].filter(x => String(x).startsWith(id + ':')).map(x => Number(String(x).split(':')[1]) || 1);
+    return (levels.length ? Math.max(...levels) : 0) + 1;
+  }
+  function objectiveGoal(obj) { return Math.max(1, Math.round(obj.goal * objectiveLevel(obj.id))); }
+  function objectiveReward(obj) { const lv = objectiveLevel(obj.id); return Math.round(obj.reward * (1 + Math.min(.25, (lv - 1) * .06))); }
   function renderObjectives() {
     if (!els.objectiveList) return;
     els.objectiveList.innerHTML = OBJECTIVES.map(obj => {
-      const progress = Math.min(obj.goal, Number(obj.progress(state.stats)) || 0);
-      const done = progress >= obj.goal;
-      const claimed = state.objectiveClaims.has(obj.id);
-      const pct = Math.round(progress / obj.goal * 100);
-      return `<article class="objective-card ${done ? 'is-done' : ''} ${claimed ? 'is-claimed' : ''}"><h3>${esc(obj.name)}</h3><p>${esc(obj.text)}</p><div class="objective-progress"><b style="--p:${pct}%"></b></div><span class="objective-reward">+${obj.reward} coins</span><button type="button" data-action="claimObjective" data-objective="${esc(obj.id)}" ${done && !claimed ? '' : 'disabled'}>${claimed ? 'cobrado' : done ? 'cobrar' : `${progress}/${obj.goal}`}</button></article>`;
+      const lv = objectiveLevel(obj.id);
+      const goal = objectiveGoal(obj);
+      const reward = objectiveReward(obj);
+      const raw = Number(obj.progress(state.stats)) || 0;
+      const progress = Math.min(goal, raw);
+      const done = progress >= goal;
+      const pct = Math.round(progress / goal * 100);
+      return `<article class="objective-card ${done ? 'is-done' : ''}"><h3>${esc(obj.name)} <small>Lv.${lv}</small></h3><p>${esc(obj.text)}</p><div class="objective-progress"><b style="--p:${pct}%"></b></div><span class="objective-reward">+${reward} coins</span><button type="button" data-action="claimObjective" data-objective="${esc(obj.id)}" ${done ? '' : 'disabled'}>${done ? 'cobrar' : `${progress}/${goal}`}</button></article>`;
     }).join('');
   }
   function claimObjective(id) {
     const obj = OBJECTIVES.find(o => o.id === id); if (!obj) return;
-    const progress = Math.min(obj.goal, Number(obj.progress(state.stats)) || 0);
-    if (progress < obj.goal) return toast('Objetivo incompleto.');
-    if (state.objectiveClaims.has(id)) return toast('Ya cobraste este objetivo.');
-    state.objectiveClaims.add(id); state.coins += obj.reward;
+    const lv = objectiveLevel(id);
+    const goal = objectiveGoal(obj);
+    const reward = objectiveReward(obj);
+    const progress = Number(obj.progress(state.stats)) || 0;
+    if (progress < goal) return toast('Objetivo incompleto.');
+    state.objectiveClaims.add(`${id}:${lv}`);
+    state.coins += reward;
     write(STORE.objectives, JSON.stringify([...state.objectiveClaims])); write(STORE.coins, state.coins);
-    render(); toast(`Objetivo cobrado · +${obj.reward} coins`);
+    render(); toast(`Objetivo Lv.${lv} cobrado · +${reward} coins`);
   }
   function renderChrono() {
     if (!els.chronoGrid) return;
@@ -2183,7 +2449,7 @@
     state.chrono.active[id] = !state.chrono.active[id]; saveChrono(); renderChrono(); toast(state.chrono.active[id] ? 'Chrono activado para la próxima simulación.' : 'Chrono desactivado.');
   }
   function chronoReady(id) { return !!state.chrono.active?.[id] && Number(state.chrono.inventory?.[id] || 0) > 0; }
-  function consumeChrono(id) { if (!chronoReady(id)) return false; state.chrono.inventory[id] = Math.max(0, Number(state.chrono.inventory[id] || 0) - 1); state.chrono.active[id] = false; saveChrono(); return true; }
+  function consumeChrono(id) { if (!chronoReady(id)) return false; state.chrono.inventory[id] = Math.max(0, Number(state.chrono.inventory[id] || 0) - 1); state.chrono.active[id] = false; state.stats.chronosUsed = (state.stats.chronosUsed || 0) + 1; write(STORE.stats, JSON.stringify(state.stats)); saveChrono(); return true; }
   function hasHistoryRun(s, fn) { return (s.history || []).some(fn); }
   function ensureMarket() { if (!state.market.length) rotateMarket(false); }
   function rotateMarketManual() { if (state.marketUsed) return toast('La rotación manual ya se usó.'); if (state.coins < MARKET_COST) return toast('Te faltan coins.'); state.coins -= MARKET_COST; state.marketUsed = true; write(STORE.coins, state.coins); rotateMarket(false); render(); flash(els.market, 'is-refresh'); toast('Tienda rotada.'); }
@@ -2281,7 +2547,7 @@
     return comps.map(c => `<span><b>+${c.points}</b> ${esc(c.name)}</span>`).join('');
   }
   function tagPopover(player, tag) {
-    return `<span class="tag-hovercard"><strong>${esc(tag)}</strong><span>${esc(tagInfo(tag))}</span><span>${tagCompLines(player, tag)}</span></span>`;
+    return `<span class="tag-hovercard"><strong>${esc(tag)}</strong><span>${esc(tagInfo(tag))}</span></span>`;
   }
   
   function tagHint(player, tag) {
