@@ -133,3 +133,10 @@ Cambios verificables:
 
 - Moves `boot()` to the end of the script so no `const` data table can be accessed before initialization.
 - Keeps V2.6.5 TAG_INFO fix, market popovers and roster filters.
+
+
+## V2.6.7 version clean
+
+- Cleans malformed labels like V2.6.5.3.
+- Keeps safe boot at the end of the script.
+- Adds BUILD_MARKER_V267_VERSION_CLEAN for deploy verification.
