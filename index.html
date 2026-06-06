@@ -1,0 +1,783 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="theme-color" content="#0a1420" />
+  <title>20:19 Draft</title>
+  <style>
+    :root {
+      --bg: #eef2f4;
+      --panel: #ffffff;
+      --panel-2: #f7f9fa;
+      --ink: #111827;
+      --muted: #687383;
+      --line: rgba(17, 24, 39, .12);
+      --gold: #c8aa6e;
+      --gold-2: #f0d58a;
+      --blue: #0a7f8f;
+      --teal: #0ac8b9;
+      --good: #24b47e;
+      --bad: #e35b5b;
+      --shadow: 0 18px 48px rgba(17, 24, 39, .10);
+      --radius: 24px;
+      --font: Aptos, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    }
+    body.dark {
+      --bg: #080d12;
+      --panel: #101820;
+      --panel-2: #0c131a;
+      --ink: #f3f4f6;
+      --muted: #9ba7b4;
+      --line: rgba(240, 230, 210, .14);
+      --gold: #c8aa6e;
+      --gold-2: #f0d58a;
+      --blue: #0ac8b9;
+      --teal: #64f2e4;
+      --shadow: 0 18px 58px rgba(0, 0, 0, .38);
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      min-height: 100vh;
+      background:
+        radial-gradient(circle at 10% 0%, rgba(10, 200, 185, .14), transparent 28rem),
+        radial-gradient(circle at 90% 12%, rgba(200, 170, 110, .16), transparent 24rem),
+        var(--bg);
+      color: var(--ink);
+      font-family: var(--font);
+    }
+    button, input { font: inherit; }
+    button { cursor: pointer; }
+    button:disabled { cursor: not-allowed; opacity: .45; }
+    [hidden] { display: none !important; }
+    .app { width: min(1220px, calc(100% - 28px)); margin: 0 auto; padding: 18px 0 34px; }
+    .topbar, .tabs, .panel { border: 1px solid var(--line); background: color-mix(in srgb, var(--panel) 92%, transparent); box-shadow: var(--shadow); backdrop-filter: blur(18px); }
+    .topbar { position: sticky; top: 10px; z-index: 20; display: grid; grid-template-columns: auto 1fr auto; align-items: center; gap: 18px; padding: 12px; border-radius: 28px; }
+    .brand { display: flex; align-items: center; gap: 10px; color: inherit; text-decoration: none; }
+    .brand-mark { display: grid; place-items: center; width: 68px; height: 48px; border-radius: 18px; background: linear-gradient(135deg, var(--gold), #f7e4a8); color: #06131b; font-weight: 1000; letter-spacing: -.08em; }
+    .brand-copy { font-size: 12px; line-height: .95; text-transform: uppercase; letter-spacing: .18em; color: var(--muted); font-weight: 800; }
+    .microline { justify-self: center; display: flex; align-items: center; gap: 10px; color: var(--muted); font-size: 12px; text-transform: uppercase; letter-spacing: .16em; }
+    .microline strong { color: var(--ink); }
+    .quick-actions, .tabs { display: flex; align-items: center; gap: 8px; }
+    .quick-actions button, .tabs button, .small-btn { border: 1px solid var(--line); background: var(--panel-2); color: var(--ink); padding: 10px 12px; border-radius: 999px; text-transform: uppercase; letter-spacing: .08em; font-weight: 900; font-size: 11px; }
+    .quick-actions button:hover, .tabs button:hover, .small-btn:hover { border-color: color-mix(in srgb, var(--gold) 55%, var(--line)); transform: translateY(-1px); }
+    .tabs { width: max-content; margin: 14px auto 20px; padding: 7px; border-radius: 999px; box-shadow: none; }
+    .tabs button[aria-pressed="true"] { background: linear-gradient(135deg, var(--gold), var(--gold-2)); color: #07121a; border-color: transparent; box-shadow: 0 8px 28px rgba(200, 170, 110, .22); }
+    .layout { display: grid; grid-template-columns: minmax(0, 1fr) 340px; gap: 18px; align-items: start; }
+    .main-col, .side-col { display: grid; gap: 16px; }
+    .panel { border-radius: var(--radius); padding: 18px; }
+    .hero { display: grid; grid-template-columns: 1fr 190px; gap: 16px; align-items: stretch; }
+    .eyebrow { margin: 0 0 8px; color: var(--gold); text-transform: uppercase; letter-spacing: .18em; font-weight: 900; font-size: 11px; }
+    h1, h2, h3, p { margin-top: 0; }
+    h1 { margin-bottom: 8px; font-size: clamp(42px, 8vw, 86px); line-height: .84; letter-spacing: -.08em; text-transform: none; }
+    h2 { margin-bottom: 6px; font-size: 28px; letter-spacing: -.04em; }
+    h3 { margin-bottom: 8px; font-size: 14px; text-transform: uppercase; letter-spacing: .12em; }
+    .lead { max-width: 650px; color: var(--muted); font-size: 17px; line-height: 1.5; }
+    .actions { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 20px; }
+    .btn { position: relative; overflow: visible; border: 1px solid var(--line); border-radius: 18px; background: var(--panel-2); color: var(--ink); padding: 13px 16px; font-weight: 1000; text-transform: none; min-height: 48px; transition: transform .16s ease, border-color .16s ease, box-shadow .16s ease; }
+    .btn.primary { background: linear-gradient(135deg, var(--gold), var(--gold-2)); color: #06131b; border-color: transparent; }
+    .btn:hover { transform: translateY(-2px); border-color: var(--gold); box-shadow: 0 12px 34px rgba(0,0,0,.18); }
+    .btn::before { content: attr(data-icon); display: inline-grid; place-items: center; width: 22px; height: 22px; margin-right: 8px; }
+    .tip { pointer-events: none; position: absolute; left: 0; bottom: calc(100% + 10px); width: 260px; padding: 12px; border-radius: 16px; background: #07121a; color: #eef2f4; border: 1px solid rgba(240,213,138,.3); box-shadow: 0 18px 44px rgba(0,0,0,.35); opacity: 0; transform: translateY(8px); transition: .16s ease; text-align: left; font-size: 12px; line-height: 1.35; z-index: 30; }
+    .btn:hover .tip { opacity: 1; transform: translateY(0); }
+    .btn.fx-roll::before { animation: spin .7s cubic-bezier(.2,.8,.2,1); }
+    .btn.fx-pulse { animation: buttonPulse .65s ease; }
+    @keyframes spin { to { transform: rotate(720deg) scale(1.16); } }
+    @keyframes buttonPulse { 50% { transform: translateY(-2px) scale(1.04); box-shadow: 0 0 0 9px rgba(200,170,110,.16); } }
+    .run-card { display: grid; align-content: center; gap: 8px; border-radius: 24px; padding: 16px; background: linear-gradient(150deg, rgba(10,200,185,.14), rgba(200,170,110,.10)); border: 1px solid var(--line); }
+    .run-logo, .team-logo, .slot-role, .event-logo { display: grid; place-items: center; overflow: hidden; background: #070d12; border: 1px solid rgba(200,170,110,.3); color: var(--gold-2); margin: 0; }
+    .run-logo { width: 76px; height: 76px; border-radius: 50%; font-weight: 1000; }
+    img { max-width: 100%; display: block; }
+    .run-logo img, .team-logo img, .slot-role img, .event-logo img, .round-icon img, .market-logo img { width: 100%; height: 100%; object-fit: contain; object-position: center; padding: 12%; }
+    .run-label { color: var(--muted); text-transform: uppercase; font-size: 11px; letter-spacing: .16em; font-weight: 900; }
+    .run-card strong { font-size: 26px; }
+    .progress { display: grid; gap: 6px; color: var(--muted); font-size: 12px; font-weight: 800; }
+    .bar { height: 8px; border-radius: 999px; background: rgba(128,128,128,.18); overflow: hidden; }
+    .bar b { display: block; height: 100%; width: 0%; background: linear-gradient(90deg, var(--teal), var(--gold)); transition: width .25s ease; }
+    .settings { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; }
+    .choice-group { padding: 12px; border-radius: 20px; border: 1px solid var(--line); background: color-mix(in srgb, var(--panel) 86%, var(--gold) 7%); }
+    .choice-group p { margin: 0 0 8px; color: var(--muted); font-size: 11px; font-weight: 1000; text-transform: uppercase; letter-spacing: .14em; }
+    .choices { display: flex; flex-wrap: wrap; gap: 7px; }
+    .choice { border: 1px solid var(--line); background: var(--panel-2); color: var(--ink); border-radius: 999px; padding: 9px 11px; font-size: 11px; font-weight: 1000; text-transform: uppercase; letter-spacing: .08em; }
+    .choice[aria-pressed="true"] { background: var(--ink); color: var(--bg); border-color: var(--ink); }
+    body.dark .choice[aria-pressed="true"] { background: linear-gradient(135deg, var(--gold), var(--gold-2)); color: #06131b; }
+    .roll-card.is-gold, .player-card.is-gold, .market-card.is-gold { position: relative; border-color: rgba(240,213,138,.78); background: linear-gradient(145deg, rgba(240,213,138,.32), color-mix(in srgb, var(--panel) 88%, transparent)); box-shadow: 0 0 0 1px rgba(240,213,138,.18), 0 18px 60px rgba(200,170,110,.22); }
+    .roll-card.is-gold::after, .player-card.is-gold::after { content: ''; position: absolute; inset: 0; border-radius: inherit; background: linear-gradient(115deg, transparent 0%, rgba(255,255,255,.36) 42%, transparent 54%); transform: translateX(-130%); animation: shine 2.8s ease-in-out infinite; pointer-events: none; }
+    @keyframes shine { 40%, 100% { transform: translateX(130%); } }
+    .roll-line { display: grid; grid-template-columns: 74px 1fr auto; gap: 14px; align-items: center; }
+    .team-logo { width: 74px; height: 74px; border-radius: 22px; font-weight: 1000; }
+    .roll-copy h2 { margin-bottom: 4px; }
+    .roll-copy p { margin-bottom: 10px; color: var(--muted); }
+    .pill-row, .tag-stack, .mini-tags { display: flex; flex-wrap: wrap; gap: 6px; }
+    .pill-row span, .tag-stack span, .mini-tags span { display: inline-flex; align-items: center; min-height: 24px; border: 1px solid var(--line); border-radius: 999px; padding: 4px 8px; font-size: 10px; font-weight: 950; text-transform: uppercase; color: var(--muted); background: color-mix(in srgb, var(--panel) 78%, transparent); }
+    .tag-stack { align-content: start; max-height: 58px; overflow: hidden; padding-bottom: 2px; }
+    .tag-stack span { max-width: 100%; white-space: nowrap; }
+    .players-grid { display: grid; grid-template-columns: repeat(5, minmax(150px, 1fr)); gap: 12px; }
+    .empty { grid-column: 1 / -1; min-height: 120px; display: grid; place-items: center; color: var(--muted); border: 1px dashed var(--line); border-radius: 24px; }
+    .player-card { position: relative; min-height: 238px; display: grid; grid-template-rows: auto auto 1fr auto; gap: 10px; border: 1px solid var(--line); border-radius: 24px; padding: 12px 12px 44px; background: var(--panel); box-shadow: var(--shadow); overflow: hidden; transition: transform .16s ease, border-color .16s ease, filter .16s ease; }
+    .player-card:hover { transform: translateY(-4px); border-color: var(--gold); }
+    .player-card.is-locked { filter: grayscale(.7); opacity: .5; cursor: not-allowed; }
+    .portrait-row { display: flex; justify-content: space-between; align-items: start; }
+    .round-icon { width: 46px; height: 46px; border-radius: 50%; display: grid; place-items: center; overflow: hidden; border: 1px solid rgba(200,170,110,.3); background: #07121a; margin: 0; }
+    .player-main h3 { margin: 0 0 5px; font-size: 20px; letter-spacing: -.035em; line-height: 1.05; }
+    .player-main p { margin: 0; color: var(--muted); font-size: 12px; font-weight: 800; }
+    .role-badge, .rating { position: absolute; bottom: 12px; font-weight: 950; font-size: 12px; }
+    .role-badge { left: 12px; max-width: calc(100% - 76px); color: var(--muted); text-transform: uppercase; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+    .rating { right: 12px; color: var(--gold-2); font-size: 19px; }
+    .lock-copy { font-size: 11px; color: var(--bad); font-style: normal; font-weight: 800; }
+    .side-head { display: flex; justify-content: space-between; gap: 12px; align-items: start; }
+    .side-head h2 { margin: 0; font-size: 34px; }
+    .draft-count { border: 1px solid var(--line); border-radius: 999px; padding: 8px 10px; color: var(--muted); font-weight: 1000; }
+    .stats-row { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; margin: 14px 0; }
+    .stat { border: 1px solid var(--line); border-radius: 18px; padding: 12px; background: var(--panel-2); }
+    .stat strong { display: block; font-size: 24px; }
+    .stat span { color: var(--muted); font-size: 10px; text-transform: uppercase; font-weight: 1000; }
+    .wallet { display: flex; justify-content: space-between; align-items: center; gap: 10px; padding: 13px; border-radius: 20px; background: linear-gradient(135deg, rgba(200,170,110,.18), rgba(10,200,185,.12)); border: 1px solid var(--line); }
+    .wallet span { color: var(--muted); font-size: 11px; text-transform: uppercase; font-weight: 1000; }
+    .wallet strong { font-size: 28px; }
+    .slots { display: grid; gap: 9px; margin-top: 14px; }
+    .slot { display: grid; grid-template-columns: 48px 1fr auto; gap: 10px; align-items: center; border: 1px solid var(--line); border-radius: 18px; padding: 9px; background: var(--panel-2); }
+    .slot.is-hot { animation: impact .5s ease; }
+    @keyframes impact { 50% { transform: scale(1.02); box-shadow: 0 0 0 10px rgba(200,170,110,.17); } }
+    .slot-role { width: 48px; height: 48px; border-radius: 50%; }
+    .slot strong { display: block; }
+    .slot p { margin: 2px 0 0; color: var(--muted); font-size: 11px; }
+    .slot-score { color: var(--gold-2); font-weight: 1000; }
+    .side-section { margin-top: 16px; padding-top: 16px; border-top: 1px solid var(--line); }
+    .section-title { display: flex; justify-content: space-between; gap: 10px; align-items: center; }
+    .muted { color: var(--muted); font-size: 12px; line-height: 1.45; }
+    .market { display: grid; gap: 9px; }
+    .market-card { display: grid; grid-template-columns: 44px 1fr auto; gap: 10px; align-items: center; border: 1px solid var(--line); border-radius: 18px; padding: 8px; background: var(--panel-2); }
+    .market-logo { width: 44px; height: 44px; border-radius: 50%; overflow: hidden; display: grid; place-items: center; background: #07121a; border: 1px solid rgba(200,170,110,.25); }
+    .market-card strong, .market-card small { display: block; }
+    .market-card small { color: var(--muted); }
+    .market-card button { border: 1px solid var(--line); border-radius: 999px; padding: 8px 10px; background: var(--panel); color: var(--ink); font-size: 11px; font-weight: 1000; }
+    .challenge { border: 1px solid var(--line); border-radius: 18px; padding: 12px; background: var(--panel-2); }
+    .challenge + .challenge { margin-top: 8px; }
+    .challenge.is-done { border-color: rgba(36,180,126,.62); animation: impact .6s ease; }
+    .challenge h3 { margin-bottom: 4px; }
+    .challenge p { margin: 0; color: var(--muted); font-size: 12px; line-height: 1.4; }
+    .results { min-height: 34px; color: var(--muted); font-size: 13px; }
+    .screen-head { display: flex; justify-content: space-between; gap: 16px; align-items: center; margin-bottom: 16px; }
+    .screen-actions { display: flex; flex-wrap: wrap; gap: 9px; justify-content: flex-end; }
+    .sim-board { display: grid; gap: 14px; }
+    .scoreline { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; }
+    .scoreline div, .score-card { border: 1px solid var(--line); border-radius: 20px; padding: 14px; background: var(--panel-2); }
+    .score-card { position: relative; overflow: hidden; }
+    .score-card .mini-chart { display: grid; grid-auto-flow: column; gap: 4px; align-items: end; height: 26px; margin-top: 10px; }
+    .score-card .mini-chart b { display: block; border-radius: 999px 999px 4px 4px; background: linear-gradient(180deg, var(--teal), var(--gold)); opacity: .9; }
+    .score-card em { display: block; margin-top: 8px; color: var(--muted); font-style: normal; font-size: 11px; }
+    .score-card { cursor: help; }
+    .score-card .mini-chart b { position: relative; cursor: help; }
+    .score-card .bar-labels { display: grid; grid-auto-flow: column; gap: 4px; margin-top: 5px; color: var(--muted); font-size: 9px; text-transform: uppercase; font-weight: 900; opacity: .78; }
+    .score-card .bar-labels span { min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; text-align: center; }
+    .score-card .stat-help { margin-top: 6px; color: var(--muted); font-size: 10px; line-height: 1.35; opacity: .86; }
+    .scoreline strong, .score-card strong { display: block; font-size: 28px; }
+    .scoreline span, .score-card span { color: var(--muted); text-transform: uppercase; font-size: 11px; font-weight: 1000; }
+    .focus { min-height: 122px; display: grid; align-items: center; border-radius: 24px; border: 1px solid var(--line); background: linear-gradient(135deg, rgba(10,200,185,.12), rgba(200,170,110,.12)); padding: 16px; }
+    .focus-event { display: grid; grid-template-columns: 58px 1fr 58px; align-items: center; gap: 14px; }
+    .focus-event > img, .event-icon { width: 52px; height: 52px; }
+    .focus-event strong { display: block; font-size: 32px; letter-spacing: -.05em; }
+    .focus-event p { margin: 4px 0 0; color: var(--muted); }
+    .focus-event.is-good strong { color: var(--good); }
+    .focus-event.is-bad strong { color: var(--bad); }
+    .timeline { display: grid; gap: 12px; }
+    .match-card { border: 1px solid var(--line); border-radius: 24px; padding: 14px; background: var(--panel-2); overflow: hidden; }
+    .match-card.is-active { border-color: var(--gold); box-shadow: 0 0 0 1px rgba(200,170,110,.22); }
+    .match-card.is-finished { opacity: .88; padding: 10px 12px; }
+    .match-head, .match-foot { display: flex; align-items: center; justify-content: space-between; gap: 10px; }
+    .match-head span, .match-foot span { color: var(--muted); font-size: 12px; font-weight: 900; text-transform: uppercase; }
+    .match-head strong { font-size: 17px; }
+    .win { color: var(--good); }
+    .loss { color: var(--bad); }
+    .round-mod { margin: 10px 0; border: 1px solid var(--line); border-radius: 16px; padding: 10px; color: var(--muted); }
+    .round-mod.is-done { border-color: rgba(36,180,126,.62); color: var(--good); animation: impact .6s ease; }
+    .event-list { display: grid; gap: 7px; }
+    .event-line { display: grid; grid-template-columns: 40px minmax(0,1fr) 44px; align-items: center; gap: 10px; padding: 8px; border-radius: 16px; opacity: .42; background: color-mix(in srgb, var(--panel) 65%, transparent); border: 1px solid transparent; }
+    .event-line.is-visible { opacity: 1; }
+    .event-line.is-current { animation: eventPop .7s ease; border-color: var(--gold); }
+    @keyframes eventPop { 35% { transform: scale(1.018); box-shadow: 0 0 0 9px rgba(200,170,110,.14); } }
+    .event-copy strong { display: block; text-transform: uppercase; font-size: 12px; }
+    .event-copy span { color: var(--muted); font-size: 12px; }
+    .event-logo { width: 42px; height: 42px; border-radius: 50%; }
+    .event-copy { min-width: 0; }
+    .event-copy strong, .event-copy span { display: block; }
+    .event-copy span { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+    .score-layout { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px; }
+    .score-grid { grid-column: 1 / -1; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 10px; }
+    .ledger { display: grid; gap: 8px; }
+    .ledger-row { display: flex; justify-content: space-between; gap: 12px; border: 1px solid var(--line); border-radius: 16px; padding: 10px; background: var(--panel-2); }
+    .ledger-row span { color: var(--muted); font-size: 12px; text-align: right; }
+    .wide { grid-column: 1 / -1; }
+
+    .match-toggle { border: 1px solid var(--line); border-radius: 999px; padding: 7px 10px; background: var(--panel); color: var(--ink); font-size: 11px; font-weight: 950; text-transform: uppercase; }
+    .match-card.is-collapsed .event-list, .match-card.is-collapsed .round-mod { display: none; }
+    .match-card.is-collapsed { padding: 10px 12px; }
+    .match-card.is-collapsed .match-foot { margin-top: 6px; }
+    .match-summary { display: flex; gap: 8px; align-items: center; flex-wrap: wrap; color: var(--muted); font-size: 12px; font-weight: 800; }
+    details.ledger-detail, .history-card { border: 1px solid var(--line); border-radius: 16px; padding: 10px; background: var(--panel-2); }
+    .history-card + .history-card, details.ledger-detail + details.ledger-detail { margin-top: 8px; }
+    .history-grid { display: grid; gap: 10px; }
+    .history-head { display: flex; align-items: center; justify-content: space-between; gap: 10px; }
+    .history-meta { display: flex; flex-wrap: wrap; gap: 8px; color: var(--muted); font-size: 12px; margin: 8px 0; }
+    .history-picks { display: flex; flex-wrap: wrap; gap: 6px; }
+    .history-picks span { border: 1px solid var(--line); border-radius: 999px; padding: 4px 8px; font-size: 11px; color: var(--muted); }
+    details.ledger-detail + details.ledger-detail { margin-top: 8px; }
+    details.ledger-detail summary { cursor: pointer; font-weight: 900; display: flex; justify-content: space-between; gap: 10px; list-style: none; }
+    details.ledger-detail summary::-webkit-details-marker { display: none; }
+    .detail-events { display: grid; gap: 6px; margin-top: 10px; color: var(--muted); font-size: 12px; }
+    .toast { position: fixed; left: 50%; bottom: 18px; transform: translate(-50%, 14px); opacity: 0; pointer-events: none; padding: 12px 14px; border-radius: 999px; background: #07121a; color: #fff; border: 1px solid rgba(240,213,138,.35); box-shadow: 0 16px 50px rgba(0,0,0,.35); transition: .18s ease; z-index: 60; }
+    .toast.show { opacity: 1; transform: translate(-50%, 0); }
+    .fatal { position: fixed; left: 14px; right: 14px; bottom: 14px; z-index: 100; border: 2px solid #e35b5b; background: #210f0f; color: #ffecec; border-radius: 18px; padding: 12px; font: 12px/1.4 ui-monospace, Consolas, monospace; }
+    footer { margin: 24px 0 0; color: var(--muted); text-align: center; font-size: 12px; }
+    @media (max-width: 980px) { .layout { grid-template-columns: 1fr; } .hero { grid-template-columns: 1fr; } .players-grid { grid-template-columns: repeat(2, minmax(180px, 1fr)); } .settings { grid-template-columns: 1fr; } .score-grid { grid-template-columns: repeat(2, 1fr); } .score-layout { grid-template-columns: 1fr; } .topbar { grid-template-columns: 1fr; } .microline { justify-self: start; flex-wrap: wrap; } }
+    .roll-card.is-flash { animation: cardFlash .45s ease; }
+    .players-grid.is-refresh, .market.is-refresh { animation: sweepIn .35s ease; }
+    @keyframes cardFlash { 0% { transform: scale(.985); box-shadow: 0 0 0 0 rgba(200,170,110,0); } 50% { transform: scale(1.01); box-shadow: 0 0 0 10px rgba(200,170,110,.12); } 100% { transform: scale(1); box-shadow: none; } }
+    @keyframes sweepIn { 0% { opacity: .35; transform: translateY(8px); } 100% { opacity: 1; transform: translateY(0); } }
+  </style>
+</head>
+<body class="dark">
+  <div class="app">
+    <header class="topbar">
+      <a class="brand" href="#" data-action="screen" data-screen="draft" aria-label="inicio"><span class="brand-mark">20:19</span><span class="brand-copy">Worlds<br>Draft</span></a>
+      <div class="microline"><strong>Draft</strong><span>·</span><strong>Pick</strong><span>·</span><strong>Win</strong><span id="seedLabel">seed #LOCAL</span></div>
+      <nav class="quick-actions"><button type="button" data-action="theme">tema</button><button type="button" data-action="copy">copiar</button><button type="button" data-action="reset">reset</button></nav>
+    </header>
+    <nav class="tabs" aria-label="pantallas"><button type="button" data-action="screen" data-screen="draft" aria-pressed="true" title="Arma tu roster con tiradas, tienda y picks">Draft</button><button type="button" data-action="screen" data-screen="sim" aria-pressed="false" title="Ve la simulación partido por partido">Simulación</button><button type="button" data-action="screen" data-screen="stats" aria-pressed="false" title="Consulta tus estadísticas acumuladas">Stats</button><button type="button" data-action="screen" data-screen="history" aria-pressed="false" title="Revisa runs anteriores una por una">Historia</button></nav>
+    <main>
+      <section id="draftScreen" data-panel="draft">
+        <div class="layout">
+          <div class="main-col">
+            <section class="panel hero">
+              <div>
+                <p class="eyebrow">League of Legends · Worlds / MSI / First Stand</p>
+                <h1>Arma tu 5v histórico</h1>
+                <p class="lead">Tira, elige cinco leyendas y prueba si tu draft levanta la copa.</p>
+                <div class="actions">
+                  <button type="button" class="btn primary" data-action="roll" data-icon="🎲">Tirar dado<span class="tip">Revela un equipo y torneo. Solo tienes 7 tiradas para completar tus 5 roles.</span></button>
+                  <button type="button" class="btn" data-action="reroll" data-icon="↻">Reroll<span class="tip">Descarta la tirada actual y abre otra. Úsalo con cuidado: puede dejarte sin margen.</span></button>
+                  <button type="button" class="btn" data-action="scout" data-icon="◈">Scout pool<span class="tip">Arma una tirada mixta con opciones para roles abiertos. Es tu salvavidas si el draft se atoró.</span></button>
+                  <button type="button" class="btn primary" data-action="simulate" data-icon="⚔">Simular<span class="tip">Cambia a la sala de simulación y juega grupos, playoffs y final partido a partido.</span></button>
+                </div>
+              </div>
+              <aside class="run-card">
+                <div class="run-logo" id="runLogo">?</div><span class="run-label">Run actual</span><strong id="runMark">—:—</strong><span class="muted" id="runNote">Tira para abrir roster</span>
+                <div class="progress"><span id="rollMeter">0/7 tiradas</span><span class="bar"><b id="rollBar"></b></span></div>
+              </aside>
+            </section>
+            <section class="settings">
+              <div class="choice-group"><p>dificultad</p><div class="choices" data-setting="difficulty"><button type="button" class="choice" data-value="normal">normal</button><button type="button" class="choice" data-value="hard">hard</button><button type="button" class="choice" data-value="chaos">caos</button></div></div>
+              <div class="choice-group"><p>modo</p><div class="choices" data-setting="mode"><button type="button" class="choice" data-value="classic">clásico</button><button type="button" class="choice" data-value="blind">memoria</button></div></div>
+              <div class="choice-group"><p>rosters</p><div class="choices" data-setting="filter"><button type="button" class="choice" data-value="all">todos</button><button type="button" class="choice" data-value="winner">campeones</button><button type="button" class="choice" data-value="east">east</button><button type="button" class="choice" data-value="west">west</button></div></div>
+            </section>
+            <section class="panel roll-card" id="rollCard"><div class="roll-line"><div class="team-logo" id="teamLogo">?</div><div class="roll-copy"><h2 id="rollTitle">Sin tirada</h2><p id="rollSub">Haz una tirada para revelar equipo, año y pool de jugadores.</p><div class="pill-row" id="rollTags"></div></div><button type="button" class="btn" data-action="skip" data-icon="→">saltar</button></div></section>
+            <section class="players-grid" id="players"><div class="empty">tira el dado para abrir tu primer roster.</div></section>
+          </div>
+          <aside class="panel side-col">
+            <div class="side-head"><div><h2>5v</h2><p class="muted" id="summarySeed">seed local</p></div><span class="draft-count" id="draftCount">0/5</span></div>
+            <div class="stats-row"><div class="stat"><strong id="avgScore">0</strong><span>overall</span></div><div class="stat"><strong id="synScore">0</strong><span>sinergia</span></div><div class="stat"><strong id="cupChance">0%</strong><span>chance</span></div></div>
+            <div class="wallet"><div><span>coins</span><strong id="coinCount">0</strong></div><p class="muted" id="coinHint">se guardan localmente</p></div>
+            <div class="slots" id="slots"></div>
+            <section class="side-section"><div class="section-title"><h3>Tienda</h3><button type="button" class="small-btn" data-action="market">Rotar</button></div><p class="muted">Cambia con cada tirada. Rotación manual: 1 vez por run y 10 coins.</p><div class="market" id="market"></div></section>
+            <section class="side-section challenge" id="metaBox"><h3>Meta</h3><p id="metaText">Se revela con la primera tirada.</p></section>
+            <section class="challenge" id="questBox"><h3>Quest</h3><p id="questText">Se revela con la primera tirada.</p></section>
+            <section class="challenge" id="synergyBox"><h3>Sinergias</h3><p id="synergyReasons">Sin picks todavía.</p></section>
+            <section class="side-section results" id="results"></section>
+          </aside>
+        </div>
+      </section>
+      <section id="simScreen" data-panel="sim" hidden>
+        <div class="screen-head panel"><div><p class="eyebrow">match room</p><h2>simulación</h2><p class="muted" id="simSubtitle">completa tu 5v para correr la run.</p></div><div class="screen-actions"><button type="button" class="btn" data-action="screen" data-screen="draft" data-icon="←">Draft</button><button type="button" class="btn primary" data-action="reset" data-icon="↻">repetir</button><button type="button" class="btn" data-action="screen" data-screen="stats" data-icon="▦">Stats</button></div></div>
+        <section class="panel sim-board"><div class="scoreline" id="simScoreline"></div><div class="focus" id="liveFocus"><p class="muted">sin simulación cargada.</p></div><div class="timeline" id="simTimeline"></div></section>
+      </section>
+      <section id="statsScreen" data-panel="stats" hidden>
+        <div class="screen-head panel"><div><p class="eyebrow">scoreboard</p><h2>Estadísticas</h2><p class="muted">Resumen local con detalle de runs, picks y objetivos.</p></div><div class="screen-actions"><button type="button" class="btn" data-action="screen" data-screen="draft" data-icon="←">Draft</button><button type="button" class="btn" data-action="screen" data-screen="history" data-icon="≣">Historia</button><button type="button" class="btn" data-action="clearStats" data-icon="×">Limpiar stats</button></div></div>
+        <section class="score-layout"><div class="score-grid" id="scoreGrid"></div><article class="panel"><h3>Últimas runs</h3><div class="ledger" id="runLedger"></div></article><article class="panel"><h3>Top picks</h3><div class="ledger" id="pickLedger"></div></article><article class="panel wide"><h3>Historial de simulación</h3><div class="ledger" id="simLedger"></div></article></section>
+      </section>
+      <section id="historyScreen" data-panel="history" hidden>
+        <div class="screen-head panel"><div><p class="eyebrow">archive</p><h2>Historia</h2><p class="muted">Revisa cada run con picks, marcador y detalle plegable.</p></div><div class="screen-actions"><button type="button" class="btn" data-action="screen" data-screen="draft" data-icon="←">Draft</button><button type="button" class="btn" data-action="screen" data-screen="stats" data-icon="▦">Stats</button></div></div>
+        <section class="panel"><div class="history-grid" id="historyLedger"></div></section>
+      </section>
+    </main>
+    <footer>Fan-made project not affiliated with Riot Games</footer>
+  </div>
+  <div class="toast" id="toast"></div>
+  <script>
+(function () {
+  'use strict';
+
+  const ROLES = ['Top', 'Jungle', 'Mid', 'Bot', 'Support'];
+  const ROLE_ICONS = { Top: '/assets/roles/top.png', Jungle: '/assets/roles/jungle.png', Mid: '/assets/roles/mid.png', Bot: '/assets/roles/bot.png', Support: '/assets/roles/support.png' };
+  const OBJ = { blood: '/assets/objectives/blood.svg', dragon: '/assets/objectives/dragon.svg', inhibitor: '/assets/objectives/inhibitor.svg', soul: '/assets/objectives/soul.svg', baron: '/assets/objectives/baron.svg', mvp: '/assets/objectives/mvp.svg' };
+  const FLAGS = { KR: '🇰🇷', CN: '🇨🇳', EU: '🇪🇺', NA: '🇺🇸', WORLD: '🌐' };
+  const MAX_ROLLS = 7;
+  const RARE_CHANCE = 1 / 6;
+  const STARTING_COINS = 180;
+  const RATING_OFFSET = -3;
+  const MARKET_COST = 10;
+  const ENEMY_HANDICAP = 1.5;
+  const STORE = { coins: 'draft_coins_v11', stats: 'draft_stats_v11', theme: 'draft_theme_v11', owned: 'draft_owned_v11' };
+
+  const historicalTeamLogos = {
+    "t1-2023": "/assets/teams-historical/worlds-t1-2023.png",
+    "drx-2022": "/assets/teams-historical/worlds-drx-2022.png",
+    "edg-2021": "/assets/teams-historical/worlds-edg-2021.png",
+    "dwg-2020": "/assets/teams-historical/worlds-dwg-2020.png",
+    "fpx-2019": "/assets/teams-historical/worlds-fpx-2019.png",
+    "ig-2018": "/assets/teams-historical/worlds-ig-2018.png",
+    "g2-2019-msi": "/assets/teams-historical/msi-g2-2019.png",
+    "rng-2018-msi": "/assets/teams-historical/msi-rng-2018.png",
+    "gen-2024-msi": "/assets/teams-historical/msi-gen-2024.png",
+    "hle-2025-fs": "/assets/teams-historical/firststand-hle-2025.png",
+    "blg-2026-fs": "/assets/teams-historical/firststand-blg-2026.png",
+    "fnc-2018": "/assets/teams-historical/worlds-fnc-2018.png",
+    "ssw-2014": "/assets/teams-historical/worlds-ssw-2014.png",
+    "tpa-2012": "/assets/teams-historical/worlds-tpa-2012.png",
+    "skt-2013": "/assets/teams-historical/worlds-skt-2013.png",
+    "skt-2015": "/assets/teams-historical/worlds-skt-2015.png",
+    "skt-2016": "/assets/teams-historical/worlds-skt-2016.png",
+    "ssg-2017": "/assets/teams-historical/worlds-ssg-2017.png",
+    "skt-2017": "/assets/teams-historical/worlds-skt-2017.png",
+    "koo-2015": "/assets/teams-historical/worlds-koo-2015.png",
+    "rox-2016": "/assets/teams-historical/worlds-rox-2016.png",
+    "ssb-2014": "/assets/teams-historical/worlds-ssb-2014.png",
+    "dk-2021": "/assets/teams-historical/worlds-dk-2021.png",
+    "sn-2020": "/assets/teams-historical/worlds-sn-2020.png",
+    "wbg-2023": "/assets/teams-historical/worlds-wbg-2023.png",
+    "jdg-2023-msi": "/assets/teams-historical/msi-jdg-2023.png",
+    "edg-2015-msi": "/assets/teams-historical/msi-edg-2015.png",
+    "rng-2021-msi": "/assets/teams-historical/msi-rng-2021.png",
+    "rng-2022-msi": "/assets/teams-historical/msi-rng-2022.png",
+    "tl-2019-msi": "/assets/teams-historical/msi-tl-2019.png",
+    "c9-2018": "/assets/teams-historical/worlds-c9-2018.png",
+    "kt-2018": "/assets/teams-historical/worlds-kt-2018.png",
+    "tes-2020": "/assets/teams-historical/worlds-tes-2020.png",
+    "mad-2021": "/assets/teams-historical/worlds-mad-2021.png",
+    "msf-2017": "/assets/teams-historical/worlds-msf-2017.png"
+  };
+
+  const teamLogos = {
+    "T1": "/assets/teams-historical/worlds-t1-2023.png",
+    "SKT": "/assets/teams-historical/worlds-skt-2016.png",
+    "GEN": "/assets/teams-historical/msi-gen-2024.png",
+    "G2": "/assets/teams-historical/msi-g2-2019.png",
+    "DRX": "/assets/teams-historical/worlds-drx-2022.png",
+    "EDG": "/assets/teams-historical/worlds-edg-2021.png",
+    "DWG": "/assets/teams-historical/worlds-dwg-2020.png",
+    "DK": "/assets/teams-historical/worlds-dk-2021.png",
+    "FPX": "/assets/teams-historical/worlds-fpx-2019.png",
+    "IG": "/assets/teams-historical/worlds-ig-2018.png",
+    "RNG": "/assets/teams-historical/msi-rng-2022.png",
+    "BLG": "/assets/teams-historical/firststand-blg-2026.png",
+    "HLE": "/assets/teams-historical/firststand-hle-2025.png",
+    "FNC": "/assets/teams-historical/worlds-fnc-2018.png",
+    "SSW": "/assets/teams-historical/worlds-ssw-2014.png",
+    "TPA": "/assets/teams-historical/worlds-tpa-2012.png",
+    "SSG": "/assets/teams-historical/worlds-ssg-2017.png",
+    "ROX": "/assets/teams-historical/worlds-rox-2016.png",
+    "KOO": "/assets/teams-historical/worlds-koo-2015.png",
+    "SSB": "/assets/teams-historical/worlds-ssb-2014.png",
+    "SN": "/assets/teams-historical/worlds-sn-2020.png",
+    "WBG": "/assets/teams-historical/worlds-wbg-2023.png",
+    "JDG": "/assets/teams-historical/msi-jdg-2023.png",
+    "TL": "/assets/teams-historical/msi-tl-2019.png",
+    "C9": "/assets/teams-historical/worlds-c9-2018.png",
+    "KT": "/assets/teams-historical/worlds-kt-2018.png",
+    "TES": "/assets/teams-historical/worlds-tes-2020.png",
+    "MAD": "/assets/teams-historical/worlds-mad-2021.png",
+    "MSF": "/assets/teams-historical/worlds-msf-2017.png"
+  };
+
+  const orgMap = { SKT: 'T1', T1: 'T1', DWG: 'DK', DK: 'DK', SSG: 'GEN', GEN: 'GEN', SSW: 'GEN', SSB: 'GEN', KOO: 'ROX', ROX: 'ROX' };
+  function tuneRating(rating) { return clamp(rating + RATING_OFFSET, 82, 98); }
+  function roleCode(role) { return ({ Top:'TOP', Jungle:'JG', Mid:'MID', Bot:'BOT', Support:'SUP' })[role] || role; }
+  const p = (name, role, rating, tags) => ({ name, role, rating: tuneRating(rating), rawRating: rating, tags });
+  function r(id, name, short, year, region, country, champion, tier, styles, players, extra) {
+    const org = orgMap[short] || short;
+    const tournament = extra?.tournament || 'Worlds';
+    const major = extra?.majorChampion ?? champion;
+    const rarity = major ? 'rare' : 'normal';
+    const logo = historicalTeamLogos[id] || teamLogos[short] || badge(short, region);
+    return { id, name, short, org, year, region, country, champion, major, tournament, tier, styles, rarity, logo, players: players.map(x => ({ ...x, id: `${org}-${year}-${tournament}-${x.role}-${x.name}`.replace(/\s+/g, '-'), team: name, short, org, year, region, country, tournament, major, logo })) };
+  }
+  const ROSTERS = [
+    r('t1-2023', 'T1', 'T1', 2023, 'LCK', 'KR', true, 98, ['clutch','macro'], [p('Zeus','Top',96,['hands','carry']),p('Oner','Jungle',94,['tempo']),p('Faker','Mid',99,['clutch','shotcall']),p('Gumayusi','Bot',96,['carry']),p('Keria','Support',97,['creative','shotcall'])]),
+    r('drx-2022', 'DRX', 'DRX', 2022, 'LCK', 'KR', true, 93, ['underdog','clutch'], [p('Kingen','Top',92,['clutch']),p('Pyosik','Jungle',89,['tempo']),p('Zeka','Mid',96,['hands','clutch']),p('Deft','Bot',94,['late']),p('BeryL','Support',92,['shotcall'])]),
+    r('edg-2021', 'Edward Gaming', 'EDG', 2021, 'LPL', 'CN', true, 96, ['teamfight'], [p('Flandre','Top',92,['weakside']),p('Jiejie','Jungle',95,['tempo']),p('Scout','Mid',96,['clutch']),p('Viper','Bot',97,['carry']),p('Meiko','Support',95,['shotcall'])]),
+    r('dwg-2020', 'DAMWON Gaming', 'DWG', 2020, 'LCK', 'KR', true, 97, ['tempo','macro'], [p('Nuguri','Top',97,['hands','carry']),p('Canyon','Jungle',99,['tempo','carry']),p('ShowMaker','Mid',98,['hands']),p('Ghost','Bot',91,['stable']),p('BeryL','Support',94,['shotcall'])]),
+    r('fpx-2019', 'FunPlus Phoenix', 'FPX', 2019, 'LPL', 'CN', true, 95, ['roam','teamfight'], [p('GimGoon','Top',90,['weakside']),p('Tian','Jungle',96,['tempo','clutch']),p('Doinb','Mid',95,['roam','shotcall']),p('Lwx','Bot',94,['carry']),p('Crisp','Support',95,['engage'])]),
+    r('ig-2018', 'Invictus Gaming', 'IG', 2018, 'LPL', 'CN', true, 96, ['hands','skirmish'], [p('TheShy','Top',99,['hands','carry']),p('Ning','Jungle',94,['tempo']),p('Rookie','Mid',98,['hands','clutch']),p('JackeyLove','Bot',94,['carry']),p('Baolan','Support',89,['engage'])]),
+    r('g2-2019-msi', 'G2 Esports', 'G2', 2019, 'LEC', 'EU', false, 94, ['flex','tempo'], [p('Wunder','Top',94,['carry']),p('Jankos','Jungle',94,['tempo']),p('Caps','Mid',97,['hands','clutch']),p('Perkz','Bot',94,['creative']),p('Mikyx','Support',95,['engage'])], { tournament: 'MSI', majorChampion: true }),
+    r('rng-2018-msi', 'Royal Never Give Up', 'RNG', 2018, 'LPL', 'CN', false, 94, ['bot','teamfight'], [p('Letme','Top',90,['weakside']),p('Mlxg','Jungle',94,['tempo']),p('Xiaohu','Mid',93,['roam']),p('Uzi','Bot',99,['carry','clutch']),p('Ming','Support',96,['engage'])], { tournament: 'MSI', majorChampion: true }),
+    r('gen-2024-msi', 'Gen.G', 'GEN', 2024, 'LCK', 'KR', false, 96, ['macro','control'], [p('Kiin','Top',95,['stable']),p('Canyon','Jungle',97,['tempo']),p('Chovy','Mid',99,['control','hands']),p('Peyz','Bot',95,['carry']),p('Lehends','Support',94,['creative'])], { tournament: 'MSI', majorChampion: true }),
+    r('hle-2025-fs', 'Hanwha Life Esports', 'HLE', 2025, 'LCK', 'KR', false, 95, ['teamfight','control'], [p('Zeus','Top',96,['carry']),p('Peanut','Jungle',95,['shotcall']),p('Zeka','Mid',95,['hands']),p('Viper','Bot',97,['carry']),p('Delight','Support',94,['engage'])], { tournament: 'First Stand', majorChampion: true }),
+    r('blg-2026-fs', 'Bilibili Gaming', 'BLG', 2026, 'LPL', 'CN', false, 96, ['skirmish','hands'], [p('Bin','Top',98,['hands','carry']),p('Xun','Jungle',94,['tempo']),p('knight','Mid',98,['control','hands']),p('Elk','Bot',96,['carry']),p('ON','Support',93,['engage'])], { tournament: 'First Stand', majorChampion: true }),
+    r('fnc-2018', 'Fnatic', 'FNC', 2018, 'LEC', 'EU', false, 91, ['macro'], [p('Bwipo','Top',90,['carry']),p('Broxah','Jungle',91,['tempo']),p('Caps','Mid',95,['hands']),p('Rekkles','Bot',93,['late']),p('Hylissang','Support',91,['engage'])]),
+    r('ssw-2014', 'Samsung White', 'SSW', 2014, 'LCK', 'KR', true, 99, ['vision','macro'], [p('Looper','Top',96,['stable']),p('DanDy','Jungle',99,['tempo']),p('PawN','Mid',96,['clutch']),p('imp','Bot',97,['carry']),p('Mata','Support',99,['shotcall'])]),
+    r('tpa-2012', 'Taipei Assassins', 'TPA', 2012, 'PCS', 'WORLD', true, 92, ['underdog'], [p('Stanley','Top',91,['stable']),p('Lilballz','Jungle',91,['tempo']),p('Toyz','Mid',96,['control']),p('Bebe','Bot',92,['carry']),p('MiSTakE','Support',91,['shotcall'])]),
+    r('skt-2013', 'SK Telecom T1', 'SKT', 2013, 'LCK', 'KR', true, 96, ['lane','clutch'], [p('Impact','Top',94,['stable']),p('Bengi','Jungle',95,['tempo']),p('Faker','Mid',99,['hands','clutch']),p('Piglet','Bot',96,['carry']),p('PoohManDu','Support',94,['shotcall'])]),
+    r('skt-2015', 'SK Telecom T1', 'SKT', 2015, 'LCK', 'KR', true, 98, ['macro','control'], [p('MaRin','Top',98,['carry','clutch']),p('Bengi','Jungle',96,['tempo']),p('Faker','Mid',99,['clutch']),p('Bang','Bot',96,['late']),p('Wolf','Support',95,['shotcall'])]),
+    r('skt-2016', 'SK Telecom T1', 'SKT', 2016, 'LCK', 'KR', true, 97, ['clutch','teamfight'], [p('Duke','Top',93,['stable']),p('Bengi','Jungle',96,['clutch']),p('Faker','Mid',99,['clutch','hands']),p('Bang','Bot',97,['carry']),p('Wolf','Support',96,['engage'])]),
+    r('ssg-2017', 'Samsung Galaxy', 'SSG', 2017, 'LCK', 'KR', true, 95, ['macro','vision'], [p('CuVee','Top',94,['stable']),p('Ambition','Jungle',94,['shotcall']),p('Crown','Mid',93,['control']),p('Ruler','Bot',98,['carry','clutch']),p('CoreJJ','Support',96,['engage'])]),
+    r('skt-2017', 'SK Telecom T1', 'SKT', 2017, 'LCK', 'KR', false, 94, ['clutch'], [p('Huni','Top',93,['carry']),p('Peanut','Jungle',94,['tempo']),p('Faker','Mid',99,['clutch']),p('Bang','Bot',92,['late']),p('Wolf','Support',93,['shotcall'])]),
+    r('koo-2015', 'KOO Tigers', 'KOO', 2015, 'LCK', 'KR', false, 93, ['teamfight'], [p('Smeb','Top',96,['carry']),p('Hojin','Jungle',90,['tempo']),p('Kuro','Mid',92,['control']),p('PraY','Bot',95,['carry']),p('GorillA','Support',95,['shotcall'])]),
+    r('rox-2016', 'ROX Tigers', 'ROX', 2016, 'LCK', 'KR', false, 95, ['tempo','skirmish'], [p('Smeb','Top',97,['carry']),p('Peanut','Jungle',96,['tempo']),p('Kuro','Mid',93,['control']),p('PraY','Bot',96,['carry']),p('GorillA','Support',96,['shotcall'])]),
+    r('ssb-2014', 'Samsung Blue', 'SSB', 2014, 'LCK', 'KR', false, 94, ['control'], [p('Acorn','Top',92,['stable']),p('Spirit','Jungle',94,['tempo']),p('Dade','Mid',96,['control']),p('Deft','Bot',95,['carry']),p('Heart','Support',92,['engage'])]),
+    r('dk-2021', 'DWG KIA', 'DK', 2021, 'LCK', 'KR', false, 96, ['macro','tempo'], [p('Khan','Top',95,['carry']),p('Canyon','Jungle',99,['tempo','carry']),p('ShowMaker','Mid',98,['hands']),p('Ghost','Bot',91,['stable']),p('BeryL','Support',94,['shotcall'])]),
+    r('sn-2020', 'Suning', 'SN', 2020, 'LPL', 'CN', false, 92, ['skirmish'], [p('Bin','Top',96,['hands','carry']),p('SofM','Jungle',95,['creative']),p('Angel','Mid',91,['control']),p('huanfeng','Bot',92,['late']),p('SwordArt','Support',93,['shotcall'])]),
+    r('wbg-2023', 'Weibo Gaming', 'WBG', 2023, 'LPL', 'CN', false, 91, ['teamfight'], [p('TheShy','Top',94,['carry']),p('Weiwei','Jungle',91,['tempo']),p('Xiaohu','Mid',93,['roam']),p('Light','Bot',92,['carry']),p('Crisp','Support',93,['engage'])]),
+    r('jdg-2023-msi', 'JD Gaming', 'JDG', 2023, 'LPL', 'CN', false, 97, ['teamfight','control'], [p('369','Top',95,['stable']),p('Kanavi','Jungle',97,['tempo','carry']),p('knight','Mid',98,['control']),p('Ruler','Bot',98,['carry']),p('Missing','Support',95,['engage'])], { tournament: 'MSI', majorChampion: true }),
+    r('edg-2015-msi', 'Edward Gaming', 'EDG', 2015, 'LPL', 'CN', false, 93, ['teamfight'], [p('Koro1','Top',92,['stable']),p('Clearlove','Jungle',95,['shotcall']),p('PawN','Mid',95,['clutch']),p('Deft','Bot',96,['carry']),p('Meiko','Support',93,['engage'])], { tournament: 'MSI', majorChampion: true }),
+    r('rng-2021-msi', 'Royal Never Give Up', 'RNG', 2021, 'LPL', 'CN', false, 94, ['teamfight','bot'], [p('Xiaohu','Top',94,['carry']),p('Wei','Jungle',93,['tempo']),p('Cryin','Mid',89,['control']),p('GALA','Bot',96,['carry','clutch']),p('Ming','Support',96,['engage'])], { tournament: 'MSI', majorChampion: true }),
+    r('rng-2022-msi', 'Royal Never Give Up', 'RNG', 2022, 'LPL', 'CN', false, 95, ['teamfight','bot'], [p('Bin','Top',95,['carry']),p('Wei','Jungle',94,['tempo']),p('Xiaohu','Mid',94,['roam']),p('GALA','Bot',97,['carry','clutch']),p('Ming','Support',96,['engage'])], { tournament: 'MSI', majorChampion: true }),
+    r('tl-2019-msi', 'Team Liquid', 'TL', 2019, 'LCS', 'NA', false, 88, ['upset'], [p('Impact','Top',90,['stable']),p('Xmithie','Jungle',88,['tempo']),p('Jensen','Mid',91,['control']),p('Doublelift','Bot',92,['carry']),p('CoreJJ','Support',94,['shotcall'])], { tournament: 'MSI' }),
+    r('c9-2018', 'Cloud9', 'C9', 2018, 'LCS', 'NA', false, 87, ['underdog'], [p('Licorice','Top',89,['carry']),p('Svenskeren','Jungle',90,['tempo']),p('Jensen','Mid',91,['control']),p('Sneaky','Bot',90,['late']),p('Zeyzal','Support',88,['engage'])]),
+    r('kt-2018', 'KT Rolster', 'KT', 2018, 'LCK', 'KR', false, 94, ['teamfight'], [p('Smeb','Top',95,['carry']),p('Score','Jungle',95,['shotcall']),p('Ucal','Mid',92,['hands']),p('Deft','Bot',96,['carry']),p('Mata','Support',96,['shotcall'])]),
+    r('tes-2020', 'Top Esports', 'TES', 2020, 'LPL', 'CN', false, 93, ['hands'], [p('369','Top',93,['stable']),p('Karsa','Jungle',94,['tempo']),p('knight','Mid',98,['hands','control']),p('JackeyLove','Bot',95,['carry']),p('yuyanjia','Support',88,['engage'])]),
+    r('mad-2021', 'MAD Lions', 'MAD', 2021, 'LEC', 'EU', false, 88, ['teamfight'], [p('Armut','Top',88,['carry']),p('Elyoya','Jungle',91,['tempo']),p('Humanoid','Mid',92,['control']),p('Carzzy','Bot',88,['carry']),p('Kaiser','Support',91,['engage'])]),
+    r('msf-2017', 'Misfits Gaming', 'MSF', 2017, 'LEC', 'EU', false, 86, ['upset'], [p('Alphari','Top',89,['stable']),p('Maxlore','Jungle',88,['tempo']),p('PowerOfEvil','Mid',90,['control']),p('Hans Sama','Bot',90,['carry']),p('IgNar','Support',91,['creative'])])
+  ];
+
+  const METAS = [
+    { name: 'lane kingdom', text: '+2 si Top/Mid/Bot promedian 94+.', score: ps => avg(ps.filter(x => ['Top','Mid','Bot'].includes(x.role)).map(x => x.rating)) >= 94 ? 2 : 0 },
+    { name: 'clutch patch', text: '+2 si tienes al menos 2 clutch.', score: ps => ps.filter(x => x.tags.includes('clutch')).length >= 2 ? 2 : 0 },
+    { name: 'bot side meta', text: '+2 si Bot y Support comparten región.', score: ps => sameRegion(ps,'Bot','Support') ? 2 : 0 },
+    { name: 'hands check', text: '+2 si juntas 3 hands/carry.', score: ps => ps.filter(x => x.tags.includes('hands') || x.tags.includes('carry')).length >= 3 ? 2 : 0 }
+  ];
+  const QUESTS = [
+    { name: 'una sola región', text: '+3 si tus 5 jugadores son de la misma región.', bonus: 3, ok: ps => new Set(ps.map(x => x.region)).size === 1 },
+    { name: 'no repetir año', text: '+2 si ningún jugador comparte año.', bonus: 2, ok: ps => new Set(ps.map(x => x.year)).size === ps.length },
+    { name: 'duo bot real', text: '+3 si Bot y Support son del mismo equipo/año.', bonus: 3, ok: ps => sameTeam(ps,'Bot','Support') },
+    { name: 'pasado y presente', text: '+2 si mezclas antes de 2018 y después de 2021.', bonus: 2, ok: ps => ps.some(x => x.year < 2018) && ps.some(x => x.year > 2021) }
+  ];
+  const DIFF = { normal: { enemy: 2, variance: 8 }, hard: { enemy: 6, variance: 7 }, chaos: { enemy: 4, variance: 15 } };
+  const FILTERS = { all: () => true, winner: r => r.major, east: r => ['LCK','LPL'].includes(r.region), west: r => ['LEC','LCS'].includes(r.region) };
+
+  const $ = id => document.getElementById(id);
+  const els = {};
+  ['seedLabel','draftScreen','simScreen','statsScreen','historyScreen','rollMeter','rollBar','runLogo','runMark','runNote','rollCard','teamLogo','rollTitle','rollSub','rollTags','players','summarySeed','draftCount','avgScore','synScore','cupChance','coinCount','coinHint','slots','market','metaBox','questBox','synergyBox','metaText','questText','synergyReasons','results','toast','simSubtitle','simScoreline','liveFocus','simTimeline','scoreGrid','runLedger','pickLedger','simLedger','historyLedger'].forEach(id => els[id] = $(id));
+  const allPlayers = ROSTERS.flatMap(r => r.players);
+  const state = {
+    screen: 'draft', seed: seed(), current: null, picks: Object.fromEntries(ROLES.map(r => [r, null])), difficulty: 'normal', mode: 'classic', filter: 'all',
+    rolls: 0, rerollUsed: false, scoutUsed: false, marketUsed: false, meta: null, quest: null, market: [], coins: readNumber(STORE.coins, STARTING_COINS), owned: readSet(STORE.owned), stats: readStats(), last: null, simming: false, openMatches: new Set()
+  };
+
+  try { boot(); } catch (err) { fatal(err); }
+
+  function boot() {
+    if (read(STORE.theme) === 'light') document.body.classList.remove('dark');
+    ensureMarket();
+    document.addEventListener('click', handleClick);
+    document.addEventListener('keydown', handleKeys);
+    document.addEventListener('error', imageFallback, true);
+    render();
+    window.__DRAFT_READY = true;
+  }
+
+  function handleClick(e) {
+    const actionEl = e.target.closest('[data-action]');
+    const playerEl = e.target.closest('[data-player]');
+    const marketEl = e.target.closest('[data-market]');
+    const choiceEl = e.target.closest('.choice');
+    if (playerEl) return chooseCurrent(Number(playerEl.dataset.player), playerEl);
+    if (marketEl) return marketAction(Number(marketEl.dataset.market));
+    if (choiceEl) { const group = choiceEl.closest('[data-setting]'); state[group.dataset.setting] = choiceEl.dataset.value; if (group.dataset.setting === 'filter') state.current = null; return render(); }
+    if (!actionEl) return;
+    const action = actionEl.dataset.action;
+    if (action === 'screen') return setScreen(actionEl.dataset.screen);
+    if (action === 'theme') return toggleTheme();
+    if (action === 'copy') return copySummary();
+    if (action === 'reset') return resetRun();
+    if (action === 'roll') { fx(actionEl, 'roll'); return roll(); }
+    if (action === 'reroll') { fx(actionEl, 'roll'); return roll({ reroll: true }); }
+    if (action === 'scout') { fx(actionEl, 'pulse'); return roll({ scout: true }); }
+    if (action === 'skip') return roll();
+    if (action === 'simulate') { fx(actionEl, 'pulse'); return simulate(); }
+    if (action === 'market') return rotateMarketManual();
+    if (action === 'clearStats') return clearStats();
+    if (action === 'toggleMatch') return toggleMatch(Number(actionEl.dataset.match));
+  }
+
+  function handleKeys(e) { const card = e.target.closest('[data-player]'); if (card && (e.key === 'Enter' || e.key === ' ')) { e.preventDefault(); chooseCurrent(Number(card.dataset.player), card); } }
+
+  function roll(opts = {}) {
+    if (state.simming) return toast('espera a que termine la simulación.');
+    if (picked().length >= 5) return toast('roster completo. toca simular.');
+    if (mustPick()) return toast('elige una carta válida: si tiras otra ya no alcanzan las 7 tiradas.');
+    if (state.rolls >= MAX_ROLLS) return toast('ya usaste tus 7 tiradas. completa con tienda o simula si puedes.');
+    if (opts.reroll && state.rerollUsed) return toast('reroll ya usado.');
+    if (opts.scout && state.scoutUsed) return toast('scout pool ya usado.');
+    if (!state.meta) state.meta = pick(METAS);
+    if (!state.quest) state.quest = pick(QUESTS);
+    const open = openRoles();
+    state.current = opts.scout ? scoutRoster(open) : randomRoster(open);
+    if (!state.current) return toast('no hay opciones válidas con tus bloqueos.');
+    state.rolls += 1;
+    if (opts.reroll) state.rerollUsed = true;
+    if (opts.scout) state.scoutUsed = true;
+    rotateMarket(false);
+    render();
+    flash(els.rollCard, 'is-flash');
+    flash(els.players, 'is-refresh');
+    flash(els.market, 'is-refresh');
+    toast(`${state.current.short} ${state.current.year} · Tirada ${state.rolls}/${MAX_ROLLS}${state.current.rarity === 'rare' ? ' · carta dorada' : ''}`);
+  }
+
+  function randomRoster(open) {
+    const blocked = usedOrgs();
+    const pool = ROSTERS.filter(filterFn()).filter(r => !blocked.has(r.org) && r.players.some(p => open.includes(p.role)));
+    if (!pool.length) return null;
+    const rare = pool.filter(r => r.rarity === 'rare');
+    const normal = pool.filter(r => r.rarity !== 'rare');
+    if (rare.length && Math.random() < RARE_CHANCE) return pick(rare);
+    return pick(normal.length ? normal : pool);
+  }
+
+  function scoutRoster(open) {
+    const blocked = usedOrgs();
+    const pool = ROSTERS.filter(filterFn()).filter(r => !blocked.has(r.org));
+    const players = open.map(role => pick(pool.flatMap(r => r.players.filter(p => p.role === role)))).filter(Boolean);
+    return { id: 'scout', name: 'Scout Pool', short: 'SCOUT', org: 'SCOUT', year: 'bonus', region: 'WORLD', country: 'WORLD', tournament: 'Wildcard', tier: 90, styles: ['comodín'], rarity: 'scout', logo: badge('SCOUT','MIX'), players };
+  }
+
+  function chooseCurrent(index, card) {
+    if (!state.current) return;
+    const player = state.current.players[index];
+    if (!player) return;
+    const problem = issue(player);
+    if (problem) return toast(problem);
+    state.picks[player.role] = player;
+    state.last = null;
+    render();
+    const slot = document.querySelector(`[data-slot="${player.role}"]`);
+    if (slot) { slot.classList.remove('is-hot'); void slot.offsetWidth; slot.classList.add('is-hot'); }
+    toast(`${player.name} firmado como ${player.role}.`);
+  }
+
+  function issue(player) { if (state.picks[player.role]) return `${player.role} ya está cubierto.`; if (usedOrgs().has(player.org)) return `ya elegiste ${player.short}. solo 1 jugador por organización.`; return ''; }
+  function mustPick() { if (!state.current || !hasValidCurrent()) return false; return MAX_ROLLS - (state.rolls + 1) < openRoles().length; }
+  function hasValidCurrent() { return !!state.current.players.some(p => !issue(p)); }
+
+  async function simulate() {
+    if (state.simming) return toast('simulación en curso.');
+    if (picked().length < 5) return toast('faltan roles. no simules incompleto.');
+    state.simming = true;
+    state.openMatches = new Set();
+    state.last = { power: power(), complete: false, won: false, eliminated: '', matches: [], activeMatch: -1, activeEvent: -1, groups: [0,0] };
+    setScreen('sim');
+    render();
+    await wait(350);
+    const stages = [{label:'Grupos 1', gate:88, bo:'Bo1', group:true},{label:'Grupos 2', gate:90, bo:'Bo1', group:true},{label:'Grupos 3', gate:92, bo:'Bo1', group:true}];
+    for (const stage of stages) { const m = makeMatch(stage); await play(m); if (m.win) state.last.groups[0]++; else state.last.groups[1]++; }
+    let alive = state.last.groups[0] >= 2;
+    if (!alive) state.last.eliminated = 'fase de grupos';
+    for (const stage of [{label:'Cuartos', gate:94, bo:'Bo5'},{label:'Semis', gate:96, bo:'Bo5'},{label:'Final', gate:98, bo:'Bo5'}]) {
+      if (!alive) break;
+      const m = makeMatch(stage); await play(m); alive = m.win; if (!alive) state.last.eliminated = stage.label;
+    }
+    state.last.won = alive && state.last.matches.some(m => m.label === 'Final');
+    state.last.complete = true; state.last.activeMatch = -1; state.last.activeEvent = -1; state.simming = false;
+    const reward = rewardCoins(state.last.won, state.last.power); state.coins += reward; write(STORE.coins, state.coins); recordStats(reward);
+    render();
+    toast(state.last.won ? `campeón · +${reward} coins` : `eliminado en ${state.last.eliminated} · +${reward} coins`);
+  }
+
+  async function play(match) {
+    state.last.matches.push(match); state.last.activeMatch = state.last.matches.length - 1; state.openMatches.add(state.last.activeMatch); state.last.activeEvent = -1; renderSim(); await wait(350);
+    for (let i = 0; i < match.events.length; i++) { match.events[i].visible = true; state.last.activeEvent = i; renderSim(); await wait(520); }
+    match.finished = true; state.last.activeEvent = -1; state.openMatches.delete(state.last.activeMatch); renderSim(); await wait(470);
+  }
+
+  function makeMatch(stage) {
+    const enemy = enemyTeam(); const d = DIFF[state.difficulty]; const mod = roundModifier(); const modBonus = mod.ok ? 2 : -1;
+    const our = Math.round(state.last.power + modBonus + rand(-d.variance, d.variance));
+    const rival = Math.round((enemy.tier + stage.gate) / 2 + d.enemy + ENEMY_HANDICAP + rand(-3, 4));
+    const chance = clamp(.5 + (our - rival) * .045, .12, .88); const win = Math.random() < chance; const duration = clamp(rand(25,42) + (win ? rand(-3,2) : rand(0,4)), 22, 49);
+    const mvp = win ? pick(picked()).name : pick(enemy.players).name;
+    return { ...stage, enemy, our, rival, chance, win, duration, mvp, mod, finished: false, events: matchEvents(win, enemy, duration, mvp) };
+  }
+
+  function matchEvents(win, enemy, duration, mvp) {
+    const events = [event('blood','first blood', decide(win,.62,enemy), 'abre el mapa'), event('dragon','first drake', decide(win,.58,enemy), 'asegura el primer dragón'), event('inhibitor','first inhibitor', decide(win,.70,enemy), 'rompe la base primero')];
+    if (duration >= 31 && Math.random() > .28) events.push(event('soul', pick(['Infernal','Mountain','Ocean','Cloud','Hextech']) + ' soul', decide(win,.64,enemy), 'completa el alma'));
+    if (duration >= 27 && Math.random() > .2) events.push(event('baron','baron nashor', decide(win,.66,enemy), 'toma Nashor'));
+    events.push({ type:'mvp', label:'player of the game', who: win ? '20:19 Draft' : enemy.short, actor:mvp, copy:`${mvp} fue el jugador de la partida.`, icon:OBJ.mvp, logo: win ? picked()[0].logo : enemy.logo, ours:win, visible:false });
+    events.push({ type:'clock', label:'game time', who: win ? 'WIN' : 'LOSS', actor:`${duration}:00`, copy:`duración ${duration}:00 · ${win ? 'WIN' : 'LOSS'}`, icon:OBJ.inhibitor, logo: win ? picked()[0].logo : enemy.logo, ours:win, visible:false });
+    return events;
+  }
+  function decide(win, chance, enemy) { if (Math.random() < (win ? chance : 1 - chance)) { const a = pick(picked()); return { who:'20:19 Draft', actor:a.name, logo:a.logo, ours:true }; } const b = pick(enemy.players); return { who:enemy.short, actor:b.name, logo:enemy.logo, ours:false }; }
+  function event(type, label, team, verb) { return { type, label, who:team.who, actor:team.actor, copy:`${team.actor} ${verb}.`, icon:OBJ[type], logo:team.logo, ours:team.ours, visible:false }; }
+  function enemyTeam() { const blocked = usedOrgs(); const pool = ROSTERS.filter(r => !blocked.has(r.org)); return pick(pool.length ? pool : ROSTERS); }
+  function roundModifier() { const ps = picked(); const pool = METAS.map(x => ({ kind:'meta', name:x.name, ok:x.score(ps)>0 })).concat(QUESTS.map(x => ({ kind:'quest', name:x.name, ok:x.ok(ps) }))); return pick(pool); }
+
+  function render() { renderScreens(); renderChoices(); renderHeader(); renderRoll(); renderPlayers(); renderSide(); renderMarket(); renderMini(); renderSim(); renderStats(); }
+  function renderScreens() { ['draft','sim','stats','history'].forEach(name => { const panel = $(`${name}Screen`); if (panel) panel.hidden = state.screen !== name; }); document.querySelectorAll('[data-action="screen"]').forEach(b => b.setAttribute('aria-pressed', String(b.dataset.screen === state.screen))); }
+  function setScreen(screen) { state.screen = screen || 'draft'; render(); }
+  function renderChoices() { document.querySelectorAll('[data-setting]').forEach(group => group.querySelectorAll('.choice').forEach(b => b.setAttribute('aria-pressed', String(state[group.dataset.setting] === b.dataset.value)))); }
+  function renderHeader() { text(els.seedLabel, `seed #${state.seed}`); text(els.summarySeed, `seed #${state.seed}`); text(els.rollMeter, `${state.rolls}/${MAX_ROLLS} tiradas`); els.rollBar.style.width = `${state.rolls / MAX_ROLLS * 100}%`; if (!state.current) { text(els.runMark,'—:—'); text(els.runNote,'tira para abrir roster'); image(els.runLogo,'','?'); return; } text(els.runMark, `${state.current.short}: ${state.current.year}`); text(els.runNote, `${state.current.tournament} · ${state.current.major ? 'campeón internacional' : 'contender'}`); image(els.runLogo, state.current.logo, state.current.short); }
+  function renderRoll() { els.rollCard.classList.toggle('is-gold', state.current?.rarity === 'rare'); if (!state.current) { image(els.teamLogo,'','?'); text(els.rollTitle,'Sin tirada'); text(els.rollSub,'Haz una tirada para revelar equipo, año y pool de jugadores.'); els.rollTags.innerHTML=''; return; } const r = state.current; image(els.teamLogo, r.logo, r.short); text(els.rollTitle, `${r.name} ${r.year}`); text(els.rollSub, `${flag(r.country)} ${r.region} · ${r.tournament} · tier ${r.tier}`); els.rollTags.innerHTML = (r.rarity === 'rare' ? ['carta dorada','1 de 6'] : []).concat(r.styles).map(x => `<span>${esc(x)}</span>`).join(''); }
+  function renderPlayers() { if (!state.current) { els.players.innerHTML = '<div class="empty">tira el dado para abrir tu primer roster.</div>'; return; } els.players.innerHTML = state.current.players.map((pl, i) => card(pl, i)).join(''); }
+  function card(pl, i) { const locked = issue(pl); const hidden = state.mode === 'blind'; return `<article class="player-card ${pl.major ? 'is-gold' : ''} ${locked ? 'is-locked' : ''}" data-player="${i}" tabindex="0" role="button"><div class="portrait-row"><figure class="round-icon">${img(ROLE_ICONS[pl.role], pl.role)}</figure><figure class="round-icon"><span>${esc(roleCode(pl.role))}</span></figure></div><div class="player-main"><h3>${hidden ? '???' : esc(pl.name)}</h3><p>${hidden ? esc(pl.role) : `${flag(pl.country)} ${esc(pl.short)} ${esc(pl.year)} · ${esc(pl.tournament)}`}</p></div><div class="tag-stack">${pl.tags.map(t => `<span>${esc(t)}</span>`).join('')}</div><span class="role-badge">${esc(pl.role)}</span><strong class="rating">${hidden ? '??' : pl.rating}</strong>${locked ? `<em class="lock-copy">${esc(locked)}</em>` : ''}</article>`; }
+  function renderSide() { const ps = picked(), syn = synergy(), meta = metaBonus(), quest = questBonus(), pow = power(), av = ps.length ? Math.round(avg(ps.map(x => x.rating))) : 0; text(els.draftCount, `${ps.length}/5`); text(els.avgScore, av); text(els.synScore, syn.points + meta + quest); text(els.cupChance, `${clamp(Math.round((pow - 76) * 2.7),0,96)}%`); text(els.coinCount, state.coins); text(els.coinHint, `${state.owned.size} desbloqueados · ${state.marketUsed ? 'rotación usada' : 'rotar 10c'}`); text(els.metaText, state.meta ? `${state.meta.name}: ${state.meta.text}` : 'Se revela con la primera tirada.'); text(els.questText, state.quest ? `${state.quest.name}: ${state.quest.text}` : 'Se revela con la primera tirada.'); els.synergyReasons.innerHTML = syn.reasons.length ? syn.reasons.map(x => `<span>${esc(x)}</span>`).join(' ') : 'Sin picks todavía.'; els.metaBox.classList.toggle('is-done', meta > 0); els.questBox.classList.toggle('is-done', quest > 0); els.synergyBox.classList.toggle('is-done', syn.points > 0); els.slots.innerHTML = ROLES.map(role => { const pl = state.picks[role]; return `<article class="slot" data-slot="${role}"><span class="slot-role">${img(pl ? pl.logo : ROLE_ICONS[role], pl ? pl.short : role, ROLE_ICONS[role])}</span><div><strong>${pl ? esc(pl.name) : role}</strong><p>${pl ? `${flag(pl.country)} ${esc(pl.short)} ${pl.year} · ${esc(pl.tournament)}` : 'pendiente'}</p></div><span class="slot-score">${pl ? pl.rating : '—'}</span></article>`; }).join(''); }
+  function renderMarket() { ensureMarket(); const button = document.querySelector('[data-action="market"]'); if (button) { button.textContent = state.marketUsed ? 'usado' : 'rotar 10c'; button.disabled = state.marketUsed; } els.market.innerHTML = state.market.map((id, i) => { const pl = allPlayers.find(x => x.id === id); if (!pl) return ''; const owned = state.owned.has(pl.id); const cost = costOf(pl); const disabled = owned && issue(pl); return `<article class="market-card ${pl.major ? 'is-gold' : ''}"><span class="market-logo">${img(pl.logo, pl.short, ROLE_ICONS[pl.role])}</span><div><strong>${esc(pl.name)}</strong><small>${esc(pl.role)} · ${esc(pl.short)} ${pl.year}</small></div><button type="button" data-market="${i}" ${disabled ? 'disabled' : ''}>${owned ? 'firmar' : cost + 'c'}</button></article>`; }).join(''); }
+  function renderMini() { if (!state.last) { els.results.innerHTML = '<p class="muted">sin simulación todavía.</p>'; return; } const wins = state.last.matches.filter(m => m.finished && m.win).length, losses = state.last.matches.filter(m => m.finished && !m.win).length; els.results.innerHTML = `<strong>${state.last.complete ? (state.last.won ? 'campeón' : 'eliminado') : 'en vivo'}</strong><p class="muted">${wins}-${losses} · power ${state.last.power}</p>`; }
+  function renderSim() {
+    if (!state.last) {
+      els.simSubtitle.textContent='Completa tu 5v para correr la run.';
+      els.simScoreline.innerHTML='';
+      els.liveFocus.innerHTML='<p class="muted">Sin simulación cargada.</p>'; 
+      els.simTimeline.innerHTML='';
+      return;
+    }
+    const r = state.last;
+    const active = r.matches[r.activeMatch];
+    const ev = active?.events[r.activeEvent];
+    const wins = r.matches.filter(m => m.finished && m.win).length;
+    const losses = r.matches.filter(m => m.finished && !m.win).length;
+    text(els.simSubtitle, `${r.complete ? (r.won ? 'campeón' : 'eliminado en ' + r.eliminated) : 'simulación en vivo'} · power ${r.power} · seed #${state.seed}`);
+    els.simScoreline.innerHTML = `<div><strong>${wins}</strong><span>wins</span></div><div><strong>${losses}</strong><span>losses</span></div><div><strong>${r.groups[0]}-${r.groups[1]}</strong><span>grupos</span></div><div><strong>${r.matches.length}/6</strong><span>partidas</span></div>`;
+    els.liveFocus.innerHTML = ev ? focus(ev, active) : `<p class="muted">${r.complete ? 'Run terminada. Abre una partida para ver detalle.' : 'Siguiente partida cargando...'}</p>`;
+    els.simTimeline.innerHTML = r.matches.map((m, i) => matchCard(m, i, i === r.activeMatch, r.activeEvent)).join('');
+  }
+  function focus(ev, m) { return `<article class="focus-event ${ev.ours ? 'is-good' : 'is-bad'}"><img src="${ev.icon}" alt=""><div><span>${esc(m.label)} vs ${esc(m.enemy.short)} ${m.enemy.year}</span><strong>${esc(ev.label)}</strong><p>${esc(ev.copy)}</p></div><figure class="event-logo">${img(ev.logo, ev.who, badge(ev.who,'team'))}</figure></article>`; }
+  function matchCard(m, i, active, evIndex) {
+    const open = state.openMatches.has(i) || (active && !m.finished);
+    const currentClass = active && !m.finished ? 'is-active' : '';
+    const doneClass = m.finished ? 'is-finished' : '';
+    const collapsedClass = open ? '' : 'is-collapsed';
+    const result = m.finished ? `<b class="${m.win ? 'win' : 'loss'}">${m.win ? 'WIN' : 'LOSS'}</b>` : `<b>game ${i+1}</b>`;
+    const buttonText = open ? 'Plegar' : 'Detalle';
+    const details = `<div class="round-mod ${m.mod.ok ? 'is-done' : ''}">${esc(m.mod.kind)} · ${esc(m.mod.name)} · ${m.mod.ok ? 'cumplido' : 'no cumplido'}</div><div class="event-list">${m.events.map((ev,j) => `<div class="event-line ${ev.visible ? 'is-visible' : ''} ${active && j === evIndex ? 'is-current' : ''}"><img class="event-icon" src="${ev.icon}" alt=""><div class="event-copy"><strong>${esc(ev.label)}</strong><span>${esc(ev.copy)}</span></div><figure class="event-logo">${img(ev.logo, ev.who, badge(ev.who,'team'))}</figure></div>`).join('')}</div>`;
+    return `<article class="match-card ${currentClass} ${doneClass} ${collapsedClass}"><header class="match-head"><span>${m.label} · ${m.bo}</span><strong>${flag(m.enemy.country)} ${esc(m.enemy.short)} ${m.enemy.year}</strong>${result}<button type="button" class="match-toggle" data-action="toggleMatch" data-match="${i}">${buttonText}</button></header>${open ? details : `<div class="match-summary"><span>${m.win ? 'Victoria' : 'Derrota'}</span><span>${m.events.filter(e => e.visible && e.ours).length}/${m.events.filter(e => e.visible).length} objetivos</span><span>MVP ${esc(m.mvp)}</span></div>`}<footer class="match-foot"><span>Tu ${m.our}</span><span>Rival ${m.rival}</span><span>${m.duration}:00</span></footer></article>`;
+  }
+  function renderStats() {
+    const s = state.stats;
+    const winrate = s.runs ? Math.round(s.wins / s.runs * 100) : 0;
+    const avgPow = s.runs ? Math.round(s.totalPower / s.runs) : 0;
+    const dragonRate = s.games ? Math.round(s.dragons / s.games * 100) : 0;
+    const bloodRate = s.games ? Math.round(s.bloods / s.games * 100) : 0;
+    const cards = [
+      statCard('Runs', s.runs, [
+        bar('runs', s.runs, 'Runs totales jugadas'),
+        bar('wins', s.wins, 'Runs ganadas'),
+        bar('finales', s.finals, 'Finales alcanzadas')
+      ], `${s.finals} finales`, 'Volumen general de partidas: jugadas, ganadas y finales.'),
+      statCard('Wins', s.wins, [
+        bar('wins', s.wins, 'Victorias totales'),
+        bar('losses', Math.max(0, s.runs - s.wins), 'Runs perdidas'),
+        bar('streak', Math.max(1, s.bestStreak), 'Mejor racha de victorias')
+      ], `${winrate}% winrate`, 'Separación entre victorias, derrotas y mejor racha.'),
+      statCard('Winrate', winrate + '%', [
+        bar('win%', winrate, 'Porcentaje de runs ganadas'),
+        bar('loss%', 100 - winrate, 'Porcentaje de runs perdidas'),
+        bar('trend', Math.min(100, winrate * .75), 'Indicador visual de consistencia')
+      ], `racha actual ${s.currentStreak}`, 'Las tres barras son win%, loss% y una tendencia visual. No son tres winrates distintos.'),
+      statCard('Power avg', avgPow, [
+        bar('avg', avgPow, 'Power promedio'),
+        bar('max', s.highestPower || avgPow, 'Power máximo logrado'),
+        bar('floor', Math.max(0, avgPow - 8), 'Referencia baja del rango')
+      ], `max ${s.highestPower}`, 'Compara promedio, máximo y piso aproximado de poder.'),
+      statCard('Coins', s.coinsEarned, [
+        bar('gain', Math.min(100, s.coinsEarned / 8), 'Coins ganadas escaladas'),
+        bar('pace', Math.min(100, s.coinsEarned / 14), 'Ritmo de farmeo'),
+        bar('bank', Math.min(100, s.coinsEarned / 20), 'Progreso económico global')
+      ], `${state.coins} en wallet`, 'Muestra economía acumulada y ritmo de recompensas.'),
+      statCard('Games', s.games, [
+        bar('games', s.games, 'Partidas simuladas'),
+        bar('fb', s.bloods, 'First bloods conseguidas'),
+        bar('drakes', s.dragons, 'Primeros dragones conseguidos')
+      ], `${s.games ? Math.round(s.games / Math.max(1, s.runs)) : 0} por run`, 'Cantidad de games y objetivos tempranos dentro de ellos.'),
+      statCard('First blood', s.bloods, [
+        bar('for', bloodRate, 'First bloods a favor'),
+        bar('miss', Math.max(0, 100 - bloodRate), 'First bloods no conseguidas'),
+        bar('impact', Math.min(100, bloodRate * .6), 'Impacto visual estimado')
+      ], `${bloodRate}% de las partidas`, 'Compara first bloods ganadas contra las que no ganaste.'),
+      statCard('Dragones', s.dragons, [
+        bar('for', dragonRate, 'Primer drake a favor'),
+        bar('miss', Math.max(0, 100 - dragonRate), 'Primer drake no conseguido'),
+        bar('impact', Math.min(100, dragonRate * .7), 'Impacto visual estimado')
+      ], `${dragonRate}% de las partidas`, 'Compara control temprano de dragón contra partidas sin primer drake.')
+    ];
+    els.scoreGrid.innerHTML = cards.join('');
+    els.runLedger.innerHTML = s.recent.length ? s.recent.map(x => `<article class="ledger-row"><strong>${esc(x.result)}</strong><span>${esc(x.seed)} · ${x.score} · +${x.reward}c</span></article>`).join('') : '<p class="muted">Sin runs.</p>';
+    const top = Object.entries(s.picks).sort((a,b)=>b[1]-a[1]).slice(0,8);
+    els.pickLedger.innerHTML = top.length ? top.map(x => `<article class="ledger-row"><strong>${esc(x[0])}</strong><span>${x[1]} picks</span></article>`).join('') : '<p class="muted">Sin picks.</p>';
+    els.simLedger.innerHTML = state.last?.matches?.length ? state.last.matches.map((m, i) => `<details class="ledger-detail"><summary><strong>${m.label} · ${m.win ? 'WIN' : 'LOSS'}</strong><span>${esc(m.enemy.short)} ${m.enemy.year} · ${m.our}-${m.rival}</span></summary><div class="detail-events">${m.events.filter(e => e.visible).map(e => `<span>${esc(e.label)} · ${esc(e.copy)}</span>`).join('') || '<span>Sin eventos revelados.</span>'}</div></details>`).join('') : '<p class="muted">Simula una run.</p>';
+    renderHistory();
+  }
+
+  function renderHistory() {
+    const list = state.stats.history || [];
+    if (!els.historyLedger) return;
+    els.historyLedger.innerHTML = list.length ? list.map((run, i) => `<details class="history-card" ${i === 0 ? 'open' : ''}><summary class="history-head"><strong>${esc(run.result)}</strong><span>${esc(run.seed)} · ${run.score} · +${run.reward}c</span></summary><div class="history-meta"><span>Power ${run.power}</span><span>Grupos ${run.groups}</span><span>${run.matches.length} partidas</span></div><div class="history-picks">${run.picks.map(p => `<span>${esc(p.role)} · ${esc(p.name)} · ${esc(p.short)} ${p.year}</span>`).join('')}</div><div class="detail-events">${run.matches.map(m => `<span>${esc(m.label)} · ${m.win ? 'WIN' : 'LOSS'} · ${esc(m.enemy)} · ${m.score}</span>`).join('')}</div></details>`).join('') : '<p class="muted">Todavía no hay runs guardadas.</p>';
+  }
+
+  function bar(label, value, title) {
+    return { label, value, title };
+  }
+
+  function statCard(label, value, bars, note, help) {
+    const safe = bars.map(x => ({
+      label: x.label,
+      title: x.title,
+      height: clamp(Math.round(Number(x.value) || 0), 8, 100)
+    }));
+    const chart = safe.map(x => `<b style="height:${x.height}%" title="${esc(x.title)} · valor visual ${x.height}/100"></b>`).join('');
+    const labels = safe.map(x => `<span title="${esc(x.title)}">${esc(x.label)}</span>`).join('');
+    return `<article class="score-card" title="${esc(help || note)}"><strong>${esc(value)}</strong><span>${esc(label)}</span><div class="mini-chart">${chart}</div><div class="bar-labels">${labels}</div><em>${esc(note)}</em><p class="stat-help">${esc(help || '')}</p></article>`;
+  }
+
+  function ensureMarket() { if (!state.market.length) rotateMarket(false); }
+  function rotateMarketManual() { if (state.marketUsed) return toast('La rotación manual ya se usó.'); if (state.coins < MARKET_COST) return toast('Te faltan coins.'); state.coins -= MARKET_COST; state.marketUsed = true; write(STORE.coins, state.coins); rotateMarket(false); render(); flash(els.market, 'is-refresh'); toast('Tienda rotada.'); }
+  function rotateMarket(renderNow) { state.market = shuffle(allPlayers).slice(0, 3).map(p => p.id); if (renderNow !== false) render(); }
+  function marketAction(i) { const pl = allPlayers.find(x => x.id === state.market[i]); if (!pl) return; if (!state.owned.has(pl.id)) { const c = costOf(pl); if (state.coins < c) return toast(`te faltan ${c - state.coins} coins.`); state.coins -= c; state.owned.add(pl.id); write(STORE.coins, state.coins); write(STORE.owned, JSON.stringify([...state.owned])); toast(`${pl.name} desbloqueado.`); return render(); } const problem = issue(pl); if (problem) return toast(problem); state.picks[pl.role] = pl; render(); toast(`${pl.name} firmado desde tienda.`); }
+  function toggleMatch(index) { if (Number.isNaN(index) || !state.last?.matches?.[index]) return; if (state.openMatches.has(index)) state.openMatches.delete(index); else state.openMatches.add(index); renderSim(); }
+  function flash(el, klass) { if (!el) return; el.classList.remove(klass); void el.offsetWidth; el.classList.add(klass); setTimeout(() => el.classList.remove(klass), 420); }
+  function resetRun() { state.seed=seed(); state.current=null; state.picks=Object.fromEntries(ROLES.map(r=>[r,null])); state.rolls=0; state.rerollUsed=false; state.scoutUsed=false; state.marketUsed=false; state.meta=null; state.quest=null; state.last=null; state.simming=false; state.openMatches = new Set(); rotateMarket(false); setScreen('draft'); toast('run reiniciada.'); }
+  function clearStats() { if (!confirm('¿Borrar estadísticas locales?')) return; state.stats = defaultStats(); write(STORE.stats, JSON.stringify(state.stats)); renderStats(); toast('Stats reiniciadas.'); }
+  function toggleTheme() { document.body.classList.toggle('dark'); write(STORE.theme, document.body.classList.contains('dark') ? 'dark' : 'light'); }
+  function copySummary() { const lines = [`20:19 Draft · seed #${state.seed}`, `Tiradas ${state.rolls}/${MAX_ROLLS}`].concat(ROLES.map(r => `${r}: ${state.picks[r] ? state.picks[r].name + ' (' + state.picks[r].short + ')' : 'pendiente'}`)); navigator.clipboard?.writeText(lines.join('\n')).then(() => toast('copiado.')).catch(() => toast('no se pudo copiar.')); }
+
+  function power() { const ps = picked(); if (!ps.length) return 0; return Math.round(avg(ps.map(x=>x.rating)) + synergy().points + metaBonus() + questBonus()); }
+  function synergy() { const ps = picked(); let points = 0; const reasons = []; const regions = count(ps.map(x=>x.region)); if (Math.max(0, ...Object.values(regions)) >= 3) { points += 2; reasons.push('núcleo regional'); } if (sameRegion(ps,'Jungle','Mid')) { points += 2; reasons.push('Jungle/Mid región'); } if (sameTeam(ps,'Bot','Support')) { points += 4; reasons.push('duo bot real'); } const tags = count(ps.flatMap(x=>x.tags)); Object.entries(tags).forEach(([k,v]) => { if (v >= 3) { points += 2; reasons.push('estilo ' + k); } }); if (ps.some(x=>x.major)) { points += 1; reasons.push('aura internacional'); } return { points, reasons }; }
+  function metaBonus() { const ps = picked(); return state.meta && ps.length === 5 ? state.meta.score(ps) : 0; }
+  function questBonus() { const ps = picked(); return state.quest && ps.length === 5 && state.quest.ok(ps) ? state.quest.bonus : 0; }
+  function recordStats(reward) { const s = state.stats, l = state.last, events = l.matches.flatMap(m => m.events.filter(e => e.visible)); s.runs++; s.wins += l.won ? 1 : 0; s.finals += l.matches.some(m => m.label === 'Final') ? 1 : 0; s.games += l.matches.length; s.totalPower += l.power; s.highestPower = Math.max(s.highestPower, l.power); s.coinsEarned += reward; s.currentStreak = l.won ? s.currentStreak + 1 : 0; s.bestStreak = Math.max(s.bestStreak, s.currentStreak); s.bloods += events.filter(e => e.type === 'blood' && e.ours).length; s.dragons += events.filter(e => e.type === 'dragon' && e.ours).length; picked().forEach(p => { s.picks[p.name] = (s.picks[p.name] || 0) + 1; }); const result = l.won ? 'Campeón' : 'Eliminado ' + l.eliminated; const score = l.matches.filter(m=>m.win).length + '-' + l.matches.filter(m=>!m.win).length; s.recent.unshift({ seed: state.seed, result, score, reward }); s.recent = s.recent.slice(0, 12); s.history = s.history || []; s.history.unshift({ seed: state.seed, result, score, reward, power: l.power, groups: l.groups[0] + '-' + l.groups[1], picks: picked().map(p => ({ role: p.role, name: p.name, short: p.short, year: p.year })), matches: l.matches.map(m => ({ label: m.label, enemy: `${m.enemy.short} ${m.enemy.year}`, score: `${m.our}-${m.rival}`, win: m.win })) }); s.history = s.history.slice(0, 24); write(STORE.stats, JSON.stringify(s)); }
+  function defaultStats() { return { runs:0,wins:0,finals:0,games:0,totalPower:0,highestPower:0,coinsEarned:0,currentStreak:0,bestStreak:0,bloods:0,dragons:0,picks:{},recent:[],history:[] }; }
+  function readStats() { try { return Object.assign(defaultStats(), JSON.parse(read(STORE.stats) || '{}')); } catch { return defaultStats(); } }
+  function rewardCoins(won, pow) { return Math.max(20, Math.round((won ? 88 : 32) + (pow - 90) * 2)); }
+  function costOf(p) { return Math.round(70 + p.rating * 1.6 + (p.major ? 35 : 0)); }
+  function filterFn() { return FILTERS[state.filter] || FILTERS.all; }
+  function picked() { return ROLES.map(r => state.picks[r]).filter(Boolean); }
+  function openRoles() { return ROLES.filter(r => !state.picks[r]); }
+  function usedOrgs() { return new Set(picked().map(p => p.org)); }
+  function sameRegion(ps,a,b) { const x=ps.find(p=>p.role===a), y=ps.find(p=>p.role===b); return !!(x&&y&&x.region===y.region); }
+  function sameTeam(ps,a,b) { const x=ps.find(p=>p.role===a), y=ps.find(p=>p.role===b); return !!(x&&y&&x.short===y.short&&x.year===y.year&&x.tournament===y.tournament); }
+  function flag(c) { return FLAGS[c] || FLAGS.WORLD; }
+  function text(el, value) { if (el) el.textContent = value; }
+  function image(el, src, alt) { if (el) el.innerHTML = src ? img(src, alt) : `<span>${esc(alt || '?')}</span>`; }
+  function img(src, alt, fallback) { return `<img src="${esc(src)}" alt="${esc(alt || '')}" loading="lazy" decoding="async" data-fallback="${esc(fallback || badge(alt || '?',''))}">`; }
+  function imageFallback(e) { const node = e.target; if (!node || node.tagName !== 'IMG') return; const fallback = node.dataset.fallback; if (fallback && node.src !== fallback) { delete node.dataset.fallback; node.src = fallback; return; } const parent = node.parentElement; if (parent) parent.innerHTML = `<span>${esc(node.alt || '?')}</span>`; }
+  function badge(label, sub) { const a = String(label || '?').slice(0,4).toUpperCase(), b = String(sub || '').slice(0,3).toUpperCase(); return 'data:image/svg+xml;charset=utf-8,' + encodeURIComponent(`<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 160 160"><defs><linearGradient id="g" x1="0" x2="1" y1="0" y2="1"><stop stop-color="#07121a"/><stop offset="1" stop-color="#0ac8b9"/></linearGradient></defs><rect width="160" height="160" rx="80" fill="url(#g)"/><circle cx="80" cy="80" r="62" fill="none" stroke="#c8aa6e" stroke-width="8"/><text x="80" y="84" text-anchor="middle" font-size="38" font-weight="900" font-family="Arial" fill="#f0e6d2">${esc(a)}</text><text x="80" y="112" text-anchor="middle" font-size="16" font-weight="900" font-family="Arial" fill="#c8aa6e">${esc(b)}</text></svg>`); }
+  function fx(el, kind) { el.classList.remove('fx-roll','fx-pulse'); void el.offsetWidth; el.classList.add(kind === 'roll' ? 'fx-roll' : 'fx-pulse'); setTimeout(() => el.classList.remove('fx-roll','fx-pulse'), 800); }
+  function toast(msg) { els.toast.textContent = msg; els.toast.classList.add('show'); clearTimeout(toast.t); toast.t = setTimeout(() => els.toast.classList.remove('show'), 2600); }
+  function fatal(err) { console.error(err); const box = document.createElement('div'); box.className = 'fatal'; box.textContent = 'JS error: ' + (err && err.message ? err.message : String(err)); document.body.append(box); }
+  function read(k) { try { return localStorage.getItem(k); } catch { return null; } }
+  function write(k,v) { try { localStorage.setItem(k, v); } catch {} }
+  function readNumber(k,fallback) { const n = Number(read(k)); return Number.isFinite(n) && n >= 0 ? n : fallback; }
+  function readSet(k) { try { return new Set(JSON.parse(read(k) || '[]')); } catch { return new Set(); } }
+  function seed() { return Math.random().toString(36).slice(2,8).toUpperCase(); }
+  function pick(arr) { return arr[Math.floor(Math.random() * arr.length)]; }
+  function shuffle(arr) { return [...arr].sort(() => Math.random() - .5); }
+  function rand(min,max) { return Math.floor(Math.random() * (max - min + 1)) + min; }
+  function avg(arr) { return arr.length ? arr.reduce((a,b)=>a+b,0) / arr.length : 0; }
+  function count(arr) { return arr.reduce((o,x) => (o[x] = (o[x] || 0) + 1, o), {}); }
+  function clamp(n,min,max) { return Math.max(min, Math.min(max, n)); }
+  function wait(ms) { return new Promise(resolve => setTimeout(resolve, ms)); }
+  function esc(v) { return String(v ?? '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c])); }
+})();
+  </script>
+</body>
+</html>
