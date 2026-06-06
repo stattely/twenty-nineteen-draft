@@ -229,3 +229,10 @@ Cambios verificables:
 - Real bracket now uses your actual playoff path and score.
 - Fixes contradictory parallel champion/final.
 - Adds broader ES/EN label localization and compact layout.
+
+
+## V3.0.4 endboss bracket
+
+- Bracket uses power-based matchups and shows paths for all teams.
+- LCK/LPL now act like real endbosses; western-only drafts are weaker without Chronos/star picks.
+- Tags use clean native tooltips to avoid visual bleed behind cards.

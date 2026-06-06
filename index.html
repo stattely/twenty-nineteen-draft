@@ -4,7 +4,7 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="theme-color" content="#0a1420" />
-  <title>Five’s Pick · V3.0.3</title>
+  <title>Five’s Pick · V3.0.4</title>
   <style>
     :root {
       --bg: #eef2f4;
@@ -309,7 +309,7 @@
     @keyframes cardFlash { 0% { transform: scale(.985); box-shadow: 0 0 0 0 rgba(200,170,110,0); } 50% { transform: scale(1.01); box-shadow: 0 0 0 10px rgba(200,170,110,.12); } 100% { transform: scale(1); box-shadow: none; } }
     @keyframes sweepIn { 0% { opacity: .35; transform: translateY(8px); } 100% { opacity: 1; transform: translateY(0); } }
   
-    /* V3.0.3 verified role icons: these use the uploaded PNGs directly as background images. */
+    /* V3.0.4 verified role icons: these use the uploaded PNGs directly as background images. */
     .version-pill {
       border: 1px solid rgba(240,213,138,.34);
       border-radius: 999px;
@@ -449,7 +449,7 @@
     }
 
   
-    /* V3.0.3 HARD ROLE FIX:
+    /* V3.0.4 HARD ROLE FIX:
        These are the exact PNGs from IconsPositions.zip, copied raw into /assets/roles-original-v24/.
        The wrapper has no circle/border/background so the uploaded icon is not double-framed or rescaled weirdly. */
     .rolefix-pill {
@@ -511,7 +511,7 @@
     .chrono-card::after { content:''; position:absolute; inset:0; background:linear-gradient(115deg, transparent, rgba(255,255,255,.09), transparent); transform:translateX(-120%); animation:chartSweep 2.8s ease-in-out infinite; pointer-events:none; }
 
 
-    /* V3.0.3 */
+    /* V3.0.4 */
     .result-overlay.map-win .result-card, .result-overlay.map-loss .result-card {
       min-width: min(640px, calc(100vw - 28px));
       padding: 22px 28px;
@@ -591,7 +591,7 @@
     @media (max-width: 760px) { .objective-grid, .chrono-grid { grid-template-columns: 1fr; } .result-overlay.map-win .result-card, .result-overlay.map-loss .result-card { min-width: calc(100vw - 22px); padding: 18px; } }
 
   
-    /* V3.0.3 colorful composition tooltips */
+    /* V3.0.4 colorful composition tooltips */
     .icon-only { min-width: 48px; padding-inline: 13px; }
     .compose-popover {
       pointer-events: none;
@@ -641,7 +641,7 @@
     @keyframes softPulse { 50% { box-shadow: 0 0 0 5px rgba(16,185,129,.10); } }
 
   
-    /* V3.0.3 Teams archive */
+    /* V3.0.4 Teams archive */
     .teams-grid {
       display: grid;
       grid-template-columns: repeat(3, minmax(0, 1fr));
@@ -786,7 +786,7 @@
     }
 
   
-    /* V3.0.3 roster alignment, filters and wallet */
+    /* V3.0.4 roster alignment, filters and wallet */
     .global-wallet {
       display: inline-flex;
       align-items: center;
@@ -897,7 +897,7 @@
     }
 
   
-    /* V3.0.3 market popover + tag tooltips */
+    /* V3.0.4 market popover + tag tooltips */
     .player-card { overflow: visible; }
     .player-card:hover, .player-card:focus-within { z-index: 9; }
     .market, .player-grid { overflow: visible; }
@@ -973,7 +973,7 @@
     }
 
   
-    /* V3.0.3 compact team cards + drawn flags */
+    /* V3.0.4 compact team cards + drawn flags */
     .teams-grid { gap: 10px; }
     .team-card, .team-card-inner { min-height: 455px; }
     .team-face {
@@ -1099,7 +1099,7 @@
     }
 
   
-    /* V3.0.3 no-scroll compact popovers */
+    /* V3.0.4 no-scroll compact popovers */
     .compose-popover,
     .compose-popover.compact-popover {
       width: min(255px, calc(100vw - 28px)) !important;
@@ -1170,7 +1170,7 @@
     }
 
   
-    /* V3.0.3 simulation recovery */
+    /* V3.0.4 simulation recovery */
     .error-bubble {
       color: #fecaca !important;
       border-color: rgba(248,113,113,.45) !important;
@@ -1180,7 +1180,7 @@
     #simScreen:not([hidden]) { display: block; }
 
   
-    /* V3.0.3 flags */
+    /* V3.0.4 flags */
     .flag-kr {
       background: #fff;
     }
@@ -1225,7 +1225,7 @@
     }
 
   
-    /* V3.0.3 final systems */
+    /* V3.0.4 final systems */
     .bracket-panel {
       border: 1px solid var(--line);
       border-radius: 18px;
@@ -1309,7 +1309,7 @@
     }
 
   
-    /* V3.0.3 final polish */
+    /* V3.0.4 final polish */
     body:not(.dark) {
       --bg: #ece7dc;
       --panel: rgba(255,250,238,.88);
@@ -1449,7 +1449,7 @@
     }
 
   
-    /* V3.0.3 targeted fixes */
+    /* V3.0.4 targeted fixes */
     .player-card > .compose-popover { display: none !important; }
     .tag-stack { overflow: visible !important; max-height: none !important; }
     .tag-stack .player-tag {
@@ -1515,7 +1515,7 @@
     .bracket-other span { display:block; color:var(--muted); font-size:11px; padding:3px 0; }
 
   
-    /* V3.0.3b visual cleanup */
+    /* V3.0.4b visual cleanup */
     .player-card .compose-popover { display:none !important; }
     .tag-stack {
       overflow: visible !important;
@@ -1563,7 +1563,7 @@
     }
 
   
-    /* V3.0.3 Guided Arcade UX */
+    /* V3.0.4 Guided Arcade UX */
     .screen-head .muted,
     .panel > .muted,
     .calc-note {
@@ -1739,7 +1739,7 @@
     }
 
   
-    /* V3.0.3 hotfix: clean cards, tag tooltips, bracket visibility */
+    /* V3.0.4 hotfix: clean cards, tag tooltips, bracket visibility */
     .player-card { overflow: hidden !important; }
     .player-card .compose-popover { display: none !important; }
     .player-card .tag-hovercard { display: none !important; }
@@ -1808,7 +1808,7 @@
     }
 
   
-    /* V3.0.3 compact layout + title-case polish */
+    /* V3.0.4 compact layout + title-case polish */
     .screen-head.panel {
       padding: 12px 14px !important;
       margin-bottom: 10px !important;
@@ -2001,7 +2001,7 @@
     }
 
   
-    /* V3.0.3 real bracket + i18n + compact polish */
+    /* V3.0.4 real bracket + i18n + compact polish */
     .screen-head.panel { padding: 9px 12px !important; margin-bottom: 8px !important; min-height: 0 !important; }
     .screen-head h2 { font-size: clamp(24px, 3.4vw, 44px) !important; line-height: .94 !important; margin: 0 !important; }
     .screen-head .eyebrow { font-size: 9px !important; margin: 0 0 3px !important; text-transform: none !important; }
@@ -2115,14 +2115,100 @@
       .mini-tag-tip { width: min(190px, 70vw); }
     }
 
+  
+    /* V3.0.4 endboss bracket + clean native tag tooltips */
+    .player-card { overflow: hidden !important; isolation: isolate; }
+    .player-card .compose-popover,
+    .player-card .tag-hovercard,
+    .player-card .mini-tag-tip,
+    .team-tag .tag-hovercard,
+    .player-tag .mini-tag-tip {
+      display: none !important;
+    }
+    .tag-stack {
+      max-height: 50px !important;
+      overflow: hidden !important;
+      margin-bottom: 22px !important;
+      position: relative;
+      z-index: 3;
+    }
+    .tag-stack .player-tag,
+    .team-tag {
+      display: inline-flex !important;
+      align-items: center;
+      min-height: 20px !important;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      padding: 3px 7px !important;
+      font-size: 9px !important;
+      font-weight: 1000;
+      text-transform: uppercase;
+      white-space: nowrap;
+      cursor: help;
+    }
+    .real-bracket { overflow: visible; }
+    .bracket-stage-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(170px, 1fr));
+      gap: 9px;
+      align-items: start;
+    }
+    .bracket-col {
+      display: grid;
+      gap: 7px;
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      padding: 8px;
+      background: rgba(255,255,255,.025);
+    }
+    .bracket-col h4 { margin: 0; color: var(--gold-2); font-size: 11px; letter-spacing: .06em; text-transform: uppercase; }
+    .bracket-match {
+      position: relative;
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 3px 7px;
+      border: 1px solid rgba(255,255,255,.08);
+      border-radius: 12px;
+      padding: 7px;
+      background: var(--panel-2);
+      font-size: 11px;
+    }
+    .bracket-match > div { grid-column: 1; display:flex; justify-content:space-between; gap:8px; color: var(--muted); }
+    .bracket-match > div.winner { color: #eaf7ef; font-weight: 1000; }
+    .bracket-match small { color: var(--gold-2); font-weight: 1000; }
+    .bracket-match b { grid-column: 2; grid-row: 1 / span 2; align-self: center; color: var(--gold-2); }
+    .bracket-match em { grid-column: 1 / -1; color: #bbf7d0; font-size: 9px; font-style: normal; text-transform: uppercase; letter-spacing: .06em; }
+    .bracket-match.is-actual { border-color: rgba(200,170,110,.42); box-shadow: inset 0 0 0 1px rgba(200,170,110,.12); }
+    .bracket-match.is-ours { border-color: rgba(36,180,126,.42); }
+    .bracket-match.is-upset { border-color: rgba(248,113,113,.40); }
+    .bracket-champion {
+      display: inline-flex;
+      width: fit-content;
+      border: 1px solid rgba(36,180,126,.46);
+      color: #bbf7d0;
+      border-radius: 999px;
+      padding: 6px 9px;
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: .04em;
+    }
+    .tag-purple { color:#e9d5ff !important; border-color:rgba(168,85,247,.55) !important; background:rgba(168,85,247,.13) !important; }
+    .tag-gold { color:#ffe49a !important; border-color:rgba(255,212,96,.55) !important; background:rgba(255,212,96,.13) !important; }
+    .tag-blue { color:#bfdbfe !important; border-color:rgba(59,130,246,.48) !important; background:rgba(59,130,246,.12) !important; }
+    .tag-green { color:#bbf7d0 !important; border-color:rgba(34,197,94,.48) !important; background:rgba(34,197,94,.12) !important; }
+    .tag-yellow { color:#fff4bf !important; border-color:rgba(255,238,170,.48) !important; background:rgba(255,238,170,.10) !important; }
+    .tag-red { color:#fecaca !important; border-color:rgba(248,113,113,.52) !important; background:rgba(248,113,113,.12) !important; }
+    .tag-gray { color:#d1d5db !important; border-color:rgba(156,163,175,.32) !important; background:rgba(156,163,175,.10) !important; }
+    @media (max-width: 900px) { .bracket-stage-grid { grid-template-columns: 1fr; } }
+
   </style>
 </head>
 <body class="dark">
-  <!-- BUILD_MARKER_V303_REAL_BRACKET_I18N -->
+  <!-- BUILD_MARKER_V304_ENDBOSS_BRACKET -->
   <div class="app">
     <header class="topbar">
       <a class="brand" href="#" data-action="screen" data-screen="draft" aria-label="inicio"><span class="brand-mark">5V</span><span class="brand-copy">Five’s<br>Pick</span></a>
-      <div class="microline"><strong>Roll</strong><span>·</span><strong>Pick</strong><span>·</span><strong>Break</strong><span id="seedLabel">seed #LOCAL</span><span class="rolefix-pill">V3.0.3</span><span class="version-pill">V3.0.3</span></div>
+      <div class="microline"><strong>Roll</strong><span>·</span><strong>Pick</strong><span>·</span><strong>Break</strong><span id="seedLabel">seed #LOCAL</span><span class="rolefix-pill">V3.0.4</span><span class="version-pill">V3.0.4</span></div>
       <nav class="quick-actions"><button type="button" data-action="lang" id="langBtn" title="Cambiar idioma">ES</button><span class="global-wallet" title="Coins guardadas localmente">🪙 <b id="globalWallet">0</b></span><button type="button" data-action="theme">Tema</button><button type="button" data-action="copy">copiar</button><button type="button" data-action="reset">reset</button></nav>
     </header>
     <nav class="tabs" aria-label="pantallas"><button type="button" data-action="screen" data-screen="draft" aria-pressed="true" title="Arma tu roster con tiradas, tienda y picks">Picks</button><button type="button" data-action="screen" data-screen="sim" aria-pressed="false" title="Ve la simulación partido por partido">Simulación</button><button type="button" data-action="screen" data-screen="stats" aria-pressed="false" title="Consulta tus estadísticas acumuladas">Stats</button><button type="button" data-action="screen" data-screen="history" aria-pressed="false" title="Revisa runs anteriores una por una">Historia</button><button type="button" data-action="screen" data-screen="teams" aria-pressed="false" title="Explora equipos, rosters y tags">Equipos</button><button type="button" data-action="screen" data-screen="objectives" aria-pressed="false" title="Objetivos y recompensas">Objetivos</button><button type="button" data-action="screen" data-screen="chrono" aria-pressed="false" title="Modo caótico experimental">Chrono</button></nav>
@@ -2226,7 +2312,7 @@
         <section class="panel"><div class="chrono-grid" id="chronoGrid"></div></section>
       </section>
 
-    <footer>Fan-made project not affiliated with Riot Games · V3.0.3</footer>
+    <footer>Fan-made project not affiliated with Riot Games · V3.0.4</footer>
   </div>
   <div class="result-overlay" id="resultOverlay" aria-live="polite"></div>
   <div class="toast" id="toast"></div>
@@ -2481,6 +2567,7 @@
 
   ];
   const CHRONO_POWERS = [
+    { id:'star-heist', name:'Robo De Estrella', cost:90, text:'Neutraliza la win condition rival por un mapa: +5 y rival -3.' },
     { id:'chrono-reset', name:'Chrono Reset', cost:60, text:'Repite automáticamente el primer mapa perdido y tira un nuevo resultado.' },
     { id:'coach-sub', name:'Coach Sub', cost:45, text:'El rival juega un mapa con suplente improvisado: -5 power rival.' },
     { id:'scrim-leak', name:'Scrim Leak', cost:35, text:'Tus picks leen el plan rival: +4 power en el próximo mapa.' },
@@ -2515,7 +2602,7 @@
     { id:'na-week-two', name:'NA Week 2', cost:30, text:'En Swiss avanzado: +3 o drama.' },
     { id:'g2-vacation', name:'G2 Vacation Mode', cost:24, text:'Caos europeo: +4 o -2.' }
   ];
-  const DIFF = { normal: { enemy: 2, variance: 8 }, hard: { enemy: 6, variance: 7 }, chaos: { enemy: 4, variance: 15 } };
+  const DIFF = { normal: { enemy: 4, variance: 6, tag:'Normal · Endbosses Reales' }, hard: { enemy: 8, variance: 5, tag:'Hard · LCK/LPL Pesan' }, chaos: { enemy: 6, variance: 14, tag:'Chaos · Highrolls Y Throws' } };
   const FILTERS = { all: () => true, winner: r => r.major, east: r => ['LCK','LPL'].includes(r.region), west: r => ['LEC','LCS'].includes(r.region) };
 
   const $ = id => document.getElementById(id);
@@ -2596,6 +2683,7 @@
       bot: 'El plan gira alrededor de botlane.',
       underdog: 'Peligroso por sorpresa y momentum.',
       upset: 'Capaz de romper pronósticos.',
+      roam: 'Rota rápido para crear ventaja en otras líneas.',
       weakside: 'Juega con pocos recursos sin perder el mapa.',
       roam: 'Rota rápido para crear ventaja en otras líneas.',
       vision: 'Aporta control de mapa con visión.',
@@ -2823,7 +2911,7 @@
   }
 
   function makeSeries(stage) {
-    const enemy = enemyTeam();
+    const enemy = enemyTeam(stage);
     const mod = roundModifier();
     const need = stage.bo === 'Bo5' ? 3 : stage.bo === 'Bo3' ? 2 : 1;
     return { ...stage, enemy, enemyLineup: enemy.players || [], need, chronoMap: rand(1, need * 2 - 1), ourWins: 0, rivalWins: 0, win: false, finished: false, games: [], mod };
@@ -2837,7 +2925,11 @@
     const chronoEvents = [];
     const chronoWindow = mapNo === (series.chronoMap || 1);
     let our = Math.round(state.last.power + modBonus + fatigue + clutch + rand(-d.variance, d.variance));
-    let rival = Math.round((series.enemy.tier + series.gate) / 2 + d.enemy + (d.handicap || 0) + ENEMY_HANDICAP + rand(-4, 5));
+    const enemyP = teamPower(series.enemy);
+    const endboss = ['LCK','LPL'].includes(series.enemy.region) ? 2 : 0;
+    const stageWeight = series.label === 'Final' ? 2 : series.label === 'Semis' ? 1 : 0;
+    let rival = Math.round(enemyP * .78 + series.gate * .22 + d.enemy + endboss + stageWeight + ENEMY_HANDICAP + rand(-d.variance, d.variance));
+    if (chronoWindow && chronoReady('star-heist', series)) { our += 5; rival -= 3; consumeChrono('star-heist', series); chronoEvents.push(chronoEvent('Robo De Estrella', 'Tu staff apaga la win condition rival por un mapa.')); }
     if (chronoWindow && chronoReady('coach-sub', series)) { rival -= 5; consumeChrono('coach-sub', series); chronoEvents.push(chronoEvent('Coach Sub', 'El rival juega el mapa con suplente improvisado.')); }
     if (chronoWindow && chronoReady('scrim-leak', series)) { our += 4; consumeChrono('scrim-leak', series); chronoEvents.push(chronoEvent('Scrim Leak', 'Tus picks lee el plan rival antes del early game.')); }
     if (chronoWindow && chronoReady('baron-ward', series)) { our += 2; consumeChrono('baron-ward', series); chronoEvents.push(chronoEvent('Baron Ward', 'Control de visión mejorado alrededor de Nashor.')); }
@@ -2960,7 +3052,23 @@
   function weightedPick(players, roles) { const bag = roles.flatMap(role => players.filter(p => p.role === role)); return pick(bag.length ? bag : players); }
   function pickedLogo() { return picked()[0]?.logo || badge('20:19','team'); }
   function fmtDuration(sec) { const m = Math.floor(sec / 60); const s = String(sec % 60).padStart(2, '0'); return `${m}:${s}`; }
-  function enemyTeam() { const blocked = usedOrgs(); const pool = ROSTERS.filter(r => !blocked.has(r.org)); return pick(pool.length ? pool : ROSTERS); }
+  function enemyTeam(stage={}) {
+    const blocked = usedOrgs();
+    let pool = ROSTERS.filter(r => !blocked.has(r.org));
+    if (!pool.length) pool = ROSTERS.slice();
+    const gate = stage.gate || 88;
+    const scored = pool
+      .map(r => ({ r, p: teamPower(r), east:['LCK','LPL'].includes(r.region) }))
+      .sort((a,b) => b.p - a.p);
+    let candidates;
+    if (gate >= 98) candidates = scored.filter(x => x.p >= 96 || x.east).slice(0, 12);
+    else if (gate >= 95) candidates = scored.filter(x => x.p >= 92 || x.east).slice(0, 18);
+    else candidates = scored.filter(x => x.p >= gate - 8).slice(0, 24);
+    if (!candidates.length) candidates = scored.slice(0, 12);
+    const roll = rng();
+    const idx = roll < .58 ? 0 : roll < .84 ? rand(0, Math.min(3,candidates.length-1)) : rand(0, candidates.length-1);
+    return candidates[idx].r;
+  }
   function roundModifier() { const ps = picked(); const safeQuests = QUESTS.filter(x => x && typeof x.ok === 'function'); const pool = METAS.map(x => ({ kind:'meta', name:x.name, ok:x.score(ps)>0 })).concat(safeQuests.map(x => ({ kind:'quest', name:x.name, ok:x.ok(ps) }))); return pick(pool); }
 
 
@@ -3041,7 +3149,8 @@
   function teamTagPill(t, bad) {
     const points = bad ? -1 : t.points;
     const tone = tagTone(Math.abs(points), bad);
-    return `<span class="team-tag tag-${tone} tag-tip" tabindex="0">${points > 0 ? '+' : ''}${points} ${esc(t.name)}<span class="tag-hovercard"><strong>${esc(t.name)}</strong><span>${esc(teamTagInfo(t.name))}</span></span></span>`;
+    const info = `${t.name}: ${teamTagInfo(t.name)}`;
+    return `<span class="team-tag tag-${tone}" title="${esc(info)}" aria-label="${esc(info)}">${points > 0 ? '+' : ''}${points} ${esc(t.name)}</span>`;
   }
   function teamTagsHtml(r) {
     const prof = teamProfile(r);
@@ -3100,8 +3209,8 @@
   }
   function playerTagPill(player, tag) {
     const tone = ({ carry:'purple', hands:'purple', clutch:'gold', shotcall:'gold', tempo:'blue', control:'blue', engage:'green', creative:'yellow', stable:'gray', late:'blue', flex:'yellow', macro:'blue', skirmish:'red', scaling:'blue', bot:'green', upset:'red', underdog:'green', weakside:'gray', roam:'green', vision:'blue', lane:'purple', objective:'blue', teamfight:'gold' })[tag] || 'gray';
-    const info = tagInfo(tag);
-    return `<span class="player-tag tag-${tone}" title="${esc(tag + ': ' + info)}" aria-label="${esc(tag + ': ' + info)}">${esc(tag)}<span class="mini-tag-tip"><strong>${esc(tag)}</strong><em>${esc(info)}</em></span></span>`;
+    const info = `${tag}: ${tagInfo(tag)}`;
+    return `<span class="player-tag tag-${tone}" title="${esc(info)}" aria-label="${esc(info)}">${esc(tag)}</span>`;
   }
   function setTeamCols(cols) {
     state.teamCols = cols === 5 ? 5 : 3;
@@ -3334,63 +3443,69 @@
   }
 
   function resolveBracket(r) {
-    const user = { short:'Picks', year:'', name:'Picks', logo:'', power:r.power || power(), user:true };
+    const user = { short:'Picks', year:'', name:'Picks', logo:'', power:r.power || power(), user:true, region:'MIX' };
     const rosterOf = t => ROSTERS.find(x => x.short === t.short && x.year === t.year) || ROSTERS.find(x => x.short === t.short);
-    const basePool = (r.bracketTeams || []).map(t => ({ ...t, name:`${t.short} ${t.year}`, power:(rosterOf(t)?.tier || 88) + rand(-3,4), user:false }));
     const byLabel = label => (r.matches || []).find(m => m.label === label && m.finished);
     const actual = label => {
       const m = byLabel(label);
       if (!m) return null;
-      const enemy = { short:m.enemy.short, year:m.enemy.year, name:`${m.enemy.short} ${m.enemy.year}`, logo:m.enemy.logo, power:m.enemy.tier || 88, user:false };
-      return {
-        label,
-        a:user,
-        b:enemy,
-        winner:m.win ? user : enemy,
-        loser:m.win ? enemy : user,
-        score:`${m.ourWins}-${m.rivalWins}`,
-        actual:true,
-        ours:true
-      };
+      const enemy = { short:m.enemy.short, year:m.enemy.year, name:`${m.enemy.short} ${m.enemy.year}`, logo:m.enemy.logo, power:teamPower(m.enemy), user:false, region:m.enemy.region };
+      return { label, a:user, b:enemy, winner:m.win ? user : enemy, loser:m.win ? enemy : user, score:`${m.ourWins}-${m.rivalWins}`, actual:true, ours:true };
     };
-    const used = new Set();
-    [actual('Cuartos'), actual('Semis'), actual('Final')].filter(Boolean).forEach(m => { used.add(`${m.b.short}-${m.b.year}`); });
-    let pool = basePool.filter(t => !used.has(`${t.short}-${t.year}`) && t.short !== 'Picks');
-    const take = () => pool.shift() || { short:'TBD', year:'', name:'TBD', power:82, user:false };
+    const actualQ = actual('Cuartos');
+    const actualS = actual('Semis');
+    const actualF = actual('Final');
+    const used = new Set([actualQ, actualS, actualF].filter(Boolean).map(m => `${m.b.short}-${m.b.year}`));
+    let teams = (r.bracketTeams || [])
+      .map(t => {
+        const rr = rosterOf(t);
+        return { ...t, name:`${t.short} ${t.year}`, power:(rr ? teamPower(rr) : (t.power || 86)), user:false, region:rr?.region || t.region || 'WORLD' };
+      })
+      .filter(t => !used.has(`${t.short}-${t.year}`));
+    if (teams.length < 7) {
+      const extra = ROSTERS
+        .filter(rr => !used.has(`${rr.short}-${rr.year}`))
+        .map(rr => ({ short:rr.short, year:rr.year, logo:rr.logo, name:`${rr.short} ${rr.year}`, power:teamPower(rr), user:false, region:rr.region }))
+        .sort((a,b)=>b.power-a.power);
+      for (const t of extra) {
+        if (teams.length >= 7) break;
+        if (!teams.some(x => x.short===t.short && x.year===t.year)) teams.push(t);
+      }
+    }
+    teams = teams.sort((a,b)=>b.power-a.power).slice(0,7);
+    const seed = [teams[0], teams[6], teams[3], teams[4], teams[1], teams[5], teams[2]].filter(Boolean);
+    const simScore = (label, winnerIsA) => {
+      if (label === 'Final') return winnerIsA ? (rng() < .62 ? '3-1' : '3-2') : (rng() < .62 ? '1-3' : '2-3');
+      return winnerIsA ? (rng() < .70 ? '2-0' : '2-1') : (rng() < .70 ? '0-2' : '1-2');
+    };
     const simMatch = (label, a, b) => {
-      const awin = (a.power + rand(-7,7)) >= (b.power + rand(-7,7));
+      const diff = (a.power || 85) - (b.power || 85);
+      const pA = clamp(.50 + diff * .055, .08, .92);
+      const awin = rng() < pA;
       const winner = awin ? a : b, loser = awin ? b : a;
-      const bo5 = label === 'Final';
-      const score = bo5 ? (awin ? (rand(0,1) ? '3-1' : '3-2') : (rand(0,1) ? '2-3' : '1-3')) : (awin ? (rand(0,1) ? '2-0' : '2-1') : (rand(0,1) ? '0-2' : '1-2'));
-      return { label, a, b, winner:{...winner, power:winner.power+rand(0,3)}, loser, score, actual:false };
+      return { label, a, b, winner:{...winner, power:(winner.power||85)+rand(0,2)}, loser, score:simScore(label, awin), actual:false, upset: Math.abs(diff) >= 8 && ((diff > 0 && !awin) || (diff < 0 && awin)) };
     };
-
-    const qActual = actual('Cuartos');
-    const sActual = actual('Semis');
-    const fActual = actual('Final');
 
     const qf = [];
-    if (qActual) qf.push(qActual);
-    while (qf.length < 4) qf.push(simMatch('Cuartos', take(), take()));
+    if (actualQ) qf.push(actualQ);
+    qf.push(simMatch('Cuartos', seed[0], seed[1] || seed[0]));
+    qf.push(simMatch('Cuartos', seed[2] || seed[0], seed[3] || seed[1] || seed[0]));
+    qf.push(simMatch('Cuartos', seed[4] || seed[0], seed[5] || seed[1] || seed[0]));
+    while (qf.length < 4) qf.push(simMatch('Cuartos', seed[qf.length] || seed[0], seed[qf.length+1] || seed[1] || seed[0]));
 
     const sf = [];
-    if (sActual) {
-      sf.push(sActual);
-      const remainingWinners = qf.map(x=>x.winner).filter(t => !t.user && `${t.short}-${t.year}` !== `${sActual.b.short}-${sActual.b.year}`);
-      sf.push(simMatch('Semis', remainingWinners[0] || take(), remainingWinners[1] || take()));
+    if (actualS) {
+      sf.push(actualS);
+      const otherWinners = qf.map(m=>m.winner).filter(t => !t.user && `${t.short}-${t.year}` !== `${actualS.b.short}-${actualS.b.year}`);
+      sf.push(simMatch('Semis', otherWinners[0] || seed[0], otherWinners[1] || seed[1] || seed[0]));
     } else {
       sf.push(simMatch('Semis', qf[0].winner, qf[1].winner));
       sf.push(simMatch('Semis', qf[2].winner, qf[3].winner));
     }
 
     const fin = [];
-    if (fActual) {
-      fin.push(fActual);
-    } else {
-      const left = sf[0].winner;
-      const right = sf[1].winner;
-      fin.push(simMatch('Final', left, right));
-    }
+    if (actualF) fin.push(actualF);
+    else fin.push(simMatch('Final', sf[0].winner, sf[1].winner));
 
     return { stages:[{label:'Cuartos', matches:qf},{label:'Semis', matches:sf},{label:'Final', matches:fin}], champion:fin[0].winner };
   }
@@ -3400,7 +3515,7 @@
     if (!r.bracketFinal && r.complete) r.bracketFinal = resolveBracket(r);
     const path = (r.matches || []).map(m => `<span class="${m.finished ? (m.win ? 'win' : 'loss') : ''}">${esc(m.label)} ${m.finished ? (m.win ? 'W' : 'L') : '·'} ${m.ourWins}-${m.rivalWins}</span>`).join('');
     const stages = r.complete ? (r.bracketFinal?.stages || []) : [];
-    const columns = stages.map(stage => `<section class="bracket-col"><h4>${esc(stage.label)}</h4>${stage.matches.map(m => `<article class="bracket-match ${m.actual ? 'is-actual' : ''} ${m.winner?.user ? 'is-ours' : ''}"><div class="${m.winner === m.a ? 'winner' : ''}"><span>${m.a.user ? 'Picks' : esc(m.a.name)}</span></div><div class="${m.winner === m.b ? 'winner' : ''}"><span>${m.b.user ? 'Picks' : esc(m.b.name)}</span></div><b>${esc(m.score)}</b>${m.actual ? '<em>Tu Serie</em>' : ''}</article>`).join('')}</section>`).join('');
+    const columns = stages.map(stage => `<section class="bracket-col"><h4>${esc(stage.label)}</h4>${stage.matches.map(m => `<article class="bracket-match ${m.actual ? 'is-actual' : ''} ${m.winner?.user ? 'is-ours' : ''} ${m.upset ? 'is-upset' : ''}"><div class="${m.winner === m.a ? 'winner' : ''}"><span>${m.a.user ? 'Picks' : esc(m.a.name)}</span><small>${m.a.user ? Math.round(r.power || power()) : Math.round(m.a.power || 0)}</small></div><div class="${m.winner === m.b ? 'winner' : ''}"><span>${m.b.user ? 'Picks' : esc(m.b.name)}</span><small>${m.b.user ? Math.round(r.power || power()) : Math.round(m.b.power || 0)}</small></div><b>${esc(m.score)}</b>${m.actual ? '<em>Tu Serie</em>' : ''}${m.upset ? '<em>Upset</em>' : ''}</article>`).join('')}</section>`).join('');
     const champ = r.bracketFinal?.champion ? `<b class="bracket-champion">${L('Campeón','Champion')}: ${r.bracketFinal.champion.user ? 'Picks' : esc(r.bracketFinal.champion.name)}</b>` : '';
     return `<section class="bracket-panel real-bracket"><header><strong>Bracket</strong><small>${esc(r.groups ? r.groups.join('-') : '0-0')} Swiss</small></header><div class="bracket-path">${path || '<span>Sin Series</span>'}</div><div class="bracket-stage-grid">${columns || '<small class="muted">El Bracket Aparece Al Terminar La Run.</small>'}</div>${champ}</section>`;
   }
@@ -3624,7 +3739,37 @@
   function toggleTheme() { document.body.classList.toggle('dark'); write(STORE.theme, document.body.classList.contains('dark') ? 'dark' : 'light'); }
   function copySummary() { const lines = [`Five’s Pick · seed #${state.seed}`, `Tiradas ${state.rolls}/${MAX_ROLLS}`].concat(ROLES.map(r => `${r}: ${state.picks[r] ? state.picks[r].name + ' (' + state.picks[r].short + ')' : 'Pendiente'}`)); navigator.clipboard?.writeText(lines.join('\n')).then(() => toast('copiado.')).catch(() => toast('no se pudo copiar.')); }
 
-  function power() { const ps = picked(); if (!ps.length) return 0; return Math.round(avg(ps.map(x=>x.rating)) + synergy().points + metaBonus() + questBonus()); }
+
+  function regionWeight(region) {
+    return ({ LCK: 5.8, LPL: 4.7, LEC: -1.6, LCS: -3.6, PCS: -5.2, WORLD: 0 })[region] || 0;
+  }
+  function teamPower(r) {
+    if (!r) return 82;
+    const players = r.players || [];
+    const playerAvg = Math.round(avg(players.map(p => p.rating || r.tier || 85)));
+    const profile = teamProfile(r);
+    const tagNet = clamp(profile.net || 0, -4, 8);
+    const championAura = r.major ? 3 : 0;
+    const historicAura = r.tier >= 97 ? 2.6 : r.tier >= 94 ? 1.2 : 0;
+    const eastBoss = ['LCK','LPL'].includes(r.region) && r.tier >= 94 ? 2.2 : 0;
+    const raw = (r.tier || playerAvg || 85) * .50 + playerAvg * .34 + regionWeight(r.region) + tagNet * .24 + championAura + historicAura + eastBoss;
+    return clamp(Math.round(raw), 74, 106);
+  }
+  function draftPowerPenalty(ps) {
+    const east = ps.filter(p => ['LCK','LPL'].includes(p.region)).length;
+    const west = ps.filter(p => ['LEC','LCS'].includes(p.region)).length;
+    const kr = ps.filter(p => p.country === 'KR').length;
+    const stars = ps.filter(p => (p.rating || 0) >= 95).length;
+    let penalty = 0;
+    if (west >= 4 && east <= 1) penalty -= 6;
+    else if (west >= 3 && east === 0) penalty -= 5;
+    if (east === 0) penalty -= 3;
+    if (kr >= 2) penalty += 2;
+    if (stars >= 2) penalty += 2;
+    return penalty;
+  }
+
+  function power() { const ps = picked(); if (!ps.length) return 0; return Math.round(avg(ps.map(x=>x.rating)) + synergy().points + metaBonus() + questBonus() + draftPowerPenalty(ps)); }
   function synergy() {
     const ps = picked();
     let points = 0; const reasons = [];
