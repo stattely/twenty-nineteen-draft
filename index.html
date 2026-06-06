@@ -4,7 +4,7 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="theme-color" content="#0a1420" />
-  <title>20:19 Draft · v21</title>
+  <title>20:19 Draft · v22 rolefix</title>
   <style>
     :root {
       --bg: #eef2f4;
@@ -309,7 +309,7 @@
     @keyframes cardFlash { 0% { transform: scale(.985); box-shadow: 0 0 0 0 rgba(200,170,110,0); } 50% { transform: scale(1.01); box-shadow: 0 0 0 10px rgba(200,170,110,.12); } 100% { transform: scale(1); box-shadow: none; } }
     @keyframes sweepIn { 0% { opacity: .35; transform: translateY(8px); } 100% { opacity: 1; transform: translateY(0); } }
   
-    /* v21 verified role icons: these use the uploaded PNGs directly as background images. */
+    /* v22 verified role icons: these use the uploaded PNGs directly as background images. */
     .version-pill {
       border: 1px solid rgba(240,213,138,.34);
       border-radius: 999px;
@@ -448,13 +448,63 @@
       .event-copy span { white-space: normal !important; }
     }
 
+  
+    /* v22 HARD ROLE FIX:
+       These are the exact PNGs from IconsPositions.zip, copied raw into /assets/roles-original-v22/.
+       The wrapper has no circle/border/background so the uploaded icon is not double-framed or rescaled weirdly. */
+    .rolefix-pill {
+      display: inline-flex;
+      align-items: center;
+      border: 1px solid rgba(255, 211, 106, .46);
+      border-radius: 999px;
+      padding: 3px 7px;
+      color: var(--gold-2);
+      background: rgba(200,170,110,.12);
+      font-size: 10px;
+      font-weight: 1000;
+      letter-spacing: .08em;
+    }
+
+    .round-icon.role-chip,
+    .slot-role.role-chip {
+      background: transparent !important;
+      border: 0 !important;
+      box-shadow: none !important;
+      overflow: visible !important;
+      padding: 0 !important;
+    }
+
+    .role-glyph {
+      display: block !important;
+      width: 100% !important;
+      height: 100% !important;
+      min-width: 44px;
+      min-height: 44px;
+      background-position: center !important;
+      background-repeat: no-repeat !important;
+      background-size: contain !important;
+      background-color: transparent !important;
+      filter: drop-shadow(0 3px 5px rgba(0,0,0,.58));
+    }
+
+    .role-top { background-image: url('/assets/roles-original-v22/top.png?v=22') !important; }
+    .role-jungle { background-image: url('/assets/roles-original-v22/jungle.png?v=22') !important; }
+    .role-mid { background-image: url('/assets/roles-original-v22/mid.png?v=22') !important; }
+    .role-bot { background-image: url('/assets/roles-original-v22/bot.png?v=22') !important; }
+    .role-support { background-image: url('/assets/roles-original-v22/support.png?v=22') !important; }
+
+    .round-icon.role-chip img,
+    .slot-role.role-chip img {
+      display: none !important;
+    }
+
   </style>
 </head>
 <body class="dark">
   <div class="app">
     <header class="topbar">
       <a class="brand" href="#" data-action="screen" data-screen="draft" aria-label="inicio"><span class="brand-mark">20:19</span><span class="brand-copy">Worlds<br>Draft</span></a>
-      <div class="microline"><strong>Draft</strong><span>·</span><strong>Pick</strong><span>·</span><strong>Win</strong><span id="seedLabel">seed #LOCAL</span><span class="version-pill">v21</span></div>
+      <div class="microline"><strong>Draft</strong><span>·</span><strong>Pick</strong><span>·</span><strong>Win</strong><span id="seedLabel">seed #LOCAL</span><span class="rolefix-pill">v22 rolefix</span><span class="version-pill">v22</span></div>
       <nav class="quick-actions"><button type="button" data-action="theme">tema</button><button type="button" data-action="copy">copiar</button><button type="button" data-action="reset">reset</button></nav>
     </header>
     <nav class="tabs" aria-label="pantallas"><button type="button" data-action="screen" data-screen="draft" aria-pressed="true" title="Arma tu roster con tiradas, tienda y picks">Draft</button><button type="button" data-action="screen" data-screen="sim" aria-pressed="false" title="Ve la simulación partido por partido">Simulación</button><button type="button" data-action="screen" data-screen="stats" aria-pressed="false" title="Consulta tus estadísticas acumuladas">Stats</button><button type="button" data-action="screen" data-screen="history" aria-pressed="false" title="Revisa runs anteriores una por una">Historia</button></nav>
@@ -513,7 +563,7 @@
         <section class="panel"><div class="history-grid" id="historyLedger"></div></section>
       </section>
     </main>
-    <footer>Fan-made project not affiliated with Riot Games · v21</footer>
+    <footer>Fan-made project not affiliated with Riot Games · v22 rolefix</footer>
   </div>
   <div class="result-overlay" id="resultOverlay" aria-live="polite"></div>
   <div class="toast" id="toast"></div>
@@ -606,8 +656,8 @@
   const orgMap = { SKT: 'T1', T1: 'T1', DWG: 'DK', DK: 'DK', SSG: 'GEN', GEN: 'GEN', SSW: 'GEN', SSB: 'GEN', KOO: 'ROX', ROX: 'ROX' };
   function tuneRating(rating) { return clamp(rating + RATING_OFFSET, 82, 98); }
   function roleCode(role) { return ({ Top:'TOP', Jungle:'JG', Mid:'MID', Bot:'BOT', Support:'SUP' })[role] || role; }
-  function roleClass(role) { return 'role-' + String(role || '').toLowerCase().replace('support','support').replace('jungle','jungle'); }
-  function roleGlyph(role) { return `<span class="role-glyph ${esc(roleClass(role))}" aria-label="${esc(role)}"></span>`; }
+  function roleClass(role) { return ({ Top:'role-top', Jungle:'role-jungle', Mid:'role-mid', Bot:'role-bot', Support:'role-support' })[role] || 'role-top'; }
+  function roleGlyph(role) { return `<span class="role-glyph ${esc(roleClass(role))}" aria-label="${esc(role)}" title="${esc(role)}"></span>`; }
   const p = (name, role, rating, tags) => ({ name, role, rating: tuneRating(rating), rawRating: rating, tags });
   function r(id, name, short, year, region, country, champion, tier, styles, players, extra) {
     const org = orgMap[short] || short;
@@ -972,7 +1022,7 @@
   function renderRoll() { els.rollCard.classList.toggle('is-gold', state.current?.rarity === 'rare'); if (!state.current) { image(els.teamLogo,'','?'); text(els.rollTitle,'Sin tirada'); text(els.rollSub,'Haz una tirada para revelar equipo, año y pool de jugadores.'); els.rollTags.innerHTML=''; return; } const r = state.current; image(els.teamLogo, r.logo, r.short); text(els.rollTitle, `${r.name} ${r.year}`); text(els.rollSub, `${flag(r.country)} ${r.region} · ${r.tournament} · tier ${r.tier}`); els.rollTags.innerHTML = (r.rarity === 'rare' ? ['carta dorada','1 de 6'] : []).concat(r.styles).map(x => `<span>${esc(x)}</span>`).join(''); }
   function renderPlayers() { if (!state.current) { els.players.innerHTML = '<div class="empty">tira el dado para abrir tu primer roster.</div>'; return; } els.players.innerHTML = state.current.players.map((pl, i) => card(pl, i)).join(''); }
   function card(pl, i) { const locked = issue(pl); const hidden = state.mode === 'blind'; return `<article class="player-card tilt-card ${pl.major ? 'is-gold' : ''} ${locked ? 'is-locked' : ''}" data-player="${i}" tabindex="0" role="button"><div class="portrait-row"><figure class="round-icon role-chip">${roleGlyph(pl.role)}</figure><figure class="round-icon"><span>${esc(roleCode(pl.role))}</span></figure></div><div class="player-main"><h3>${hidden ? '???' : esc(pl.name)}</h3><p>${hidden ? esc(pl.role) : `${flag(pl.country)} ${esc(pl.short)} ${esc(pl.year)} · ${esc(pl.tournament)}`}</p></div><div class="tag-stack">${pl.tags.map(t => `<span>${esc(t)}</span>`).join('')}</div><span class="role-badge">${esc(pl.role)}</span><strong class="rating">${hidden ? '??' : pl.rating}</strong>${locked ? `<em class="lock-copy">${esc(locked)}</em>` : ''}</article>`; }
-  function renderSide() { const ps = picked(), syn = synergy(), meta = metaBonus(), quest = questBonus(), pow = power(), av = ps.length ? Math.round(avg(ps.map(x => x.rating))) : 0; text(els.draftCount, `${ps.length}/5`); text(els.avgScore, av); text(els.synScore, syn.points + meta + quest); text(els.cupChance, `${clamp(Math.round((pow - 76) * 2.7),0,96)}%`); text(els.coinCount, state.coins); text(els.coinHint, `${state.owned.size} desbloqueados · ${state.marketUsed ? 'rotación usada' : 'rotar 10c'}`); text(els.metaText, state.meta ? `${state.meta.name}: ${state.meta.text}` : 'Se revela con la primera tirada.'); text(els.questText, state.quest ? `${state.quest.name}: ${state.quest.text}` : 'Se revela con la primera tirada.'); els.synergyReasons.innerHTML = syn.reasons.length ? syn.reasons.map(x => `<span>${esc(x)}</span>`).join(' ') : 'Sin picks todavía.'; els.metaBox.classList.toggle('is-done', meta > 0); els.questBox.classList.toggle('is-done', quest > 0); els.synergyBox.classList.toggle('is-done', syn.points > 0); els.slots.innerHTML = ROLES.map(role => { const pl = state.picks[role]; return `<article class="slot" data-slot="${role}"><span class="slot-role ${pl ? '' : 'role-chip'}">${pl ? img(pl.logo, pl.short, ROLE_ICONS[role]) : roleGlyph(role)}</span><div><strong>${pl ? esc(pl.name) : role}</strong><p>${pl ? `${flag(pl.country)} ${esc(pl.short)} ${pl.year} · ${esc(pl.tournament)}` : 'pendiente'}</p></div><span class="slot-score">${pl ? pl.rating : '—'}</span></article>`; }).join(''); }
+  function renderSide() { const ps = picked(), syn = synergy(), meta = metaBonus(), quest = questBonus(), pow = power(), av = ps.length ? Math.round(avg(ps.map(x => x.rating))) : 0; text(els.draftCount, `${ps.length}/5`); text(els.avgScore, av); text(els.synScore, syn.points + meta + quest); text(els.cupChance, `${clamp(Math.round((pow - 76) * 2.7),0,96)}%`); text(els.coinCount, state.coins); text(els.coinHint, `${state.owned.size} desbloqueados · ${state.marketUsed ? 'rotación usada' : 'rotar 10c'}`); text(els.metaText, state.meta ? `${state.meta.name}: ${state.meta.text}` : 'Se revela con la primera tirada.'); text(els.questText, state.quest ? `${state.quest.name}: ${state.quest.text}` : 'Se revela con la primera tirada.'); els.synergyReasons.innerHTML = syn.reasons.length ? syn.reasons.map(x => `<span>${esc(x)}</span>`).join(' ') : 'Sin picks todavía.'; els.metaBox.classList.toggle('is-done', meta > 0); els.questBox.classList.toggle('is-done', quest > 0); els.synergyBox.classList.toggle('is-done', syn.points > 0); els.slots.innerHTML = ROLES.map(role => { const pl = state.picks[role]; return `<article class="slot" data-slot="${role}"><span class="slot-role ${pl ? '': 'role-chip'}">${pl ? img(pl.logo, pl.short, ROLE_ICONS[role]) : roleGlyph(role)}</span><div><strong>${pl ? esc(pl.name) : role}</strong><p>${pl ? `${flag(pl.country)} ${esc(pl.short)} ${pl.year} · ${esc(pl.tournament)}` : 'pendiente'}</p></div><span class="slot-score">${pl ? pl.rating : '—'}</span></article>`; }).join(''); }
   function renderMarket() { ensureMarket(); const button = document.querySelector('[data-action="market"]'); if (button) { button.textContent = state.marketUsed ? 'usado' : 'rotar 10c'; button.disabled = state.marketUsed; } els.market.innerHTML = state.market.map((id, i) => { const pl = allPlayers.find(x => x.id === id); if (!pl) return ''; const owned = state.owned.has(pl.id); const cost = costOf(pl); const disabled = owned && issue(pl); return `<article class="market-card tilt-card ${pl.major ? 'is-gold' : ''}"><span class="market-logo">${img(pl.logo, pl.short, ROLE_ICONS[pl.role])}</span><div><strong>${esc(pl.name)}</strong><small>${esc(pl.role)} · ${esc(pl.short)} ${pl.year}</small></div><button type="button" data-market="${i}" ${disabled ? 'disabled' : ''}>${owned ? 'firmar' : cost + 'c'}</button></article>`; }).join(''); }
   function renderMini() { if (!state.last) { els.results.innerHTML = '<p class="muted">sin simulación todavía.</p>'; return; } const wins = state.last.matches.filter(m => m.finished && m.win).length, losses = state.last.matches.filter(m => m.finished && !m.win).length; els.results.innerHTML = `<strong>${state.last.complete ? (state.last.won ? 'campeón' : 'eliminado') : 'en vivo'}</strong><p class="muted">${wins}-${losses} · power ${state.last.power}</p>`; }
   function renderSim() {
