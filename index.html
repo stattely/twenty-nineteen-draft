@@ -4,7 +4,7 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="theme-color" content="#0a1420" />
-  <title>Five’s Pick · V2.7.0</title>
+  <title>Five’s Pick · V2.7.1</title>
   <style>
     :root {
       --bg: #eef2f4;
@@ -309,7 +309,7 @@
     @keyframes cardFlash { 0% { transform: scale(.985); box-shadow: 0 0 0 0 rgba(200,170,110,0); } 50% { transform: scale(1.01); box-shadow: 0 0 0 10px rgba(200,170,110,.12); } 100% { transform: scale(1); box-shadow: none; } }
     @keyframes sweepIn { 0% { opacity: .35; transform: translateY(8px); } 100% { opacity: 1; transform: translateY(0); } }
   
-    /* V2.7.0 verified role icons: these use the uploaded PNGs directly as background images. */
+    /* V2.7.1 verified role icons: these use the uploaded PNGs directly as background images. */
     .version-pill {
       border: 1px solid rgba(240,213,138,.34);
       border-radius: 999px;
@@ -449,7 +449,7 @@
     }
 
   
-    /* V2.7.0 HARD ROLE FIX:
+    /* V2.7.1 HARD ROLE FIX:
        These are the exact PNGs from IconsPositions.zip, copied raw into /assets/roles-original-v24/.
        The wrapper has no circle/border/background so the uploaded icon is not double-framed or rescaled weirdly. */
     .rolefix-pill {
@@ -511,7 +511,7 @@
     .chrono-card::after { content:''; position:absolute; inset:0; background:linear-gradient(115deg, transparent, rgba(255,255,255,.09), transparent); transform:translateX(-120%); animation:chartSweep 2.8s ease-in-out infinite; pointer-events:none; }
 
 
-    /* V2.7.0 */
+    /* V2.7.1 */
     .result-overlay.map-win .result-card, .result-overlay.map-loss .result-card {
       min-width: min(640px, calc(100vw - 28px));
       padding: 22px 28px;
@@ -591,7 +591,7 @@
     @media (max-width: 760px) { .objective-grid, .chrono-grid { grid-template-columns: 1fr; } .result-overlay.map-win .result-card, .result-overlay.map-loss .result-card { min-width: calc(100vw - 22px); padding: 18px; } }
 
   
-    /* V2.7.0 colorful composition tooltips */
+    /* V2.7.1 colorful composition tooltips */
     .icon-only { min-width: 48px; padding-inline: 13px; }
     .compose-popover {
       pointer-events: none;
@@ -641,7 +641,7 @@
     @keyframes softPulse { 50% { box-shadow: 0 0 0 5px rgba(16,185,129,.10); } }
 
   
-    /* V2.7.0 Teams archive */
+    /* V2.7.1 Teams archive */
     .teams-grid {
       display: grid;
       grid-template-columns: repeat(3, minmax(0, 1fr));
@@ -786,7 +786,7 @@
     }
 
   
-    /* V2.7.0 roster alignment, filters and wallet */
+    /* V2.7.1 roster alignment, filters and wallet */
     .global-wallet {
       display: inline-flex;
       align-items: center;
@@ -897,7 +897,7 @@
     }
 
   
-    /* V2.7.0 market popover + tag tooltips */
+    /* V2.7.1 market popover + tag tooltips */
     .player-card { overflow: visible; }
     .player-card:hover, .player-card:focus-within { z-index: 9; }
     .market, .player-grid { overflow: visible; }
@@ -973,7 +973,7 @@
     }
 
   
-    /* V2.7.0 compact team cards + drawn flags */
+    /* V2.7.1 compact team cards + drawn flags */
     .teams-grid { gap: 10px; }
     .team-card, .team-card-inner { min-height: 455px; }
     .team-face {
@@ -1099,7 +1099,7 @@
     }
 
   
-    /* V2.7.0 no-scroll compact popovers */
+    /* V2.7.1 no-scroll compact popovers */
     .compose-popover,
     .compose-popover.compact-popover {
       width: min(255px, calc(100vw - 28px)) !important;
@@ -1170,7 +1170,7 @@
     }
 
   
-    /* V2.7.0 simulation recovery */
+    /* V2.7.1 simulation recovery */
     .error-bubble {
       color: #fecaca !important;
       border-color: rgba(248,113,113,.45) !important;
@@ -1182,11 +1182,11 @@
   </style>
 </head>
 <body class="dark">
-  <!-- BUILD_MARKER_V270_SIMULATION_RECOVERY -->
+  <!-- BUILD_MARKER_V271_SIMULATION_RESTORED -->
   <div class="app">
     <header class="topbar">
       <a class="brand" href="#" data-action="screen" data-screen="draft" aria-label="inicio"><span class="brand-mark">5V</span><span class="brand-copy">Five’s<br>Pick</span></a>
-      <div class="microline"><strong>Roll</strong><span>·</span><strong>Pick</strong><span>·</span><strong>Break</strong><span id="seedLabel">seed #LOCAL</span><span class="rolefix-pill">V2.7.0</span><span class="version-pill">V2.7.0</span></div>
+      <div class="microline"><strong>Roll</strong><span>·</span><strong>Pick</strong><span>·</span><strong>Break</strong><span id="seedLabel">seed #LOCAL</span><span class="rolefix-pill">V2.7.1</span><span class="version-pill">V2.7.1</span></div>
       <nav class="quick-actions"><span class="global-wallet" title="Coins guardadas localmente">🪙 <b id="globalWallet">0</b></span><button type="button" data-action="theme">tema</button><button type="button" data-action="copy">copiar</button><button type="button" data-action="reset">reset</button></nav>
     </header>
     <nav class="tabs" aria-label="pantallas"><button type="button" data-action="screen" data-screen="draft" aria-pressed="true" title="Arma tu roster con tiradas, tienda y picks">Picks</button><button type="button" data-action="screen" data-screen="sim" aria-pressed="false" title="Ve la simulación partido por partido">Simulación</button><button type="button" data-action="screen" data-screen="stats" aria-pressed="false" title="Consulta tus estadísticas acumuladas">Stats</button><button type="button" data-action="screen" data-screen="history" aria-pressed="false" title="Revisa runs anteriores una por una">Historia</button><button type="button" data-action="screen" data-screen="teams" aria-pressed="false" title="Explora equipos, rosters y tags">Equipos</button><button type="button" data-action="screen" data-screen="objectives" aria-pressed="false" title="Objetivos y recompensas">Objetivos</button><button type="button" data-action="screen" data-screen="chrono" aria-pressed="false" title="Modo caótico experimental">Chrono</button></nav>
@@ -1270,7 +1270,7 @@
         <section class="panel"><div class="chrono-grid" id="chronoGrid"></div></section>
       </section>
 
-    <footer>Fan-made project not affiliated with Riot Games · V2.7.0</footer>
+    <footer>Fan-made project not affiliated with Riot Games · V2.7.1</footer>
   </div>
   <div class="result-overlay" id="resultOverlay" aria-live="polite"></div>
   <div class="toast" id="toast"></div>
@@ -1483,7 +1483,7 @@
     r('fly-2024', 'FlyQuest', 'FLY', 2024, 'LCS', 'NA', false, 87, ['teamfight','western'], [p('Bwipo','Top',89,['carry','creative']),p('Inspired','Jungle',91,['tempo','shotcall']),p('Quad','Mid',87,['control']),p('Massu','Bot',88,['carry']),p('Busio','Support',87,['engage','creative'])]),
     r('eg-2022', 'Evil Geniuses', 'EG', 2022, 'LCS', 'NA', false, 86, ['upset','skirmish'], [p('Impact','Top',89,['stable']),p('Inspired','Jungle',91,['tempo']),p('Jojopyun','Mid',88,['hands','creative']),p('Danny','Bot',90,['carry','clutch']),p('Vulcan','Support',89,['engage'])])
 
-  ];
+  ].filter(q => q && typeof q.ok === 'function');
   const COMP_RULES = [{"name":"Mid/Jungle Tempo","points":2,"desc":"Jungla de tempo habilita mid de control o manos","req":[{"role":"Jungle","tag":"tempo"},{"role":"Mid","tag":"control"}]},{"name":"Mid/Jungle Hands","points":2,"desc":"Jungla agresivo habilita mid mecánico","req":[{"role":"Jungle","tag":"tempo"},{"role":"Mid","tag":"hands"}]},{"name":"Shotcall Engage","points":1,"desc":"Shotcaller coordina engage primario","req":[{"role":"Jungle","tag":"shotcall"},{"role":"Support","tag":"engage"}]},{"name":"Support Engage + Bot Carry","points":2,"desc":"Engage abre ventana al carry de bot","req":[{"role":"Support","tag":"engage"},{"role":"Bot","tag":"carry"}]},{"name":"Late Game Insurance","points":2,"desc":"Bot late con soporte shotcaller escala mejor","req":[{"role":"Bot","tag":"late"},{"role":"Support","tag":"shotcall"}]},{"name":"Weakside Top + Bot Carry","points":2,"desc":"Top absorbe presión para jugar bot side","req":[{"role":"Top","tag":"weakside"},{"role":"Bot","tag":"carry"}]},{"name":"Carry Top + Tempo Jungle","points":2,"desc":"Jungla acelera carry de top","req":[{"role":"Top","tag":"carry"},{"role":"Jungle","tag":"tempo"}]},{"name":"Roam Mid + Engage Support","points":2,"desc":"Roams conectan con engage de support","req":[{"role":"Mid","tag":"roam"},{"role":"Support","tag":"engage"}]},{"name":"Control Mid + Vision Support","points":2,"desc":"Control de mid y visión estabilizan mapa","req":[{"role":"Mid","tag":"control"},{"role":"Support","tag":"vision"}]},{"name":"Clutch Core","points":3,"desc":"Dos jugadores clutch elevan cierre de mapas","req":[{"role":null,"tag":"clutch"},{"role":null,"tag":"clutch"}]},{"name":"Hands Trio","points":3,"desc":"Tres perfiles hands/carry elevan peleas","req":[{"role":null,"tag":"hands"},{"role":null,"tag":"carry"},{"role":null,"tag":"carry"}]},{"name":"Macro Spine","points":3,"desc":"Shotcall + control + stable sostienen macro","req":[{"role":"Jungle","tag":"shotcall"},{"role":"Mid","tag":"control"},{"role":"Top","tag":"stable"}]},{"name":"Teamfight Front-to-Back","points":3,"desc":"Top estable, bot carry y supp engage","req":[{"role":"Top","tag":"stable"},{"role":"Bot","tag":"carry"},{"role":"Support","tag":"engage"}]},{"name":"Skirmish Chaos","points":3,"desc":"Tempo, hands y creative buscan peleas raras","req":[{"role":"Jungle","tag":"tempo"},{"role":"Mid","tag":"hands"},{"role":"Support","tag":"creative"}]},{"name":"Bot Kingdom","points":3,"desc":"Bot carry + supp engage/shotcall dominan 2v2","req":[{"role":"Bot","tag":"carry"},{"role":"Support","tag":"engage"},{"role":"Support","tag":"shotcall"}]},{"name":"Top Island","points":1,"desc":"Top estable y jungla tempo evitan snowball rival","req":[{"role":"Top","tag":"stable"},{"role":"Jungle","tag":"tempo"}]},{"name":"Vision Trap","points":2,"desc":"Shotcall con visión crea picks de Nashor","req":[{"role":"Support","tag":"shotcall"},{"role":"Jungle","tag":"tempo"}]},{"name":"Creative Map","points":2,"desc":"Soporte creativo habilita mid roam","req":[{"role":"Support","tag":"creative"},{"role":"Mid","tag":"roam"}]},{"name":"Control Scaling","points":2,"desc":"Mid control y bot late juegan a escalar","req":[{"role":"Mid","tag":"control"},{"role":"Bot","tag":"late"}]},{"name":"Carry Triangle","points":3,"desc":"Top/Mid/Bot con carry/hands presionan 3 lanes","req":[{"role":"Top","tag":"carry"},{"role":"Mid","tag":"hands"},{"role":"Bot","tag":"carry"}]},{"name":"Clutch ADC","points":2,"desc":"Bot clutch convierte finales cerrados","req":[{"role":"Bot","tag":"clutch"},{"role":"Support","tag":"engage"}]},{"name":"Jungle Carry","points":2,"desc":"Jungla carry con mid control invade mejor","req":[{"role":"Jungle","tag":"carry"},{"role":"Mid","tag":"control"}]},{"name":"Roam Snowball","points":2,"desc":"Mid roam y jungla tempo aceleran side lanes","req":[{"role":"Mid","tag":"roam"},{"role":"Jungle","tag":"tempo"}]},{"name":"Weakside Discipline","points":2,"desc":"Top weakside + support shotcall reducen throws","req":[{"role":"Top","tag":"weakside"},{"role":"Support","tag":"shotcall"}]},{"name":"Late Engage","points":2,"desc":"Engage protege condiciones de late game","req":[{"role":"Bot","tag":"late"},{"role":"Support","tag":"engage"}]},{"name":"Macro Control","points":2,"desc":"Macro y control convierten objetivos","req":[{"role":"Mid","tag":"control"},{"role":null,"tag":"macro"}]},{"name":"Underdog Spark","points":1,"desc":"Underdog con clutch encuentra upset","req":[{"role":null,"tag":"underdog"},{"role":null,"tag":"clutch"}]},{"name":"Flex Pressure","points":1,"desc":"Flex con creative complica pick phase rival","req":[{"role":null,"tag":"flex"},{"role":"Support","tag":"creative"}]},{"name":"Bot Side Identity","points":2,"desc":"Tags bot + carry refuerzan win condition","req":[{"role":null,"tag":"bot"},{"role":"Bot","tag":"carry"}]},{"name":"Engage Chain","points":2,"desc":"Engage múltiple fuerza teamfights","req":[{"role":null,"tag":"engage"},{"role":null,"tag":"engage"}]},{"name":"Stable Carry Cover","points":2,"desc":"Top estable cubre carry vulnerable","req":[{"role":"Top","tag":"stable"},{"role":"Bot","tag":"carry"}]},{"name":"Mid Clutch","points":2,"desc":"Mid clutch y jungle tempo cierran fights","req":[{"role":"Mid","tag":"clutch"},{"role":"Jungle","tag":"tempo"}]},{"name":"Top Clutch","points":2,"desc":"Top clutch y support engage abren picks","req":[{"role":"Top","tag":"clutch"},{"role":"Support","tag":"engage"}]},{"name":"Support Brain","points":2,"desc":"Support shotcall + jungla tempo controla mapa","req":[{"role":"Support","tag":"shotcall"},{"role":"Jungle","tag":"tempo"}]},{"name":"Control Engage","points":2,"desc":"Mid control setupea engage limpio","req":[{"role":"Mid","tag":"control"},{"role":"Support","tag":"engage"}]},{"name":"Creative Bot","points":1,"desc":"Bot creative con support engage genera picks","req":[{"role":"Bot","tag":"creative"},{"role":"Support","tag":"engage"}]},{"name":"Late Shotcall","points":2,"desc":"Shotcall protege escalado late","req":[{"role":null,"tag":"late"},{"role":null,"tag":"shotcall"}]},{"name":"Hands Check Duo","points":2,"desc":"Dos manos fuertes ganan skirmishes","req":[{"role":null,"tag":"hands"},{"role":null,"tag":"hands"}]},{"name":"Carry Jungle Bot","points":2,"desc":"Jungle carry y bot carry reparten recursos","req":[{"role":"Jungle","tag":"carry"},{"role":"Bot","tag":"carry"}]},{"name":"Roam Support","points":2,"desc":"Support creativo y mid roam mueven mapa","req":[{"role":"Support","tag":"creative"},{"role":"Mid","tag":"roam"}]},{"name":"Teamfight Call","points":2,"desc":"Teamfight + shotcall mejora 5v5","req":[{"role":null,"tag":"teamfight"},{"role":null,"tag":"shotcall"}]},{"name":"Skirmish Tempo","points":2,"desc":"Skirmish con tempo acelera early","req":[{"role":null,"tag":"skirmish"},{"role":"Jungle","tag":"tempo"}]},{"name":"Vision Macro","points":2,"desc":"Vision y macro traducen ventajas","req":[{"role":null,"tag":"vision"},{"role":null,"tag":"macro"}]},{"name":"Upset Angle","points":1,"desc":"Upset con engage encuentra sorpresa","req":[{"role":null,"tag":"upset"},{"role":null,"tag":"engage"}]},{"name":"Top Hands Jungle Tempo","points":3,"desc":"Top mecánico con jungla tempo amenaza dive","req":[{"role":"Top","tag":"hands"},{"role":"Jungle","tag":"tempo"}]},{"name":"Mid Hands Support Engage","points":3,"desc":"Mid mecánico capitaliza engage del support","req":[{"role":"Mid","tag":"hands"},{"role":"Support","tag":"engage"}]},{"name":"Bot Carry Jungle Tempo","points":3,"desc":"Jungle tempo juega alrededor del carry bot","req":[{"role":"Bot","tag":"carry"},{"role":"Jungle","tag":"tempo"}]},{"name":"Control Shotcall Engage","points":3,"desc":"Control, shotcall y engage ejecutan limpio","req":[{"role":"Mid","tag":"control"},{"role":null,"tag":"shotcall"},{"role":"Support","tag":"engage"}]},{"name":"Triple Clutch","points":3,"desc":"Tres clutch suben finales y game 5","req":[{"role":null,"tag":"clutch"},{"role":null,"tag":"clutch"},{"role":null,"tag":"clutch"}]},{"name":"Triple Carry","points":3,"desc":"Tres carries aumentan techo mecánico","req":[{"role":null,"tag":"carry"},{"role":null,"tag":"carry"},{"role":null,"tag":"carry"}]},{"name":"Stable Macro Late","points":3,"desc":"Estabilidad, macro y late juegan al scaling","req":[{"role":null,"tag":"stable"},{"role":null,"tag":"macro"},{"role":null,"tag":"late"}]},{"name":"Tempo Roam Engage","points":3,"desc":"Tempo + roam + engage crean picks","req":[{"role":"Jungle","tag":"tempo"},{"role":"Mid","tag":"roam"},{"role":"Support","tag":"engage"}]},{"name":"Vision Baron Setup","points":2,"desc":"Vision + jungle tempo mejora Nashor","req":[{"role":null,"tag":"vision"},{"role":"Jungle","tag":"tempo"}]},{"name":"Bot Late Peel","points":2,"desc":"Late carry con shotcall evita throw","req":[{"role":"Bot","tag":"late"},{"role":"Support","tag":"shotcall"}]},{"name":"Creative Chaos","points":2,"desc":"Creative + skirmish generan partidas raras","req":[{"role":null,"tag":"creative"},{"role":null,"tag":"skirmish"}]},{"name":"Weakside Macro","points":2,"desc":"Weakside + macro libera recursos","req":[{"role":null,"tag":"weakside"},{"role":null,"tag":"macro"}]},{"name":"Hands Carry Control","points":3,"desc":"Hands, carry y control combinan daño y orden","req":[{"role":null,"tag":"hands"},{"role":null,"tag":"carry"},{"role":null,"tag":"control"}]},{"name":"Support Engage Jungle Carry","points":2,"desc":"Engage habilita jungla carry","req":[{"role":"Support","tag":"engage"},{"role":"Jungle","tag":"carry"}]},{"name":"Mid Control Bot Late","points":2,"desc":"Control mid compra tiempo al bot late","req":[{"role":"Mid","tag":"control"},{"role":"Bot","tag":"late"}]},{"name":"Top Carry Support Shotcall","points":2,"desc":"Shotcall organiza recursos para top carry","req":[{"role":"Top","tag":"carry"},{"role":"Support","tag":"shotcall"}]},{"name":"Roam Bot Side","points":2,"desc":"Mid roam habilita bot side","req":[{"role":null,"tag":"bot"},{"role":"Mid","tag":"roam"}]},{"name":"Frontline Stable","points":1,"desc":"Stable + engage da frontline","req":[{"role":null,"tag":"stable"},{"role":null,"tag":"engage"}]},{"name":"Ace Threat","points":2,"desc":"Carry + clutch amenaza ace tardío","req":[{"role":null,"tag":"carry"},{"role":null,"tag":"clutch"}]},{"name":"Objective Control","points":2,"desc":"Tempo + vision/control gana objetivos","req":[{"role":"Jungle","tag":"tempo"},{"role":null,"tag":"vision"},{"role":null,"tag":"control"}]},{"name":"Dive Comp","points":3,"desc":"Top carry, jungle tempo y support engage divean","req":[{"role":"Top","tag":"carry"},{"role":"Jungle","tag":"tempo"},{"role":"Support","tag":"engage"}]},{"name":"Pick Comp","points":3,"desc":"Vision, roam y engage castigan errores","req":[{"role":null,"tag":"vision"},{"role":"Mid","tag":"roam"},{"role":"Support","tag":"engage"}]},{"name":"Scaling Comp","points":3,"desc":"Late, control y shotcall escalan ordenado","req":[{"role":null,"tag":"late"},{"role":"Mid","tag":"control"},{"role":null,"tag":"shotcall"}]},{"name":"Brawl Comp","points":3,"desc":"Skirmish, hands y carry fuerzan peleas","req":[{"role":null,"tag":"skirmish"},{"role":null,"tag":"hands"},{"role":null,"tag":"carry"}]},{"name":"Classic LCK Spine","points":3,"desc":"Stable top, control mid y shotcall support","req":[{"role":"Top","tag":"stable"},{"role":"Mid","tag":"control"},{"role":"Support","tag":"shotcall"}]},{"name":"Classic LPL Fight","points":3,"desc":"Carry top, tempo jungle y bot carry","req":[{"role":"Top","tag":"carry"},{"role":"Jungle","tag":"tempo"},{"role":"Bot","tag":"carry"}]},{"name":"Western Upset","points":2,"desc":"Creative y upset abren ventanas raras","req":[{"role":null,"tag":"creative"},{"role":null,"tag":"upset"}]},{"name":"Calm Finish","points":2,"desc":"Clutch y shotcall reducen throws","req":[{"role":null,"tag":"clutch"},{"role":null,"tag":"shotcall"}]}];
   const OBJECTIVES = [
     { id:'first-run', name:'Primera run', text:'Completa cualquier run.', reward:20, goal:1, progress:s=>s.runs },
@@ -1912,7 +1912,7 @@
   function pickedLogo() { return picked()[0]?.logo || badge('20:19','team'); }
   function fmtDuration(sec) { const m = Math.floor(sec / 60); const s = String(sec % 60).padStart(2, '0'); return `${m}:${s}`; }
   function enemyTeam() { const blocked = usedOrgs(); const pool = ROSTERS.filter(r => !blocked.has(r.org)); return pick(pool.length ? pool : ROSTERS); }
-  function roundModifier() { const ps = picked(); const pool = METAS.map(x => ({ kind:'meta', name:x.name, ok:x.score(ps)>0 })).concat(QUESTS.map(x => ({ kind:'quest', name:x.name, ok:x.ok(ps) }))); return pick(pool); }
+  function roundModifier() { const ps = picked(); const safeQuests = QUESTS.filter(x => x && typeof x.ok === 'function'); const pool = METAS.map(x => ({ kind:'meta', name:x.name, ok:x.score(ps)>0 })).concat(safeQuests.map(x => ({ kind:'quest', name:x.name, ok:x.ok(ps) }))); return pick(pool); }
 
 
   function tagTone(points, bad) {

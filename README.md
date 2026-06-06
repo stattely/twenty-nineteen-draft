@@ -163,3 +163,10 @@ Cambios verificables:
 - Lazy-renders Teams only when opening Equipos to avoid heavy hidden DOM during simulation.
 - Fixes leftover setScreen('picks') calls.
 - Keeps no-scroll compact popovers.
+
+
+## V2.7.1 simulation restored
+
+- Fixes simulation crash caused by roster objects duplicated inside QUESTS.
+- Filters QUESTS to valid quest objects only.
+- Adds runtime simulation test during generation.
