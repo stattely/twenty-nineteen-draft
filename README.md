@@ -191,3 +191,16 @@ Cambios verificables:
 - Stage-based Chronos.
 - Instructions panel and softer light theme.
 - Image flags to avoid Windows emoji issues.
+
+
+## V2.9.1 final fixes
+
+- Tag hover fixed, translations, bracket results, MVP stars, team stats back button, role icons and current-team undo.
+
+
+## V2.9.1b hotfix
+
+- Removes player-card composition popover, keeps tag-only concise hover.
+- Ensures Spanish event labels at render time.
+- Ensures bracket final data is produced and displayed.
+- Restores role icons and fixes raw flag HTML in roll subtitle.
