@@ -257,3 +257,11 @@ Cambios verificables:
 - Adds mental tags: choker, pechoFrio, tilted, explosive, momentum, ice and antiTilt.
 - Chaos mode can trigger implosion events; winning with risky teams creates momentum.
 - Tournament field now uses fixed regional composition: Picks + 8-10 Asia + 5-7 Europe + filler.
+
+
+## V3.0.8 prime + inflections
+
+- Prime shop: if you draft 3+ players from one region, you can buy a regional Prime for 500 coins.
+- Run history now stores MVP count, momentum peaks/valleys, tilt moments and rush-win streaks.
+- Pick slots now show player team, year and adjusted average.
+- Foundation note added for future formats: league / MSI / First Stand.
