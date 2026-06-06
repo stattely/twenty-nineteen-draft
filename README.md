@@ -204,3 +204,21 @@ Cambios verificables:
 - Ensures Spanish event labels at render time.
 - Ensures bracket final data is produced and displayed.
 - Restores role icons and fixes raw flag HTML in roll subtitle.
+
+
+## V3.0.0 guided arcade UX
+
+- Adds Action Coach for zero-instruction play.
+- Removes noisy paragraphs and makes the primary action obvious.
+- Keeps fixes for tags, translations, bracket, MVP stars, team stats, role icons, bench undo and flags.
+
+
+## V3.0.1 guided hotfix
+
+- Fixes missing bracket panel and removes intrusive card popover.
+- Player tags now show concise native tooltip descriptions and remain visually contained.
+
+
+## V3.0.2 compact camelcase
+
+- Fixes bracket visibility, tag descriptions, compact screen spacing, Title Case labels and generic search placeholders.

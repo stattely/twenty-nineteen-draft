@@ -4,7 +4,7 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="theme-color" content="#0a1420" />
-  <title>Five’s Pick · V2.9.1</title>
+  <title>Five’s Pick · V3.0.2</title>
   <style>
     :root {
       --bg: #eef2f4;
@@ -309,7 +309,7 @@
     @keyframes cardFlash { 0% { transform: scale(.985); box-shadow: 0 0 0 0 rgba(200,170,110,0); } 50% { transform: scale(1.01); box-shadow: 0 0 0 10px rgba(200,170,110,.12); } 100% { transform: scale(1); box-shadow: none; } }
     @keyframes sweepIn { 0% { opacity: .35; transform: translateY(8px); } 100% { opacity: 1; transform: translateY(0); } }
   
-    /* V2.9.1 verified role icons: these use the uploaded PNGs directly as background images. */
+    /* V3.0.2 verified role icons: these use the uploaded PNGs directly as background images. */
     .version-pill {
       border: 1px solid rgba(240,213,138,.34);
       border-radius: 999px;
@@ -449,7 +449,7 @@
     }
 
   
-    /* V2.9.1 HARD ROLE FIX:
+    /* V3.0.2 HARD ROLE FIX:
        These are the exact PNGs from IconsPositions.zip, copied raw into /assets/roles-original-v24/.
        The wrapper has no circle/border/background so the uploaded icon is not double-framed or rescaled weirdly. */
     .rolefix-pill {
@@ -511,7 +511,7 @@
     .chrono-card::after { content:''; position:absolute; inset:0; background:linear-gradient(115deg, transparent, rgba(255,255,255,.09), transparent); transform:translateX(-120%); animation:chartSweep 2.8s ease-in-out infinite; pointer-events:none; }
 
 
-    /* V2.9.1 */
+    /* V3.0.2 */
     .result-overlay.map-win .result-card, .result-overlay.map-loss .result-card {
       min-width: min(640px, calc(100vw - 28px));
       padding: 22px 28px;
@@ -591,7 +591,7 @@
     @media (max-width: 760px) { .objective-grid, .chrono-grid { grid-template-columns: 1fr; } .result-overlay.map-win .result-card, .result-overlay.map-loss .result-card { min-width: calc(100vw - 22px); padding: 18px; } }
 
   
-    /* V2.9.1 colorful composition tooltips */
+    /* V3.0.2 colorful composition tooltips */
     .icon-only { min-width: 48px; padding-inline: 13px; }
     .compose-popover {
       pointer-events: none;
@@ -641,7 +641,7 @@
     @keyframes softPulse { 50% { box-shadow: 0 0 0 5px rgba(16,185,129,.10); } }
 
   
-    /* V2.9.1 Teams archive */
+    /* V3.0.2 Teams archive */
     .teams-grid {
       display: grid;
       grid-template-columns: repeat(3, minmax(0, 1fr));
@@ -786,7 +786,7 @@
     }
 
   
-    /* V2.9.1 roster alignment, filters and wallet */
+    /* V3.0.2 roster alignment, filters and wallet */
     .global-wallet {
       display: inline-flex;
       align-items: center;
@@ -897,7 +897,7 @@
     }
 
   
-    /* V2.9.1 market popover + tag tooltips */
+    /* V3.0.2 market popover + tag tooltips */
     .player-card { overflow: visible; }
     .player-card:hover, .player-card:focus-within { z-index: 9; }
     .market, .player-grid { overflow: visible; }
@@ -973,7 +973,7 @@
     }
 
   
-    /* V2.9.1 compact team cards + drawn flags */
+    /* V3.0.2 compact team cards + drawn flags */
     .teams-grid { gap: 10px; }
     .team-card, .team-card-inner { min-height: 455px; }
     .team-face {
@@ -1099,7 +1099,7 @@
     }
 
   
-    /* V2.9.1 no-scroll compact popovers */
+    /* V3.0.2 no-scroll compact popovers */
     .compose-popover,
     .compose-popover.compact-popover {
       width: min(255px, calc(100vw - 28px)) !important;
@@ -1170,7 +1170,7 @@
     }
 
   
-    /* V2.9.1 simulation recovery */
+    /* V3.0.2 simulation recovery */
     .error-bubble {
       color: #fecaca !important;
       border-color: rgba(248,113,113,.45) !important;
@@ -1180,7 +1180,7 @@
     #simScreen:not([hidden]) { display: block; }
 
   
-    /* V2.9.1 flags */
+    /* V3.0.2 flags */
     .flag-kr {
       background: #fff;
     }
@@ -1225,7 +1225,7 @@
     }
 
   
-    /* V2.9.1 final systems */
+    /* V3.0.2 final systems */
     .bracket-panel {
       border: 1px solid var(--line);
       border-radius: 18px;
@@ -1309,7 +1309,7 @@
     }
 
   
-    /* V2.9.1 final polish */
+    /* V3.0.2 final polish */
     body:not(.dark) {
       --bg: #ece7dc;
       --panel: rgba(255,250,238,.88);
@@ -1449,7 +1449,7 @@
     }
 
   
-    /* V2.9.1 targeted fixes */
+    /* V3.0.2 targeted fixes */
     .player-card > .compose-popover { display: none !important; }
     .tag-stack { overflow: visible !important; max-height: none !important; }
     .tag-stack .player-tag {
@@ -1515,7 +1515,7 @@
     .bracket-other span { display:block; color:var(--muted); font-size:11px; padding:3px 0; }
 
   
-    /* V2.9.1b visual cleanup */
+    /* V3.0.2b visual cleanup */
     .player-card .compose-popover { display:none !important; }
     .tag-stack {
       overflow: visible !important;
@@ -1562,15 +1562,453 @@
       display: block !important;
     }
 
+  
+    /* V3.0.2 Guided Arcade UX */
+    .screen-head .muted,
+    .panel > .muted,
+    .calc-note {
+      display: none !important;
+    }
+    .instructions-box {
+      padding: 8px 10px !important;
+      margin-bottom: 10px !important;
+      opacity: .86;
+    }
+    .instructions-box:not([open]) {
+      max-width: 280px;
+    }
+    .instructions-box summary {
+      font-size: 10px !important;
+    }
+    .action-coach {
+      display: grid;
+      grid-template-columns: auto minmax(0, 1fr) auto;
+      gap: 12px;
+      align-items: center;
+      padding: 12px !important;
+      margin-bottom: 14px;
+      border-color: rgba(200,170,110,.34) !important;
+      background:
+        radial-gradient(circle at 0 50%, rgba(10,200,185,.12), transparent 36%),
+        radial-gradient(circle at 100% 50%, rgba(200,170,110,.16), transparent 32%),
+        var(--panel) !important;
+    }
+    .coach-steps {
+      display: inline-flex;
+      gap: 6px;
+      flex-wrap: wrap;
+    }
+    .coach-steps span {
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      padding: 6px 8px;
+      font-size: 10px;
+      font-weight: 1000;
+      color: var(--muted);
+      text-transform: uppercase;
+      letter-spacing: .04em;
+      background: rgba(255,255,255,.03);
+    }
+    .coach-steps span.is-active {
+      color: #07121a;
+      border-color: transparent;
+      background: linear-gradient(135deg, var(--gold), var(--gold-2));
+      box-shadow: 0 0 0 4px rgba(200,170,110,.12);
+    }
+    .coach-main {
+      min-width: 0;
+    }
+    .coach-main strong {
+      display:block;
+      font-size: clamp(16px, 2.2vw, 24px);
+      letter-spacing: -.03em;
+    }
+    .coach-main small {
+      color: var(--muted);
+      font-weight: 800;
+    }
+    .coach-cta,
+    [data-action="roll"],
+    [data-action="simulate"] {
+      position: relative;
+      overflow: hidden;
+    }
+    .coach-cta {
+      border: 0;
+      border-radius: 999px;
+      padding: 12px 16px;
+      background: linear-gradient(135deg, var(--gold), var(--gold-2));
+      color: #07121a;
+      font-weight: 1000;
+      text-transform: uppercase;
+      letter-spacing: .08em;
+      cursor: pointer;
+      box-shadow: 0 12px 30px rgba(200,170,110,.18);
+      animation: ctaBreath 1.8s ease-in-out infinite;
+    }
+    @keyframes ctaBreath {
+      0%,100% { transform: translateY(0); box-shadow: 0 12px 30px rgba(200,170,110,.15); }
+      50% { transform: translateY(-1px); box-shadow: 0 18px 44px rgba(200,170,110,.30); }
+    }
+    .player-card .compose-popover { display:none !important; }
+    .tag-stack {
+      overflow: visible !important;
+      max-height: none !important;
+      align-content: start;
+    }
+    .tag-stack .player-tag {
+      font-size: 10px;
+      border-radius: 999px;
+      padding: 4px 8px;
+      font-weight: 1000;
+      text-transform: uppercase;
+      position: relative;
+      cursor: help;
+    }
+    .tag-purple { color:#e9d5ff !important; border-color:rgba(168,85,247,.55) !important; background:rgba(168,85,247,.13) !important; }
+    .tag-gold { color:#ffe49a !important; border-color:rgba(255,212,96,.55) !important; background:rgba(255,212,96,.13) !important; }
+    .tag-blue { color:#bfdbfe !important; border-color:rgba(59,130,246,.48) !important; background:rgba(59,130,246,.12) !important; }
+    .tag-green { color:#bbf7d0 !important; border-color:rgba(34,197,94,.48) !important; background:rgba(34,197,94,.12) !important; }
+    .tag-yellow { color:#fff4bf !important; border-color:rgba(255,238,170,.48) !important; background:rgba(255,238,170,.10) !important; }
+    .tag-red { color:#fecaca !important; border-color:rgba(248,113,113,.52) !important; background:rgba(248,113,113,.12) !important; }
+    .tag-gray { color:#d1d5db !important; border-color:rgba(156,163,175,.32) !important; background:rgba(156,163,175,.10) !important; }
+    .slot {
+      background: linear-gradient(135deg, rgba(10,200,185,.08), rgba(200,170,110,.08)), var(--panel-2) !important;
+      border-color: rgba(10,200,185,.28) !important;
+    }
+    .slot.filled {
+      border-color: rgba(200,170,110,.52) !important;
+      box-shadow: 0 0 0 1px rgba(200,170,110,.13), 0 10px 28px rgba(0,0,0,.16);
+    }
+    .market-card {
+      opacity: .84;
+      transform: scale(.98);
+    }
+    .market-card:hover {
+      opacity: 1;
+      transform: translateY(-2px) scale(1);
+    }
+    .roll-zone,
+    .players-panel,
+    .side-panel {
+      border-color: rgba(200,170,110,.18);
+    }
+    .team-player-role img.role-glyph,
+    .role-chip img.role-glyph {
+      width: 100% !important;
+      height: 100% !important;
+      object-fit: contain !important;
+      display: block !important;
+    }
+    .sim-bubble.is-good, .sim-bubble.is-gold {
+      justify-self: end;
+      width: auto;
+      min-height: 0;
+      padding: 8px 12px !important;
+      border-radius: 999px !important;
+      color: #07121a !important;
+      background: linear-gradient(135deg, #c8aa6e, #f0d58a) !important;
+      border-color: transparent !important;
+      font-size: 12px !important;
+    }
+    .sim-bubble.is-good { background: linear-gradient(135deg, #24b47e, #bbf7d0) !important; }
+    .live-focus.is-quiet { min-height: 0 !important; display:flex; justify-content:flex-end; }
+    .bracket-other { display:grid; gap:6px; }
+    .bracket-other details { border:1px solid var(--line); border-radius:12px; padding:7px 9px; }
+    .bracket-other summary { cursor:pointer; font-weight:1000; color:var(--gold-2); font-size:11px; text-transform:uppercase; }
+    .bracket-other span { display:block; color:var(--muted); font-size:11px; padding:3px 0; }
+    @media (max-width: 760px) {
+      .action-coach {
+        grid-template-columns: 1fr;
+        gap: 8px;
+      }
+      .coach-cta {
+        width: 100%;
+      }
+      .coach-steps {
+        justify-content: space-between;
+      }
+      .coach-steps span {
+        flex: 1;
+        text-align: center;
+        padding-inline: 4px;
+      }
+      .instructions-box:not([open]) {
+        max-width: none;
+      }
+    }
+
+  
+    /* V3.0.2 hotfix: clean cards, tag tooltips, bracket visibility */
+    .player-card { overflow: hidden !important; }
+    .player-card .compose-popover { display: none !important; }
+    .player-card .tag-hovercard { display: none !important; }
+    .tag-stack {
+      max-height: 56px !important;
+      overflow: hidden !important;
+      padding-bottom: 0 !important;
+      margin-bottom: 28px !important;
+      align-content: flex-start !important;
+    }
+    .tag-stack .player-tag {
+      display: inline-flex !important;
+      align-items: center;
+      min-height: 22px !important;
+      max-width: 100%;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      padding: 3px 7px !important;
+      font-size: 9px !important;
+      font-weight: 1000;
+      text-transform: uppercase;
+      white-space: nowrap;
+      cursor: help;
+    }
+    .tag-purple { color:#e9d5ff !important; border-color:rgba(168,85,247,.55) !important; background:rgba(168,85,247,.13) !important; }
+    .tag-gold { color:#ffe49a !important; border-color:rgba(255,212,96,.55) !important; background:rgba(255,212,96,.13) !important; }
+    .tag-blue { color:#bfdbfe !important; border-color:rgba(59,130,246,.48) !important; background:rgba(59,130,246,.12) !important; }
+    .tag-green { color:#bbf7d0 !important; border-color:rgba(34,197,94,.48) !important; background:rgba(34,197,94,.12) !important; }
+    .tag-yellow { color:#fff4bf !important; border-color:rgba(255,238,170,.48) !important; background:rgba(255,238,170,.10) !important; }
+    .tag-red { color:#fecaca !important; border-color:rgba(248,113,113,.52) !important; background:rgba(248,113,113,.12) !important; }
+    .tag-gray { color:#d1d5db !important; border-color:rgba(156,163,175,.32) !important; background:rgba(156,163,175,.10) !important; }
+    .bracket-board {
+      display: grid;
+      gap: 10px;
+      margin: 10px 0 12px;
+    }
+    .bracket-champion {
+      display: inline-flex;
+      width: fit-content;
+      border: 1px solid rgba(36,180,126,.46);
+      color: #bbf7d0;
+      border-radius: 999px;
+      padding: 6px 9px;
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: .04em;
+    }
+    .bracket-panel {
+      position: relative;
+      z-index: 1;
+    }
+    .slot {
+      background: linear-gradient(135deg, rgba(10,200,185,.10), rgba(200,170,110,.10)), var(--panel-2) !important;
+      border-color: rgba(10,200,185,.30) !important;
+    }
+    .slot.filled {
+      border-color: rgba(200,170,110,.55) !important;
+      box-shadow: 0 0 0 1px rgba(200,170,110,.13), 0 10px 28px rgba(0,0,0,.18);
+    }
+    .team-player-role img.role-glyph,
+    .role-chip img.role-glyph {
+      width: 100% !important;
+      height: 100% !important;
+      object-fit: contain !important;
+      display: block !important;
+    }
+
+  
+    /* V3.0.2 compact layout + title-case polish */
+    .screen-head.panel {
+      padding: 12px 14px !important;
+      margin-bottom: 10px !important;
+      min-height: 0 !important;
+      align-items: center !important;
+    }
+    .screen-head h2 {
+      font-size: clamp(26px, 4vw, 52px) !important;
+      line-height: .92 !important;
+      margin: 0 !important;
+    }
+    .screen-head .eyebrow {
+      font-size: 10px !important;
+      margin-bottom: 4px !important;
+      text-transform: none !important;
+    }
+    .screen-actions {
+      gap: 6px !important;
+    }
+    .panel {
+      padding: 12px !important;
+      border-radius: 20px !important;
+    }
+    main {
+      gap: 10px !important;
+    }
+    .action-coach {
+      padding: 10px 12px !important;
+      margin-bottom: 10px !important;
+      gap: 10px !important;
+    }
+    .coach-main strong {
+      font-size: clamp(15px, 1.8vw, 21px) !important;
+    }
+    .coach-main small {
+      font-size: 11px !important;
+    }
+    .coach-steps span {
+      padding: 5px 7px !important;
+      font-size: 9px !important;
+    }
+    .coach-cta {
+      padding: 10px 14px !important;
+      font-size: 11px !important;
+      animation-duration: 2.4s !important;
+    }
+    .instructions-box {
+      padding: 7px 10px !important;
+      margin-bottom: 8px !important;
+    }
+    .draft-layout, .score-layout {
+      gap: 10px !important;
+    }
+    .roll-card {
+      min-height: 0 !important;
+      padding: 12px !important;
+    }
+    .players-grid {
+      gap: 10px !important;
+    }
+    .player-card {
+      min-height: 220px !important;
+      padding: 11px 11px 40px !important;
+      overflow: hidden !important;
+      isolation: isolate;
+    }
+    .player-card .compose-popover,
+    .player-card .tag-hovercard {
+      display: none !important;
+    }
+    .tag-stack {
+      max-height: 52px !important;
+      overflow: visible !important;
+      padding-bottom: 0 !important;
+      margin-bottom: 24px !important;
+      position: relative;
+      z-index: 3;
+    }
+    .tag-stack .player-tag {
+      position: relative;
+      display: inline-flex !important;
+      align-items: center;
+      min-height: 21px !important;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      padding: 3px 7px !important;
+      font-size: 9px !important;
+      font-weight: 1000;
+      text-transform: uppercase;
+      white-space: nowrap;
+      cursor: help;
+    }
+    .mini-tag-tip {
+      pointer-events: none;
+      position: absolute;
+      left: 0;
+      bottom: calc(100% + 7px);
+      z-index: 50;
+      width: min(210px, 72vw);
+      display: grid;
+      gap: 3px;
+      border: 1px solid rgba(240,213,138,.30);
+      border-radius: 12px;
+      padding: 8px 9px;
+      background: #08131d;
+      color: #e5edf3;
+      box-shadow: 0 14px 34px rgba(0,0,0,.36);
+      opacity: 0;
+      transform: translateY(5px) scale(.98);
+      transition: opacity .12s ease, transform .12s ease;
+    }
+    .mini-tag-tip strong {
+      color: var(--gold-2);
+      font-size: 10px;
+      text-transform: uppercase;
+      letter-spacing: .06em;
+    }
+    .mini-tag-tip em {
+      color: #b8c3cf;
+      font-size: 11px;
+      line-height: 1.25;
+      font-style: normal;
+      text-transform: none;
+    }
+    .player-tag:hover .mini-tag-tip,
+    .player-tag:focus .mini-tag-tip,
+    .player-tag:focus-within .mini-tag-tip {
+      opacity: 1;
+      transform: translateY(0) scale(1);
+    }
+    .player-card:has(.player-tag:hover),
+    .player-card:has(.player-tag:focus) {
+      overflow: visible !important;
+      z-index: 30;
+    }
+    .tag-purple { color:#e9d5ff !important; border-color:rgba(168,85,247,.55) !important; background:rgba(168,85,247,.13) !important; }
+    .tag-gold { color:#ffe49a !important; border-color:rgba(255,212,96,.55) !important; background:rgba(255,212,96,.13) !important; }
+    .tag-blue { color:#bfdbfe !important; border-color:rgba(59,130,246,.48) !important; background:rgba(59,130,246,.12) !important; }
+    .tag-green { color:#bbf7d0 !important; border-color:rgba(34,197,94,.48) !important; background:rgba(34,197,94,.12) !important; }
+    .tag-yellow { color:#fff4bf !important; border-color:rgba(255,238,170,.48) !important; background:rgba(255,238,170,.10) !important; }
+    .tag-red { color:#fecaca !important; border-color:rgba(248,113,113,.52) !important; background:rgba(248,113,113,.12) !important; }
+    .tag-gray { color:#d1d5db !important; border-color:rgba(156,163,175,.32) !important; background:rgba(156,163,175,.10) !important; }
+    .bracket-board {
+      display: grid !important;
+      gap: 8px !important;
+      margin: 8px 0 !important;
+    }
+    .bracket-panel {
+      padding: 10px !important;
+      border-radius: 16px !important;
+    }
+    .bracket-teams, .bracket-path {
+      gap: 5px !important;
+    }
+    .bracket-teams span, .bracket-path span {
+      padding: 4px 7px !important;
+      font-size: 10px !important;
+    }
+    .bracket-other details {
+      padding: 6px 8px !important;
+    }
+    .bracket-other summary {
+      font-size: 10px !important;
+    }
+    .team-tools {
+      padding: 10px !important;
+      gap: 8px !important;
+    }
+    .team-tools input,
+    .team-tools select {
+      min-height: 38px !important;
+      font-size: 12px !important;
+    }
+    @media (max-width: 760px) {
+      .screen-head.panel {
+        padding: 10px !important;
+      }
+      .screen-head h2 {
+        font-size: 32px !important;
+      }
+      .action-coach {
+        padding: 9px !important;
+      }
+      .player-card {
+        min-height: 205px !important;
+      }
+      .mini-tag-tip {
+        width: min(190px, 70vw);
+      }
+    }
+
   </style>
 </head>
 <body class="dark">
-  <!-- BUILD_MARKER_V291_FINAL_FIXES -->
+  <!-- BUILD_MARKER_V302_COMPACT_CAMELCASE -->
   <div class="app">
     <header class="topbar">
       <a class="brand" href="#" data-action="screen" data-screen="draft" aria-label="inicio"><span class="brand-mark">5V</span><span class="brand-copy">Five’s<br>Pick</span></a>
-      <div class="microline"><strong>Roll</strong><span>·</span><strong>Pick</strong><span>·</span><strong>Break</strong><span id="seedLabel">seed #LOCAL</span><span class="rolefix-pill">V2.9.1</span><span class="version-pill">V2.9.1</span></div>
-      <nav class="quick-actions"><button type="button" data-action="lang" id="langBtn" title="Cambiar idioma">ES</button><span class="global-wallet" title="Coins guardadas localmente">🪙 <b id="globalWallet">0</b></span><button type="button" data-action="theme">tema</button><button type="button" data-action="copy">copiar</button><button type="button" data-action="reset">reset</button></nav>
+      <div class="microline"><strong>Roll</strong><span>·</span><strong>Pick</strong><span>·</span><strong>Break</strong><span id="seedLabel">seed #LOCAL</span><span class="rolefix-pill">V3.0.2</span><span class="version-pill">V3.0.2</span></div>
+      <nav class="quick-actions"><button type="button" data-action="lang" id="langBtn" title="Cambiar idioma">ES</button><span class="global-wallet" title="Coins guardadas localmente">🪙 <b id="globalWallet">0</b></span><button type="button" data-action="theme">Tema</button><button type="button" data-action="copy">copiar</button><button type="button" data-action="reset">reset</button></nav>
     </header>
     <nav class="tabs" aria-label="pantallas"><button type="button" data-action="screen" data-screen="draft" aria-pressed="true" title="Arma tu roster con tiradas, tienda y picks">Picks</button><button type="button" data-action="screen" data-screen="sim" aria-pressed="false" title="Ve la simulación partido por partido">Simulación</button><button type="button" data-action="screen" data-screen="stats" aria-pressed="false" title="Consulta tus estadísticas acumuladas">Stats</button><button type="button" data-action="screen" data-screen="history" aria-pressed="false" title="Revisa runs anteriores una por una">Historia</button><button type="button" data-action="screen" data-screen="teams" aria-pressed="false" title="Explora equipos, rosters y tags">Equipos</button><button type="button" data-action="screen" data-screen="objectives" aria-pressed="false" title="Objetivos y recompensas">Objetivos</button><button type="button" data-action="screen" data-screen="chrono" aria-pressed="false" title="Modo caótico experimental">Chrono</button></nav>
     <main>
@@ -1580,14 +2018,28 @@
           <p><b>Roll</b>: abre un roster. <b>Pick</b>: elige 5 roles. <b>Market</b>: compra suplentes y usa 1 swap por run. <b>Chrono</b>: compra efectos por fase. <b>Simular</b>: juega Swiss, playoffs y final.</p>
         </div>
       </details>
+      <section class="action-coach panel" id="actionCoach">
+        <div class="coach-steps" id="coachSteps">
+          <span data-step="roll">1 Roll</span>
+          <span data-step="pick">2 Pick</span>
+          <span data-step="sim">3 Sim</span>
+          <span data-step="claim">4 Claim</span>
+        </div>
+        <div class="coach-main">
+          <strong id="coachTitle">Roll para empezar</strong>
+          <small id="coachHint">La app te irá diciendo el siguiente paso.</small>
+        </div>
+        <button type="button" class="coach-cta" id="coachCta" data-action="coachNext">Tirar</button>
+      </section>
+
       <section id="draftScreen" data-panel="draft">
         <div class="layout">
           <div class="main-col">
             <section class="panel hero">
               <div>
                 <p class="eyebrow">League of Legends · Worlds / MSI / First Stand</p>
-                <h1>Welcome to Five’s Pick</h1>
-                <p class="lead">Roll the legends. Build your five. Break the Nexus.</p>
+                <h1>Five’s Pick</h1>
+                <p class="lead">Roll · Pick · Break the Nexus.</p>
                 <div class="actions">
                   <button type="button" class="btn primary" data-action="roll" data-icon="🎲">Tirar dado<span class="tip">Revela un equipo y torneo. Solo tienes 7 tiradas para completar tus 5 roles.</span></button>
                   <button type="button" class="btn" data-action="reroll" data-icon="↻">Reroll<span class="tip">Descarta la tirada actual y abre otra. Úsalo con cuidado: puede dejarte sin margen.</span></button>
@@ -1605,8 +2057,8 @@
               <div class="choice-group"><p>modo</p><div class="choices" data-setting="mode"><button type="button" class="choice" data-value="classic">clásico</button><button type="button" class="choice" data-value="blind">memoria</button></div></div>
               <div class="choice-group"><p>rosters</p><div class="choices" data-setting="filter"><button type="button" class="choice" data-value="all">todos</button><button type="button" class="choice" data-value="winner">campeones</button><button type="button" class="choice" data-value="east">east</button><button type="button" class="choice" data-value="west">west</button></div></div>
             </section>
-            <section class="panel roll-card tilt-card" id="rollCard"><div class="roll-line"><div class="team-logo" id="teamLogo">?</div><div class="roll-copy"><h2 id="rollTitle">Sin tirada</h2><p id="rollSub">Haz una tirada para revelar equipo, año y pool de jugadores.</p><div class="pill-row" id="rollTags"></div></div><button type="button" class="btn" data-action="skip" data-icon="→">Saltar</button></div></section>
-            <section class="players-grid" id="players"><div class="empty">Tira el dado para abrir tu primer roster.</div></section>
+            <section class="panel roll-card tilt-card" id="rollCard"><div class="roll-line"><div class="team-logo" id="teamLogo">?</div><div class="roll-copy"><h2 id="rollTitle">Sin tirada</h2><p id="rollSub">Tira y elige un jugador.</p><div class="pill-row" id="rollTags"></div></div><button type="button" class="btn" data-action="skip" data-icon="→">Saltar</button></div></section>
+            <section class="players-grid" id="players"><div class="empty">Tira para empezar.</div></section>
           </div>
           <aside class="panel side-col">
             <div class="side-head"><div><h2>5v</h2><p class="muted" id="summarySeed">seed local</p></div><span class="picks-count" id="picksCount">0/5</span></div>
@@ -1614,24 +2066,24 @@
             <div class="wallet"><div><span>coins</span><strong id="coinCount">0</strong></div><p class="muted" id="coinHint">se guardan localmente</p></div>
             <div class="slots" id="slots"></div>
             <section class="side-section"><div class="section-title"><h3>Tienda</h3><button type="button" class="small-btn" data-action="market">Rotar</button></div><p class="muted">Cambia con cada tirada. Rotación manual: 1 vez por run y 10 coins.</p><div class="market" id="market"></div></section>
-            <section class="side-section challenge" id="metaBox"><h3>Meta</h3><p id="metaText">Se revela con la primera tirada.</p></section>
-            <section class="challenge" id="questBox"><h3>Quest</h3><p id="questText">Se revela con la primera tirada.</p></section>
-            <section class="challenge" id="synergyBox"><h3>Sinergias</h3><p id="synergyReasons">Sin picks todavía.</p></section>
+            <section class="side-section challenge" id="metaBox"><h3>Meta</h3><p id="metaText">Primera tirada.</p></section>
+            <section class="challenge" id="questBox"><h3>Quest</h3><p id="questText">Primera tirada.</p></section>
+            <section class="challenge" id="synergyBox"><h3>Sinergias</h3><p id="synergyReasons">Sin picks.</p></section>
             <section class="side-section results" id="results"></section>
             <section class="side-section challenge chrono-box" id="chronoBox"><h3>Chrono Lab</h3><p>Modo caótico desbloqueable con poderes, resets de mapa y eventos raros.</p><div class="chrono-teaser"><span>Unlock: 3 wins</span><span>Reset map · 60c</span></div></section>
           </aside>
         </div>
       </section>
       <section id="simScreen" data-panel="sim" hidden>
-        <div class="screen-head panel"><div><p class="eyebrow">match room</p><h2>simulación</h2><p class="muted" id="simSubtitle">completa tu 5v para correr la run.</p></div><div class="screen-actions"><button type="button" class="btn" data-action="screen" data-screen="draft" data-icon="←">Picks</button><button type="button" class="btn primary" data-action="reset" data-icon="↻">repetir</button><button type="button" class="btn" data-action="screen" data-screen="stats" data-icon="▦">Stats</button></div></div>
-        <section class="panel sim-board"><div class="scoreline" id="simScoreline"></div><div class="focus" id="liveFocus"><p class="muted">sin simulación cargada.</p></div><div class="timeline" id="simTimeline"></div></section>
+        <div class="screen-head panel"><div><p class="eyebrow">Match Room</p><h2>Simulación</h2><p class="muted" id="simSubtitle">completa tu 5v para correr la run.</p></div><div class="screen-actions"><button type="button" class="btn" data-action="screen" data-screen="draft" data-icon="←">Picks</button><button type="button" class="btn primary" data-action="reset" data-icon="↻">Repetir</button><button type="button" class="btn" data-action="screen" data-screen="stats" data-icon="▦">Stats</button></div></div>
+        <section class="panel sim-board"><div class="scoreline" id="simScoreline"></div><div class="bracket-board" id="bracketBoard"></div><div class="focus" id="liveFocus"><p class="muted">sin simulación cargada.</p></div><div class="timeline" id="simTimeline"></div></section>
       </section>
       <section id="statsScreen" data-panel="stats" hidden>
-        <div class="screen-head panel"><div><p class="eyebrow">scoreboard</p><h2>Estadísticas</h2><p class="muted"></p></div><div class="screen-actions"><button type="button" class="btn" data-action="screen" data-screen="draft" data-icon="←">Picks</button><button type="button" class="btn" data-action="screen" data-screen="history" data-icon="≣">Historia</button><button type="button" class="btn" data-action="clearStats" data-icon="×">Limpiar stats</button></div></div>
+        <div class="screen-head panel"><div><p class="eyebrow">Scoreboard</p><h2>Estadísticas</h2><p class="muted"></p></div><div class="screen-actions"><button type="button" class="btn" data-action="screen" data-screen="draft" data-icon="←">Picks</button><button type="button" class="btn" data-action="screen" data-screen="history" data-icon="≣">Historia</button><button type="button" class="btn" data-action="clearStats" data-icon="×">Limpiar stats</button></div></div>
         <section class="score-layout"><div class="score-grid" id="scoreGrid"></div><article class="panel"><h3>Últimas runs</h3><div class="ledger" id="runLedger"></div></article><article class="panel"><h3>Top picks</h3><div class="ledger" id="pickLedger"></div></article><article class="panel wide"><h3>Historial de simulación</h3><div class="ledger" id="simLedger"></div></article></section>
       </section>
       <section id="historyScreen" data-panel="history" hidden>
-        <div class="screen-head panel"><div><p class="eyebrow">archive</p><h2>Historia</h2><p class="muted"></p></div><div class="screen-actions"><button type="button" class="btn" data-action="screen" data-screen="draft" data-icon="←">Picks</button><button type="button" class="btn" data-action="screen" data-screen="stats" data-icon="▦">Stats</button></div></div>
+        <div class="screen-head panel"><div><p class="eyebrow">Archive</p><h2>Historia</h2><p class="muted"></p></div><div class="screen-actions"><button type="button" class="btn" data-action="screen" data-screen="draft" data-icon="←">Picks</button><button type="button" class="btn" data-action="screen" data-screen="stats" data-icon="▦">Stats</button></div></div>
         <section class="panel"><div class="history-grid" id="historyLedger"></div></section>
       </section>
     </main>
@@ -1639,27 +2091,27 @@
 
 
       <section id="teamsScreen" data-panel="teams" hidden>
-        <div class="screen-head panel"><div><p class="eyebrow">team archive</p><h2>Equipos</h2><p class="muted">Rosters, tags y stats.</p></div><div class="screen-actions"><button type="button" class="btn" data-action="screen" data-screen="draft" data-icon="←">Picks</button><button type="button" class="btn" data-action="screen" data-screen="chrono" data-icon="↯">Chrono</button></div></div>
+        <div class="screen-head panel"><div><p class="eyebrow">Team Archive</p><h2>Equipos</h2><p class="muted"></p></div><div class="screen-actions"><button type="button" class="btn" data-action="screen" data-screen="draft" data-icon="←">Picks</button><button type="button" class="btn" data-action="screen" data-screen="chrono" data-icon="↯">Chrono</button></div></div>
         <section class="panel team-tools">
-          <label class="search-box">🔎 <input id="teamSearch" type="search" placeholder="Buscar C9, Cloud9, FNC, tag, jugador..." autocomplete="off"></label>
+          <label class="search-box">🔎 <input id="teamSearch" type="search" placeholder="Buscar equipo, jugador o tag..." autocomplete="off"></label>
           <select id="teamRegionFilter" aria-label="Filtrar por región"><option value="all">Todas las regiones</option><option value="LCK">LCK</option><option value="LPL">LPL</option><option value="LEC">LEC</option><option value="LCS">LCS</option><option value="PCS">PCS</option></select>
           <select id="teamRatingFilter" aria-label="Filtrar por average"><option value="all">Todos los averages</option><option value="97">97+</option><option value="94">94+</option><option value="90">90+</option><option value="85">85+</option></select>
-          <input id="teamTagFilter" type="search" placeholder="Filtrar tag: clutch, macro, flipper..." autocomplete="off">
+          <input id="teamTagFilter" type="search" placeholder="Filtrar tag..." autocomplete="off">
           <div class="view-toggle" aria-label="Columnas"><button type="button" data-action="teamColumns" data-cols="3" aria-pressed="true">3 cols</button><button type="button" data-action="teamColumns" data-cols="5" aria-pressed="false">5 cols</button></div>
         </section>
         <section class="teams-grid cols-3" id="teamsGrid"></section>
       </section>
 
       <section id="objectivesScreen" data-panel="objectives" hidden>
-        <div class="screen-head panel"><div><p class="eyebrow">coin board</p><h2>Objetivos</h2><p class="muted">Misiones por nivel.</p></div><div class="screen-actions"><button type="button" class="btn" data-action="screen" data-screen="draft" data-icon="←">Picks</button><button type="button" class="btn" data-action="screen" data-screen="chrono" data-icon="◈">Chrono</button></div></div>
+        <div class="screen-head panel"><div><p class="eyebrow">coin board</p><h2>Objetivos</h2><p class="muted"></p></div><div class="screen-actions"><button type="button" class="btn" data-action="screen" data-screen="draft" data-icon="←">Picks</button><button type="button" class="btn" data-action="screen" data-screen="chrono" data-icon="◈">Chrono</button></div></div>
         <section class="panel"><div class="objective-grid" id="objectiveList"></div></section>
       </section>
       <section id="chronoScreen" data-panel="chrono" hidden>
-        <div class="screen-head panel"><div><p class="eyebrow">experimental mode</p><h2>Chrono Lab</h2><p class="muted">Efectos por fase.</p></div><div class="screen-actions"><button type="button" class="btn" data-action="screen" data-screen="draft" data-icon="←">Picks</button><button type="button" class="btn" data-action="screen" data-screen="objectives" data-icon="◎">Objetivos</button></div></div>
+        <div class="screen-head panel"><div><p class="eyebrow">experimental mode</p><h2>Chrono Lab</h2><p class="muted"></p></div><div class="screen-actions"><button type="button" class="btn" data-action="screen" data-screen="draft" data-icon="←">Picks</button><button type="button" class="btn" data-action="screen" data-screen="objectives" data-icon="◎">Objetivos</button></div></div>
         <section class="panel"><div class="chrono-grid" id="chronoGrid"></div></section>
       </section>
 
-    <footer>Fan-made project not affiliated with Riot Games · V2.9.1</footer>
+    <footer>Fan-made project not affiliated with Riot Games · V3.0.2</footer>
   </div>
   <div class="result-overlay" id="resultOverlay" aria-live="polite"></div>
   <div class="toast" id="toast"></div>
@@ -1953,7 +2405,7 @@
 
   const $ = id => document.getElementById(id);
   const els = {};
-  ['seedLabel','draftScreen','simScreen','statsScreen','historyScreen','teamsScreen','objectivesScreen','chronoScreen','rollMeter','rollBar','runLogo','runMark','runNote','rollCard','teamLogo','rollTitle','rollSub','rollTags','players','summarySeed','picksCount','avgScore','synScore','cupChance','coinCount','coinHint','slots','market','metaBox','questBox','synergyBox','metaText','questText','synergyReasons','results','resultOverlay','toast','simSubtitle','simScoreline','liveFocus','simTimeline','bracketBoard','scoreGrid','runLedger','pickLedger','simLedger','historyLedger','teamsGrid','teamSearch','teamRegionFilter','teamRatingFilter','teamTagFilter','globalWallet','langBtn','objectiveList','chronoGrid'].forEach(id => els[id] = $(id));
+  ['seedLabel','draftScreen','simScreen','statsScreen','historyScreen','teamsScreen','objectivesScreen','chronoScreen','rollMeter','rollBar','runLogo','runMark','runNote','rollCard','teamLogo','rollTitle','rollSub','rollTags','players','summarySeed','picksCount','avgScore','synScore','cupChance','coinCount','coinHint','slots','market','metaBox','questBox','synergyBox','metaText','questText','synergyReasons','results','resultOverlay','toast','simSubtitle','simScoreline','liveFocus','simTimeline','bracketBoard','scoreGrid','runLedger','pickLedger','simLedger','historyLedger','teamsGrid','teamSearch','teamRegionFilter','teamRatingFilter','teamTagFilter','globalWallet','langBtn','actionCoach','coachSteps','coachTitle','coachHint','coachCta','objectiveList','chronoGrid'].forEach(id => els[id] = $(id));
 
   const PLAYER_PATCHES = {
     'g2-2018-Jankos-Jungle': { rating: 91, country: 'EU' },
@@ -2017,7 +2469,7 @@
       clutch: 'Rinde mejor bajo presión.',
       shotcall: 'Ordena calls y macro.',
       tempo: 'Acelera el mapa desde early.',
-      control: 'Prioriza visión, waves y zonas.',
+      control: 'Controla visión, oleadas y zonas.',
       engage: 'Inicia peleas y fuerza ángulos.',
       creative: 'Picks o rutas poco predecibles.',
       stable: 'Pocos errores y piso alto.',
@@ -2029,7 +2481,12 @@
       bot: 'El plan gira alrededor de botlane.',
       underdog: 'Peligroso por sorpresa y momentum.',
       upset: 'Capaz de romper pronósticos.',
-      weakside: 'Juega con pocos recursos sin perder el mapa.'
+      weakside: 'Juega con pocos recursos sin perder el mapa.',
+      roam: 'Rota rápido para crear ventaja en otras líneas.',
+      vision: 'Aporta control de mapa con visión.',
+      lane: 'Presiona fuerte desde línea.',
+      objective: 'Prioriza dragones, Nashor y cierres.',
+      teamfight: 'Fuerte en peleas 5v5.'
     };
 
   function boot() {
@@ -2058,6 +2515,7 @@
     if (action === 'screen') return setScreen(actionEl.dataset.screen);
     if (action === 'theme') return toggleTheme();
     if (action === 'lang') return toggleLang();
+    if (action === 'coachNext') return coachNext();
     if (action === 'copy') return copySummary();
     if (action === 'reset') return resetRun();
     if (action === 'roll') { fx(actionEl, 'roll'); return roll(); }
@@ -2526,8 +2984,9 @@
     return `<article class="team-card" data-team-card="${esc(r.id)}"><div class="team-card-inner"><section class="team-face front"><figure class="team-logo-big">${img(r.logo, r.short, badge(r.short,r.region))}</figure><div class="team-title"><h3>${esc(r.name)}</h3><p>${flagIcon(r.country)} ${esc(r.year)} · ${esc(r.tournament)} · ${esc(r.region)}</p></div><div class="team-overall"><div><strong>${r.tier}</strong><span>overall</span></div><div><strong>${Math.round(avg(r.players.map(p=>p.rating)))}</strong><span>players</span></div><div><strong>${prof.net > 0 ? '+' : ''}${prof.net}</strong><span>tag net</span></div></div><div class="team-tags">${teamTagsHtml(r)}</div><div class="team-actions"><button type="button" class="flip-btn" data-action="flipTeam">Ver roster</button><button type="button" class="flip-btn" data-action="teamStats">Stats</button></div></section><section class="team-face back"><div class="team-title"><h3>${esc(r.short)} ${r.year}</h3><p>Top · JG · Mid · Bot · Supp</p></div><div class="team-roster-list">${back}</div><button type="button" class="flip-btn" data-action="flipTeam">Volver</button></section><section class="team-face stats"><div class="team-title"><h3>${esc(r.short)} ${r.year}</h3><p>Team radar</p></div>${radar(r)}<div class="team-tags">${teamTagsHtml(r)}</div><button type="button" class="flip-btn" data-action="teamStats">Volver</button></section></div></article>`;
   }
   function playerTagPill(player, tag) {
-    const tone = ({ carry:'purple', hands:'purple', clutch:'gold', shotcall:'gold', tempo:'blue', control:'blue', engage:'green', creative:'yellow', stable:'gray', late:'blue', flex:'yellow', macro:'blue', skirmish:'red', scaling:'blue', bot:'green', upset:'red', underdog:'green', weakside:'gray' })[tag] || 'gray';
-    return `<span class="player-tag tag-${tone} tag-tip" tabindex="0">${esc(tag)}<span class="tag-hovercard"><strong>${esc(tag)}</strong><span>${esc(tagInfo(tag))}</span></span></span>`;
+    const tone = ({ carry:'purple', hands:'purple', clutch:'gold', shotcall:'gold', tempo:'blue', control:'blue', engage:'green', creative:'yellow', stable:'gray', late:'blue', flex:'yellow', macro:'blue', skirmish:'red', scaling:'blue', bot:'green', upset:'red', underdog:'green', weakside:'gray', roam:'green', vision:'blue', lane:'purple', objective:'blue', teamfight:'gold' })[tag] || 'gray';
+    const info = tagInfo(tag);
+    return `<span class="player-tag tag-${tone} tag-tip" tabindex="0" title="${esc(tag + ': ' + info)}">${esc(tag)}<span class="mini-tag-tip"><strong>${esc(tag)}</strong><em>${esc(info)}</em></span></span>`;
   }
   function setTeamCols(cols) {
     state.teamCols = cols === 5 ? 5 : 3;
@@ -2557,7 +3016,7 @@
     document.querySelectorAll('[data-action="screen"]').forEach(b => {
       const key = b.dataset.screen; if (nav[key]) b.textContent = L(nav[key][0], nav[key][1]);
     });
-    document.querySelectorAll('[data-action="theme"]').forEach(b => b.textContent = L('tema','theme'));
+    document.querySelectorAll('[data-action="theme"]').forEach(b => b.textContent = L('Tema','theme'));
   }
 
   function undoLastPick(role) {
@@ -2568,7 +3027,32 @@
     state.picks[role] = null;
     render(); toast(`${role} liberado.`);
   }
-  function render() { applyLanguage(); renderScreens(); renderChoices(); renderDifficultyTags(); renderHeader(); renderRoll(); renderPlayers(); renderSide(); renderMarket(); renderMini(); renderSim(); renderStats(); if (state.screen === 'teams') renderTeams(); renderObjectives(); renderChrono(); }
+
+  function coachState() {
+    const picks = picked().length;
+    if (!state.current && picks < 5) return { step:'roll', title:L('Tira el dado','Roll'), hint:L('Abre un roster y elige 1 jugador.','Open a roster and pick 1 player.'), cta:L('Tirar','Roll') };
+    if (picks < 5) return { step:'pick', title:L(`Elige ${5-picks} más`,`Pick ${5-picks} more`), hint:L('Completa Top/JG/Mid/Bot/Supp.','Complete Top/JG/Mid/Bot/Supp.'), cta: state.rolls < MAX_ROLLS ? L('Tirar','Roll') : L('Ver picks','View picks') };
+    if (!state.last || !state.last.complete) return { step:'sim', title:L('Listo para simular','Ready to simulate'), hint:L('Corre Swiss + playoffs.','Run Swiss + playoffs.'), cta:L('Simular','Simulate') };
+    return { step:'claim', title:L('Cobra y repite','Claim & repeat'), hint:L('Revisa bracket, stats o nueva run.','Check bracket, stats or restart.'), cta:L('Nueva run','New run') };
+  }
+  function renderCoach() {
+    if (!els.coachTitle) return;
+    const c = coachState();
+    text(els.coachTitle, c.title);
+    text(els.coachHint, c.hint);
+    text(els.coachCta, c.cta);
+    document.querySelectorAll('[data-step]').forEach(s => s.classList.toggle('is-active', s.dataset.step === c.step));
+    if (els.actionCoach) els.actionCoach.dataset.step = c.step;
+  }
+  function coachNext() {
+    const c = coachState();
+    if (c.step === 'roll') return roll();
+    if (c.step === 'pick') return state.rolls < MAX_ROLLS ? roll() : setScreen('draft');
+    if (c.step === 'sim') return simulateSafe();
+    return resetRun();
+  }
+
+  function render() { applyLanguage(); renderCoach(); renderScreens(); renderChoices(); renderDifficultyTags(); renderHeader(); renderRoll(); renderPlayers(); renderSide(); renderMarket(); renderMini(); renderSim(); renderStats(); if (state.screen === 'teams') renderTeams(); renderObjectives(); renderChrono(); }
   function renderScreens() { ['draft','sim','stats','history','teams','objectives','chrono'].forEach(name => { const panel = $(`${name}Screen`); if (panel) panel.hidden = state.screen !== name; }); document.querySelectorAll('[data-action="screen"]').forEach(b => b.setAttribute('aria-pressed', String(b.dataset.screen === state.screen))); }
   function setScreen(screen) { state.screen = screen || 'draft'; render(); if (state.screen === 'teams') renderTeams(); }
 
@@ -2581,13 +3065,13 @@
   }
 
   function renderChoices() { document.querySelectorAll('[data-setting]').forEach(group => group.querySelectorAll('.choice').forEach(b => b.setAttribute('aria-pressed', String(state[group.dataset.setting] === b.dataset.value)))); }
-  function renderHeader() { text(els.globalWallet, state.coins); text(els.seedLabel, `seed #${state.seed}`); text(els.summarySeed, `seed #${state.seed}`); text(els.rollMeter, `${state.rolls}/${MAX_ROLLS} ${L('tiradas','rolls')}`); els.rollBar.style.width = `${state.rolls / MAX_ROLLS * 100}%`; if (!state.current) { text(els.runMark,'—:—'); text(els.runNote,L('tira para abrir roster','roll to open roster')); image(els.runLogo,'','?'); return; } text(els.runMark, `${state.current.short}: ${state.current.year}`); text(els.runNote, `${state.current.tournament} · ${state.current.major ? 'campeón internacional' : 'contender'}`); image(els.runLogo, state.current.logo, state.current.short); }
+  function renderHeader() { text(els.globalWallet, state.coins); text(els.seedLabel, `seed #${state.seed}`); text(els.summarySeed, `seed #${state.seed}`); text(els.rollMeter, `${state.rolls}/${MAX_ROLLS} ${L('Tiradas','Rolls')}`); els.rollBar.style.width = `${state.rolls / MAX_ROLLS * 100}%`; if (!state.current) { text(els.runMark,'—:—'); text(els.runNote,L('tira para abrir roster','roll to open roster')); image(els.runLogo,'','?'); return; } text(els.runMark, `${state.current.short}: ${state.current.year}`); text(els.runNote, `${state.current.tournament} · ${state.current.major ? 'campeón internacional' : 'contender'}`); image(els.runLogo, state.current.logo, state.current.short); }
   function renderRoll() {
     els.rollCard.classList.toggle('is-gold', state.current?.rarity === 'rare');
     if (!state.current) {
       image(els.teamLogo,'','?');
       text(els.rollTitle,L('Sin tirada','No roll yet'));
-      text(els.rollSub,L('Haz una tirada para revelar equipo, año y pool de jugadores.','Roll to reveal team, year and player pool.'));
+      text(els.rollSub,L('Tira y elige un jugador.','Roll and pick.'));
       els.rollTags.innerHTML='';
       return;
     }
@@ -2597,22 +3081,22 @@
     els.rollSub.innerHTML = `${flagIcon(r.country)} ${esc(r.region)} · ${esc(r.tournament)} · tier ${r.tier}`;
     els.rollTags.innerHTML = (r.rarity === 'rare' ? `<span class="team-tag tag-gold">+5 carta dorada</span><span>1 de 6</span>` : '') + teamTagsHtml(r);
   }
-  function renderPlayers() { if (!state.current) { els.players.innerHTML = '<div class="empty">Tira el dado para abrir tu primer roster.</div>'; return; } els.players.innerHTML = state.current.players.map((pl, i) => card(pl, i)).join(''); }
+  function renderPlayers() { if (!state.current) { els.players.innerHTML = '<div class="empty">Tira para empezar.</div>'; return; } els.players.innerHTML = state.current.players.map((pl, i) => card(pl, i)).join(''); }
   function card(pl, i) { const locked = issue(pl); const hidden = state.mode === 'blind'; return `<article class="player-card tilt-card ${pl.major ? 'is-gold' : ''} ${locked ? 'is-locked' : ''}" data-player="${i}" tabindex="0" role="button"><div class="portrait-row"><figure class="round-icon role-chip">${roleGlyph(pl.role)}</figure><figure class="round-icon"><span>${esc(roleCode(pl.role))}</span></figure></div><div class="player-main"><h3>${hidden ? '???' : esc(pl.name)}</h3><p>${hidden ? esc(pl.role) : `${flagIcon(pl.country)} ${esc(pl.short)} ${esc(pl.year)} · ${esc(pl.tournament)}`}</p></div><div class="tag-stack">${pl.tags.map(t => playerTagPill(pl, t)).join('')}</div><span class="role-badge">${esc(pl.role)}</span><strong class="rating">${hidden ? '??' : pl.rating}</strong>${locked ? `<em class="lock-copy">${esc(locked)}</em>` : ''}</article>`; }
   function renderSide() {
     const ps = picked(), syn = synergy(), meta = metaBonus(), quest = questBonus(), pow = power(), av = ps.length ? Math.round(avg(ps.map(x => x.rating))) : 0;
     text(els.picksCount, `${ps.length}/5`); text(els.avgScore, av); text(els.synScore, syn.points + meta + quest); text(els.cupChance, `${clamp(Math.round((pow - 76) * 2.7),0,96)}%`); text(els.coinCount, state.coins); text(els.coinHint, `${state.owned.size} desbloqueados · ${state.marketUsed ? 'rotación usada' : 'rotar 10c'}`);
-    if (els.metaText) els.metaText.innerHTML = state.meta ? `${esc(state.meta.name)}: ${esc(state.meta.text)}<small class="calc-note">Meta es la regla especial de esta run. Solo cuenta si coincide con la condición mostrada.</small>` : 'Se revela con la primera tirada.';
-    if (els.questText) els.questText.innerHTML = state.quest ? `${esc(state.quest.name)}: ${esc(state.quest.text)}<small class="calc-note">Quest se paga como bonus al completar el 5v. Es distinta de Meta.</small>` : 'Se revela con la primera tirada.';
-    if (els.synergyReasons) els.synergyReasons.innerHTML = syn.reasons.length ? synergySummary(syn) : 'Sin picks todavía.';
+    if (els.metaText) els.metaText.innerHTML = state.meta ? `${esc(state.meta.name)}: ${esc(state.meta.text)}<small class="calc-note">Meta es la regla especial de esta run. Solo cuenta si coincide con la condición mostrada.</small>` : 'Primera tirada.';
+    if (els.questText) els.questText.innerHTML = state.quest ? `${esc(state.quest.name)}: ${esc(state.quest.text)}<small class="calc-note">Quest se paga como bonus al completar el 5v. Es distinta de Meta.</small>` : 'Primera tirada.';
+    if (els.synergyReasons) els.synergyReasons.innerHTML = syn.reasons.length ? synergySummary(syn) : 'Sin picks.';
     els.metaBox.classList.toggle('is-done', meta > 0); els.questBox.classList.toggle('is-done', quest > 0); els.synergyBox.classList.toggle('is-done', syn.points > 0);
     els.slots.innerHTML = ROLES.map(role => { const p = state.picks[role], b = state.bench?.[role]; const canUndo = p && state.current && (p.rosterId === state.current.id || p.org === state.current.org); return `<div class="slot ${p ? 'filled' : ''}"><span>${esc(roleCode(role))}</span><strong>${p ? esc(p.name) : '—'}</strong>${canUndo ? `<button type="button" class="mini-action" data-action="undoPick" data-role="${esc(role)}" title="Deshacer pick del equipo actual">↶</button>` : ''}${b ? `<button type="button" class="mini-action" data-action="swapBench" data-role="${esc(role)}" title="Swap con ${esc(b.name)}">⋮</button><em class="bench-pill">bench ${esc(b.name)}</em>` : ''}</div>`; }).join('');
   }
   function renderMarket() { ensureMarket(); const button = document.querySelector('[data-action="market"]'); if (button) { button.textContent = state.marketUsed ? 'usado' : 'rotar 10c'; button.disabled = state.marketUsed; } els.market.innerHTML = state.market.map((id, i) => { const pl = allPlayers.find(x => x.id === id); if (!pl) return ''; const owned = state.owned.has(pl.id); const cost = costOf(pl); const disabled = owned && issue(pl); return `<article class="market-card tilt-card ${pl.major ? 'is-gold' : ''}"><span class="market-logo">${img(pl.logo, pl.short, ROLE_ICONS[pl.role])}</span><div><strong>${esc(pl.name)}</strong><small>${esc(pl.role)} · ${esc(pl.short)} ${pl.year}</small></div><button type="button" data-market="${i}" ${disabled ? 'disabled' : ''} title="${owned ? 'Agregar al pick si pasa validación' : 'Comprar por ' + cost + ' coins'}">${owned ? 'firmar' : cost + 'c'}</button>${composePopover(pl)}</article>`; }).join(''); }
-  function renderMini() { if (!state.last) { els.results.innerHTML = '<p class="muted">sin simulación todavía.</p>'; return; } const wins = state.last.matches.filter(m => m.finished && m.win).length, losses = state.last.matches.filter(m => m.finished && !m.win).length; els.results.innerHTML = `<strong>${state.last.complete ? (state.last.won ? 'campeón' : 'eliminado') : 'en vivo'}</strong><p class="muted">${wins}-${losses} · power ${state.last.power}</p>`; }
+  function renderMini() { if (!state.last) { els.results.innerHTML = '<p class="muted">sin simulación todavía.</p>'; return; } const wins = state.last.matches.filter(m => m.finished && m.win).length, losses = state.last.matches.filter(m => m.finished && !m.win).length; els.results.innerHTML = `<strong>${state.last.complete ? (state.last.won ? 'campeón' : 'eliminado') : 'En Vivo'}</strong><p class="muted">${wins}-${losses} · power ${state.last.power}</p>`; }
   function renderSim() {
     if (!state.last) {
-      els.simSubtitle.textContent=L('Completa tu 5v para correr la run.','Complete your 5v to run the simulation.');
+      els.simSubtitle.textContent=L('Elige 5 roles para simular.','Complete your 5v to run the simulation.');
       els.simScoreline.innerHTML='';
       els.liveFocus.classList.add('is-quiet'); els.liveFocus.innerHTML='<div class="sim-bubble">Sin simulación cargada.</div>';
       els.simTimeline.innerHTML='';
@@ -2632,8 +3116,9 @@
     els.simScoreline.innerHTML = `<div><strong>${seriesWins}-${seriesLosses}</strong><span>series</span></div><div><strong>${mapWins}-${mapLosses}</strong><span>mapas</span></div><div><strong>${r.groups[0]}-${r.groups[1]}</strong><span>Swiss</span></div><div><strong>${maps.length}</strong><span>partidas</span></div>`;
     els.liveFocus.classList.toggle('is-quiet', !ev);
     els.liveFocus.classList.toggle('is-quiet', !ev);
-    els.liveFocus.innerHTML = ev ? focus(ev, activeSeries, activeGame) : `<div class="sim-bubble ${r.complete ? (r.won ? 'is-good' : 'is-gold') : ''}" title="${r.complete ? 'Abre una serie para ver detalle.' : 'Cargando...'}"><strong>${r.complete ? 'Run terminada' : 'Siguiente mapa'}</strong></div>`;
-    if (els.bracketBoard) els.bracketBoard.innerHTML = bracketBoard(r); els.simTimeline.innerHTML = r.matches.map((m, i) => seriesCard(m, i, i === r.activeMatch, r.activeGame, r.activeEvent)).join('');
+    els.liveFocus.innerHTML = ev ? focus(ev, activeSeries, activeGame) : `<div class="sim-bubble ${r.complete ? (r.won ? 'is-good' : 'is-gold') : ''}" title="${r.complete ? 'Abre una serie para ver detalle.' : 'Cargando...'}"><strong>${r.complete ? 'Run Terminada' : 'Siguiente Mapa'}</strong></div>`;
+    if (els.bracketBoard) els.bracketBoard.innerHTML = bracketBoard(r);
+    els.simTimeline.innerHTML = r.matches.map((m, i) => seriesCard(m, i, i === r.activeMatch, r.activeGame, r.activeEvent)).join('');
   }
   function focus(ev, series, game) { return `<article class="focus-event ${ev.ours ? 'is-good' : 'is-bad'}"><img src="${ev.icon}" alt=""><div><span>${esc(series.label)} · ${esc(game.label)} vs ${esc(series.enemy.short)} ${series.enemy.year}</span><strong>${esc(localEventLabel(ev.label))}</strong><p>${esc(ev.copy)}</p></div><figure class="event-logo">${img(ev.logo, ev.who, badge(ev.who,'team'))}</figure></article>`; }
   function seriesCard(series, i, active, activeGame, activeEvent) {
@@ -2657,9 +3142,9 @@
     const key = `${state.last?.activeMatch ?? 'x'}-${j}`;
     const open = state.openMaps.has(key) || (active && !game.finished);
     const secretClass = game.finished ? '' : 'is-secret';
-    const headerResult = game.finished ? `${game.win ? 'WIN' : 'LOSS'} ${game.our}-${game.rival}` : (active ? 'LIVE' : 'pendiente');
-    const time = game.finished ? `${game.duration} · MVP ${game.mvp}` : (active ? 'en vivo' : 'por revelar');
-    return `<article class="map-card ${resultClass} ${activeClass} ${secretClass} ${open ? 'is-open' : ''}"><header class="map-head"><span>${esc(game.label)} · ${time}</span><b class="${game.finished ? (game.win ? 'win' : 'loss') : ''}">${headerResult}</b><button type="button" class="map-toggle" data-action="toggleMap" data-mapkey="${esc(key)}">${open ? 'ocultar' : 'ver mapa'}</button></header><div class="event-list">${game.events.map((ev,k) => eventLine(ev, active && k === activeEvent)).join('')}</div></article>`;
+    const headerResult = game.finished ? `${game.win ? 'WIN' : 'LOSS'} ${game.our}-${game.rival}` : (active ? 'LIVE' : 'Pendiente');
+    const time = game.finished ? `${game.duration} · MVP ${game.mvp}` : (active ? 'En Vivo' : 'Por Revelar');
+    return `<article class="map-card ${resultClass} ${activeClass} ${secretClass} ${open ? 'is-open' : ''}"><header class="map-head"><span>${esc(game.label)} · ${time}</span><b class="${game.finished ? (game.win ? 'win' : 'loss') : ''}">${headerResult}</b><button type="button" class="map-toggle" data-action="toggleMap" data-mapkey="${esc(key)}">${open ? 'Ocultar' : 'Ver Mapa'}</button></header><div class="event-list">${game.events.map((ev,k) => eventLine(ev, active && k === activeEvent)).join('')}</div></article>`;
   }
 
   function localEventLabel(label) {
@@ -2732,11 +3217,15 @@
 
   function bracketBoard(r) {
     if (!r) return '';
+    if (!r.bracketFinal && r.complete) r.bracketFinal = resolveBracket(r);
     const rows = (r.bracketTeams || []).slice(0,8).map(t => `<span class="${r.bracketFinal?.champion?.short===t.short && r.bracketFinal?.champion?.year===t.year ? 'champion' : ''}">${img(t.logo,t.short,badge(t.short,t.region))}<b>${esc(t.short)} ${t.year}</b><small>${esc(t.record)}</small></span>`).join('');
     const path = (r.matches || []).map(m => `<span class="${m.finished ? (m.win ? 'win' : 'loss') : ''}">${esc(m.label)} ${m.finished ? (m.win ? 'W' : 'L') : '·'} ${m.ourWins}-${m.rivalWins}</span>`).join('');
-    if (!r.bracketFinal) r.bracketFinal = resolveBracket(r);
-    const other = (r.bracketFinal?.stages || []).map(s => `<details><summary>${esc(s.label)}</summary>${s.matches.map(m=>`<span>${esc(m.a)} vs ${esc(m.b)} · ${esc(m.winner)} ${esc(m.score)}</span>`).join('')}</details>`).join('');
-    return `<section class="bracket-panel finalized"><header><strong>Bracket / Camino</strong><small>${esc(r.groups ? r.groups.join('-') : '0-0')} Swiss</small></header><div class="bracket-teams">${rows}</div><div class="bracket-path">${path || '<span>Sin series todavía</span>'}</div><div class="bracket-other">${other}</div></section>`;
+    const stages = r.complete ? (r.bracketFinal?.stages || []) : [];
+    const other = stages.length
+      ? stages.map(s => `<details ${r.complete ? 'open' : ''}><summary>${esc(s.label)}</summary>${s.matches.map(m=>`<span>${esc(m.a)} vs ${esc(m.b)} · ${esc(m.winner)} ${esc(m.score)}</span>`).join('')}</details>`).join('')
+      : '<small class="muted">El Bracket Paralelo Aparece Al Terminar La Run.</small>';
+    const champ = r.bracketFinal?.champion ? `<b class="bracket-champion">Campeón Paralelo: ${esc(r.bracketFinal.champion.short)} ${esc(r.bracketFinal.champion.year)}</b>` : '';
+    return `<section class="bracket-panel finalized"><header><strong>Bracket / Camino</strong><small>${esc(r.groups ? r.groups.join('-') : '0-0')} Swiss</small></header><div class="bracket-teams">${rows}</div><div class="bracket-path">${path || '<span>Sin series todavía</span>'}</div>${champ}<div class="bracket-other">${other}</div></section>`;
   }
   function renderStats() {
     const s = state.stats;
@@ -2956,7 +3445,7 @@
   }
 
   function toggleTheme() { document.body.classList.toggle('dark'); write(STORE.theme, document.body.classList.contains('dark') ? 'dark' : 'light'); }
-  function copySummary() { const lines = [`Five’s Pick · seed #${state.seed}`, `Tiradas ${state.rolls}/${MAX_ROLLS}`].concat(ROLES.map(r => `${r}: ${state.picks[r] ? state.picks[r].name + ' (' + state.picks[r].short + ')' : 'pendiente'}`)); navigator.clipboard?.writeText(lines.join('\n')).then(() => toast('copiado.')).catch(() => toast('no se pudo copiar.')); }
+  function copySummary() { const lines = [`Five’s Pick · seed #${state.seed}`, `Tiradas ${state.rolls}/${MAX_ROLLS}`].concat(ROLES.map(r => `${r}: ${state.picks[r] ? state.picks[r].name + ' (' + state.picks[r].short + ')' : 'Pendiente'}`)); navigator.clipboard?.writeText(lines.join('\n')).then(() => toast('copiado.')).catch(() => toast('no se pudo copiar.')); }
 
   function power() { const ps = picked(); if (!ps.length) return 0; return Math.round(avg(ps.map(x=>x.rating)) + synergy().points + metaBonus() + questBonus()); }
   function synergy() {
