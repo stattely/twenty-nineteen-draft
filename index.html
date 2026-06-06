@@ -4,7 +4,7 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="theme-color" content="#0a1420" />
-  <title>20:19 Draft · v23 chrono</title>
+  <title>20:19 Draft · v24 final polish</title>
   <style>
     :root {
       --bg: #eef2f4;
@@ -309,7 +309,7 @@
     @keyframes cardFlash { 0% { transform: scale(.985); box-shadow: 0 0 0 0 rgba(200,170,110,0); } 50% { transform: scale(1.01); box-shadow: 0 0 0 10px rgba(200,170,110,.12); } 100% { transform: scale(1); box-shadow: none; } }
     @keyframes sweepIn { 0% { opacity: .35; transform: translateY(8px); } 100% { opacity: 1; transform: translateY(0); } }
   
-    /* v23 verified role icons: these use the uploaded PNGs directly as background images. */
+    /* v24 verified role icons: these use the uploaded PNGs directly as background images. */
     .version-pill {
       border: 1px solid rgba(240,213,138,.34);
       border-radius: 999px;
@@ -449,8 +449,8 @@
     }
 
   
-    /* v23 HARD ROLE FIX:
-       These are the exact PNGs from IconsPositions.zip, copied raw into /assets/roles-original-v23/.
+    /* v24 HARD ROLE FIX:
+       These are the exact PNGs from IconsPositions.zip, copied raw into /assets/roles-original-v24/.
        The wrapper has no circle/border/background so the uploaded icon is not double-framed or rescaled weirdly. */
     .rolefix-pill {
       display: inline-flex;
@@ -487,11 +487,11 @@
       filter: drop-shadow(0 3px 5px rgba(0,0,0,.58));
     }
 
-    .role-top { background-image: url('/assets/roles-original-v23/top.png?v=22') !important; }
-    .role-jungle { background-image: url('/assets/roles-original-v23/jungle.png?v=22') !important; }
-    .role-mid { background-image: url('/assets/roles-original-v23/mid.png?v=22') !important; }
-    .role-bot { background-image: url('/assets/roles-original-v23/bot.png?v=22') !important; }
-    .role-support { background-image: url('/assets/roles-original-v23/support.png?v=22') !important; }
+    .role-top { background-image: url('/assets/roles-original-v24/top.png?v=24') !important; }
+    .role-jungle { background-image: url('/assets/roles-original-v24/jungle.png?v=24') !important; }
+    .role-mid { background-image: url('/assets/roles-original-v24/mid.png?v=24') !important; }
+    .role-bot { background-image: url('/assets/roles-original-v24/bot.png?v=24') !important; }
+    .role-support { background-image: url('/assets/roles-original-v24/support.png?v=24') !important; }
 
     .round-icon.role-chip img,
     .slot-role.role-chip img {
@@ -510,16 +510,96 @@
     .chrono-card { position:relative; overflow:hidden; min-height:180px; animation:ledgerIn .35s ease both; }
     .chrono-card::after { content:''; position:absolute; inset:0; background:linear-gradient(115deg, transparent, rgba(255,255,255,.09), transparent); transform:translateX(-120%); animation:chartSweep 2.8s ease-in-out infinite; pointer-events:none; }
 
-</style>
+
+    /* v24 final polish */
+    .result-overlay.map-win .result-card, .result-overlay.map-loss .result-card {
+      min-width: min(640px, calc(100vw - 28px));
+      padding: 22px 28px;
+      border-radius: 28px;
+    }
+    .result-overlay.map-win .result-card strong, .result-overlay.map-loss .result-card strong {
+      font-size: clamp(30px, 6vw, 58px);
+      letter-spacing: -.055em;
+      line-height: .95;
+    }
+    .result-overlay.map-win .result-card p, .result-overlay.map-loss .result-card p {
+      max-width: 520px;
+      margin: 0 auto;
+      font-size: 13px;
+      line-height: 1.45;
+    }
+    .calc-note {
+      display: block;
+      margin-top: 8px;
+      color: var(--muted);
+      font-size: 10px;
+      line-height: 1.35;
+      opacity: .86;
+    }
+    .objective-grid, .chrono-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 12px;
+    }
+    .objective-card, .chrono-card {
+      position: relative;
+      overflow: hidden;
+      border: 1px solid var(--line);
+      border-radius: 22px;
+      padding: 14px;
+      background:
+        radial-gradient(circle at 100% 0%, rgba(200,170,110,.13), transparent 34%),
+        radial-gradient(circle at 0% 100%, rgba(10,200,185,.09), transparent 30%),
+        var(--panel-2);
+      transition: transform .16s ease, border-color .16s ease, box-shadow .16s ease;
+      animation: ledgerIn .35s ease both;
+    }
+    .objective-card:hover, .chrono-card:hover { transform: translateY(-3px); border-color: rgba(240,213,138,.45); box-shadow: 0 18px 48px rgba(0,0,0,.20); }
+    .objective-card.is-done { border-color: rgba(36,180,126,.64); }
+    .objective-card.is-claimed { opacity: .72; filter: saturate(.82); }
+    .objective-card h3, .chrono-card h3 { margin-bottom: 6px; }
+    .objective-card p, .chrono-card p { color: var(--muted); font-size: 12px; line-height: 1.45; }
+    .objective-reward, .chrono-price {
+      display: inline-flex;
+      width: fit-content;
+      border: 1px solid rgba(240,213,138,.30);
+      border-radius: 999px;
+      padding: 5px 9px;
+      color: var(--gold-2);
+      background: rgba(200,170,110,.10);
+      font-size: 11px;
+      font-weight: 1000;
+      text-transform: uppercase;
+    }
+    .objective-card button, .chrono-card button {
+      margin-top: 10px;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      padding: 8px 10px;
+      background: var(--panel);
+      color: var(--ink);
+      font-weight: 1000;
+      font-size: 11px;
+    }
+    .objective-card button:not(:disabled), .chrono-card button:not(:disabled) { border-color: var(--gold); }
+    .objective-progress { height: 7px; margin: 10px 0 8px; border-radius: 999px; overflow: hidden; background: rgba(128,128,128,.18); }
+    .objective-progress b { display:block; height:100%; width: var(--p, 0%); background: linear-gradient(90deg, var(--teal), var(--gold)); transition: width .35s ease; }
+    .chrono-actions { display:flex; flex-wrap:wrap; gap:8px; align-items:center; margin-top:8px; }
+    .chrono-card.is-active { border-color: rgba(100,242,228,.62); box-shadow: 0 0 0 1px rgba(100,242,228,.18); }
+    .synergy-tooltip { cursor: help; }
+    @media (max-width: 980px) { .objective-grid, .chrono-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+    @media (max-width: 760px) { .objective-grid, .chrono-grid { grid-template-columns: 1fr; } .result-overlay.map-win .result-card, .result-overlay.map-loss .result-card { min-width: calc(100vw - 22px); padding: 18px; } }
+
+  </style>
 </head>
 <body class="dark">
   <div class="app">
     <header class="topbar">
       <a class="brand" href="#" data-action="screen" data-screen="draft" aria-label="inicio"><span class="brand-mark">20:19</span><span class="brand-copy">Worlds<br>Draft</span></a>
-      <div class="microline"><strong>Draft</strong><span>·</span><strong>Pick</strong><span>·</span><strong>Win</strong><span id="seedLabel">seed #LOCAL</span><span class="rolefix-pill">v23 chrono</span><span class="version-pill">v23</span></div>
+      <div class="microline"><strong>Draft</strong><span>·</span><strong>Pick</strong><span>·</span><strong>Win</strong><span id="seedLabel">seed #LOCAL</span><span class="rolefix-pill">v24 final polish</span><span class="version-pill">v24</span></div>
       <nav class="quick-actions"><button type="button" data-action="theme">tema</button><button type="button" data-action="copy">copiar</button><button type="button" data-action="reset">reset</button></nav>
     </header>
-    <nav class="tabs" aria-label="pantallas"><button type="button" data-action="screen" data-screen="draft" aria-pressed="true" title="Arma tu roster con tiradas, tienda y picks">Draft</button><button type="button" data-action="screen" data-screen="sim" aria-pressed="false" title="Ve la simulación partido por partido">Simulación</button><button type="button" data-action="screen" data-screen="stats" aria-pressed="false" title="Consulta tus estadísticas acumuladas">Stats</button><button type="button" data-action="screen" data-screen="history" aria-pressed="false" title="Revisa runs anteriores una por una">Historia</button><button type="button" data-action="screen" data-screen="chrono" aria-pressed="false" title="Modo caótico experimental">Chrono</button></nav>
+    <nav class="tabs" aria-label="pantallas"><button type="button" data-action="screen" data-screen="draft" aria-pressed="true" title="Arma tu roster con tiradas, tienda y picks">Draft</button><button type="button" data-action="screen" data-screen="sim" aria-pressed="false" title="Ve la simulación partido por partido">Simulación</button><button type="button" data-action="screen" data-screen="stats" aria-pressed="false" title="Consulta tus estadísticas acumuladas">Stats</button><button type="button" data-action="screen" data-screen="history" aria-pressed="false" title="Revisa runs anteriores una por una">Historia</button><button type="button" data-action="screen" data-screen="objectives" aria-pressed="false" title="Objetivos y recompensas">Objetivos</button><button type="button" data-action="screen" data-screen="chrono" aria-pressed="false" title="Modo caótico experimental">Chrono</button></nav>
     <main>
       <section id="draftScreen" data-panel="draft">
         <div class="layout">
@@ -577,17 +657,17 @@
       </section>
     </main>
 
+
+      <section id="objectivesScreen" data-panel="objectives" hidden>
+        <div class="screen-head panel"><div><p class="eyebrow">coin board</p><h2>Objetivos</h2><p class="muted">Misiones permanentes para ganar coins. Se calculan con tu historial local.</p></div><div class="screen-actions"><button type="button" class="btn" data-action="screen" data-screen="draft" data-icon="←">Draft</button><button type="button" class="btn" data-action="screen" data-screen="chrono" data-icon="◈">Chrono</button></div></div>
+        <section class="panel"><div class="objective-grid" id="objectiveList"></div></section>
+      </section>
       <section id="chronoScreen" data-panel="chrono" hidden>
-        <div class="screen-head panel"><div><p class="eyebrow">experimental mode</p><h2>Chrono Lab</h2><p class="muted">Reglas caóticas para runs futuras. Se desbloquea al ganar 3 runs.</p></div><div class="screen-actions"><button type="button" class="btn" data-action="screen" data-screen="draft" data-icon="←">Draft</button><button type="button" class="btn" data-action="screen" data-screen="history" data-icon="≣">Historia</button></div></div>
-        <section class="score-layout chrono-grid">
-          <article class="panel chrono-card"><h3>Chrono Reset</h3><p>Repite el último mapa perdido pagando coins. Solo 1 vez por run.</p><strong>60c</strong></article>
-          <article class="panel chrono-card"><h3>Coach Sub</h3><p>El rival juega un mapa con suplente improvisado. Baja su power temporal.</p><strong>rare</strong></article>
-          <article class="panel chrono-card"><h3>Baron Call Gone Wrong</h3><p>Si el rival tomó Baron, puede throwear el cierre del mapa.</p><strong>chaos</strong></article>
-          <article class="panel chrono-card"><h3>Reverse Sweep Script</h3><p>Si vas 0-2 en una final, activa bonus de comeback.</p><strong>legend</strong></article>
-        </section>
+        <div class="screen-head panel"><div><p class="eyebrow">experimental mode</p><h2>Chrono Lab</h2><p class="muted">Compra bendiciones caóticas, actívalas antes de simular y se consumirán automáticamente cuando aplique.</p></div><div class="screen-actions"><button type="button" class="btn" data-action="screen" data-screen="draft" data-icon="←">Draft</button><button type="button" class="btn" data-action="screen" data-screen="objectives" data-icon="◎">Objetivos</button></div></div>
+        <section class="panel"><div class="chrono-grid" id="chronoGrid"></div></section>
       </section>
 
-    <footer>Fan-made project not affiliated with Riot Games · v23 chrono</footer>
+    <footer>Fan-made project not affiliated with Riot Games · v24 final polish</footer>
   </div>
   <div class="result-overlay" id="resultOverlay" aria-live="polite"></div>
   <div class="toast" id="toast"></div>
@@ -605,7 +685,7 @@
   const RATING_OFFSET = -3;
   const MARKET_COST = 10;
   const ENEMY_HANDICAP = 1.5;
-  const STORE = { coins: 'draft_coins_v11', stats: 'draft_stats_v11', theme: 'draft_theme_v11', owned: 'draft_owned_v11' };
+  const STORE = { coins: 'draft_coins_v11', stats: 'draft_stats_v11', theme: 'draft_theme_v11', owned: 'draft_owned_v11', objectives: 'draft_objectives_v24', chrono: 'draft_chrono_v24' };
 
   const historicalTeamLogos = {
     "t1-2023": "/assets/teams-historical/worlds-t1-2023.png",
@@ -730,6 +810,7 @@
   ];
 
   const METAS = [
+    { name: 'regional core', text: '+2 si tienes 3+ jugadores de la misma región o país.', score: ps => maxGroup(ps.map(x => x.region)) >= 3 || maxGroup(ps.map(x => x.country)) >= 3 ? 2 : 0 },
     { name: 'lane kingdom', text: '+2 si Top/Mid/Bot promedian 94+.', score: ps => avg(ps.filter(x => ['Top','Mid','Bot'].includes(x.role)).map(x => x.rating)) >= 94 ? 2 : 0 },
     { name: 'clutch patch', text: '+2 si tienes al menos 2 clutch.', score: ps => ps.filter(x => x.tags.includes('clutch')).length >= 2 ? 2 : 0 },
     { name: 'bot side meta', text: '+2 si Bot y Support comparten región.', score: ps => sameRegion(ps,'Bot','Support') ? 2 : 0 },
@@ -739,18 +820,44 @@
     { name: 'una sola región', text: '+3 si tus 5 jugadores son de la misma región.', bonus: 3, ok: ps => new Set(ps.map(x => x.region)).size === 1 },
     { name: 'no repetir año', text: '+2 si ningún jugador comparte año.', bonus: 2, ok: ps => new Set(ps.map(x => x.year)).size === ps.length },
     { name: 'duo bot real', text: '+3 si Bot y Support son del mismo equipo/año.', bonus: 3, ok: ps => sameTeam(ps,'Bot','Support') },
-    { name: 'pasado y presente', text: '+2 si mezclas antes de 2018 y después de 2021.', bonus: 2, ok: ps => ps.some(x => x.year < 2018) && ps.some(x => x.year > 2021) }
+    { name: 'pasado y presente', text: '+2 si mezclas antes de 2018 y después de 2021.', bonus: 2, ok: ps => ps.some(x => x.year < 2018) && ps.some(x => x.year > 2021) },
+    { name: 'oeste unido', text: '+2 si armas 3+ jugadores LEC/LCS.', bonus: 2, ok: ps => ps.filter(x => ['LEC','LCS'].includes(x.region)).length >= 3 }
+  ];
+  const COMP_RULES = [{"name":"Mid/Jungle Tempo","points":2,"desc":"Jungla de tempo habilita mid de control o manos","req":[{"role":"Jungle","tag":"tempo"},{"role":"Mid","tag":"control"}]},{"name":"Mid/Jungle Hands","points":2,"desc":"Jungla agresivo habilita mid mecánico","req":[{"role":"Jungle","tag":"tempo"},{"role":"Mid","tag":"hands"}]},{"name":"Shotcall Engage","points":1,"desc":"Shotcaller coordina engage primario","req":[{"role":"Jungle","tag":"shotcall"},{"role":"Support","tag":"engage"}]},{"name":"Support Engage + Bot Carry","points":2,"desc":"Engage abre ventana al carry de bot","req":[{"role":"Support","tag":"engage"},{"role":"Bot","tag":"carry"}]},{"name":"Late Game Insurance","points":2,"desc":"Bot late con soporte shotcaller escala mejor","req":[{"role":"Bot","tag":"late"},{"role":"Support","tag":"shotcall"}]},{"name":"Weakside Top + Bot Carry","points":2,"desc":"Top absorbe presión para jugar bot side","req":[{"role":"Top","tag":"weakside"},{"role":"Bot","tag":"carry"}]},{"name":"Carry Top + Tempo Jungle","points":2,"desc":"Jungla acelera carry de top","req":[{"role":"Top","tag":"carry"},{"role":"Jungle","tag":"tempo"}]},{"name":"Roam Mid + Engage Support","points":2,"desc":"Roams conectan con engage de support","req":[{"role":"Mid","tag":"roam"},{"role":"Support","tag":"engage"}]},{"name":"Control Mid + Vision Support","points":2,"desc":"Control de mid y visión estabilizan mapa","req":[{"role":"Mid","tag":"control"},{"role":"Support","tag":"vision"}]},{"name":"Clutch Core","points":3,"desc":"Dos jugadores clutch elevan cierre de mapas","req":[{"role":null,"tag":"clutch"},{"role":null,"tag":"clutch"}]},{"name":"Hands Trio","points":3,"desc":"Tres perfiles hands/carry elevan peleas","req":[{"role":null,"tag":"hands"},{"role":null,"tag":"carry"},{"role":null,"tag":"carry"}]},{"name":"Macro Spine","points":3,"desc":"Shotcall + control + stable sostienen macro","req":[{"role":"Jungle","tag":"shotcall"},{"role":"Mid","tag":"control"},{"role":"Top","tag":"stable"}]},{"name":"Teamfight Front-to-Back","points":3,"desc":"Top estable, bot carry y supp engage","req":[{"role":"Top","tag":"stable"},{"role":"Bot","tag":"carry"},{"role":"Support","tag":"engage"}]},{"name":"Skirmish Chaos","points":3,"desc":"Tempo, hands y creative buscan peleas raras","req":[{"role":"Jungle","tag":"tempo"},{"role":"Mid","tag":"hands"},{"role":"Support","tag":"creative"}]},{"name":"Bot Kingdom","points":3,"desc":"Bot carry + supp engage/shotcall dominan 2v2","req":[{"role":"Bot","tag":"carry"},{"role":"Support","tag":"engage"},{"role":"Support","tag":"shotcall"}]},{"name":"Top Island","points":1,"desc":"Top estable y jungla tempo evitan snowball rival","req":[{"role":"Top","tag":"stable"},{"role":"Jungle","tag":"tempo"}]},{"name":"Vision Trap","points":2,"desc":"Shotcall con visión crea picks de Nashor","req":[{"role":"Support","tag":"shotcall"},{"role":"Jungle","tag":"tempo"}]},{"name":"Creative Map","points":2,"desc":"Soporte creativo habilita mid roam","req":[{"role":"Support","tag":"creative"},{"role":"Mid","tag":"roam"}]},{"name":"Control Scaling","points":2,"desc":"Mid control y bot late juegan a escalar","req":[{"role":"Mid","tag":"control"},{"role":"Bot","tag":"late"}]},{"name":"Carry Triangle","points":3,"desc":"Top/Mid/Bot con carry/hands presionan 3 lanes","req":[{"role":"Top","tag":"carry"},{"role":"Mid","tag":"hands"},{"role":"Bot","tag":"carry"}]},{"name":"Clutch ADC","points":2,"desc":"Bot clutch convierte finales cerrados","req":[{"role":"Bot","tag":"clutch"},{"role":"Support","tag":"engage"}]},{"name":"Jungle Carry","points":2,"desc":"Jungla carry con mid control invade mejor","req":[{"role":"Jungle","tag":"carry"},{"role":"Mid","tag":"control"}]},{"name":"Roam Snowball","points":2,"desc":"Mid roam y jungla tempo aceleran side lanes","req":[{"role":"Mid","tag":"roam"},{"role":"Jungle","tag":"tempo"}]},{"name":"Weakside Discipline","points":2,"desc":"Top weakside + support shotcall reducen throws","req":[{"role":"Top","tag":"weakside"},{"role":"Support","tag":"shotcall"}]},{"name":"Late Engage","points":2,"desc":"Engage protege condiciones de late game","req":[{"role":"Bot","tag":"late"},{"role":"Support","tag":"engage"}]},{"name":"Macro Control","points":2,"desc":"Macro y control convierten objetivos","req":[{"role":"Mid","tag":"control"},{"role":null,"tag":"macro"}]},{"name":"Underdog Spark","points":1,"desc":"Underdog con clutch encuentra upset","req":[{"role":null,"tag":"underdog"},{"role":null,"tag":"clutch"}]},{"name":"Flex Pressure","points":1,"desc":"Flex con creative complica draft rival","req":[{"role":null,"tag":"flex"},{"role":"Support","tag":"creative"}]},{"name":"Bot Side Identity","points":2,"desc":"Tags bot + carry refuerzan win condition","req":[{"role":null,"tag":"bot"},{"role":"Bot","tag":"carry"}]},{"name":"Engage Chain","points":2,"desc":"Engage múltiple fuerza teamfights","req":[{"role":null,"tag":"engage"},{"role":null,"tag":"engage"}]},{"name":"Stable Carry Cover","points":2,"desc":"Top estable cubre carry vulnerable","req":[{"role":"Top","tag":"stable"},{"role":"Bot","tag":"carry"}]},{"name":"Mid Clutch","points":2,"desc":"Mid clutch y jungle tempo cierran fights","req":[{"role":"Mid","tag":"clutch"},{"role":"Jungle","tag":"tempo"}]},{"name":"Top Clutch","points":2,"desc":"Top clutch y support engage abren picks","req":[{"role":"Top","tag":"clutch"},{"role":"Support","tag":"engage"}]},{"name":"Support Brain","points":2,"desc":"Support shotcall + jungla tempo controla mapa","req":[{"role":"Support","tag":"shotcall"},{"role":"Jungle","tag":"tempo"}]},{"name":"Control Engage","points":2,"desc":"Mid control setupea engage limpio","req":[{"role":"Mid","tag":"control"},{"role":"Support","tag":"engage"}]},{"name":"Creative Bot","points":1,"desc":"Bot creative con support engage genera picks","req":[{"role":"Bot","tag":"creative"},{"role":"Support","tag":"engage"}]},{"name":"Late Shotcall","points":2,"desc":"Shotcall protege escalado late","req":[{"role":null,"tag":"late"},{"role":null,"tag":"shotcall"}]},{"name":"Hands Check Duo","points":2,"desc":"Dos manos fuertes ganan skirmishes","req":[{"role":null,"tag":"hands"},{"role":null,"tag":"hands"}]},{"name":"Carry Jungle Bot","points":2,"desc":"Jungle carry y bot carry reparten recursos","req":[{"role":"Jungle","tag":"carry"},{"role":"Bot","tag":"carry"}]},{"name":"Roam Support","points":2,"desc":"Support creativo y mid roam mueven mapa","req":[{"role":"Support","tag":"creative"},{"role":"Mid","tag":"roam"}]},{"name":"Teamfight Call","points":2,"desc":"Teamfight + shotcall mejora 5v5","req":[{"role":null,"tag":"teamfight"},{"role":null,"tag":"shotcall"}]},{"name":"Skirmish Tempo","points":2,"desc":"Skirmish con tempo acelera early","req":[{"role":null,"tag":"skirmish"},{"role":"Jungle","tag":"tempo"}]},{"name":"Vision Macro","points":2,"desc":"Vision y macro traducen ventajas","req":[{"role":null,"tag":"vision"},{"role":null,"tag":"macro"}]},{"name":"Upset Angle","points":1,"desc":"Upset con engage encuentra sorpresa","req":[{"role":null,"tag":"upset"},{"role":null,"tag":"engage"}]},{"name":"Top Hands Jungle Tempo","points":3,"desc":"Top mecánico con jungla tempo amenaza dive","req":[{"role":"Top","tag":"hands"},{"role":"Jungle","tag":"tempo"}]},{"name":"Mid Hands Support Engage","points":3,"desc":"Mid mecánico capitaliza engage del support","req":[{"role":"Mid","tag":"hands"},{"role":"Support","tag":"engage"}]},{"name":"Bot Carry Jungle Tempo","points":3,"desc":"Jungle tempo juega alrededor del carry bot","req":[{"role":"Bot","tag":"carry"},{"role":"Jungle","tag":"tempo"}]},{"name":"Control Shotcall Engage","points":3,"desc":"Control, shotcall y engage ejecutan limpio","req":[{"role":"Mid","tag":"control"},{"role":null,"tag":"shotcall"},{"role":"Support","tag":"engage"}]},{"name":"Triple Clutch","points":3,"desc":"Tres clutch suben finales y game 5","req":[{"role":null,"tag":"clutch"},{"role":null,"tag":"clutch"},{"role":null,"tag":"clutch"}]},{"name":"Triple Carry","points":3,"desc":"Tres carries aumentan techo mecánico","req":[{"role":null,"tag":"carry"},{"role":null,"tag":"carry"},{"role":null,"tag":"carry"}]},{"name":"Stable Macro Late","points":3,"desc":"Estabilidad, macro y late juegan al scaling","req":[{"role":null,"tag":"stable"},{"role":null,"tag":"macro"},{"role":null,"tag":"late"}]},{"name":"Tempo Roam Engage","points":3,"desc":"Tempo + roam + engage crean picks","req":[{"role":"Jungle","tag":"tempo"},{"role":"Mid","tag":"roam"},{"role":"Support","tag":"engage"}]},{"name":"Vision Baron Setup","points":2,"desc":"Vision + jungle tempo mejora Nashor","req":[{"role":null,"tag":"vision"},{"role":"Jungle","tag":"tempo"}]},{"name":"Bot Late Peel","points":2,"desc":"Late carry con shotcall evita throw","req":[{"role":"Bot","tag":"late"},{"role":"Support","tag":"shotcall"}]},{"name":"Creative Chaos","points":2,"desc":"Creative + skirmish generan partidas raras","req":[{"role":null,"tag":"creative"},{"role":null,"tag":"skirmish"}]},{"name":"Weakside Macro","points":2,"desc":"Weakside + macro libera recursos","req":[{"role":null,"tag":"weakside"},{"role":null,"tag":"macro"}]},{"name":"Hands Carry Control","points":3,"desc":"Hands, carry y control combinan daño y orden","req":[{"role":null,"tag":"hands"},{"role":null,"tag":"carry"},{"role":null,"tag":"control"}]},{"name":"Support Engage Jungle Carry","points":2,"desc":"Engage habilita jungla carry","req":[{"role":"Support","tag":"engage"},{"role":"Jungle","tag":"carry"}]},{"name":"Mid Control Bot Late","points":2,"desc":"Control mid compra tiempo al bot late","req":[{"role":"Mid","tag":"control"},{"role":"Bot","tag":"late"}]},{"name":"Top Carry Support Shotcall","points":2,"desc":"Shotcall organiza recursos para top carry","req":[{"role":"Top","tag":"carry"},{"role":"Support","tag":"shotcall"}]},{"name":"Roam Bot Side","points":2,"desc":"Mid roam habilita bot side","req":[{"role":null,"tag":"bot"},{"role":"Mid","tag":"roam"}]},{"name":"Frontline Stable","points":1,"desc":"Stable + engage da frontline","req":[{"role":null,"tag":"stable"},{"role":null,"tag":"engage"}]},{"name":"Ace Threat","points":2,"desc":"Carry + clutch amenaza ace tardío","req":[{"role":null,"tag":"carry"},{"role":null,"tag":"clutch"}]},{"name":"Objective Control","points":2,"desc":"Tempo + vision/control gana objetivos","req":[{"role":"Jungle","tag":"tempo"},{"role":null,"tag":"vision"},{"role":null,"tag":"control"}]},{"name":"Dive Comp","points":3,"desc":"Top carry, jungle tempo y support engage divean","req":[{"role":"Top","tag":"carry"},{"role":"Jungle","tag":"tempo"},{"role":"Support","tag":"engage"}]},{"name":"Pick Comp","points":3,"desc":"Vision, roam y engage castigan errores","req":[{"role":null,"tag":"vision"},{"role":"Mid","tag":"roam"},{"role":"Support","tag":"engage"}]},{"name":"Scaling Comp","points":3,"desc":"Late, control y shotcall escalan ordenado","req":[{"role":null,"tag":"late"},{"role":"Mid","tag":"control"},{"role":null,"tag":"shotcall"}]},{"name":"Brawl Comp","points":3,"desc":"Skirmish, hands y carry fuerzan peleas","req":[{"role":null,"tag":"skirmish"},{"role":null,"tag":"hands"},{"role":null,"tag":"carry"}]},{"name":"Classic LCK Spine","points":3,"desc":"Stable top, control mid y shotcall support","req":[{"role":"Top","tag":"stable"},{"role":"Mid","tag":"control"},{"role":"Support","tag":"shotcall"}]},{"name":"Classic LPL Fight","points":3,"desc":"Carry top, tempo jungle y bot carry","req":[{"role":"Top","tag":"carry"},{"role":"Jungle","tag":"tempo"},{"role":"Bot","tag":"carry"}]},{"name":"Western Upset","points":2,"desc":"Creative y upset abren ventanas raras","req":[{"role":null,"tag":"creative"},{"role":null,"tag":"upset"}]},{"name":"Calm Finish","points":2,"desc":"Clutch y shotcall reducen throws","req":[{"role":null,"tag":"clutch"},{"role":null,"tag":"shotcall"}]}];
+  const OBJECTIVES = [
+    { id:'first-run', name:'Primera run', text:'Completa cualquier run.', reward:20, goal:1, progress:s=>s.runs },
+    { id:'first-crown', name:'Levanta la copa', text:'Gana una run completa.', reward:80, goal:1, progress:s=>s.wins },
+    { id:'west-only', name:'Western Union', text:'Completa una run con 5 jugadores LEC/LCS.', reward:70, goal:1, progress:s=>hasHistoryRun(s,h=>h.picks?.length===5 && h.picks.every(p=>['LEC','LCS'].includes(p.region)))?1:0 },
+    { id:'east-core', name:'Eastern Core', text:'Completa una run con 3+ jugadores LCK/LPL.', reward:45, goal:1, progress:s=>hasHistoryRun(s,h=>(h.picks||[]).filter(p=>['LCK','LPL'].includes(p.region)).length>=3)?1:0 },
+    { id:'kr-core', name:'KR Core', text:'Completa una run con 3+ jugadores KR.', reward:45, goal:1, progress:s=>hasHistoryRun(s,h=>(h.picks||[]).filter(p=>p.country==='KR').length>=3)?1:0 },
+    { id:'no-gold-win', name:'Sin doradas', text:'Gana una run sin cartas major champion.', reward:95, goal:1, progress:s=>hasHistoryRun(s,h=>h.won && (h.picks||[]).every(p=>!p.major))?1:0 },
+    { id:'three-regions', name:'Mapa mundial', text:'Completa una run con 3+ regiones distintas.', reward:50, goal:1, progress:s=>hasHistoryRun(s,h=>new Set((h.picks||[]).map(p=>p.region)).size>=3)?1:0 },
+    { id:'bot-duo', name:'Bot duo real', text:'Completa una run con Bot/Supp del mismo equipo/año.', reward:55, goal:1, progress:s=>hasHistoryRun(s,h=>{const b=(h.picks||[]).find(p=>p.role==='Bot'), sup=(h.picks||[]).find(p=>p.role==='Support'); return b&&sup&&b.short===sup.short&&b.year===sup.year&&b.tournament===sup.tournament;})?1:0 },
+    { id:'game-five', name:'Silver Scrapes', text:'Juega una serie 3-2 o 2-1.', reward:45, goal:1, progress:s=>hasHistoryRun(s,h=>(h.matches||[]).some(m=>['3-2','2-1'].includes(m.score)))?1:0 },
+    { id:'clean-final', name:'Final limpia', text:'Gana una final 3-0.', reward:70, goal:1, progress:s=>hasHistoryRun(s,h=>h.won && (h.matches||[]).some(m=>m.label==='Final'&&m.score==='3-0'))?1:0 },
+    { id:'baron-hunter', name:'Baron hunter', text:'Consigue 10 Barones a favor.', reward:45, goal:10, progress:s=>s.barons||0 },
+    { id:'penta', name:'Pentakill moment', text:'Consigue una pentakill a favor.', reward:65, goal:1, progress:s=>s.pentas||0 },
+    { id:'comeback', name:'Comeback script', text:'Gana una partida marcada como comeback.', reward:60, goal:1, progress:s=>s.comebacks||0 },
+    { id:'market-five', name:'Scouter', text:'Desbloquea 5 jugadores en mercado.', reward:50, goal:5, progress:()=>state.owned.size },
+    { id:'chrono-buyer', name:'Chrono shopper', text:'Compra cualquier poder Chrono.', reward:30, goal:1, progress:()=>Object.values(state.chrono.inventory||{}).reduce((a,b)=>a+Number(b||0),0) },
+    { id:'seventy-synergy', name:'Teórico de draft', text:'Activa 8+ sinergias de composición en una run.', reward:75, goal:1, progress:s=>hasHistoryRun(s,h=>(h.compCount||0)>=8)?1:0 }
+  ];
+  const CHRONO_POWERS = [
+    { id:'chrono-reset', name:'Chrono Reset', cost:60, text:'Repite automáticamente el primer mapa perdido y tira un nuevo resultado.' },
+    { id:'coach-sub', name:'Coach Sub', cost:45, text:'El rival juega un mapa con suplente improvisado: -5 power rival.' },
+    { id:'scrim-leak', name:'Scrim Leak', cost:35, text:'Tu draft lee el plan rival: +4 power en el próximo mapa.' },
+    { id:'baron-ward', name:'Baron Ward', cost:40, text:'Mejora tus peleas alrededor de Nashor y reduce throws.' }
   ];
   const DIFF = { normal: { enemy: 2, variance: 8 }, hard: { enemy: 6, variance: 7 }, chaos: { enemy: 4, variance: 15 } };
   const FILTERS = { all: () => true, winner: r => r.major, east: r => ['LCK','LPL'].includes(r.region), west: r => ['LEC','LCS'].includes(r.region) };
 
   const $ = id => document.getElementById(id);
   const els = {};
-  ['seedLabel','draftScreen','simScreen','statsScreen','historyScreen','chronoScreen','rollMeter','rollBar','runLogo','runMark','runNote','rollCard','teamLogo','rollTitle','rollSub','rollTags','players','summarySeed','draftCount','avgScore','synScore','cupChance','coinCount','coinHint','slots','market','metaBox','questBox','synergyBox','metaText','questText','synergyReasons','results','resultOverlay','toast','simSubtitle','simScoreline','liveFocus','simTimeline','scoreGrid','runLedger','pickLedger','simLedger','historyLedger'].forEach(id => els[id] = $(id));
+  ['seedLabel','draftScreen','simScreen','statsScreen','historyScreen','objectivesScreen','chronoScreen','rollMeter','rollBar','runLogo','runMark','runNote','rollCard','teamLogo','rollTitle','rollSub','rollTags','players','summarySeed','draftCount','avgScore','synScore','cupChance','coinCount','coinHint','slots','market','metaBox','questBox','synergyBox','metaText','questText','synergyReasons','results','resultOverlay','toast','simSubtitle','simScoreline','liveFocus','simTimeline','scoreGrid','runLedger','pickLedger','simLedger','historyLedger','objectiveList','chronoGrid'].forEach(id => els[id] = $(id));
   const allPlayers = ROSTERS.flatMap(r => r.players);
   const state = {
     screen: 'draft', seed: seed(), current: null, picks: Object.fromEntries(ROLES.map(r => [r, null])), difficulty: 'normal', mode: 'classic', filter: 'all',
-    rolls: 0, rerollUsed: false, scoutUsed: false, marketUsed: false, meta: null, quest: null, market: [], coins: readNumber(STORE.coins, STARTING_COINS), owned: readSet(STORE.owned), stats: readStats(), last: null, simming: false, openMatches: new Set()
+    rolls: 0, rerollUsed: false, scoutUsed: false, marketUsed: false, meta: null, quest: null, market: [], coins: readNumber(STORE.coins, STARTING_COINS), owned: readSet(STORE.owned), objectiveClaims: readSet(STORE.objectives), chrono: readObject(STORE.chrono, { inventory:{}, active:{} }), stats: readStats(), last: null, simming: false, openMatches: new Set()
   };
   state.rng = makeRng(state.seed);
 
@@ -789,6 +896,9 @@
     if (action === 'market') return rotateMarketManual();
     if (action === 'clearStats') return clearStats();
     if (action === 'toggleMatch') return toggleMatch(Number(actionEl.dataset.match));
+    if (action === 'claimObjective') return claimObjective(actionEl.dataset.objective);
+    if (action === 'buyChrono') return buyChrono(actionEl.dataset.chrono);
+    if (action === 'activateChrono') return activateChrono(actionEl.dataset.chrono);
   }
 
   function handleKeys(e) { const card = e.target.closest('[data-player]'); if (card && (e.key === 'Enter' || e.key === ' ')) { e.preventDefault(); chooseCurrent(Number(card.dataset.player), card); } }
@@ -954,14 +1064,20 @@
     const modBonus = series.mod.ok ? 2 : -1;
     const fatigue = series.bo === 'Bo5' && mapNo >= 4 ? rand(-2, 2) : 0;
     const clutch = mapNo === series.need * 2 - 1 ? rand(-3, 4) : 0;
-    const our = Math.round(state.last.power + modBonus + fatigue + clutch + rand(-d.variance, d.variance));
-    const rival = Math.round((series.enemy.tier + series.gate) / 2 + d.enemy + ENEMY_HANDICAP + rand(-4, 5));
-    const chance = clamp(.5 + (our - rival) * .042, .13, .87);
-    const win = rng() < chance;
+    const chronoEvents = [];
+    let our = Math.round(state.last.power + modBonus + fatigue + clutch + rand(-d.variance, d.variance));
+    let rival = Math.round((series.enemy.tier + series.gate) / 2 + d.enemy + ENEMY_HANDICAP + rand(-4, 5));
+    if (chronoReady('coach-sub')) { rival -= 5; consumeChrono('coach-sub'); chronoEvents.push(chronoEvent('Coach Sub', 'El rival juega el mapa con suplente improvisado.')); }
+    if (chronoReady('scrim-leak')) { our += 4; consumeChrono('scrim-leak'); chronoEvents.push(chronoEvent('Scrim Leak', 'Tu draft lee el plan rival antes del early game.')); }
+    if (chronoReady('baron-ward')) { our += 2; consumeChrono('baron-ward'); chronoEvents.push(chronoEvent('Baron Ward', 'Control de visión mejorado alrededor de Nashor.')); }
+    let chance = clamp(.5 + (our - rival) * .042, .13, .87);
+    let win = rng() < chance;
+    if (!win && chronoReady('chrono-reset')) { consumeChrono('chrono-reset'); chronoEvents.push(chronoEvent('Chrono Reset', 'Se repite el mapa perdido y el destino vuelve a tirar dados.')); chance = clamp(chance + .16, .18, .92); win = rng() < chance; our += rand(0,4); }
     const durationSec = gameDuration(win, our, rival);
     const mvp = selectMvp(win, series.enemy).name;
-    return { label: `Mapa ${mapNo}`, our, rival, chance, win, durationSec, duration: fmtDuration(durationSec), mvp, finished: false, events: matchEvents(win, series.enemy, durationSec, mvp, our, rival) };
+    return { label: `Mapa ${mapNo}`, our, rival, chance, win, durationSec, duration: fmtDuration(durationSec), mvp, finished: false, events: chronoEvents.concat(matchEvents(win, series.enemy, durationSec, mvp, our, rival)) };
   }
+  function chronoEvent(label, copy) { return { type:'chrono', label, who:'Chrono Lab', actor:label, copy, icon:OBJ.mvp, logo:pickedLogo(), ours:true, visible:false }; }
 
   function gameDuration(win, our, rival) {
     const base = rand(24 * 60, 43 * 60);
@@ -1038,16 +1154,24 @@
   function enemyTeam() { const blocked = usedOrgs(); const pool = ROSTERS.filter(r => !blocked.has(r.org)); return pick(pool.length ? pool : ROSTERS); }
   function roundModifier() { const ps = picked(); const pool = METAS.map(x => ({ kind:'meta', name:x.name, ok:x.score(ps)>0 })).concat(QUESTS.map(x => ({ kind:'quest', name:x.name, ok:x.ok(ps) }))); return pick(pool); }
 
-  function render() { renderScreens(); renderChoices(); renderHeader(); renderRoll(); renderPlayers(); renderSide(); renderMarket(); renderMini(); renderSim(); renderStats(); }
-  function renderScreens() { ['draft','sim','stats','history','chrono'].forEach(name => { const panel = $(`${name}Screen`); if (panel) panel.hidden = state.screen !== name; }); document.querySelectorAll('[data-action="screen"]').forEach(b => b.setAttribute('aria-pressed', String(b.dataset.screen === state.screen))); }
+  function render() { renderScreens(); renderChoices(); renderHeader(); renderRoll(); renderPlayers(); renderSide(); renderMarket(); renderMini(); renderSim(); renderStats(); renderObjectives(); renderChrono(); }
+  function renderScreens() { ['draft','sim','stats','history','objectives','chrono'].forEach(name => { const panel = $(`${name}Screen`); if (panel) panel.hidden = state.screen !== name; }); document.querySelectorAll('[data-action="screen"]').forEach(b => b.setAttribute('aria-pressed', String(b.dataset.screen === state.screen))); }
   function setScreen(screen) { state.screen = screen || 'draft'; render(); }
   function renderChoices() { document.querySelectorAll('[data-setting]').forEach(group => group.querySelectorAll('.choice').forEach(b => b.setAttribute('aria-pressed', String(state[group.dataset.setting] === b.dataset.value)))); }
   function renderHeader() { text(els.seedLabel, `seed #${state.seed}`); text(els.summarySeed, `seed #${state.seed}`); text(els.rollMeter, `${state.rolls}/${MAX_ROLLS} tiradas`); els.rollBar.style.width = `${state.rolls / MAX_ROLLS * 100}%`; if (!state.current) { text(els.runMark,'—:—'); text(els.runNote,'tira para abrir roster'); image(els.runLogo,'','?'); return; } text(els.runMark, `${state.current.short}: ${state.current.year}`); text(els.runNote, `${state.current.tournament} · ${state.current.major ? 'campeón internacional' : 'contender'}`); image(els.runLogo, state.current.logo, state.current.short); }
   function renderRoll() { els.rollCard.classList.toggle('is-gold', state.current?.rarity === 'rare'); if (!state.current) { image(els.teamLogo,'','?'); text(els.rollTitle,'Sin tirada'); text(els.rollSub,'Haz una tirada para revelar equipo, año y pool de jugadores.'); els.rollTags.innerHTML=''; return; } const r = state.current; image(els.teamLogo, r.logo, r.short); text(els.rollTitle, `${r.name} ${r.year}`); text(els.rollSub, `${flag(r.country)} ${r.region} · ${r.tournament} · tier ${r.tier}`); els.rollTags.innerHTML = (r.rarity === 'rare' ? ['carta dorada','1 de 6'] : []).concat(r.styles).map(x => `<span>${esc(x)}</span>`).join(''); }
   function renderPlayers() { if (!state.current) { els.players.innerHTML = '<div class="empty">tira el dado para abrir tu primer roster.</div>'; return; } els.players.innerHTML = state.current.players.map((pl, i) => card(pl, i)).join(''); }
-  function card(pl, i) { const locked = issue(pl); const hidden = state.mode === 'blind'; return `<article class="player-card tilt-card ${pl.major ? 'is-gold' : ''} ${locked ? 'is-locked' : ''}" data-player="${i}" tabindex="0" role="button"><div class="portrait-row"><figure class="round-icon role-chip">${roleGlyph(pl.role)}</figure><figure class="round-icon"><span>${esc(roleCode(pl.role))}</span></figure></div><div class="player-main"><h3>${hidden ? '???' : esc(pl.name)}</h3><p>${hidden ? esc(pl.role) : `${flag(pl.country)} ${esc(pl.short)} ${esc(pl.year)} · ${esc(pl.tournament)}`}</p></div><div class="tag-stack">${pl.tags.map(t => `<span>${esc(t)}</span>`).join('')}</div><span class="role-badge">${esc(pl.role)}</span><strong class="rating">${hidden ? '??' : pl.rating}</strong>${locked ? `<em class="lock-copy">${esc(locked)}</em>` : ''}</article>`; }
-  function renderSide() { const ps = picked(), syn = synergy(), meta = metaBonus(), quest = questBonus(), pow = power(), av = ps.length ? Math.round(avg(ps.map(x => x.rating))) : 0; text(els.draftCount, `${ps.length}/5`); text(els.avgScore, av); text(els.synScore, syn.points + meta + quest); text(els.cupChance, `${clamp(Math.round((pow - 76) * 2.7),0,96)}%`); text(els.coinCount, state.coins); text(els.coinHint, `${state.owned.size} desbloqueados · ${state.marketUsed ? 'rotación usada' : 'rotar 10c'}`); text(els.metaText, state.meta ? `${state.meta.name}: ${state.meta.text}` : 'Se revela con la primera tirada.'); text(els.questText, state.quest ? `${state.quest.name}: ${state.quest.text}` : 'Se revela con la primera tirada.'); els.synergyReasons.innerHTML = syn.reasons.length ? syn.reasons.map(x => `<span>${esc(x)}</span>`).join(' ') : 'Sin picks todavía.'; els.metaBox.classList.toggle('is-done', meta > 0); els.questBox.classList.toggle('is-done', quest > 0); els.synergyBox.classList.toggle('is-done', syn.points > 0); els.slots.innerHTML = ROLES.map(role => { const pl = state.picks[role]; return `<article class="slot" data-slot="${role}"><span class="slot-role ${pl ? '': 'role-chip'}">${pl ? img(pl.logo, pl.short, ROLE_ICONS[role]) : roleGlyph(role)}</span><div><strong>${pl ? esc(pl.name) : role}</strong><p>${pl ? `${flag(pl.country)} ${esc(pl.short)} ${pl.year} · ${esc(pl.tournament)}` : 'pendiente'}</p></div><span class="slot-score">${pl ? pl.rating : '—'}</span></article>`; }).join(''); }
-  function renderMarket() { ensureMarket(); const button = document.querySelector('[data-action="market"]'); if (button) { button.textContent = state.marketUsed ? 'usado' : 'rotar 10c'; button.disabled = state.marketUsed; } els.market.innerHTML = state.market.map((id, i) => { const pl = allPlayers.find(x => x.id === id); if (!pl) return ''; const owned = state.owned.has(pl.id); const cost = costOf(pl); const disabled = owned && issue(pl); return `<article class="market-card tilt-card ${pl.major ? 'is-gold' : ''}"><span class="market-logo">${img(pl.logo, pl.short, ROLE_ICONS[pl.role])}</span><div><strong>${esc(pl.name)}</strong><small>${esc(pl.role)} · ${esc(pl.short)} ${pl.year}</small></div><button type="button" data-market="${i}" ${disabled ? 'disabled' : ''}>${owned ? 'firmar' : cost + 'c'}</button></article>`; }).join(''); }
+  function card(pl, i) { const locked = issue(pl); const hidden = state.mode === 'blind'; const hint = synergyPreview(pl); return `<article class="player-card tilt-card ${pl.major ? 'is-gold' : ''} ${locked ? 'is-locked' : ''}" data-player="${i}" tabindex="0" role="button" title="${esc(hint)}"><div class="portrait-row"><figure class="round-icon role-chip">${roleGlyph(pl.role)}</figure><figure class="round-icon"><span>${esc(roleCode(pl.role))}</span></figure></div><div class="player-main"><h3>${hidden ? '???' : esc(pl.name)}</h3><p>${hidden ? esc(pl.role) : `${flag(pl.country)} ${esc(pl.short)} ${esc(pl.year)} · ${esc(pl.tournament)}`}</p></div><div class="tag-stack">${pl.tags.map(t => `<span class="synergy-tooltip" title="${esc(tagHint(pl, t))}">${esc(t)}</span>`).join('')}</div><span class="role-badge">${esc(pl.role)}</span><strong class="rating">${hidden ? '??' : pl.rating}</strong>${locked ? `<em class="lock-copy">${esc(locked)}</em>` : ''}</article>`; }
+  function renderSide() {
+    const ps = picked(), syn = synergy(), meta = metaBonus(), quest = questBonus(), pow = power(), av = ps.length ? Math.round(avg(ps.map(x => x.rating))) : 0;
+    text(els.draftCount, `${ps.length}/5`); text(els.avgScore, av); text(els.synScore, syn.points + meta + quest); text(els.cupChance, `${clamp(Math.round((pow - 76) * 2.7),0,96)}%`); text(els.coinCount, state.coins); text(els.coinHint, `${state.owned.size} desbloqueados · ${state.marketUsed ? 'rotación usada' : 'rotar 10c'}`);
+    if (els.metaText) els.metaText.innerHTML = state.meta ? `${esc(state.meta.name)}: ${esc(state.meta.text)}<small class="calc-note">Meta es la regla especial de esta run. Solo cuenta si coincide con la condición mostrada.</small>` : 'Se revela con la primera tirada.';
+    if (els.questText) els.questText.innerHTML = state.quest ? `${esc(state.quest.name)}: ${esc(state.quest.text)}<small class="calc-note">Quest se paga como bonus al completar el 5v. Es distinta de Meta.</small>` : 'Se revela con la primera tirada.';
+    if (els.synergyReasons) els.synergyReasons.innerHTML = syn.reasons.length ? syn.reasons.slice(0,10).map(x => `<span title="${esc(x)}">${esc(x)}</span>`).join(' ') + `<small class="calc-note">Sinergia = región/país, mismo equipo/org y compos por tags. ${syn.comps.length} compos activas.</small>` : 'Sin picks todavía.';
+    els.metaBox.classList.toggle('is-done', meta > 0); els.questBox.classList.toggle('is-done', quest > 0); els.synergyBox.classList.toggle('is-done', syn.points > 0);
+    els.slots.innerHTML = ROLES.map(role => { const pl = state.picks[role]; return `<article class="slot" data-slot="${role}"><span class="slot-role ${pl ? '': 'role-chip'}">${pl ? img(pl.logo, pl.short, ROLE_ICONS[role]) : roleGlyph(role)}</span><div><strong>${pl ? esc(pl.name) : role}</strong><p>${pl ? `${flag(pl.country)} ${esc(pl.short)} ${pl.year} · ${esc(pl.tournament)}` : 'pendiente'}</p></div><span class="slot-score">${pl ? pl.rating : '—'}</span></article>`; }).join('');
+  }
+  function renderMarket() { ensureMarket(); const button = document.querySelector('[data-action="market"]'); if (button) { button.textContent = state.marketUsed ? 'usado' : 'rotar 10c'; button.disabled = state.marketUsed; } els.market.innerHTML = state.market.map((id, i) => { const pl = allPlayers.find(x => x.id === id); if (!pl) return ''; const owned = state.owned.has(pl.id); const cost = costOf(pl); const disabled = owned && issue(pl); return `<article class="market-card tilt-card ${pl.major ? 'is-gold' : ''}" title="${esc(synergyPreview(pl))}"><span class="market-logo">${img(pl.logo, pl.short, ROLE_ICONS[pl.role])}</span><div><strong>${esc(pl.name)}</strong><small>${esc(pl.role)} · ${esc(pl.short)} ${pl.year}</small></div><button type="button" data-market="${i}" ${disabled ? 'disabled' : ''}>${owned ? 'firmar' : cost + 'c'}</button></article>`; }).join(''); }
   function renderMini() { if (!state.last) { els.results.innerHTML = '<p class="muted">sin simulación todavía.</p>'; return; } const wins = state.last.matches.filter(m => m.finished && m.win).length, losses = state.last.matches.filter(m => m.finished && !m.win).length; els.results.innerHTML = `<strong>${state.last.complete ? (state.last.won ? 'campeón' : 'eliminado') : 'en vivo'}</strong><p class="muted">${wins}-${losses} · power ${state.last.power}</p>`; }
   function renderSim() {
     if (!state.last) {
@@ -1154,6 +1278,49 @@
     return `<article class="score-card" title="${esc(help || note)}"><strong>${esc(value)}</strong><span>${esc(label)}</span><div class="mini-chart">${chart}</div><div class="bar-labels">${labels}</div><em>${esc(note)}</em><p class="stat-help">${esc(help || '')}</p></article>`;
   }
 
+  function renderObjectives() {
+    if (!els.objectiveList) return;
+    els.objectiveList.innerHTML = OBJECTIVES.map(obj => {
+      const progress = Math.min(obj.goal, Number(obj.progress(state.stats)) || 0);
+      const done = progress >= obj.goal;
+      const claimed = state.objectiveClaims.has(obj.id);
+      const pct = Math.round(progress / obj.goal * 100);
+      return `<article class="objective-card ${done ? 'is-done' : ''} ${claimed ? 'is-claimed' : ''}"><h3>${esc(obj.name)}</h3><p>${esc(obj.text)}</p><div class="objective-progress"><b style="--p:${pct}%"></b></div><span class="objective-reward">+${obj.reward} coins</span><button type="button" data-action="claimObjective" data-objective="${esc(obj.id)}" ${done && !claimed ? '' : 'disabled'}>${claimed ? 'cobrado' : done ? 'cobrar' : `${progress}/${obj.goal}`}</button></article>`;
+    }).join('');
+  }
+  function claimObjective(id) {
+    const obj = OBJECTIVES.find(o => o.id === id); if (!obj) return;
+    const progress = Math.min(obj.goal, Number(obj.progress(state.stats)) || 0);
+    if (progress < obj.goal) return toast('Objetivo incompleto.');
+    if (state.objectiveClaims.has(id)) return toast('Ya cobraste este objetivo.');
+    state.objectiveClaims.add(id); state.coins += obj.reward;
+    write(STORE.objectives, JSON.stringify([...state.objectiveClaims])); write(STORE.coins, state.coins);
+    render(); toast(`Objetivo cobrado · +${obj.reward} coins`);
+  }
+  function renderChrono() {
+    if (!els.chronoGrid) return;
+    const unlocked = state.stats.wins >= 3;
+    els.chronoGrid.innerHTML = CHRONO_POWERS.map(power => {
+      const count = Number(state.chrono.inventory?.[power.id] || 0);
+      const active = !!state.chrono.active?.[power.id];
+      return `<article class="chrono-card ${active ? 'is-active' : ''}"><h3>${esc(power.name)}</h3><p>${esc(power.text)}</p><span class="chrono-price">${power.cost}c · owned ${count}</span><div class="chrono-actions"><button type="button" data-action="buyChrono" data-chrono="${esc(power.id)}" ${unlocked && state.coins >= power.cost ? '' : 'disabled'}>${unlocked ? 'comprar' : 'requiere 3 wins'}</button><button type="button" data-action="activateChrono" data-chrono="${esc(power.id)}" ${count > 0 ? '' : 'disabled'}>${active ? 'activo' : 'activar'}</button></div></article>`;
+    }).join('');
+  }
+  function saveChrono() { write(STORE.chrono, JSON.stringify(state.chrono)); }
+  function buyChrono(id) {
+    const power = CHRONO_POWERS.find(p => p.id === id); if (!power) return;
+    if (state.stats.wins < 3) return toast('Chrono se desbloquea con 3 wins.');
+    if (state.coins < power.cost) return toast('Te faltan coins.');
+    state.coins -= power.cost; state.chrono.inventory[id] = Number(state.chrono.inventory[id] || 0) + 1;
+    write(STORE.coins, state.coins); saveChrono(); render(); toast(`${power.name} comprado.`);
+  }
+  function activateChrono(id) {
+    if (!Number(state.chrono.inventory?.[id] || 0)) return toast('No tienes cargas de ese Chrono.');
+    state.chrono.active[id] = !state.chrono.active[id]; saveChrono(); renderChrono(); toast(state.chrono.active[id] ? 'Chrono activado para la próxima simulación.' : 'Chrono desactivado.');
+  }
+  function chronoReady(id) { return !!state.chrono.active?.[id] && Number(state.chrono.inventory?.[id] || 0) > 0; }
+  function consumeChrono(id) { if (!chronoReady(id)) return false; state.chrono.inventory[id] = Math.max(0, Number(state.chrono.inventory[id] || 0) - 1); state.chrono.active[id] = false; saveChrono(); return true; }
+  function hasHistoryRun(s, fn) { return (s.history || []).some(fn); }
   function ensureMarket() { if (!state.market.length) rotateMarket(false); }
   function rotateMarketManual() { if (state.marketUsed) return toast('La rotación manual ya se usó.'); if (state.coins < MARKET_COST) return toast('Te faltan coins.'); state.coins -= MARKET_COST; state.marketUsed = true; write(STORE.coins, state.coins); rotateMarket(false); render(); flash(els.market, 'is-refresh'); toast('Tienda rotada.'); }
   function rotateMarket(renderNow) { state.market = shuffle(allPlayers).slice(0, 3).map(p => p.id); if (renderNow !== false) render(); }
@@ -1204,7 +1371,49 @@
   function copySummary() { const lines = [`20:19 Draft · seed #${state.seed}`, `Tiradas ${state.rolls}/${MAX_ROLLS}`].concat(ROLES.map(r => `${r}: ${state.picks[r] ? state.picks[r].name + ' (' + state.picks[r].short + ')' : 'pendiente'}`)); navigator.clipboard?.writeText(lines.join('\n')).then(() => toast('copiado.')).catch(() => toast('no se pudo copiar.')); }
 
   function power() { const ps = picked(); if (!ps.length) return 0; return Math.round(avg(ps.map(x=>x.rating)) + synergy().points + metaBonus() + questBonus()); }
-  function synergy() { const ps = picked(); let points = 0; const reasons = []; const regions = count(ps.map(x=>x.region)); if (Math.max(0, ...Object.values(regions)) >= 3) { points += 2; reasons.push('núcleo regional'); } if (sameRegion(ps,'Jungle','Mid')) { points += 2; reasons.push('Jungle/Mid región'); } if (sameTeam(ps,'Bot','Support')) { points += 4; reasons.push('duo bot real'); } const tags = count(ps.flatMap(x=>x.tags)); Object.entries(tags).forEach(([k,v]) => { if (v >= 3) { points += 2; reasons.push('estilo ' + k); } }); if (ps.some(x=>x.major)) { points += 1; reasons.push('aura internacional'); } return { points, reasons }; }
+  function synergy() {
+    const ps = picked();
+    let points = 0; const reasons = [];
+    const regions = count(ps.map(x=>x.region)); const countries = count(ps.map(x=>x.country)); const orgs = count(ps.map(x=>x.org));
+    const regionMax = maxGroup(ps.map(x=>x.region)); const countryMax = maxGroup(ps.map(x=>x.country)); const orgMax = maxGroup(ps.map(x=>x.org));
+    if (regionMax >= 3) { points += 2; reasons.push('núcleo regional 3+'); }
+    if (countryMax >= 3) { points += 1; reasons.push('núcleo país 3+'); }
+    if (regionMax === 5) { points += 2; reasons.push('región completa'); }
+    if (orgMax >= 2) { points += Math.min(3, orgMax - 1); reasons.push('misma organización ' + orgMax); }
+    if (sameRegion(ps,'Jungle','Mid')) { points += 2; reasons.push('Jungle/Mid región'); }
+    if (sameTeam(ps,'Bot','Support')) { points += 4; reasons.push('duo bot real'); }
+    const matched = matchedComps(ps);
+    const compPoints = Math.min(12, matched.reduce((a,c)=>a+c.points,0));
+    points += compPoints;
+    matched.slice(0,8).forEach(c => reasons.push(`${c.name} +${c.points}`));
+    if (ps.some(x=>x.major)) { points += 1; reasons.push('aura internacional'); }
+    return { points, reasons, comps: matched };
+  }
+  function matchedComps(ps) { return COMP_RULES.map(rule => matchComp(rule, ps)).filter(Boolean); }
+  function matchComp(rule, ps) {
+    const used = new Set(); const players = [];
+    for (const req of rule.req) {
+      const found = ps.find(p => !used.has(p.id) && (!req.role || p.role === req.role) && (!req.tag || p.tags.includes(req.tag)));
+      if (!found) return null;
+      used.add(found.id); players.push(found);
+    }
+    return { ...rule, players };
+  }
+  function synergyPreview(candidate) {
+    const base = picked().filter(p => p.role !== candidate.role);
+    const ps = base.concat(candidate);
+    const comps = matchedComps(ps).filter(c => c.players.some(p => p.id === candidate.id));
+    const lines = [`${candidate.name} · ${candidate.role}`, `Tags: ${candidate.tags.join(', ')}`];
+    if (comps.length) lines.push('Compos activas:', ...comps.slice(0,6).map(c => `+${c.points} ${c.name}: ${c.players.map(p=>p.name).join(' + ')}`));
+    else lines.push('Sin composición activa todavía con tus picks actuales.');
+    const same = base.filter(p => p.region === candidate.region || p.country === candidate.country || p.org === candidate.org);
+    if (same.length) lines.push('Afinidad:', ...same.slice(0,4).map(p => `${p.name} (${p.region}/${p.org})`));
+    return lines.join('\n');
+  }
+  function tagHint(player, tag) {
+    const comps = COMP_RULES.filter(c => c.req.some(r => r.tag === tag));
+    return `${tag}: aparece en ${comps.length} compos. ${comps.slice(0,4).map(c=>c.name).join(', ')}`;
+  }
   function metaBonus() { const ps = picked(); return state.meta && ps.length === 5 ? state.meta.score(ps) : 0; }
   function questBonus() { const ps = picked(); return state.quest && ps.length === 5 && state.quest.ok(ps) ? state.quest.bonus : 0; }
   function recordStats(reward) {
@@ -1234,7 +1443,7 @@
     s.recent.unshift({ seed: state.seed, result, score, reward });
     s.recent = s.recent.slice(0, 12);
     s.history = s.history || [];
-    const momentum = games.reduce((acc,g) => acc.concat((acc.at(-1) || 0) + (g.win ? 1 : -1)), [0]); s.history.unshift({ seed: state.seed, result, score, reward, power: l.power, groups: l.groups[0] + '-' + l.groups[1], maps: games.length, momentum, picks: picked().map(p => ({ role: p.role, name: p.name, short: p.short, year: p.year })), matches: l.matches.map(m => ({ label: m.label, enemy: `${m.enemy.short} ${m.enemy.year}`, score: `${m.ourWins}-${m.rivalWins}`, win: m.win, maps: m.games.length })) });
+    const momentum = games.reduce((acc,g) => acc.concat((acc.at(-1) || 0) + (g.win ? 1 : -1)), [0]); s.history.unshift({ seed: state.seed, result, score, reward, power: l.power, groups: l.groups[0] + '-' + l.groups[1], maps: games.length, momentum, won: l.won, compCount: synergy().comps.length, picks: picked().map(p => ({ role: p.role, name: p.name, short: p.short, year: p.year, region: p.region, country: p.country, org: p.org, tournament: p.tournament, major: !!p.major, tags: p.tags })), matches: l.matches.map(m => ({ label: m.label, enemy: `${m.enemy.short} ${m.enemy.year}`, score: `${m.ourWins}-${m.rivalWins}`, win: m.win, maps: m.games.length })) });
     s.history = s.history.slice(0, 24);
     write(STORE.stats, JSON.stringify(s));
   }
@@ -1261,6 +1470,8 @@
   function write(k,v) { try { localStorage.setItem(k, v); } catch {} }
   function readNumber(k,fallback) { const n = Number(read(k)); return Number.isFinite(n) && n >= 0 ? n : fallback; }
   function readSet(k) { try { return new Set(JSON.parse(read(k) || '[]')); } catch { return new Set(); } }
+  function readObject(k, fallback) { try { return Object.assign(typeof structuredClone === 'function' ? structuredClone(fallback) : JSON.parse(JSON.stringify(fallback)), JSON.parse(read(k) || '{}')); } catch { return fallback; } }
+  function maxGroup(values) { const vals = values.filter(Boolean); return Math.max(0, ...Object.values(count(vals))); }
   function seed() { return Math.random().toString(36).slice(2,8).toUpperCase(); }
   function pick(arr) { return arr[Math.floor(rng() * arr.length)]; }
   function shuffle(arr) { const out = [...arr]; for (let i = out.length - 1; i > 0; i--) { const j = Math.floor(rng() * (i + 1)); [out[i], out[j]] = [out[j], out[i]]; } return out; }
